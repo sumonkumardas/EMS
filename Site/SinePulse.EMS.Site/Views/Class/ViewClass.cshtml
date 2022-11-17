@@ -1,0 +1,148 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@using SinePulse.EMS.Domain.Enums
+@using SinePulse.EMS.Domain.Shared
+@using SinePulse.EMS.Domain.Features
+@inject IViewLocalizer Localizer
+@model ClassViewModel
+@{
+  ViewData["Title"] = "ViewClass";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-container">
+  <div class="page-content-wrapper">
+    <div class="page-content">
+      <!-- END PAGE HEADER-->
+      <!-- BEGIN PAGE CONTENT-->
+      <div class="row">
+        <div class="col-md-12">
+          <!-- BEGIN PROFILE SIDEBAR -->
+          <div class="profile-sidebar">
+            <!-- PORTLET MAIN -->
+            <div class="portlet light profile-sidebar-portlet">
+              <!-- SIDEBAR USERPIC -->
+                <div class="profile-userpic">
+                    <img src="../../img/school.png" class="img-responsive" alt="">
+                </div>
+              <!-- END SIDEBAR USERPIC -->
+              <!-- SIDEBAR USER TITLE -->
+                <div class="profile-usertitle-name small-title">
+                  @Html.DisplayFor(model => model.ClassName)
+                  <div class="profile-stat-text">
+                    @Localizer["ViewClass.ClassName"]
+                  </div>
+                </div>
+                <hr />
+              
+              <!-- END SIDEBAR USER TITLE -->
+              <div class="profile-usertitle-name">
+                @Html.DisplayFor(model => model.ClassCode)
+              </div>
+              <div class="profile-stat-text">
+                @Localizer["ViewClass.ClassCode"]
+              </div>
+              <hr />
+              <div class="profile-usertitle-name">
+                @Html.DisplayFor(model => model.Status)
+              </div>
+              <div class="profile-stat-text">
+                @Localizer["ViewClass.Status"]
+              </div>
+              <hr />
+              <br />
+            </div>
+            <!-- END PORTLET MAIN -->
+          </div>
+          <!-- END BEGIN PROFILE SIDEBAR -->
+          <!-- BEGIN PROFILE CONTENT -->
+          <div class="profile-content">
+            <div class="row">
+              <div class="col-md-12">
+
+                <!-- BEGIN PORTLET -->
+                <div class="portlet light">
+                  <div class="portlet-title tabbable-line">
+                    <div class="page-toolbar custom-page-menu-bar">
+                      <div class="btn-group">
+                        <ul style="padding:0px;">
+                          <li class="custom-page-menu dropdown primary-menu-item-li">
+                            <a href="#" class="show-dropdown-on-hover" data-toggle="custom-page-menu">
+                              <button type="button" class="btn btn-fit-height dark-bg dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="100" data-close-others="true">
+                                <i class="fa fa-bars"></i>
+                              </button>
+                            </a>
+                            <ul class="dropdown-menu light-arrow-only">
+                              <li>
+                                <a href="@Url.Action("UpdateClass", new { classId = Model.Id })">@Localizer["ViewClass.UpdateClass"]</a>
+                              </li>
+                              <li>
+                                <a href="/Class/Index">@Localizer["ViewClass.ClassList"]</a>
+                              </li>
+                              <li>
+                                <a href="@Url.Action("AddSubjectInClass", new { classId = Model.Id })" class="fa action-link" style="font-size: medium">@Localizer["ViewClass.AddSubject"]</a>
+                              </li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <ul class="nav nav-tabs custom-page-tab">
+                      <li class="active">
+                        <a href="#tab_addedSubject" data-toggle="tab">
+                          <h5 class="caption-subject font-blue-madison bold uppercase">@Localizer["ViewClass.AddedSubjects"]</h5>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="portlet-body">
+                    <!--BEGIN TABS-->
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tab_addedSubject">
+                          <div style="min-height: 337px;">
+                            <table class="table table-light">
+                              <thead>
+                                <tr class="uppercase">
+                                  <th>@Localizer["ViewClass.SubjectName"]</th>
+                                  <th>@Localizer["ViewClass.SubjectCode"]</th>
+                                  <th>@Localizer["ViewClass.IsOptional"]</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                @{
+                                  if (Model.Subjects != null && Model.Subjects.Any())
+                                  {
+                                    foreach (var subject in Model.Subjects)
+                                    {
+                                      <tr>
+                                        <td>
+                                          @Html.DisplayFor(s => @subject.SubjectName)
+                                        </td>
+                                        <td>
+                                          @Html.DisplayFor(s => @subject.SubjectCode)
+                                        </td>
+                                        <td>
+                                          @Html.DisplayFor(s => @subject.IsOptional)
+                                        </td>
+                                      </tr>
+                                    }
+                                  }
+                                }
+
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                    </div>
+                    <!--END TABS-->
+                  </div>
+                </div>
+                <!-- END PORTLET -->
+              </div>
+            </div>
+          </div>
+          <!-- END PROFILE CONTENT -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

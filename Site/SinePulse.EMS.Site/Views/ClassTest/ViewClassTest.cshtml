@@ -1,0 +1,121 @@
+@using Microsoft.AspNetCore.Mvc.Localization
+@model SinePulse.EMS.Site.Models.ClassTestViewModel
+@inject IViewLocalizer Localizer
+@{
+  ViewData["Title"] = "ViewClassTest";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="page-container">
+  <!-- BEGIN CONTENT -->
+  <div class="page-content-wrapper">
+    <div class="page-content">
+      <div class="portlet box form-conatiner">
+        <div class="icon-container">
+          <a href="/ClassTest/UpdateClassTest" class="fa fa-edit action-link"></a>
+
+          <a href="/ClassTest/Index" class="fa fa-tasks action-link"></a>
+        </div>
+        
+        <div class="portlet-body form">
+          <div class="container">
+
+            <div class="container-fluid">
+              <div class="row-fluid ">
+                <div class="col-md-6">
+                  <div class="row custom-row">
+                    <div class="col-md-4 title"><strong>@Localizer["ViewClassTest.Name"] </strong></div>
+                    <div class="col-md-8 value">@Model.ClassTestName</div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="row custom-row">
+                    <div class="col-md-4 title"><strong>@Localizer["ViewClassTest.ExamType"]</strong></div>
+                    <div class="col-md-8 value">@Model.ExamType</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="container-fluid">
+              <div class="row-fluid ">
+                <div class="col-md-6">
+                  <div class="row custom-row">
+                    <div class="col-md-4 title"><strong>@Localizer["ViewClassTest.FullMarks"]</strong></div>
+                    <div class="col-md-8 value">
+                      <a href="/ExamConfiguration/ViewExamConfiguration?examConfigurationId=@Model.ExamConfigurationId">@Model.FullMarks</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="row custom-row">
+                    <div class="col-md-4 title"><strong>@Localizer["ViewClassTest.Status"]</strong></div>
+                    <div class="col-md-8 value">@Html.DisplayFor(model => model.Status)</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="container-fluid">
+              <div class="row-fluid ">
+                <div class="col-md-6">
+                  <div class="row custom-row">
+                    <div class="col-md-4 title"><strong>@Localizer["ViewClassTest.StartTime"]</strong></div>
+                    <div class="col-md-8 value">@Model.StartTimestamp.ToShortDateString() - @Model.StartTimestamp.ToShortTimeString()</div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="row custom-row">
+                    <div class="col-md-4 title"><strong>@Localizer["ViewClassTest.EndTime"]</strong></div>
+                    <div class="col-md-8 value">@Model.EndTimestamp.ToShortDateString() - @Model.EndTimestamp.ToShortTimeString()</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="container-fluid">
+              <div class="row-fluid ">
+                <div class="col-md-6">
+                  <div class="row custom-row">
+                    <div class="col-md-4 title"><strong>@Localizer["ViewClassTest.Term"]</strong></div>
+                    <div class="col-md-8 value">
+                      <a href="/Term/ViewTerm?termId=@Model.TermData.TermId">@Model.TermData.TermText</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="row custom-row">
+                    <div class="col-md-4 title"><strong>@Localizer["ViewClassTest.Group"]</strong></div>
+                    <div class="col-md-8 value">@Model.Group</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="container-fluid">
+              <div class="row-fluid ">
+                <div class="col-md-6">
+                  <div class="row custom-row">
+                    <div class="col-md-4 title"><strong>@Localizer["ViewClassTest.Subject"]</strong></div>
+                    <div class="col-md-8 value">
+                      <a href="/Subject/ViewSubject?subjectId=@Model.SubjectData.SubjectId">@Model.SubjectData.SubjectText</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="row custom-row">
+                    <div class="col-md-4 title"><strong>@Localizer["ViewClassTest.Section"]</strong></div>
+                    <div class="col-md-8 value">
+                      <a href="/Section/ViewSection?sectionId=@Model.SectionData.SectionId">@Model.SectionData.SectionText</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

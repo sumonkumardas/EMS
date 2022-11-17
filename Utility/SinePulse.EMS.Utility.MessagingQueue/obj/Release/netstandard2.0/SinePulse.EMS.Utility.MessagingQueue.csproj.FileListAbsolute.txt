@@ -1,0 +1,8 @@
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Utility\SinePulse.EMS.Utility.MessagingQueue\bin\Release\netstandard2.0\SinePulse.EMS.Utility.MessagingQueue.deps.json
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Utility\SinePulse.EMS.Utility.MessagingQueue\bin\Release\netstandard2.0\SinePulse.EMS.Utility.MessagingQueue.dll
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Utility\SinePulse.EMS.Utility.MessagingQueue\bin\Release\netstandard2.0\SinePulse.EMS.Utility.MessagingQueue.pdb
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Utility\SinePulse.EMS.Utility.MessagingQueue\obj\Release\netstandard2.0\SinePulse.EMS.Utility.MessagingQueue.csproj.CoreCompileInputs.cache
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Utility\SinePulse.EMS.Utility.MessagingQueue\obj\Release\netstandard2.0\SinePulse.EMS.Utility.MessagingQueue.AssemblyInfoInputs.cache
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Utility\SinePulse.EMS.Utility.MessagingQueue\obj\Release\netstandard2.0\SinePulse.EMS.Utility.MessagingQueue.AssemblyInfo.cs
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Utility\SinePulse.EMS.Utility.MessagingQueue\obj\Release\netstandard2.0\SinePulse.EMS.Utility.MessagingQueue.dll
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Utility\SinePulse.EMS.Utility.MessagingQueue\obj\Release\netstandard2.0\SinePulse.EMS.Utility.MessagingQueue.pdb

@@ -1,0 +1,427 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@model AddContraJournalTransactionViewModel
+@{
+  ViewData["Title"] = "AddContraJournal";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-container">
+  <!-- BEGIN CONTENT -->
+    <div class="page-content-wrapper">
+        <div class="page-content">
+
+            <form id="form_sample_3" class="portlet-body form">
+                <!-- BEGIN FORM-->
+                <div class="title-on-top">@Localizer["AddContraJournal.ContraJournalEntry"]</div>
+                <div class="box-shadow-form">
+                    <div class="form-body">
+                        <input type="hidden" asp-for="BranchMediumId" runat="server" />
+                        <input type="hidden" asp-for="SessionId" runat="server" />
+                        <div class="row-fluid col-md-12 zero-padding-row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="col-md-4">
+                                        <label>@Localizer["AddContraJournal.TransactionNo"]</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <input type="text" readonly class="form-control" value="" />
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="col-md-4">
+                                        <label>@Localizer["AddContraJournal.TransactionDate"]</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                      <input type="text" id="coaDate" value="" class="form-control datepicker" name="COADate">
+                                      <span class="badge badge-danger" id="coaDateAlert"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row-fluid col-md-12 zero-padding-row" style="margin-top:15px !important;">
+
+                            <div class="col-md-12">
+                                <div class="form-group pull-right">
+                                    <button type="button" id="addrow" class="ibtnDel btn btn-md btn-info ">
+                                        <span class="glyphicon glyphicon-plus"></span>
+                                    </button>
+                                </div>
+
+                            </div>
+                            <table id="coaTable" class=" table order-list">
+                                <thead class="lite_bg">
+                                    <tr>
+                                        <th>@Localizer["AddContraJournal.TransactionType"]</th>
+                                        <th>@Localizer["AddContraJournal.AccountType"]</th>
+                                        <th>@Localizer["AddContraJournal.AccountHead"]</th>
+                                        <th>@Localizer["AddContraJournal.Debit"]</th>
+                                        <th>@Localizer["AddContraJournal.Credit"]</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td><b>@Localizer["AddContraJournal.Total"]</b></td>
+                                        <td><input type="number" disabled placeholder="debit" class="form-control" id="totalDebit" value="0.00" /><span id="totalDeditAlert" class="badge badge-danger"></span></td>
+                                        <td><input type="number" disabled placeholder="credit" class="form-control" id="totalCredit" value="0.00" /><span id="totalCreditAlert" class="badge badge-danger"></span></td>
+                                    </tr>
+                                </tbody>
+
+                            </table>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="row-fluid ">
+                            <div class="form-group">
+                                <label for="Description">@Localizer["AddContraJournal.Description"]:</label>
+                                <textarea class="form-control" rows="5" id="description"></textarea>
+                            </div>
+
+                        </div>
+
+                        <div class="btn-container">
+                            <button style="margin: 10px auto; width: 82px; display: block;" type="button" class="btn custom-btn custom-cancel-btn" onclick="sendData()">@Localizer["AddContraJournal.Submit"]</button>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<link href="~/css/dropdowntree.css" rel="stylesheet" />
+@section Scripts
+  {
+
+  <script src="~/js/dropdowntree.js"></script>
+  <script type="text/javascript">
+    var rowCount = 0;
+
+
+
+    function addTotalDebitCredit() {
+      var table = document.getElementById('coaTable');
+
+      var rowLength = table.rows.length;
+      var totalDebit = parseFloat(0);
+      var totalCredit = parseFloat(0);
+      for (var i = 1; i < rowLength - 1; i += 1) {
+        var row = table.rows[i];
+        if (row.id.startsWith("row_") == true) {
+          var id = row.id.split("_")[1];
+          //console.log(isNaN($("#debit_" + id).val()));
+
+          var debitValue = $("#debit_" + id).val();
+          if (parseFloat(debitValue) != 'NaN' && debitValue != null && debitValue != '') {
+            var rowDebit = parseFloat(debitValue).toFixed(2);
+            totalDebit = parseFloat(parseFloat(totalDebit) + parseFloat(rowDebit)).toFixed(2);
+          }
+
+          var creditValue = $("#credit_" + id).val();
+          if (parseFloat(creditValue) != 'NaN' && creditValue != null && creditValue != '') {
+            var rowCredit = parseFloat(creditValue).toFixed(2);
+            totalCredit = parseFloat(parseFloat(totalCredit) + parseFloat(rowCredit)).toFixed(2);
+          }
+        }
+
+
+
+      }
+
+      $("#totalDebit").val(totalDebit);
+      $("#totalCredit").val(totalCredit);
+    }
+
+    function setDebitCreditNull(id) {
+      $("#credit_" + id).val(0.00);
+      $("#debit_" + id).val(0.00);
+    }
+    function transactionTypeComboOnchange(data) {
+      var id = data.id.split("_")[1];
+
+      if (data.value == 1) {
+        $("#credit_" + id).attr("disabled", "disabled");
+        $("#debit_" + id).removeAttr("disabled");
+        $("#accountType_" + id).removeAttr("disabled");
+        setDebitCreditNull(id);
+        addTotalDebitCredit();
+
+      }
+
+      else if (data.value == 2) {
+        $("#debit_" + id).attr("disabled", "disabled");
+        $("#credit_" + id).removeAttr("disabled");
+        $("#accountType_" + id).removeAttr("disabled");
+        setDebitCreditNull(id);
+        addTotalDebitCredit();
+      }
+      else {
+        $("#debit_" + id).attr("disabled", "disabled");
+        $("#credit_" + id).attr("disabled", "disabled");
+        $("#accountType_" + id).attr("disabled", "disabled");
+        setDebitCreditNull(id);
+      }
+
+      console.log(data.value);
+    }
+
+    function accountTypeComboOnchange(data) {
+      var id = data.id.split("_")[1];
+      if (data.value != null && data.value != '') {
+        $.ajax({
+          type: "GET",
+          url: "/Accounting/GetAccountHeads?rowNumber=" + id + "&accountType=" + data.value + "&branchMediumId=" + ($('#BranchMediumId').val()),
+          contentType: "application/json; charset=utf-8",
+          dataType: "json",
+          success: function (response) {
+
+            $("#accountHead_" + id).empty();
+              $("#accountHead_" + id).append(response);
+            $('#tree_'+id).jstree({
+                "core" : {
+                    "themes" : {
+                        "responsive": false
+                    }            
+                },
+                "types" : {
+                    "default" : {
+                        "icon" : "fa fa-folder icon-state-warning icon-lg"
+                    },
+                    "file" : {
+                        "icon" : "fa fa-file icon-state-warning icon-lg"
+                    }
+                },
+                "plugins": ["types"]
+            });
+          },
+          failure: function (response) {
+            console.log(response);
+            alert("Failure..! Could not Fetch Data using Ajax.");
+          },
+          error: function (response) {
+            console.log(response);
+            alert("Error..! Could not Fetch Data using Ajax.");
+          }
+        });
+      }
+
+    }
+
+    function accountHeadComboOnchange(id, text, nodeId) {
+
+        $("#accheadCombo_" + id).find('a:first').text(text);
+        $("#tree_"+id).jstree("close_all");
+        //$('#accheadCombo_1 a').text()
+      $("#accHeadComboSpan_" + id).text(nodeId);
+    }
+
+    $("#addrow").on("click", function () {
+
+      $.ajax({
+        type: "GET",
+        url: "/Accounting/GetTransactionTypeAndAccountType",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (response) {
+          console.log(response);
+          rowCount++;
+          var newRow = $("<tr id='row_" + rowCount + "'>");
+          var cols = "";
+          cols += '<td class="col-sm-1"><select id="transactionType_' + rowCount + '"  onchange="transactionTypeComboOnchange(this)" class="form-control" data-val="true" data-val-required="The Transaction Type field is required." name="TransactionType"><option selected = "selected" value = ""> Transaction Type *</option>'
+          jQuery.each(response.TransactionTypeList, function (index, item) {
+            cols += ' <option value = "' + item.Value + '">' + item.Name + '</option>';
+
+          });
+          cols += '</select > <span id="transactionTypeAlert_' + rowCount + '" class="badge badge-danger"></span></td >'
+
+          cols += '<td class="col-sm-1"><select disabled id="accountType_' + rowCount + '" onchange="accountTypeComboOnchange(this)" class="form-control" data-val="true" data-val-required="The Account Type field is required." name="AccountType"><option selected = "selected" value = ""> Account Type *</option>';
+
+          jQuery.each(response.AccountTypeList, function (index, item) {
+            cols += ' <option value = "' + item.Value + '">' + item.Name + '</option>';
+
+          });
+          cols += '</select ><span id="accTypeAlert_' + rowCount + '" class="badge badge-danger"></span></td>'
+
+          cols += '<td class="col-sm-1" id="accountHead_' + rowCount + '">' + '</td>';
+
+          cols += '<td class="col-sm-1"><input type="number" disabled placeholder="debit" class="form-control" onfocusout="addTotalDebitCredit()"  id="debit_' + rowCount + '"/><span id="debitAlert_' + rowCount + '" class="badge badge-danger"></span></td>';
+          cols += '<td class="col-sm-1"><input type="number" disabled placeholder="credit" class="form-control" onfocusout="addTotalDebitCredit()"  id="credit_' + rowCount + '"/><span id="creditAlert_' + rowCount + '" class="badge badge-danger"></span></td>';
+
+          cols += '<td class="col-sm-1"><button type="button"  class="ibtnDel btn btn-md btn-danger"> <span class="glyphicon glyphicon-remove"></span> </button></td >';
+          newRow.append(cols);
+          $("table.order-list").prepend(newRow);
+        },
+        failure: function (response) {
+          console.log(response);
+          alert("Failure..! Could not Fetch Data using Ajax.");
+        },
+        error: function (response) {
+          console.log(response);
+          alert("Error..! Could not Fetch Data using Ajax.");
+        }
+      });
+
+
+
+
+    });
+
+    $("table.order-list").on("click", ".ibtnDel", function (event) {
+      $(this).closest("tr").remove();
+      addTotalDebitCredit();
+
+    });
+    function validateEachRow() {
+
+      var coaDateValue = $("#coaDate").val();
+      if (coaDateValue == null || coaDateValue == '') {
+        $('#coaDateAlert').text("Select Date.");
+        return false;
+      }
+      else {
+        $('#coaDateAlert').text("");
+      }
+
+      var totalDebitValue = $("#totalDebit").val();
+      var totalCreditValue = $("#totalCredit").val();
+
+      if ((parseFloat(totalDebitValue).toFixed(2) - parseFloat(totalCreditValue).toFixed(2)) != 0) {
+
+        $('#totalDeditAlert').text("Total Debit and Total Credit doesn't match");
+        return false;
+      }
+      else {
+        $('#totalDeditAlert').text("");
+      }
+
+      if (parseFloat(totalDebitValue).toFixed(2) == 0 && parseFloat(totalCreditValue).toFixed(2) == 0) {
+
+        $('#totalDeditAlert').text("Total debit and credit both cannot be zero.");
+        return false;
+      }
+      else {
+        $('#totalDeditAlert').text("");
+      }
+      var table = document.getElementById('coaTable');
+
+      var rowLength = table.rows.length;
+      var totalDebit = 0;
+      var totalCredit = 0;
+      for (var i = 1; i < rowLength - 1; i += 1) {
+        var row = table.rows[i];
+        if (row.id.startsWith("row_") == true) {
+          var id = row.id.split("_")[1];
+
+          if ($('#transactionType_' + id).val() == null || $('#transactionType_' + id).val() == '') {
+            $('#transactionTypeAlert_' + id).text("select transaction type.");
+            return false;
+          }
+          else {
+            $('#transactionTypeAlert_' + id).text("");
+          }
+
+          if ($('#accountType_' + id).val() == null || $('#accountType_' + id).val() == '') {
+            $('#accTypeAlert_' + id).text("select Account type.");
+            return false;
+          }
+          else {
+            $('#accTypeAlert_' + id).text("");
+          }
+
+          if ($('#accHeadComboSpan_' + id).text() == null || $('#accHeadComboSpan_' + id).text() == '') {
+            $('#accHeadAlert_' + id).text("select Account Head type.");
+            return false;
+          }
+          else {
+            $('#accHeadAlert_' + id).text("");
+          }
+
+          if ($('#debit_' + id).val() == null || $('#debit_' + id).val() == '') {
+            if ($('#transactionType_' + id).val() == 1) {
+              $('#debitAlert_' + id).text("Select Debit");
+              return false;
+            }
+          }
+          else {
+            $('#debitAlert_' + id).text("");
+          }
+
+          if ($('#credit_' + id).val() == null || $('#credit_' + id).val() == '') {
+            if ($('#transactionType_' + id).val() == 2) {
+              $('#creditAlert_' + id).text("Select Credit");
+              return false;
+            }
+          }
+          else {
+            $('#creditAlert_' + id).text("");
+          }
+
+
+        }
+      }
+
+      return true;
+    }
+    function sendData() {
+      if (validateEachRow() == true) {
+        var journalList = [];
+        var table = document.getElementById('coaTable');
+        var rowLength = table.rows.length;
+        var totalDebit = 0;
+        var totalCredit = 0;
+        for (var i = 1; i < rowLength - 1; i += 1) {
+          var row = table.rows[i];
+          if (row.id.startsWith("row_") == true) {
+            var id = row.id.split("_")[1];
+            var journalModel = {
+
+              AccountHeadId: $('#accHeadComboSpan_' + id).text(),
+              DebitAmount: parseFloat($("#debit_" + id).val()).toFixed(2),
+              CreditAmount: parseFloat($("#credit_" + id).val()).toFixed(2)
+            };
+
+            journalList.push(journalModel);
+          }
+        }
+        var model = {
+          BranchMediumId: $('#BranchMediumId').val(),
+          SessionId: $('#SessionId').val(),
+          TransactionDate: $("#coaDate").val(),
+          Description: $('#description').val(),
+          TransactionEntries: journalList
+        };
+        console.log(model);
+        $.ajax({
+          type: "POST",
+          url: "/Accounting/AddContraJournal",
+          data: JSON.stringify(model),
+          contentType: "application/json; charset=utf-8",
+          dataType: "json",
+          success: function (response) {
+            if (response.IsDataPosted == true) {
+              window.location.href = response.RedirectTo;
+            }
+          },
+          failure: function (response) {
+            console.log(response);
+            alert("Failure..! Could not Fetch Data using Ajax.");
+          },
+          error: function (response) {
+            console.log(response);
+            alert("Error..! Could not Fetch Data using Ajax.");
+          }
+        });
+      }
+    }
+  </script>
+}
+
+
+

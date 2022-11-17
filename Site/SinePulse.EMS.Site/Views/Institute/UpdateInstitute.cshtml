@@ -1,0 +1,87 @@
+﻿@model EditInstituteViewModel
+@using SinePulse.EMS.Domain.Enums
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@{
+    ViewData["Title"] = "UpdateInstitute";
+}
+
+<div class="page-container">
+  <!-- BEGIN CONTENT -->
+  <div class="page-content-wrapper">
+    <div class="page-content">
+      <div class="portlet-body form">
+        <!-- BEGIN FORM-->
+        <div class="title-on-top">@Localizer["UpdateInstitute.Title"]</div>
+        <form asp-action="UpdateInstitute" class="form-horizontal box-shadow-form" id="form_sample_3" method="post" enctype="multipart/form-data">
+          <div class="form-body">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input asp-for="Id" type="hidden" class="form-control" />
+            <div class="row-fluid col-md-12 zero-padding-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["UpdateInstitute.OrganisationName"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <input asp-for="OrganisationName" type="text" class="form-control" />
+                    <span asp-validation-for="OrganisationName" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["UpdateInstitute.ShortName"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <input asp-for="ShortName" type="text" class="form-control" />
+                    <span asp-validation-for="ShortName" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row-fluid col-md-12 zero-padding-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["UpdateInstitute.Email"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <input asp-for="Email" type="text" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["UpdateInstitute.Banner"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <div class="file-input-container">
+                      <input asp-for="Banner" type="file" class="form-control file-input" />
+                      <span asp-validation-for="Banner" class="text-danger"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <br />
+            <div class="btn-container">
+              <button type="button" class="btn custom-btn custom-cancel-btn pull-left" onclick="location.href = '@Url.Action("Index", "Institute")'">@Localizer["UpdateInstitute.CancleButton"]</button>
+              <button type="submit" class="btn custom-btn custom-cancel-btn pull-right">@Localizer["UpdateInstitute.UpdateButton"]</button>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+        </form>
+        <!-- END FORM-->
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

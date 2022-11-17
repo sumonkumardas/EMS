@@ -1,0 +1,303 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@model AddAcademicFeeViewModel
+@inject IViewLocalizer Localizer
+@{
+    ViewData["Title"] = "AddAcademicFee";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-container">
+    <!-- BEGIN CONTENT -->
+    <div class="page-content-wrapper">
+        <div class="page-content">
+          <div class="portlet-body form">
+            <!-- BEGIN FORM-->
+            <div class="title-on-top">@Localizer["AddAcademicFee.Title"]</div>
+            <form asp-action="AddAcademicFee" class="form-horizontal box-shadow-form" id="form_sample_3">
+              <div class="form-body">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="BranchMediumId" />
+                <input type="hidden" asp-for="AcademicFeePeriod" />
+                <div class="row-fluid">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <div class="col-md-4">
+                        <label>@Localizer["AddAcademicFee.Session"] </label><span class="required">*</span>
+                      </div>
+                      <div class="col-md-8">
+                        @{
+                          if (Model.Sessions.Any())
+                          {
+                            @Html.DropDownListFor(x => x.SessionId, new SelectList(Model.Sessions, "Id", "SessionName"), @Localizer["AddAcademicFee.SelectSession"].Value, new { @class = "form-control", required = true, id = "sessionDropDown" })
+                          }
+                          else
+                          {
+                            @Html.DropDownListFor(x => x.SessionId, Enumerable.Empty<SelectListItem>(), @Localizer["AddAcademicFee.SelectSession"].Value, new { @class = "form-control", id = "sessionDropDown", required = true })
+                          }
+                        }
+                        <span asp-validation-for="SessionId" class="text-danger"></span>
+                      </div>
+                    </div>
+
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <div class="col-md-4">
+                        <label>@Localizer["AddAcademicFee.Class"] </label><span class="required">*</span>
+                      </div>
+                      <div class="col-md-8">
+                        @{
+                          if (Model.Classes.Any())
+                          {
+                            @Html.DropDownListFor(x => Model.ClassId, new SelectList(Model.Classes, "Id", "ClassName"), @Localizer["AddAcademicFee.SelectClass"].Value, new { @class = "form-control", id = "classDropDown", required = true })
+                          }
+                          else
+                          {
+                            @Html.DropDownListFor(x => Model.ClassId, Enumerable.Empty<SelectListItem>(), @Localizer["AddAcademicFee.SelectClass"].Value, new { @class = "form-control", id = "classDropDown", required = true })
+                          }
+                        }
+                        <span asp-validation-for="ClassId" class="text-danger"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="clearfix"></div>
+                <br />
+                <div>
+                  <table class="table table-light">
+                    <thead>
+                      <tr class="uppercase">
+                        <th>@Localizer["AddAcademicFee.AccountCode"]</th>
+                        <th>@Localizer["AddAcademicFee.FeeType"]</th>
+                        <th>@Localizer["AddAcademicFee.Fees"]</th>
+                      </tr>
+                    </thead>
+
+                    <tbody id="accountHeadsTableBody"></tbody>
+                  </table>
+                </div>
+                <br />
+                <div class="btn-container">
+                  <button type="button" class="btn custom-btn custom-cancel-btn pull-left" onclick="location.href = '@Url.Action("ViewBranchMedium", "BranchMedium", new {branchMediumId = Model.BranchMediumId})'">@Localizer["AddAcademicFee.CancelButton"]</button>
+                  <button id="saveButton" type="submit" class="btn custom-btn custom-cancel-btn pull-right">@Localizer["AddAcademicFee.CreateButton"]</button>
+                  <div class="clearfix"></div>
+                </div>
+              </div>
+            </form>
+            <!-- END FORM-->
+          </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    $(function() {
+        var accountHeadsTableBody = $("#accountHeadsTableBody");
+        $("#classDropDown").change(function() {
+            $.ajax({
+                type: "POST",
+                url: "/AcademicFee/GetAcademicFees?classId=" +
+                    $("#classDropDown").val() +
+                    "&sessionId=" +
+                    $("#sessionDropDown").val() +
+                    "&branchMediumId=@Model.BranchMediumId" +
+                    "&feePeriod=@Model.AcademicFeePeriod",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function(response) {
+                    accountHeadsTableBody.empty();
+                    var rows = "";
+                    $('#saveButton').attr('disabled',false);
+                    
+                    if (response.disableSaveButton != undefined) {
+                        $('#saveButton').attr('disabled', true);
+                    }
+                    
+                    if (response.importCOAValidationMsg != undefined) {
+                        $('#saveButton').attr('disabled',true);
+                        alert(response.importCOAValidationMsg);
+                    }
+                    
+                    if (response[0].AccountCode != undefined) {
+                        for (var i = 0; i < response.length; i++) {
+                            rows += " <tr> " +
+                                "<td>" +
+                                response[i].AccountCode +
+                                "</td>" +
+                                "<td>" +
+                                response[i].AccountHeadName +
+                                "</td>" +
+                                "<td><input name='FeesCollection' autocomplete='off'  type='number' value='0' style='text-align: right'/></td>" +
+                                "</tr>";
+                        }
+                        $("#accountHeadsTableBody").append(rows);
+                    }
+                    if (response[0].AccountHead.AccountCode != undefined) {
+                        jQuery.each(response,
+                            function(index, item) {
+                                rows += " <tr> " +
+                                    "<td>" +
+                                    item.AccountHead.AccountCode +
+                                    "</td>" +
+                                    "<td>" +
+                                    item.AccountHead.AccountHeadName +
+                                    "</td>" +
+                                    "<td><input name='FeesCollection' autocomplete='off'  type='number' value=" +
+                                    item.Fees +
+                                    " style='text-align: right'/>" +
+                                    "</td>" +
+                                    "</tr>";
+                            });
+                        $("#accountHeadsTableBody").append(rows);
+                    }
+
+                },
+                failure: function(response) {
+                    alert("Failure..! Could not Fetch Data using Ajax.");
+                },
+                error: function(response) {
+                    alert("Error..! Could not Fetch Data using Ajax.");
+                }
+            });
+        });
+    });
+
+        $(function() {
+        var accountHeadsTableBody = $("#accountHeadsTableBody");
+        $("#sessionDropDown").change(function() {
+            $.ajax({
+                type: "POST",
+                url: "/AcademicFee/GetAcademicFees?classId=" +
+                    $("#classDropDown").val() +
+                    "&sessionId=" +
+                    $("#sessionDropDown").val() +
+                    "&branchMediumId=@Model.BranchMediumId" +
+                    "&feePeriod=@Model.AcademicFeePeriod",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function(response) {
+                    accountHeadsTableBody.empty();
+                    var rows = "";
+                    $('#saveButton').attr('disabled',false);
+                    
+                    if (response.disableSaveButton != undefined) {
+                        $('#saveButton').attr('disabled', true);
+                    }
+                    
+                    if (response.importCOAValidationMsg != undefined) {
+                        $('#saveButton').attr('disabled',true);
+                        alert(response.importCOAValidationMsg);
+                    }
+                    
+                    if (response[0].AccountCode != undefined) {
+                        for (var i = 0; i < response.length; i++) {
+                            rows += " <tr> " +
+                                "<td>" +
+                                response[i].AccountCode +
+                                "</td>" +
+                                "<td>" +
+                                response[i].AccountHeadName +
+                                "</td>" +
+                                "<td><input name='FeesCollection' autocomplete='off'  type='number' value='0' style='text-align: right'/></td>" +
+                                "</tr>";
+                        }
+                        $("#accountHeadsTableBody").append(rows);
+                    }
+                    if (response[0].AccountHead.AccountCode != undefined) {
+                        jQuery.each(response,
+                            function(index, item) {
+                                rows += " <tr> " +
+                                    "<td>" +
+                                    item.AccountHead.AccountCode +
+                                    "</td>" +
+                                    "<td>" +
+                                    item.AccountHead.AccountHeadName +
+                                    "</td>" +
+                                    "<td><input name='FeesCollection' autocomplete='off'  type='number' value=" +
+                                    item.Fees +
+                                    " style='text-align: right'/>" +
+                                    "</td>" +
+                                    "</tr>";
+                            });
+                        $("#accountHeadsTableBody").append(rows);
+                    }
+
+                },
+                failure: function(response) {
+                    alert("Failure..! Could not Fetch Data using Ajax.");
+                },
+                error: function(response) {
+                    alert("Error..! Could not Fetch Data using Ajax.");
+                }
+            });
+        });
+    });
+    
+    $( document ).ready(function() {
+        var accountHeadsTableBody = $("#accountHeadsTableBody");
+        $.ajax({
+                type: "POST",
+                url: "/AcademicFee/GetAcademicFees?classId=" +
+                    $("#classDropDown").val() +
+                    "&sessionId=" +
+                    $("#sessionDropDown").val() +
+                    "&branchMediumId=@Model.BranchMediumId" +
+                    "&feePeriod=@Model.AcademicFeePeriod",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function(response) {
+                    accountHeadsTableBody.empty();
+                    var rows = "";
+                    $('#saveButton').attr('disabled',false);
+                    
+                    if (response.disableSaveButton != undefined) {
+                        $('#saveButton').attr('disabled', true);
+                    }
+                    if (response.importCOAValidationMsg != undefined) {
+                        $('#saveButton').attr('disabled', true);
+                        alert(response.importCOAValidationMsg);
+                    }
+                    
+                    if (response[0].AccountCode != undefined) {
+                        for (var i = 0; i < response.length; i++) {
+                            rows += " <tr> " +
+                                "<td>" +
+                                response[i].AccountCode +
+                                "</td>" +
+                                "<td>" +
+                                response[i].AccountHeadName +
+                                "</td>" +
+                                "<td><input name='FeesCollection' autocomplete='off' type='number' value='0' style='text-align: right'/></td>" +
+                                "</tr>";
+                        }
+                        $("#accountHeadsTableBody").append(rows);
+                    }
+                    if (response[0].AccountHead.AccountCode != undefined) {
+                        jQuery.each(response,
+                            function(index, item) {
+                                rows += " <tr> " +
+                                    "<td>" +
+                                    item.AccountHead.AccountCode +
+                                    "</td>" +
+                                    "<td>" +
+                                    item.AccountHead.AccountHeadName +
+                                    "</td>" +
+                                    "<td><input name='FeesCollection' autocomplete='off' type='number' value=" +
+                                    item.Fees +
+                                    " style='text-align: right'/></td>" +
+                                    "</tr>";
+                            });
+                        $("#accountHeadsTableBody").append(rows);
+                    }
+
+                },
+                failure: function(response) {
+                    alert("Failure..! Could not Fetch Data using Ajax.");
+                },
+                error: function(response) {
+                    alert("Error..! Could not Fetch Data using Ajax.");
+                }
+            });
+    });
+</script>

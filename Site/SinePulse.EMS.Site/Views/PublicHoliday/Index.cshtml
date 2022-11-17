@@ -1,0 +1,100 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@using SinePulse.EMS.Domain.Features
+@inject IViewLocalizer Localizer
+@model PublicHolidayListViewModel
+@{
+  ViewData["Title"] = "Index";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="page-container">
+  <!-- BEGIN CONTENT -->
+  <div class="page-content-wrapper">
+      <div class="page-content">
+          @*#########*@
+          <div class="portlet-body form">
+              <!-- BEGIN FORM-->
+            <div class="title-on-top">
+              <div class="page-toolbar pull-left" style="margin-top: -10px;">
+                <div class="btn-group">
+                  <ul style="padding:0px;">
+                    <li class="custom-page-menu dropdown primary-menu-item-li">
+                      <a href="#" class="show-dropdown-on-hover" data-toggle="custom-page-menu">
+                        <button type="button" class="btn btn-fit-height dark-bg dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="100" data-close-others="true">
+                          <i class="fa fa-bars"></i>
+                        </button>
+                      </a>
+                      <ul class="dropdown-menu light-arrow-only">
+                        <li>
+                          @if (Model.HasPermission(Feature.GeneralSetupEnum.NewPublicHoliday.ToString()))
+                          {
+                            <a href="/PublicHoliday/AddPublicHoliday">@Localizer["Index.AddPublicHoliday"]</a>
+                          }
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              @Localizer["Index.Title"]
+            </div>
+              <form class="form-horizontal box-shadow-form">
+                  <div class="form-body">
+                      <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                      <table class="table table-striped table-hover" id="sample_5">
+                          <thead class="filterCriteria">
+                              <tr>
+                                  <th>
+                                      @Localizer["Index.Name"]
+                                  </th>
+                                  <th>
+                                      @Localizer["Index.StartDate"]
+                                  </th>
+                                  <th>
+                                      @Localizer["Index.EndDate"]
+                                  </th>
+                                  <th>
+                                      @Localizer["Index.Status"]
+                                  </th>
+                                  <th> @Localizer["Index.Action"] </th>
+                              </tr>
+                          </thead>
+
+                          <tbody>
+                              @foreach (var publicHolidayModel in Model.Holidays)
+                              {
+                                  <tr>
+                                      <td>
+                                          @Html.DisplayFor(s => publicHolidayModel.HolidayName)
+                                      </td>
+                                      <td>
+                                          @publicHolidayModel.StartDate.ToString("dd MMMM, yyyy")
+                                      </td>
+                                      <td>
+                                          @publicHolidayModel.EndDate.ToString("dd MMMM, yyyy")
+                                      </td>
+                                      <td>
+                                          @publicHolidayModel.Status
+                                      </td>
+                                      <td>
+                                          @if (Model.HasPermission(Feature.GeneralSetupEnum.EditPublicHoliday.ToString()))
+                                          {
+                                              <a href="/PublicHoliday/UpdatePublicHoliday?publicHolidayId=@publicHolidayModel.Id" class="action-link"><i class="fa fa-edit action-icon"></i></a>
+                                          }
+                                      </td>
+                                  </tr>
+                              }
+                          </tbody>
+                      </table>
+                      <div class="clearfix"></div>
+                   
+                  </div>
+              </form>
+              <!-- END FORM-->
+          </div>
+          @*#########*@
+      </div>
+  </div>
+</div>
+
+
+

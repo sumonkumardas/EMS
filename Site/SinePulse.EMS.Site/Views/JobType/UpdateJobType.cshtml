@@ -1,0 +1,85 @@
+﻿@model JobTypeViewModel
+@using SinePulse.EMS.Domain.Enums
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@{
+  ViewData["Title"] = "UpdateJobType";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- BEGIN CONTAINER -->
+<div class="page-container">
+  <!-- BEGIN CONTENT -->
+  <div class="page-content-wrapper">
+    <div class="page-content">
+      <div class="portlet-body form">
+        <!-- BEGIN FORM-->
+        <div class="title-on-top">@Localizer["UpdateJobType.Title"]</div>
+        <form asp-action="UpdateJobType" class="form-horizontal box-shadow-form" id="form_sample_3">
+          <div class="form-body">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @* hidden field *@
+            <input asp-for="Id" type="hidden" runat="server" />
+            @* hidden field *@
+            <div class="row-fluid col-md-12 zero-padding-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["UpdateJobType.Name"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <input asp-for="JobTitle" type="text" class="form-control" />
+                    <span asp-validation-for="JobTitle" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["UpdateJobType.Status"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <select asp-for="Status" class="form-control" asp-items="Html.GetEnumSelectList<StatusEnum>()">
+                      <option>@Localizer["UpdateJobType.SelectStatus"]</option>
+                    </select>
+                    <span asp-validation-for="Status" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row-fluid col-md-12 zero-padding-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["UpdateJobType.HasOverTime"] </label>
+                  </div>
+                  <div class="col-md-8">
+                    <div class="radio-list">
+                      <input asp-for="HasOverTime" type="checkbox">
+                      <span asp-validation-for="HasOverTime" class="text-danger"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <br />
+            <div class="btn-container">
+              <button type="button" class="btn custom-btn custom-cancel-btn pull-left" onclick="location.href = '@Url.Action("Index", "JobType" )'">@Localizer["UpdateJobType.CancleButton"]</button>
+              <button type="submit" class="btn custom-btn custom-cancel-btn pull-right">@Localizer["UpdateJobType.UpdateButton"]</button>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+        </form>
+        <!-- END FORM-->
+      </div>
+    </div>
+  </div>
+</div>
+
+@section Scripts {
+  @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

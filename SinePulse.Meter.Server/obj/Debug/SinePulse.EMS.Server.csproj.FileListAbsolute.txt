@@ -1,0 +1,2 @@
+F:\EducationManagementSystem\src\SinePulseEMS\SinePulse.Meter.Server\obj\Debug\SinePulse.EMS.Server.csprojAssemblyReference.cache
+F:\EducationManagementSystem\src\SinePulseEMS\SinePulse.Meter.Server\obj\Debug\SinePulse.EMS.Server.csproj.CoreCompileInputs.cache

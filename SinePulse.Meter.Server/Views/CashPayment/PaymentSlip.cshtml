@@ -1,0 +1,202 @@
+﻿@using NakedObjects.Web.Mvc.Html
+@model SinePulse.SmartMeter.Domain.Reports.PaymentSlip
+<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.debug.js"></script>
+@{
+    Layout = "~/Views/Shared/_NofLayout.cshtml";
+}
+
+
+<div id="body">
+    <section class="main-content">
+        @Html.TabbedHistory(Model)
+        <div class="nof-collection-table">
+            <div class="nof-collection-formats">
+
+                <div style="text-align: left">
+                    <a href="javascript:Print()"><b>Print</b></a>
+                    <iframe name="print_frame" width="0" height="0" frameborder="0" src="about:blank"></iframe>
+                </div>
+                <div id="PaymentSlipDiv">
+                    @*<div style="text-align:center;margin-left:1px;width:300px;">
+                            <p>Bangladesh Power Development Board</p>
+                            <p>Payment Slip</p>
+                            <p>Payment Date:@Html.LabelForModel(Model.PaymentDate.ToString(), new { @class = "mylabelpaymentheader" })</p>
+                        </div>*@
+                    <p id="PaymentSlipHeader" style="text-align: left;font-size:medium;padding-left:90px;">Bangladesh Power Development Board</p>
+                    <p style="text-align:left;font-size:small;padding-left:185px;">Payment Slip</p>
+                    @*<div>
+                            <a href="javascript:printDiv('notExecutedTokenDivForPrint')"><b>Print</b></a>
+                            <iframe name="print_frame" width="0" height="0" frameborder="0" src="about:blank"></iframe>
+
+                        </div>*@
+
+                    <div style="text-align:left;font-size:small;padding-left:115px;white-space:nowrap">
+                        @Html.Label("Payment Date:")
+                        @Html.LabelForModel(Model.PaymentDate.ToString(), new { @class = "mylabelpaymentheader" })
+
+                    </div>
+
+                    <br />
+                    <table style="width:auto;font-size:medium;border:none;">
+                        <tr>
+                            <td>@Html.Label("Name:")</td>
+                            <td>@Html.LabelForModel(Model.Name, new { @class = "mylabelvalue lblName" })</td>
+
+
+                        </tr>
+                        <tr>
+                            <td>@Html.Label("Address:")</td>
+                            <td>@Html.LabelForModel(Model.Street1, new { @class = "mylabelvalue lblAddress" })</td>
+
+                        </tr>
+                        @if (Model.Street2 != null && Model.Street2 != string.Empty)
+                        {
+                            <tr>
+                                <td></td>
+                                <td>@Html.LabelForModel(Model.Street2, new { @class = "mylabelvalue" })</td>
+                            </tr>
+                        }
+                        <tr>
+                            <td>@Html.Label("Meter No:")</td>
+                            <td>@Html.LabelForModel(Model.MeterNo.ToString(), new { @class = "mylabelvalue lblMeterNo" })</td>
+
+                        </tr>
+                        <tr>
+                            <td>@Html.Label("Token No:")</td>
+                            <td>@Html.LabelForModel(Model.TokenNo, new { @class = "mylabelvalue lblToken" })</td>
+                        </tr>
+                    </table>
+
+                    <br />
+                    <table style="width:auto;font-size:medium;border:hidden;">
+                        <tr>
+                            <td>@Html.Label("Amount:")</td>
+                            <td>@Html.LabelForModel(Model.TotalAmount.ToString(), new { @class = "mylabelamount lblAmount" })</td>
+                        </tr>
+
+                        <tr>
+                            <td>@Html.Label("Service Charge:")</td>
+                            <td>@Html.LabelForModel(Model.ServiceCharges.ToString(), new { @class = "mylabelamount lblServiceCharge" })</td>
+                        </tr>
+                        <tr>
+                            <td>@Html.Label("Sanctioned Demand Charge:")</td>
+                            <td>@Html.LabelForModel(Model.SanctionedDemandCharges.ToString(), new { @class = "mylabelamount lblSanctionCharge" })</td>
+                        </tr>
+                        <tr>
+                            <td>@Html.Label("Pfc Charge:")</td>
+                            <td>@Html.LabelForModel(Model.PfcCharges.ToString(), new { @class = "mylabelamount lblPfcCharge" })</td>
+                        </tr>
+                        <tr>
+                            <td>@Html.Label("VAT:")</td>
+                            <td>@Html.LabelForModel(Model.VAT.ToString(), new { @class = "mylabelamount lblVat" })</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>@Html.Label("Recharge Amount:")</td>
+                            <td>@Html.LabelForModel(Model.RechargeAmount.ToString() + "  BDT", new { @class = "mylabelamount lblRechargeAmount" })</td>
+                        </tr>
+
+                    </table>
+
+
+
+
+                </div>
+
+                <script type="text/javascript">
+
+    //function printDiv(divId) {
+    //    window.frames["print_frame"].document.body.innerHTML = '<style media="print"> table, th, td { border: 1px solid black; border-collapse: collapse; width: auto;} .mylabelamount{ color: grey;padding-left:140px;}.mylabelvalue{color:grey; padding-left:40px;padding-right:40px;}.mylabelheader{color: black;text-align:left;padding-left:40px;} </style>' + document.getElementById(divId).innerHTML;
+    //    window.frames["print_frame"].window.focus();
+    //    window.frames["print_frame"].window.print();
+    //}
+
+    function Print() {
+        var mywindow = window.open('', 'PRINT','height:50mm,width=78mm');
+        mywindow.document.write('<html><head>');
+        mywindow.document.write('</head><body style="width:100%;text-align:left;font: Georgia, "Times New Roman", Times, serif;background: #fff;font-size: 22pt;" >');
+        mywindow.document.write('<header style="margin-left:auto;margin-right:auto;text-align:center; white-space:nowrap;">' +
+        '<h4>Bangladesh Power Development Board</h4>' +
+        '<p>Payment Slip</p>' +
+        '<p>Payment Date: ' + $('.mylabelpaymentheader').html() + '</p>' +
+    '</header>');
+        mywindow.document.write('<content style="text-align:left;">' +
+        '<table style="margin-top:5px;margin-left: 1mm;margin-right: 1mm;border-top-style: none;border-left-style: none;border-right-style: none;border-bottom-style: none;border-collapse: collapse;">' +
+            '<tr><td style="border:1px solid black;">Name:</td><td style="border:1px solid black;">' + $('.lblName').html() + '</td></tr>' +
+            '<tr><td style="border:1px solid black;">Meter No:</td><td style="border:1px solid black;">' + $('.lblMeterNo').html() + '</td></tr>' +
+            '<tr><td style="border:1px solid black;">Token No:</td><td style="border:1px solid black;">' + $('.lblToken').html() + '</td></tr>' +
+        '</table>' +
+        '<table  style="margin-top:15px;margin-left: 1mm;margin-right: 1mm;border: none !important;border-collapse: collapse;">' +
+            '<tr><td style="border-top:none;boder-left:none;">Amount:</td><td style="border:1px solid black;border-top:none;border-right:none;">' + $('.lblAmount').html() + '</td></tr>' +
+            '<tr><td style="border:1px solid black;border-left: none !important;white-space:nowrap;overflow:hidden;">Service Charge:</td><td style="border:1px solid black;border-right:none;">' + $('.lblServiceCharge').html() + '</td></tr>' +
+            '<tr><td style="border:1px solid black;border-left: none !important;white-space:nowrap;overflow:hidden;">Sanctioned Demand Charge:</td><td style="border:1px solid black;border-right:none;">' + $('.lblSanctionCharge').html() + '</td></tr>' +
+            '<tr><td style="border:1px solid black;border-left: none !important;">VAT:</td><td style="border:1px solid black;border-right:none;">' + $('.lblVat').html() + '</td></tr>' +
+            '<tr><td style="border:1px solid black;border-left: none !important;"></td><td style="border:1px solid black;border-right:none;"></td></tr>' +
+            '<tr><td style="border:1px solid black;border-left: none !important;white-space:nowrap;overflow:hidden;">Recharge Amount:</td><td style="border:1px solid black;border-right:none;">' + $('.lblRechargeAmount').html() + '</td></tr>' +
+        '</table>' +
+    '</content>' +
+    '<footer>' +
+    '<hr style="margin-top:50pt;">' +
+    '</footer>' +
+    '');
+
+        //mywindow.document.write(document.getElementById(elem).innerHTML);
+        mywindow.document.write('</body></html>');
+        console.log(document.documentElement.innerHTML);
+        mywindow.document.close(); // necessary for IE >= 10
+        mywindow.focus(); // necessary for IE >= 10*/
+        //console.log(mywindow.html());
+        mywindow.print();
+        mywindow.close();
+
+        return true;
+
+    }
+
+
+                </script>
+
+
+
+                <style type="text/css">
+                    .mylabelheader {
+                        color: black;
+                        text-align: left;
+                    }
+
+                    .mylabelvalue {
+                        color: grey;
+                        padding-left: 20px;
+                        padding-right: 20px;
+                    }
+
+                    .mylabelamount {
+                        color: grey;
+                        padding-left: 140px;
+                    }
+
+                    .mylabelname {
+                        color: grey;
+                        padding-left: 35px;
+                    }
+
+                    .mylabelpaymentheader {
+                        font-weight: bold;
+                    }
+                </style>
+            </div>
+        </div>
+
+    </section>
+</div>
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/cssjqryUi")
+}
+

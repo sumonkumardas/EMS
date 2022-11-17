@@ -1,0 +1,167 @@
+﻿body {
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    min-height: 540px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    border: 1px solid #e2e2e2;
+    background: #fff;
+    color: #333;
+    font-size: 1.2em;
+    margin: 5px 0 6px 0;
+    padding: 5px;
+    width: 200px;
+}
+
+footer {
+    background-color: #e2e2e2;
+    border-top-color: #1bb1e7;
+    border-top-style: solid;
+    border-top-width: 3px;
+    clear: both;
+    font-size: 11px;
+    height: 40px;
+}
+
+.content-wrapper {
+    margin: 0 auto;
+    max-width: 90%;
+}
+
+footer .content-wrapper {
+    height: 30px;
+    border: 0px solid #366;
+}
+
+input:focus, textarea:focus {
+    border: 1px solid #7ac0da;
+}
+
+#loginForm .form-control {
+    width: 250px;
+}
+
+button.nof-save {
+    margin-left: 13%;
+    position: absolute;
+}
+
+button.nof-cancel {
+    margin-left: 27%;
+    margin-top: 0;
+}
+
+table th #checkboxAll, .nof-collection-table .nof-label {
+    float: left;
+    margin-right: 3px;
+}
+
+.nof-propertylist .nof-property div.nof-object, .nof-propertylist .nof-property .nof-collection-table div.nof-value {
+    border-top: 0px solid;
+}
+
+.nof-collection-table {
+    border-top: 1px solid #d6d6d6;
+}
+
+    .nof-collection-table table .nof-object img {
+        display: none;
+    }
+
+.img {
+    height: "800px";
+    width: "640px";
+    margin-top: 20px;
+}
+
+#imgContainer {
+    position: relative;
+}
+
+.validation-red {
+    color: red;
+}
+
+.inv {
+    visibility: hidden;
+}
+
+.vis {
+    visibility: visible;
+}
+
+/*.dropdownlist-label
+{
+ margin: 1.0em 0 0 0;
+ width: 100px;
+ display:block;
+}*/
+
+.dropdownlist-label {
+     clear:both;
+}
+
+dropdownlist-label label {
+    float:left;
+    width:150px; 
+    
+}
+
+dropdownlist-label input {
+    float:left;
+}
+
+table.dataTable .td {
+    padding: 1px;
+    height:4px;
+}
+
+.dataTables_wrapper { font-size: 12px }
+
+.guest-user-name {
+    position: relative;
+    display: block;
+    padding: 17px 15px;
+    color: #ffffff;
+    background-color: transparent;
+    font-weight: 100;
+}
+
+.bpdb-title {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 25px;
+    color: #fff;
+    padding-left: 160px;
+    font-weight: bold;
+}
+
+.float-left {
+    padding-top:10px;
+    padding-bottom:10px;
+}
+
+.login .float-left{
+    padding-left:15px; 
+}
+
+@media (min-width: 1200px) {
+    .content-wrapper {
+           max-width: 1200px;
+    }
+}

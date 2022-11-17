@@ -1,0 +1,12 @@
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Utility\SinePulse.EMS.Utility.MessagingQueue.MassTransit\bin\Release\netstandard2.0\SinePulse.EMS.Utility.MessagingQueue.MassTransit.deps.json
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Utility\SinePulse.EMS.Utility.MessagingQueue.MassTransit\bin\Release\netstandard2.0\SinePulse.EMS.Utility.MessagingQueue.MassTransit.dll
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Utility\SinePulse.EMS.Utility.MessagingQueue.MassTransit\bin\Release\netstandard2.0\SinePulse.EMS.Utility.MessagingQueue.MassTransit.pdb
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Utility\SinePulse.EMS.Utility.MessagingQueue.MassTransit\bin\Release\netstandard2.0\SinePulse.EMS.Utility.MessagingQueue.dll
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Utility\SinePulse.EMS.Utility.MessagingQueue.MassTransit\bin\Release\netstandard2.0\SinePulse.EMS.Utility.MessagingQueue.pdb
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Utility\SinePulse.EMS.Utility.MessagingQueue.MassTransit\obj\Release\netstandard2.0\SinePulse.EMS.Utility.MessagingQueue.MassTransit.csprojAssemblyReference.cache
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Utility\SinePulse.EMS.Utility.MessagingQueue.MassTransit\obj\Release\netstandard2.0\SinePulse.EMS.Utility.MessagingQueue.MassTransit.csproj.CoreCompileInputs.cache
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Utility\SinePulse.EMS.Utility.MessagingQueue.MassTransit\obj\Release\netstandard2.0\SinePulse.EMS.Utility.MessagingQueue.MassTransit.AssemblyInfoInputs.cache
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Utility\SinePulse.EMS.Utility.MessagingQueue.MassTransit\obj\Release\netstandard2.0\SinePulse.EMS.Utility.MessagingQueue.MassTransit.AssemblyInfo.cs
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Utility\SinePulse.EMS.Utility.MessagingQueue.MassTransit\obj\Release\netstandard2.0\SinePulse.EMS.Utility.MessagingQueue.MassTransit.csproj.CopyComplete
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Utility\SinePulse.EMS.Utility.MessagingQueue.MassTransit\obj\Release\netstandard2.0\SinePulse.EMS.Utility.MessagingQueue.MassTransit.dll
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Utility\SinePulse.EMS.Utility.MessagingQueue.MassTransit\obj\Release\netstandard2.0\SinePulse.EMS.Utility.MessagingQueue.MassTransit.pdb

@@ -1,0 +1,76 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@model AddEmployeeAttendanceViewModel
+@inject IViewLocalizer Localizer
+@{
+    ViewData["Title"] = "EmployeeAttendance";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-container">
+  <!-- BEGIN CONTENT -->
+  <div class="page-content-wrapper">
+    <div class="page-content">
+      <div class="portlet-body form">
+        <!-- BEGIN FORM-->
+        <div class="title-on-top">@Localizer["AddEmployeeAttendance.Title"]</div>
+        <form asp-action="AddEmployeeAttendance" class="form-horizontal box-shadow-form" id="form_sample_3">
+          <div class="form-body">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input asp-for="EmployeeId" type="hidden" runat="server" />
+            <div class="row-fluid col-md-12 zero-padding-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["AddEmployeeAttendance.InTime"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <input asp-for="InTime" type="text" value="" onfocus="(this.type='time')" onblur="{this.type='text'}" class="form-control" />
+                    <span asp-validation-for="InTime" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["AddEmployeeAttendance.OutTime"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <input asp-for="OutTime" type="text" value="" onfocus="(this.type='time')" onblur="{this.type='text'}" class="form-control" />
+                    <span asp-validation-for="OutTime" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row-fluid col-md-12 zero-padding-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["AddEmployeeAttendance.AttendanceDate"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <input asp-for="AttendanceDate" type="text" value="" class="form-control datepicker">
+                    <span asp-validation-for="AttendanceDate" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <br />
+            <div class="btn-container">
+              <button type="button" class="btn custom-btn custom-cancel-btn pull-left" onclick="location.href = '/Employee/ViewEmployee?employeeId=@Model.EmployeeId'">@Localizer["AddEmployeeAttendance.CancelButton"]</button>
+              <button type="submit" class="btn custom-btn custom-cancel-btn pull-right">@Localizer["AddEmployeeAttendance.CreateButton"]</button>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+        </form>
+        <!-- END FORM-->
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,86 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@{
+  ViewData["Title"] = "Index";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="page-container">
+  <!-- BEGIN CONTENT -->
+  <div class="page-content-wrapper">
+    <div class="page-content">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="page-bar margin-top-15">
+            <div class="page-toolbar">
+              <div class="btn-group pull-right">
+                <button type="button" class="btn btn-fit-height dark-bg dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="100" data-close-others="true">
+                  <i class="fa fa-bars"></i>
+                </button>
+                <ul class="dropdown-menu pull-right light-arrow" role="menu">
+                  <li>
+                    <a href="/Branch/AddBranch">@Localizer["Index.AddBranch"]</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <table class="table table-striped table-hover" id="sample_5">
+
+            <thead class="filterCriteria">
+              <tr>
+                <th>
+                  @Localizer["Index.BranchName"]
+                </th>
+                <th>
+                  @Localizer["Index.BranchCode"]
+                </th>
+                <th>
+                  @Localizer["Index.MobileNo"]
+                </th>
+                <th>
+                  @Localizer["Index.Email"]
+                </th>
+                <th>
+                  @Localizer["Index.WeeklyHolidays"]
+                </th>
+                <th>
+                  @Localizer["Index.Institute"]
+                </th>
+                <th>
+                  @Localizer["Index.Status"]
+                </th>
+                <th> @Localizer["Index.Action"] </th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td>Dhaka</td>
+                <td>Dhk</td>
+                <td>0173</td>
+                <td>mm@mm.com</td>
+                <td>Sunday</td>
+                <td>4</td>
+                <td>Acive</td>
+                <td>
+                  <a href="@Url.Action("ViewBranch" )" class="action-link">
+                    <i class="fa fa-eye action-icon"></i>
+                  </a>
+                  <a href="@Url.Action("UpdateBranch")" class="action-link">
+                    <i class="fa fa-edit action-icon"></i>
+                  </a>
+                  <a href="#" class="action-link">
+                    <i class="fa fa-minus-circle action-icon"></i>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+

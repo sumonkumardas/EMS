@@ -1,0 +1,183 @@
+@model AccountDisplayModel
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@{
+  ViewData["Title"] = "ViewBranchMedium";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="page-container">
+  <!-- BEGIN CONTENT -->
+  <div class="page-content-wrapper">
+    <div class="page-content">
+      <div class="profile-content">
+        <div class="row">
+          <div class="col-md-12">
+
+            <!-- BEGIN PROFILE SIDEBAR -->
+            <div class="profile-sidebar">
+              <!-- PORTLET MAIN -->
+              <div class="portlet light profile-sidebar-portlet">
+                <!-- SIDEBAR USERPIC -->
+                <div class="profile-userpic">
+                  <img src="../../img/school.png" class="img-responsive" alt="">
+                </div>
+                <!-- END SIDEBAR USERPIC -->
+                <!-- SIDEBAR USER TITLE -->
+
+                <div class="profile-usertitle-name small-title">
+                  <a href="#">
+                    Blue Bird School
+                  </a>
+                </div>
+                <div class="profile-stat-text">
+                  @Localizer["ViewAccountWithDateFiltering.Institute"]
+                </div>
+                <hr />
+
+                <div class="profile-usertitle-name">
+                  <a href="#">
+                    Badda
+                  </a>
+                </div>
+                <div class="profile-stat-text">
+                  @Localizer["ViewAccountWithDateFiltering.Branch"]
+                </div>
+                <hr />
+
+                <div class="profile-usertitle-name">
+
+                  English
+
+                </div>
+                <div class="profile-stat-text">
+                  @Localizer["ViewAccountWithDateFiltering.Medium"]
+                </div>
+                <hr />
+
+                <!-- END SIDEBAR USER TITLE -->
+              </div>
+              <!-- END PORTLET MAIN -->
+
+            </div>
+            <!-- END BEGIN PROFILE SIDEBAR -->
+            <!-- BEGIN PROFILE CONTENT -->
+            <div class="profile-content">
+              <div class="col-md-12">
+                <!-- BEGIN PORTLET -->
+                <div class="portlet light">
+                  <div class="portlet-title tabbable-line">
+                    <div class="page-toolbar custom-page-menu-bar">
+                      <div class="btn-group">
+                        <ul style="padding:0px;">
+
+                          <li class="custom-page-menu dropdown primary-menu-item-li">
+                            <a href="#" class="show-dropdown-on-hover" data-toggle="custom-page-menu">
+                              <button type="button" class="btn btn-fit-height dark-bg dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="100" data-close-others="true">
+                                <i class="fa fa-bars"></i>
+                              </button>
+                            </a>
+                            <ul class="dropdown-menu light-arrow-only">
+
+                              <li><a href="#">@Localizer["ViewAccountWithDateFiltering.CashVoucher"]</a></li>
+                              <li><a href="#">@Localizer["ViewAccountWithDateFiltering.BankVoucher"]</a></li>
+                              <li><a href="#">@Localizer["ViewAccountWithDateFiltering.GeneralJournal"]</a></li>
+                              <li><a href="#">@Localizer["ViewAccountWithDateFiltering.ContraJournal"]</a></li>
+                              <li><a href="#">@Localizer["ViewAccountWithDateFiltering.YearClosing"]</a></li>
+                              <li class="dropdown-submenu">
+                                <a class="dropdown-item" tabindex="-1" href="#">@Localizer["ViewAccountWithDateFiltering.ImportCOA"]</a>
+                                <ul class="dropdown-menu">
+                                  <li><a href="#" id="importToMaster"@Localizer["ViewAccountWithDateFiltering.FromMaster"]></a></li>
+                                  <li><a href="#">@Localizer["ViewAccountWithDateFiltering.FromPreviousSession"]</a></li>
+                                </ul>
+                              </li>
+                            </ul>
+                          </li>
+                        </ul>
+
+                      </div>
+                    </div>
+
+                    <ul class="nav nav-tabs custom-page-tab">
+                      <li class="active">
+                        <a href="#tab_1_1" data-toggle="tab">
+                          <h5 class="caption-subject font-blue-madison bold uppercase">@Localizer["ViewAccountWithDateFiltering.Transaction"]</h5>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#tab_1_2" data-toggle="tab">
+                          <h5 class="caption-subject font-blue-madison bold uppercase">@Localizer["ViewAccountWithDateFiltering.ChartOfAccount"]</h5>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#tab_1_3" data-toggle="tab">
+                          <h5 class="caption-subject font-blue-madison bold uppercase">@Localizer["ViewAccountWithDateFiltering.TrialBanalnce"]</h5>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#tab_1_4" data-toggle="tab">
+                          <h5 class="caption-subject font-blue-madison bold uppercase">@Localizer["ViewAccountWithDateFiltering.IncomeStatement"]</h5>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#tab_1_5" data-toggle="tab">
+                          <h5 class="caption-subject font-blue-madison bold uppercase">@Localizer["ViewAccountWithDateFiltering.BanalnceSheet"]</h5>
+                        </a>
+                      </li>
+
+                    </ul>
+
+
+                  </div>
+                  <div class="portlet-body">
+                    <!--BEGIN TABS-->
+                    <div class="tab-content">
+                      <div class="tab-pane active" id="tab_1_1">
+                        <div style="min-height: 320px;">
+                          @Localizer["ViewAccountWithDateFiltering.Transaction"]
+                        </div>
+                      </div>
+                      <div class="tab-pane" id="tab_1_2">
+                        <div style="min-height: 320px;">
+                          @Localizer["ViewAccountWithDateFiltering.ChartOfAccount"]
+                        </div>
+                      </div>
+                      <div class="tab-pane" id="tab_1_3">
+                        <div style="min-height: 320px;">
+                          @Html.Partial("~/Views/Accounting/ShowTrialBalance.cshtml", @Model.TrialBalanceViewModel)
+                        </div>
+                      </div>
+                      <div class="tab-pane" id="tab_1_4">
+                        <div style="min-height: 320px;">
+                          @Html.Partial("~/Views/Accounting/ShowIncomeStatement.cshtml", @Model.IncomeStatementViewModel)
+                        </div>
+                      </div>
+                      <div class="tab-pane" id="tab_1_5">
+                        <div style="min-height: 320px;">
+                          @Localizer["ViewAccountWithDateFiltering.BalanceSheet"]
+                        </div>
+                      </div>
+
+                    </div>
+                    <!--END TABS-->
+                  </div>
+                </div>
+                <!-- END PORTLET -->
+              </div>
+
+            </div>
+            <!-- END PROFILE CONTENT -->
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<link href="~/css/fullcalendar.min.css" rel="stylesheet" />
+<link href="~/css/fullcalendar.print.css" rel="stylesheet" media='print' />
+@section Scripts
+  {
+  <script src="~/js/moment.min.js"></script>
+}

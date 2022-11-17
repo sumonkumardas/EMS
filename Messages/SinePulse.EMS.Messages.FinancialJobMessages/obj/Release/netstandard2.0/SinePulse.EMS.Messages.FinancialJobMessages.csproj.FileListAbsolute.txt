@@ -1,0 +1,12 @@
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Messages\SinePulse.EMS.Messages.FinancialJobMessages\bin\Release\netstandard2.0\SinePulse.EMS.Messages.FinancialJobMessages.deps.json
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Messages\SinePulse.EMS.Messages.FinancialJobMessages\bin\Release\netstandard2.0\SinePulse.EMS.Messages.FinancialJobMessages.dll
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Messages\SinePulse.EMS.Messages.FinancialJobMessages\bin\Release\netstandard2.0\SinePulse.EMS.Messages.FinancialJobMessages.pdb
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Messages\SinePulse.EMS.Messages.FinancialJobMessages\bin\Release\netstandard2.0\SinePulse.EMS.InterServiceMessages.dll
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Messages\SinePulse.EMS.Messages.FinancialJobMessages\bin\Release\netstandard2.0\SinePulse.EMS.InterServiceMessages.pdb
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Messages\SinePulse.EMS.Messages.FinancialJobMessages\obj\Release\netstandard2.0\SinePulse.EMS.Messages.FinancialJobMessages.csprojAssemblyReference.cache
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Messages\SinePulse.EMS.Messages.FinancialJobMessages\obj\Release\netstandard2.0\SinePulse.EMS.Messages.FinancialJobMessages.csproj.CoreCompileInputs.cache
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Messages\SinePulse.EMS.Messages.FinancialJobMessages\obj\Release\netstandard2.0\SinePulse.EMS.Messages.FinancialJobMessages.AssemblyInfoInputs.cache
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Messages\SinePulse.EMS.Messages.FinancialJobMessages\obj\Release\netstandard2.0\SinePulse.EMS.Messages.FinancialJobMessages.AssemblyInfo.cs
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Messages\SinePulse.EMS.Messages.FinancialJobMessages\obj\Release\netstandard2.0\SinePulse.EMS.Messages.FinancialJobMessages.csproj.CopyComplete
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Messages\SinePulse.EMS.Messages.FinancialJobMessages\obj\Release\netstandard2.0\SinePulse.EMS.Messages.FinancialJobMessages.dll
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Messages\SinePulse.EMS.Messages.FinancialJobMessages\obj\Release\netstandard2.0\SinePulse.EMS.Messages.FinancialJobMessages.pdb

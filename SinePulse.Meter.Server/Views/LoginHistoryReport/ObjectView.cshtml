@@ -1,0 +1,82 @@
+
+@using NakedObjects.Web.Mvc.Html
+@using SinePulse.SmartMeter.Domain.Reports
+@model LoginHistoryReport
+
+<div id="body" >
+    <section class="main-content">
+      @Html.TabbedHistory(Model)
+        <div class="col-md-offset-1">
+            @using (Ajax.BeginForm("ShowLoginHistoryReport", "LoginHistoryReport", null, new AjaxOptions
+            {
+                HttpMethod = "POST",
+                UpdateTargetId = "resultTarget",
+                OnBegin = "onBegin",
+                OnComplete = "onComplete"
+            }))
+
+            {
+                @Html.AntiForgeryToken()
+               
+                    @Html.Label("Select Start Date :  ")
+                    @Html.TextBoxFor(m => m.FromDate, new { id = "Start_date", value ="" })
+
+                    @Html.Label("Select End Date :  ")        
+                    @Html.TextBoxFor(m => m.ToDate, new { id = "To_date", value = "" })
+
+                    <input type="submit" id="showReport" value="Show" class="btn btn-default" style="margin-left:10px;margin-top:-2px" />
+                    <img id="progressbar" src="/Images/wait_progress.gif" style="display:none;" />
+                <br>
+                <br />
+            }
+
+            </div>
+        <div style="text-align:center;font-size:large;font-weight:bold">
+            @Html.Label("Login History Report")
+        </div>
+        <div class="vis" id="resultTarget">
+
+            </div>
+
+        <script language="javascript" type="text/javascript">    
+            $.ajax({
+                type: "Post",
+                url: '/LoginHistoryReport/ShowTodaysLoginHistoryReport',
+                traditional: true,
+                success: function (data) {
+                    //Fill div with results
+                    $("#resultTarget").html(data);
+                },
+            });
+            function onBegin() {
+                $('#progressbar').show();
+                $('#showReport').prop('disabled', true);
+            }
+            function onComplete() {
+                $('#progressbar').hide();
+                $('#showReport').prop('disabled', false);
+            }
+        </script>
+@Scripts.Render("~/bundles/relayStatusLogReport")
+
+</section>
+</div>
+
+
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/cssjqryUi")
+    
+    
+
+<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+<script src="@Url.Content("~/Scripts/jquery-1.7.1.min.js" )" type="text/javascript"></script>
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+
+
+}
+
+
+

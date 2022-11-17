@@ -1,0 +1,91 @@
+
+@model SinePulse.SmartMeter.Domain.ViewModel.OnlinePaymentMobile
+
+@{
+    Layout = "~/Views/Shared/_MobileLayout.cshtml";
+    ViewBag.Title = "Mobile Payment";
+}
+
+
+<div id="">
+    <section class="">
+
+        <style>
+            html {
+                background-color: #F3F3F3;
+                background-image: none;
+            }
+
+            body {
+                background-color: #F3F3F3;
+                background-image: none;
+            }
+
+            .modal-dialog {
+                /* new custom width */
+                width: 320px;
+                /* must be half of the width, minus scrollbar on the left (30px) */
+            }
+        </style>
+
+
+        <div class="">
+            <div class="modal-sm modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color: #019788;">
+                        <h4 class="modal-title">Please Enter Recharge Amount</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="">
+                            <div class="nof-property">
+                                <div class="nof-label">Meter No:</div>
+                                <div class="nof-value" title="">
+                                    <input type="text" id="meterNo" name="meterNo" readonly value=@Model.MeterNo>
+                                </div>
+                            </div>
+                            <div class="nof-property">
+                                <div class="nof-label">Amount:</div>
+                                <div class="nof-value" title="">
+                                    <input type="number" placeholder="Amount" id="amount" name="amount" value="">
+                                    <span><b>BDT</b></span>
+                                    <span style="color: red" id="amountError"></span>
+
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="" style="background-color: #019788;background-image: none; width: 150px; float:left;" id="payOnline">Submit</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div>
+
+        <form id="payment_gw" name="payment_gw" method="POST" action="https://securepay.sslcommerz.com/gwprocess/v3/process.php">
+            @*<h4 style="text-align: center; margin: 50px;"> Please wait......</h4>*@
+            <input type="hidden" name="total_amount" value="@ViewData["Amount"]" />
+            <input type="hidden" name="store_id" value="aplombtechbd001live" />
+            <input type="hidden" name="store_passwd" value="aplombtechbd001live49270" />
+            <input type="hidden" name="currency" value="BDT" />
+            <input type="hidden" name="tran_id" value="@ViewData["TransactionNo"]" />
+            <input type="hidden" name="success_url" value="@ViewData["SuccessUrl"]" />
+            <input type="hidden" name="fail_url" value="@ViewData["FailUrl"]" />
+            <input type="hidden" name="cancel_url" value="@ViewData["CancelUrl"]" />
+            <input type="hidden" name="version" value="2.00" />
+            @*<input type="submit" name="submit" id="payNow" value="Pay Now"/>*@
+
+        </form>
+        
+        <div style="width: 200px;">
+
+        </div>
+        @(Scripts.Render("~/bundles/jquery"))
+        <script src="~/Scripts/paymentMobile.js"></script>
+        <script>
+            paymentModuleMobile.InitMobile();
+            
+        </script>
+    </section>
+</div>

@@ -1,0 +1,42 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@model StudentMarkSheetViewModel
+<div class="col-md-6">
+  <div class="form-group">
+    <div class="col-md-4">
+      <label>@Localizer["TermTestMarkSheet.Session"]</label><span class="required">*</span>
+    </div>
+    <div class="col-md-8">
+      @Html.DropDownListFor(x => x.SessionId, new SelectList(Model.Sessions, "Id", "SessionName"), @Localizer["TermTestMarkSheet.SelectSession"].Value, new { @class = "form-control", id = "sessionDropDown", required = true })
+      <span asp-validation-for="SessionId" class="text-danger"></span>
+    </div>
+  </div>
+</div>
+<div class="col-md-6">
+  <div class="form-group">
+    <div class="col-md-4">
+      <label>@Localizer["TermTestMarkSheet.ExamTerm"]</label><span class="required">*</span>
+    </div>
+    <div class="col-md-8">
+      @Html.DropDownListFor(x => x.TermId, Enumerable.Empty<SelectListItem>(), @Localizer["TermTestMarkSheet.SelectTerm"].Value, new { @class = "form-control", id = "examTermDropDown", required = true })
+      <span asp-validation-for="TermId" class="text-danger"></span>
+    </div>
+  </div>
+</div>
+<br style="line-height:5;">
+<div>
+  <table class="table table-striped table-hover" id="sample_3">
+    <thead class="filterCriteria">
+      <tr>
+        <th>@Localizer["TermTestMarkSheet.Subject"]</th>
+        <th>@Localizer["TermTestMarkSheet.ExamType"]</th>
+        <th>@Localizer["TermTestMarkSheet.PassMarks"]</th>
+        <th>@Localizer["TermTestMarkSheet.FullMarks"]</th>
+        <th>@Localizer["TermTestMarkSheet.ObtainedMarks"]</th>
+        <th>@Localizer["TermTestMarkSheet.GraceMarks"]</th>
+        <th>@Localizer["TermTestMarkSheet.Remarks"]</th>
+      </tr>
+    </thead>
+    <tbody id="marksTableBody"></tbody>
+  </table>
+</div>

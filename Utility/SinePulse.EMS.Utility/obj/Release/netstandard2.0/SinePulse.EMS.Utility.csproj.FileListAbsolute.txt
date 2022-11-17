@@ -1,0 +1,14 @@
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Utility\SinePulse.EMS.Utility\bin\Release\netstandard2.0\SinePulse.EMS.Utility.deps.json
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Utility\SinePulse.EMS.Utility\bin\Release\netstandard2.0\SinePulse.EMS.Utility.dll
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Utility\SinePulse.EMS.Utility\bin\Release\netstandard2.0\SinePulse.EMS.Utility.pdb
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Utility\SinePulse.EMS.Utility\bin\Release\netstandard2.0\SinePulse.EMS.ProjectPrimitives.dll
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Utility\SinePulse.EMS.Utility\bin\Release\netstandard2.0\System.ComponentModel.Annotations.dll
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Utility\SinePulse.EMS.Utility\bin\Release\netstandard2.0\SinePulse.EMS.ProjectPrimitives.pdb
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Utility\SinePulse.EMS.Utility\bin\Release\netstandard2.0\System.ComponentModel.Annotations.xml
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Utility\SinePulse.EMS.Utility\obj\Release\netstandard2.0\SinePulse.EMS.Utility.csprojAssemblyReference.cache
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Utility\SinePulse.EMS.Utility\obj\Release\netstandard2.0\SinePulse.EMS.Utility.csproj.CoreCompileInputs.cache
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Utility\SinePulse.EMS.Utility\obj\Release\netstandard2.0\SinePulse.EMS.Utility.AssemblyInfoInputs.cache
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Utility\SinePulse.EMS.Utility\obj\Release\netstandard2.0\SinePulse.EMS.Utility.AssemblyInfo.cs
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Utility\SinePulse.EMS.Utility\obj\Release\netstandard2.0\SinePulse.EMS.Utility.csproj.CopyComplete
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Utility\SinePulse.EMS.Utility\obj\Release\netstandard2.0\SinePulse.EMS.Utility.dll
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Utility\SinePulse.EMS.Utility\obj\Release\netstandard2.0\SinePulse.EMS.Utility.pdb

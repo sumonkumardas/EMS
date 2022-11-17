@@ -1,0 +1,12 @@
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Messages\SinePulse.EMS.Messages.SmsSendingMessages\bin\Debug\netstandard2.0\SinePulse.EMS.Messages.SmsSendingMessages.deps.json
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Messages\SinePulse.EMS.Messages.SmsSendingMessages\bin\Debug\netstandard2.0\SinePulse.EMS.Messages.SmsSendingMessages.dll
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Messages\SinePulse.EMS.Messages.SmsSendingMessages\bin\Debug\netstandard2.0\SinePulse.EMS.Messages.SmsSendingMessages.pdb
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Messages\SinePulse.EMS.Messages.SmsSendingMessages\bin\Debug\netstandard2.0\SinePulse.EMS.InterServiceMessages.dll
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Messages\SinePulse.EMS.Messages.SmsSendingMessages\bin\Debug\netstandard2.0\SinePulse.EMS.InterServiceMessages.pdb
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Messages\SinePulse.EMS.Messages.SmsSendingMessages\obj\Debug\netstandard2.0\SinePulse.EMS.Messages.SmsSendingMessages.csprojAssemblyReference.cache
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Messages\SinePulse.EMS.Messages.SmsSendingMessages\obj\Debug\netstandard2.0\SinePulse.EMS.Messages.SmsSendingMessages.csproj.CoreCompileInputs.cache
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Messages\SinePulse.EMS.Messages.SmsSendingMessages\obj\Debug\netstandard2.0\SinePulse.EMS.Messages.SmsSendingMessages.AssemblyInfoInputs.cache
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Messages\SinePulse.EMS.Messages.SmsSendingMessages\obj\Debug\netstandard2.0\SinePulse.EMS.Messages.SmsSendingMessages.AssemblyInfo.cs
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Messages\SinePulse.EMS.Messages.SmsSendingMessages\obj\Debug\netstandard2.0\SinePulse.EMS.Messages.SmsSendingMessages.csproj.CopyComplete
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Messages\SinePulse.EMS.Messages.SmsSendingMessages\obj\Debug\netstandard2.0\SinePulse.EMS.Messages.SmsSendingMessages.dll
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Messages\SinePulse.EMS.Messages.SmsSendingMessages\obj\Debug\netstandard2.0\SinePulse.EMS.Messages.SmsSendingMessages.pdb

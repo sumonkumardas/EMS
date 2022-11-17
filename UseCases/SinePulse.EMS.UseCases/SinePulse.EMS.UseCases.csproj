@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Branch\Validators\**" />
+    <Compile Remove="ExamTypes\**" />
+    <Compile Remove="StudentWaivers\**" />
+    <EmbeddedResource Remove="Branch\Validators\**" />
+    <EmbeddedResource Remove="ExamTypes\**" />
+    <EmbeddedResource Remove="StudentWaivers\**" />
+    <None Remove="Branch\Validators\**" />
+    <None Remove="ExamTypes\**" />
+    <None Remove="StudentWaivers\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="8.0.0" />
+    <PackageReference Include="FluentValidation" Version="8.1.3" />
+    <PackageReference Include="MediatR" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Infrastructure\Persistence\SinePulse.EMS.Persistence\SinePulse.EMS.Persistence.csproj" />
+    <ProjectReference Include="..\..\Messages\SinePulse.EMS.Messages.AcademicJobMessages\SinePulse.EMS.Messages.AcademicJobMessages.csproj" />
+    <ProjectReference Include="..\..\Messages\SinePulse.EMS.Messages.AlertProcessingMessages\SinePulse.EMS.Messages.AlertProcessingMessages.csproj" />
+    <ProjectReference Include="..\..\Messages\SinePulse.EMS.Messages.FinancialJobMessages\SinePulse.EMS.Messages.FinancialJobMessages.csproj" />
+    <ProjectReference Include="..\..\SinePulse.EMS.Domain\SinePulse.EMS.Domain.csproj" />
+    <ProjectReference Include="..\..\SinePulse.EMS.Messages\SinePulse.EMS.Messages.csproj" />
+    <ProjectReference Include="..\..\Utility\SinePulse.EMS.Utility.Db\SinePulse.EMS.Utility.Db.csproj" />
+    <ProjectReference Include="..\..\Utility\SinePulse.EMS.Utility.MessagingQueue\SinePulse.EMS.Utility.MessagingQueue.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,52 @@
+﻿@model SinePulse.EMS.Site.Models.EmployeeViewModel
+@inject IViewLocalizer Localizer
+@using Microsoft.AspNetCore.Mvc.Localization
+@{
+  ViewData["Title"] = "AddEmployee";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<!-- BEGIN CONTAINER -->
+<div class="page-container">
+  <!-- BEGIN CONTENT -->
+  <div class="page-content-wrapper">
+    <div class="page-content">
+      <div class="portlet-body form">
+        <!-- BEGIN FORM-->
+        <div class="title-on-top">@Localizer["EmployeeImageUpload.Title"]</div>
+        <form asp-action="EmployeeImageUpload" class="form-horizontal box-shadow-form" id="form_sample_3" method="post" enctype="multipart/form-data">
+          <div class="form-body">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input asp-for="Id" type="hidden" class="form-control" />
+            <div class="row-fluid">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <div class="col-md-2">
+                    <label>@Localizer["EmployeeImageUpload.Image"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-5">
+                    <input asp-for="ImageUrl" required="" type="file" Class="form-control file-input" />
+                    <span asp-validation-for="ImageUrl" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <br />
+            <div class="btn-container">
+              <button type="button" class="btn custom-btn custom-cancel-btn pull-left" onclick="location.href =  '/Employee/ViewEmployee?employeeId=@Model.Id'">@Localizer["EmployeeImageUpload.CancelButton"]</button>
+              <button type="submit" class="btn custom-btn custom-cancel-btn pull-right">@Localizer["EmployeeImageUpload.UploadButton"]</button>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+        </form>
+        <!-- END FORM-->
+      </div>
+    </div>
+  </div>
+</div>
+
+@section Scripts {
+  @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

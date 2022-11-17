@@ -1,0 +1,40 @@
+﻿@model SinePulse.SmartMeter.Domain.ViewModel.OnlinePayment
+@{
+    ViewBag.Title = "payment";
+    Layout = "~/Views/Shared/_NofLayout.cshtml";
+}
+
+<div id="body">
+    <section class="main-content">
+        @if ((bool) ViewData["isOnlinePayment"])
+        {
+            <!-- @* Live store id-aplombtechbd001live, Store password-aplombtechbd001live49270, url- https://securepay.sslcommerz.com/gwprocess/v3/process.php
+                    Sand box store id-testbox, Store password-qwerty, url- https://sandbox.sslcommerz.com/gwprocess/v3/process.php - Test URL*@-->
+
+            <form id="payment_gw" name="payment_gw" method="POST" action="https://securepay.sslcommerz.com/gwprocess/v3/process.php">
+                <h4 style="text-align: center; margin: 50px;"> Please wait......</h4>
+                <input type="hidden" name="total_amount" value="@ViewData["Amount"]"/>
+                <input type="hidden" name="store_id" value="aplombtechbd001live"/>
+                <input type="hidden" name="store_passwd" value="aplombtechbd001live49270"/>
+                <input type="hidden" name="currency" value="BDT"/>
+                <input type="hidden" name="tran_id" value="@ViewData["TransactionNo"]"/>
+                <input type="hidden" name="success_url" value="@ViewData["SuccessUrl"]"/>
+                <input type="hidden" name="fail_url" value="@ViewData["FailUrl"]"/>
+                <input type="hidden" name="cancel_url" value="@ViewData["CancelUrl"]"/>
+                <input type="hidden" name="version" value="2.00"/>
+                @*<input type="submit" name="submit" id="payNow" value="Pay Now"/>*@
+
+            </form>
+
+
+        }
+
+    </section>
+</div>
+
+<script>
+
+            $(function() {
+                $("#payment_gw").submit();
+            });
+</script>

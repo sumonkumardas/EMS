@@ -1,0 +1,241 @@
+﻿@using SinePulse.EMS.Domain.Enums
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@model AddAccoundHeadChildViewModel
+@{
+  ViewData["Title"] = "AddAccoundHead";
+}
+<style>
+
+  ul, .myUL {
+    list-style-type: none;
+  }
+
+    ul#myUL {
+      padding-left: 0px;
+    }
+
+  .myUL {
+    margin: 0;
+    padding: 0;
+  }
+
+  .caret2 {
+    cursor: pointer;
+    -webkit-user-select: none; /* Safari 3.1+ */
+    -moz-user-select: none; /* Firefox 2+ */
+    -ms-user-select: none; /* IE 10+ */
+    user-select: none;
+  }
+
+    .caret2::before {
+      content: "\25B6";
+      color: black;
+      display: inline-block;
+      margin-right: 6px;
+    }
+
+  .caret-down2::before {
+    -ms-transform: rotate(90deg); /* IE 9 */
+    -webkit-transform: rotate(90deg); /* Safari */
+    ' transform: rotate(90deg);
+  }
+
+  .nested2 {
+    display: none;
+  }
+
+  #printableDiv {
+  }
+
+  .active2 {
+    display: block;
+  }
+
+  .modal-body {
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+</style>
+<div class="page-container">
+  <!-- BEGIN CONTENT -->
+  <div class="page-content-wrapper">
+    <div class="page-content">
+      <div class="portlet">
+
+        <input type="hidden" asp-for="@Model.BranchMediumId" runat="server" />
+        <input type="hidden" asp-for="@Model.SessionId" runat="server" />
+        <input id="selectedNode" type="hidden" runat="server" />
+        <div class="portlet-body form">
+
+          <div class="container-fluid">
+            <div class="row-fluid ">
+
+              <div class="col-md-4">
+                @Html.Raw(Model.TreeUi)
+              </div>
+
+              <div class="col-md-8" id="displayAccountHead">
+                <div class="row margin-bottom-10">
+                  <div class="form-group">
+                    <div class="col-md-4 text-right">
+                      <label>@Localizer["AddAccoundHead.AccountCode"]</label>
+                    </div>
+                    <div class="col-md-8 text-left">
+                      <label id="accountCodeLabel"> </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="row margin-bottom-10">
+                  <div class="form-group">
+                    <div class="col-md-4 text-right">
+                      <label>@Localizer["AddAccoundHead.AccountHeadName"]</label>
+                    </div>
+                    <div class="col-md-8 text-left">
+                      <label id="accountHeadNameLabel"> </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="row margin-bottom-10">
+                  <div class="form-group">
+                    <div class="col-md-4 text-right">
+                      <label> @Localizer["AddAccoundHead.AccountHeadType"]</label>
+                    </div>
+                    <div class="col-md-8 text-left">
+                      <select disabled class="form-control" id="accountHeadTypeLabel" asp-items="Html.GetEnumSelectList<AccountHeadTypeEnum>()">
+                        <option selected="selected" value="">@Localizer["AddAccoundHead.SelectHeadType"]</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="row margin-bottom-10">
+                  <div class="form-group">
+                    <div class="col-md-4 text-right">
+                      <label>@Localizer["AddAccoundHead.AccountPeriod"]</label>
+                    </div>
+                    <div class="col-md-8 text-left">
+                      <select disabled class="form-control" id="accountPeriodLabel" asp-items="Html.GetEnumSelectList<AccountPeriodEnum>()">
+                        <option selected="selected" value="">@Localizer["AddAccoundHead.SelectAccountPeriod"]</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="row margin-bottom-10">
+                  <div class="form-group">
+                    <div class="col-md-4 text-right">
+                      <label>@Localizer["AddAccoundHead.IsLedger"]</label>
+                    </div>
+                    <div class="col-md-8 text-left">
+                      <label id="isLedgerLabel"></label>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row margin-bottom-10">
+                  <div class="form-group">
+                    <button id="addChildNode" disabled data-toggle="modal" data-target="#addAccountHeadChildModal" class="btn custom-btn custom-cancel-btn">@Localizer["AddAccoundHead.AddChild"]</button>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div id="addAccountHeadChildModal" class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+        <h4 class="modal-title">@Localizer["AddAccoundHead.AddChildAccountHead"]</h4>
+      </div>
+      <div class="modal-body">
+        <div class="col-md-12">
+          <div class="row margin-bottom-10 margin-top-15">
+            <div class="form-group">
+              <div class="col-md-4">
+                <label>@Localizer["AddAccoundHead.AccountCode"]</label>
+              </div>
+              <div class="col-md-8">
+                <input class="form-control" type="text" id="addAccountCode" />
+                <span id="addAccountCodeError" class="text-danger"></span>
+              </div>
+            </div>
+          </div>
+          <div class="row margin-bottom-10">
+            <div class="form-group">
+              <div class="col-md-4">
+                <label>@Localizer["AddAccoundHead.AccountHeadName"]</label>
+              </div>
+              <div class="col-md-8">
+                <input class="form-control" type="text" id="addAccountHeadName" />
+                <span id="addAccountHeadNameError" class="text-danger"></span>
+              </div>
+            </div>
+          </div>
+          <div class="row margin-bottom-10">
+            <div class="form-group">
+              <div class="col-md-4">
+                <label>@Localizer["AddAccoundHead.AccountHeadType"]</label>
+              </div>
+              <div class="col-md-8">
+                <select class="form-control" id="addAccountHeadType" asp-items="Html.GetEnumSelectList<AccountHeadTypeEnum>()">
+                  <option selected="selected" value="">@Localizer["AddAccoundHead.SelectHeadType"]</option>
+                </select>
+                <span id="addAccountHeadTypeError" class="text-danger"></span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="row margin-bottom-10">
+            <div class="form-group">
+              <div class="col-md-4">
+                <label>@Localizer["AddAccoundHead.AccountPeriod"]</label>
+              </div>
+              <div class="col-md-8">
+                <select class="form-control" id="addAccountPeriod" asp-items="Html.GetEnumSelectList<AccountPeriodEnum>()">
+                  <option selected="selected" value="">@Localizer["AddAccoundHead.SelectAccountPeriod"]</option>
+                </select>
+                <span id="addAccountPeriodError" class="text-danger"></span>
+              </div>
+            </div>
+          </div>
+          <div class="row margin-bottom-10">
+            <div class="form-group">
+              <div class="col-md-4">
+                <label>@Localizer["AddAccoundHead.IsLedger"]</label>
+              </div>
+              <div class="col-md-8">
+                <label class="pull-left"><input id="addIsLedger" type="checkbox">@Localizer["AddAccoundHead.Ledger"]</label>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <span id="globalError" class="text-danger"></span>
+          </div>
+
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" onclick="addChild()" class="btn btn-primary">@Localizer["AddAccoundHead.Savechanges"]</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">@Localizer["AddAccoundHead.Close"]</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+@section Scripts
+  {
+
+
+}
+
+
+

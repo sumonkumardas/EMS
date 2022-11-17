@@ -1,0 +1,10 @@
+using SinePulse.EMS.Domain.Employees;
+using SinePulse.EMS.Messages.EmployeeGradeMessages;
+
+namespace SinePulse.EMS.UseCases.EmployeeGrade
+{
+  public interface IEditEmployeeGradeUseCase
+  {
+    void EditEmployeeGrade(EditEmployeeGradeRequestMessage message);
+  }
+}

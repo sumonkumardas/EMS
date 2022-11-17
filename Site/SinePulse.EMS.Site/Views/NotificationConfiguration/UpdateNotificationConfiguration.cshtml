@@ -1,0 +1,195 @@
+﻿@model SinePulse.EMS.Site.Models.NotificationConfigurationViewModel
+@using SinePulse.EMS.Domain.Shared
+@inject IViewLocalizer Localizer
+@using Microsoft.AspNetCore.Mvc.Localization
+@using SinePulse.EMS.Domain.Enums
+@{
+    ViewData["Title"] = "Update Sms Notification Configuration";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="page-container">
+  <!-- BEGIN CONTENT -->
+  <div class="page-content-wrapper">
+    <div class="page-content">
+      <div class="portlet-body form">
+        <!-- BEGIN FORM-->
+        <div class="title-on-top">@Localizer["UpdateNotificationConfiguration.Title"] 
+        <span class="subTitle-on-top">@Localizer["UpdateNotificationConfiguration.Medium"] : 
+          <a href="/BranchMedium/ViewBranchMedium?branchMediumId=@Model.BranchMediumId"> @Model.BranchMediumName</a>
+          </span></div>
+        <form asp-action="UpdateNotificationConfiguration" class="form-horizontal box-shadow-form" id="form_sample_3">
+          <div class="form-body">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="BranchMediumId" runat="server" />
+            <input type="hidden" asp-for="ConfigurationId" runat="server" />
+            <div class="clearfix"></div>
+            <div class="row-fluid col-md-12 zero-padding-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["UpdateNotificationConfiguration.StudentDelayNotification"]</label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <div class="col-md-2">
+                      @Localizer["UpdateNotificationConfiguration.After"]
+                    </div>
+                    <div class="col-md-5">
+                      <input asp-for="EntryDelayPeriod" type="number" class="form-control" />
+                      <span asp-validation-for="EntryDelayPeriod" class="text-danger"></span>
+                      @Localizer["UpdateNotificationConfiguration.OfSchoolStartTime"]
+                    </div>
+                    <div class="col-md-5">
+                      @Html.DropDownList("EntryDelayTimeIntervalType",
+                      Html.GetEnumSelectList<TimeIntervalType>(),
+                      @Localizer["UpdateNotificationConfiguration.SelectInterval"].Value,new { @class = "form-control", required = true })
+                      <span asp-validation-for="EntryDelayTimeIntervalType" class="text-danger"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["UpdateNotificationConfiguration.StudentAbsentNotification"]</label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <div class="col-md-2">
+                      @Localizer["UpdateNotificationConfiguration.After"]
+                    </div>
+                    <div class="col-md-5">
+                      <input asp-for="AbsentPeriod" type="number" class="form-control" />
+                      <span asp-validation-for="AbsentPeriod" class="text-danger"></span>
+                      @Localizer["UpdateNotificationConfiguration.OfSchoolStartTime"]
+                    </div>
+                    <div class="col-md-5">
+                      @Html.DropDownList("EntryDelayTimeIntervalType",
+                      Html.GetEnumSelectList<TimeIntervalType>(),
+                      @Localizer["UpdateNotificationConfiguration.SelectInterval"].Value,new { @class = "form-control", required = true })
+                      <span asp-validation-for="EntryDelayTimeIntervalType" class="text-danger"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row-fluid col-md-12 zero-padding-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["UpdateNotificationConfiguration.ExamTermNotification"]</label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <div class="col-md-2">
+                      @Localizer["UpdateNotificationConfiguration.Before"]
+                    </div>
+                    <div class="col-md-5">
+                      <input asp-for="ExamStartPeriod" type="number" class="form-control" />
+                      <span asp-validation-for="ExamStartPeriod" class="text-danger"></span>
+                      @Localizer["UpdateNotificationConfiguration.OfExamStartDate"]
+                    </div>
+                    <div class="col-md-5">
+                      @Html.DropDownList("EntryDelayTimeIntervalType",
+                      Html.GetEnumSelectList<TimeIntervalType>(),
+                      @Localizer["UpdateNotificationConfiguration.SelectInterval"].Value,new { @class = "form-control", required = true })
+                      <span asp-validation-for="EntryDelayTimeIntervalType" class="text-danger"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["UpdateNotificationConfiguration.ClassTestNotification"]</label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <div class="col-md-2">
+                      @Localizer["UpdateNotificationConfiguration.Before"]
+                    </div>
+                    <div class="col-md-5">
+                      <input asp-for="ClassTestStartPeriod" type="number" class="form-control" />
+                      <span asp-validation-for="ClassTestStartPeriod" class="text-danger"></span>
+                      @Localizer["UpdateNotificationConfiguration.OfClassTestStartDate"]
+                    </div>
+                    <div class="col-md-5">
+                      @Html.DropDownList("EntryDelayTimeIntervalType",
+                      Html.GetEnumSelectList<TimeIntervalType>(),
+                      @Localizer["UpdateNotificationConfiguration.SelectInterval"].Value,new { @class = "form-control", required = true })
+                      <span asp-validation-for="EntryDelayTimeIntervalType" class="text-danger"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row-fluid col-md-12 zero-padding-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["UpdateNotificationConfiguration.TermTestNotification"]</label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <div class="col-md-2">
+                      @Localizer["UpdateNotificationConfiguration.Before"]
+                    </div>
+                    <div class="col-md-5">
+                      <input asp-for="TermTestStartPeriod" type="number" class="form-control" />
+                      <span asp-validation-for="TermTestStartPeriod" class="text-danger"></span>
+                      @Localizer["UpdateNotificationConfiguration.OfTermTestDate"]
+                    </div>
+                    <div class="col-md-5">
+                      @Html.DropDownList("EntryDelayTimeIntervalType",
+                      Html.GetEnumSelectList<TimeIntervalType>(),
+                      @Localizer["UpdateNotificationConfiguration.SelectInterval"].Value,new { @class = "form-control", required = true })
+                      <span asp-validation-for="EntryDelayTimeIntervalType" class="text-danger"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["UpdateNotificationConfiguration.ExamGradeNotification"]</label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <div class="col-md-2">
+                      @Localizer["UpdateNotificationConfiguration.After"]
+                    </div>
+                    <div class="col-md-5">
+                      <input asp-for="ResultGradePreparePeriod" type="number" class="form-control" />
+                      <span asp-validation-for="ResultGradePreparePeriod" class="text-danger"></span>
+                      @Localizer["UpdateNotificationConfiguration.OfResultCalculation"]
+                    </div>
+                    <div class="col-md-5">
+                      @Html.DropDownList("EntryDelayTimeIntervalType",
+                      Html.GetEnumSelectList<TimeIntervalType>(),
+                      @Localizer["UpdateNotificationConfiguration.SelectInterval"].Value,new { @class = "form-control", required = true })
+                      <span asp-validation-for="EntryDelayTimeIntervalType" class="text-danger"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <br />
+            <div class="btn-container">
+              <button type="button" class="btn custom-btn custom-cancel-btn pull-left" onclick="location.href = '@Url.Action("ViewBranchMedium", "BranchMedium", new { branchMediumId=@Model.BranchMediumId})'">@Localizer["UpdateNotificationConfiguration.Cancel"]</button>
+              <button type="submit" class="btn custom-btn custom-cancel-btn pull-right">@Localizer["UpdateNotificationConfiguration.Update"]</button>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+        </form>
+        <!-- END FORM-->
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    
+}

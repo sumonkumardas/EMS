@@ -1,0 +1,235 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@using SinePulse.EMS.Domain.Enums
+@using SinePulse.EMS.Messages.Model.Academic
+@model AddStudentViewModel
+@inject IViewLocalizer Localizer
+@{
+  ViewData["Title"] = "AddStudent";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-container">
+  <!-- BEGIN CONTENT -->
+  <div class="page-content-wrapper">
+    <div class="page-content">
+      <div class="portlet-body form">
+        <!-- BEGIN FORM-->
+        <div class="title-on-top">@Localizer["AddStudent.Title"]</div>
+        <form asp-action="AddStudent" class="form-horizontal box-shadow-form" id="form_sample_3">
+          <div class="form-body">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input id="branchMediumId" asp-for="BranchMediumId" type="hidden" class="form-control" />
+            <div class="row-fluid col-md-12 zero-padding-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["AddStudent.FullName"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <input asp-for="FullName" type="text" class="form-control" />
+                    <span asp-validation-for="FullName" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["AddStudent.Guardian"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <select asp-for="Guardian" class="form-control" asp-items="Html.GetEnumSelectList<RelationTypeEnum>()">
+                      <option selected="selected" value="">@Localizer["AddStudent.SelectGuardian"]</option>
+                    </select>
+                    <span asp-validation-for="Guardian" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row-fluid col-md-12 zero-padding-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["AddStudent.BirthDate"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    
+                      <input type="text" class="form-control datepicker" name="BirthDate">
+                    
+                    <!-- /input-group -->
+
+                    <span asp-validation-for="BirthDate" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                  <div class="form-group">
+                      <div class="col-md-4">
+                          <label>@Localizer["AddStudent.Class"] </label><span class="required">*</span>
+                      </div>
+                      <div class="col-md-8">
+                          @{
+                              var classes = Model.Sections.Select(section => section.Class).GroupBy(c => c.Id).Select(x => x.First()).ToList();
+                          }
+                          @Html.DropDownListFor(x => Model.ClassId, new SelectList(classes, "Id", "ClassName"), @Localizer["AddStudent.SelectClass"].Value, new { @class = "form-control", id = "classDropDown" })
+                          <span asp-validation-for="ClassId" class="text-danger"></span>
+                      </div>
+                  </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row-fluid col-md-12 zero-padding-row">
+              <div class="col-md-6">
+                  <div class="form-group">
+                      <div class="col-md-4">
+                          <label>@Localizer["AddStudent.Group"] </label><span class="required">*</span>
+                      </div>
+                      <div class="col-md-8">
+                          @Html.DropDownListFor(x => Model.Group, new SelectList(@Model.Groups, "GroupId", "GroupName"), @Localizer["AddStudent.SelectGroup"].Value, new { @class = "form-control", required = "true", id = "groupDropDown" })
+                          <span asp-validation-for="Group" class="text-danger"></span>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-md-6">
+                  <div class="form-group">
+                      <div class="col-md-4">
+                          <label>@Localizer["AddStudent.Section"] </label><span class="required">*</span>
+                      </div>
+                      <div class="col-md-8">
+                          @{
+                              var sectionDropDonItemList = new List<SectionDropDownItemModel>();
+                              foreach (var section in Model.Sections.Where(x => x.Class.Id == @Model.ClassId))
+                              {
+                                  sectionDropDonItemList.Add(new SectionDropDownItemModel
+                                  {
+                                      Id = section.Id,
+                                      SectionName = section.Class.ClassName + " -> " + section.SectionName
+                                  });
+                              }
+                          }
+                          @Html.DropDownListFor(x => Model.SectionId, new SelectList(sectionDropDonItemList, "Id", "SectionName"), @Localizer["AddStudent.SelectSection"].Value, new { @class = "form-control", required = "true", id = "sectionDropDown" })
+                          <span asp-validation-for="SectionId" class="text-danger"></span>
+                      </div>
+                  </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row-fluid col-md-12 zero-padding-row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <label>@Localizer["AddStudent.MobileNo"] </label>
+                        </div>
+                        <div class="col-md-8">
+                            <input asp-for="MobileNo" type="text" class="form-control" />
+                            <span asp-validation-for="MobileNo" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <label>Roll</label>
+                        </div>
+                        <div class="col-md-8">
+                            <input id="rollNo" asp-for="RollNo" type="text" class="form-control" />
+                            <span asp-validation-for="RollNo" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["AddStudent.Email"] </label>
+                  </div>
+                  <div class="col-md-8">
+                    <input asp-for="Email" type="text" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <br />
+            <div class="btn-container">
+              <button type="button" class="btn custom-btn custom-cancel-btn pull-left" onclick="location.href = '/BranchMedium/ViewBranchMedium?branchMediumId=@Model.BranchMediumId'">@Localizer["AddStudent.CancelButton"]</button>
+              <button type="submit" class="btn custom-btn custom-cancel-btn pull-right">@Localizer["AddStudent.CreateButton"]</button>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+        </form>
+        <!-- END FORM-->
+      </div>
+    </div>
+  </div>
+</div>  
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    
+    <script>
+        var sectionList = @Html.Raw(Json.Serialize(Model.Sections));
+        var sectionDropDown = $("#sectionDropDown");
+        var classDropDown = $("#classDropDown");
+        var groupDropDown = $("#groupDropDown");
+        classDropDown.change(function () {
+            $.ajax({
+                type: "POST",
+                url: "/Student/GetFilteredGroupBySectionByClass?branchMediumId=" +
+                    $('#branchMediumId').val() +
+                    "&classId=" +
+                    classDropDown.val(),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    groupDropDown.children('option:not(:first)').remove();
+                    jQuery.each(response,
+                        function(index, item) {
+                            var dropdownItem = new Option(item.GroupName, item.GroupId);
+                            groupDropDown.append(dropdownItem);
+                        });
+                },
+                failure: function (response) {
+                    alert("Failure..! Could not Fetch Data using Ajax.");
+                },
+                error: function (response) {
+                    alert("Error..! Could not Fetch Data using Ajax.");
+                }
+            });
+            
+        });
+        groupDropDown.change(function () {
+            
+            var filteredSections = $.grep(sectionList, function (v) {
+                return v.Class.Id == $("#classDropDown").val() && v.Group == groupDropDown.val() ;
+            });
+            sectionDropDown.children('option:not(:first)').remove();
+            jQuery.each(filteredSections,
+                function (index, item) {
+                    var dropdownItem = new Option(item.SectionName, item.Id);
+                    sectionDropDown.append(dropdownItem);
+                });
+        });
+        sectionDropDown.change(function() {
+            $.ajax({
+                type: "POST",
+                url: "/Student/GetStudentRoll?sectionId=" +
+                    sectionDropDown.val() +
+                    "&classId=" +
+                    classDropDown.val() + "&group=" +
+                    groupDropDown.val(),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function(response) {
+                    $('#rollNo').val(response);
+                },
+                failure: function(response) {
+                    alert("Failure..! Could not Fetch Data using Ajax.");
+                },
+                error: function(response) {
+                    alert("Error..! Could not Fetch Data using Ajax.");
+                }
+            });
+        });
+    </script>
+}

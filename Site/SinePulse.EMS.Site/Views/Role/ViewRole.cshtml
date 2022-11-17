@@ -1,0 +1,147 @@
+@model SinePulse.EMS.Site.Models.RoleViewModel
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@{
+    ViewData["Title"] = "ViewRole";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-container">
+    <!-- BEGIN CONTENT -->
+    <div class="page-content-wrapper">
+        <div class="page-content">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="profile-sidebar">
+                        <!-- PORTLET MAIN -->
+                        <div class="portlet light profile-sidebar-portlet">
+                            <!-- SIDEBAR USERPIC -->
+                            <div class="profile-userpic">
+                                <img src="../../img/school.png" class="img-responsive" alt="">
+                            </div>
+                            <!-- END SIDEBAR USERPIC -->
+                            <!-- SIDEBAR USER TITLE -->
+                            <div class="profile-usertitle-name small-title">
+                                @Html.DisplayFor(model => model.RoleName)
+                            </div>
+                            <div class="profile-stat-text">
+                                @Localizer["ViewRole.RoleName"]
+                            </div>
+                            <!-- END SIDEBAR USER TITLE -->
+                            <hr />
+
+                        </div>
+                        <!-- END PORTLET MAIN -->
+                    </div>
+                    <div class="profile-content">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="portlet light">
+                                    <div class="portlet-title tabbable-line">
+                                        <div class="page-toolbar custom-page-menu-bar">
+                                            <div class="btn-group">
+                                                <ul style="padding:0px;">
+
+                                                    <li class="custom-page-menu dropdown primary-menu-item-li">
+                                                        <a href="#" class="show-dropdown-on-hover" data-toggle="custom-page-menu">
+                                                            <button type="button" class="btn btn-fit-height dark-bg dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="100" data-close-others="true">
+                                                                <i class="fa fa-bars"></i>
+                                                            </button>
+                                                        </a>
+                                                        <ul class="dropdown-menu light-arrow-only">
+                                                            <li>
+                                                                <a href="/Role/AddFeatureInRole?RoleId=@Model.RoleId">@Localizer["ViewRole.AddFeature"]</a>
+                                                            </li>
+                                                            <li>
+                                                              <a href="/Role/RemoveFeatureFromRole?RoleId=@Model.RoleId">@Localizer["ViewRole.RemoveFeature"]</a>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+
+                                                </ul>
+
+                                            </div>
+                                        </div>
+                                        <ul class="nav nav-tabs custom-page-tab">
+                                            <li class="active">
+                                                <a href="#tab_features" data-toggle="tab">
+                                                  <h5 class="caption-subject font-blue-madison bold uppercase">@Localizer["ViewRole.Features"]</h5>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#tab_users" data-toggle="tab">
+                                                  <h5 class="caption-subject font-blue-madison bold uppercase">@Localizer["ViewRole.Users"]</h5>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="portlet-body">
+                                        <div class="tab-content">
+                                            <div class="tab-pane active" id="tab_features">
+                                                <div style="min-height: 320px;">
+                                                    <table class="table table-light">
+                                                        <thead>
+                                                            <tr class="uppercase">
+                                                              <th>@Localizer["ViewRole.Features"]</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @{
+                                                                if (Model.Features != null && Model.Features.Any())
+                                                                {
+                                                                    foreach (var feature in Model.Features)
+                                                                    {
+                                                                        <tr>
+                                                                            <td>
+                                                                                @Html.DisplayFor(s => feature.FeatureName)
+                                                                            </td>
+                                                                        </tr>
+                                                                    }
+                                                                }
+                                                            }
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+
+                                            <div class="tab-pane " id="tab_users">
+                                                <div style="min-height: 320px;">
+                                                    <table class="table table-light">
+                                                        <thead>
+                                                            <tr class="uppercase">
+                                                              <th>@Localizer["ViewRole.Users"]</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @{
+                                                                if (Model.RoleUsers != null && Model.RoleUsers.Any())
+                                                                {
+                                                                    foreach (var user in Model.RoleUsers)
+                                                                    {
+                                                                        <tr>
+                                                                            <td>
+                                                                                <a href="/Employee/ViewEmployee?employeeId=@user.EmployeeId">
+                                                                                    @Html.DisplayFor(s => user.EmployeeName)
+                                                                                </a>
+                                                                            </td>
+                                                                        </tr>
+                                                                    }
+                                                                }
+                                                            }
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>

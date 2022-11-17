@@ -1,0 +1,161 @@
+﻿@model SinePulse.EMS.Site.Models.ResultGradeViewModel
+@using Microsoft.AspNetCore.Mvc.Localization
+@using SinePulse.EMS.Domain.Enums
+@inject IViewLocalizer Localizer
+
+@{
+  ViewData["Title"] = "UpdateResultGrade";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-container">
+  <!-- BEGIN CONTENT -->
+  <div class="page-content-wrapper">
+    <div class="page-content">
+      <div class="portlet-body form">
+        <!-- BEGIN FORM-->
+        <div class="title-on-top">@Localizer["UpdateResultGrade.Title"]</div>
+        <form asp-action="UpdateResultGrade" class="form-horizontal box-shadow-form" id="form_sample_3">
+          <div class="form-body">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input asp-for="BranchMedium.Id" type="hidden" runat="server" />
+            <input asp-for="Id" type="hidden" runat="server" />
+            <div class="row-fluid col-md-12 zero-padding-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["UpdateResultGrade.GradeLetter"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <input asp-for="GradeLetter" type="text" class="form-control" />
+                    <span asp-validation-for="GradeLetter" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["UpdateResultGrade.GradePoint"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <input asp-for="GradePoint" type="text" class="form-control" />
+                    <span asp-validation-for="GradePoint" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row-fluid col-md-12 zero-padding-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["UpdateResultGrade.StartMark"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <input asp-for="StartMark" type="text" class="form-control" />
+                    <span asp-validation-for="StartMark" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["UpdateResultGrade.EndMark"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <input asp-for="EndMark" type="text" class="form-control" />
+                    <span asp-validation-for="EndMark" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row-fluid col-md-12 zero-padding-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["UpdateResultGrade.Status"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <select asp-for="Status" class="form-control" asp-items="Html.GetEnumSelectList<StatusEnum>()">
+                      <option>@Localizer["UpdateResultGrade.SelectStatus"]</option>
+                    </select>
+                    <span asp-validation-for="Status" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <br />
+            <div class="btn-container">
+              <button type="button" class="btn custom-btn custom-cancel-btn pull-left" onclick="location.href='#'">@Localizer["UpdateResultGrade.CancelButton"]</button>
+              <button type="submit" class="btn custom-btn custom-cancel-btn pull-right">@Localizer["UpdateResultGrade.UpdateButton"]</button>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+        </form>
+        <!-- END FORM-->
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<div class="page-container">
+  <!-- BEGIN CONTENT -->
+  <div class="page-content-wrapper">
+    <div class="page-content">
+      <div class="portlet box form-conatiner">
+        <div class="form-title-container">
+          <label>Update Result Grade</label>
+        </div>
+        <div class="portlet-body form">
+          <!-- BEGIN FORM-->
+          <form asp-action="UpdateResultGrade" class="form-horizontal">
+            <div class="form-body">
+                asd
+                <div class="form-group">
+                    <input asp-for="BranchMedium.Id" type="hidden" runat="server" />
+                    <input asp-for="Id" type="hidden" runat="server" />
+                    <div class="col-md-12">
+                        <input asp-for="GradeLetter" type="text" class="form-control" placeholder="@Localizer["UpdateResultGrade.GradeLetter"]" />
+                        <span asp-validation-for="GradeLetter" class="text-danger"></span>
+                    </div>
+                </div>
+              <div class="form-group">
+                <div class="col-md-12">
+                  <input asp-for="StartMark" type="text" class="form-control" placeholder="StartMark" />
+                  <span asp-validation-for="StartMark" class="text-danger"></span>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-md-12">
+                  <input asp-for="EndMark" type="text" class="form-control" placeholder="EndMark" />
+                  <span asp-validation-for="EndMark" class="text-danger"></span>
+                </div>
+              </div>
+
+              <div class="btn-container">
+                <button type="button" class="btn custom-btn custom-cancel-btn pull-left" onclick="location.href='@Url.Action("Index", "ResultGrade",new { branchMediumId=Model.BranchMedium.Id})'">Cancel</button>
+                <button type="submit" class="btn custom-btn custom-cancel-btn pull-right">Update</button>
+                <div class="clearfix"></div>
+              </div>
+            </div>
+          </form>
+          <!-- END FORM-->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+@section Scripts {
+  @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

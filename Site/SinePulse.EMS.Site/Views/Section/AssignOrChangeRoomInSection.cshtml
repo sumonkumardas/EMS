@@ -1,0 +1,60 @@
+﻿@model AssignOrChangeRoomInSectionViewModel
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@{
+  ViewData["Title"] = "AssignOrChangeRoomInSection";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-container">
+  <!-- BEGIN CONTENT -->
+  <div class="page-content-wrapper">
+    <div class="page-content">
+      <div class="portlet-body form">
+        <!-- BEGIN FORM-->
+        <div class="title-on-top">@Localizer["AssignOrChangeRoomInSection.Title"]</div>
+        <form asp-action="AssignOrChangeRoomInSection" class="form-horizontal box-shadow-form" id="form_sample_3">
+          <div class="form-body">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @* hidden field *@
+            <input type="hidden" asp-for="SectionId" runat="server" />
+            @* hidden field *@
+            @{
+              if (Model.Rooms != null && Model.Rooms.Count > 0)
+              {
+                <div class="row-fluid">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <div class="col-md-2">
+                        <label>@Localizer["AssignOrChangeRoomInSection.Room"] </label><span class="required">*</span>
+                      </div>
+                      <div class="col-md-6">
+                        @Html.DropDownListFor(x => x.RoomId, new SelectList(Model.Rooms, "Id", "RoomNo"), @Localizer["AssignOrChangeRoomInSection.SelectRoom"].Value, new { required = true, @class = "form-control" })
+                        <span asp-validation-for="RoomId" class="text-danger"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="clearfix"></div>
+                <br />
+                <div class="btn-container">
+                  <button type="submit" value="Assign Room" class="btn btn-default custom-btn custom-cancel-btn">@Localizer["AssignOrChangeRoomInSection.Submit"]</button>
+                  <div class="clearfix"></div>
+                </div>
+              }
+              else
+              {
+                <label class="text-danger">@Localizer["AssignOrChangeRoomInSection.Message"]</label>
+                <div class="btn-container">
+                  <button type="button" class="btn custom-btn custom-cancel-btn pull-left" onclick="location.href = '@Url.Action("ViewSection", "Section", new {sectionId = Model.SectionId})'">@Localizer["AssignOrChangeRoomInSection.Back"]</button>
+                </div>
+              }
+            }
+          </div>
+        </form>
+        <!-- END FORM-->
+      </div>
+    </div>
+  </div>
+</div>

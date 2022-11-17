@@ -1,0 +1,119 @@
+﻿@model SinePulse.EMS.Site.Models.AddCommitteeMemberPersonalInfoViewModel
+@using SinePulse.EMS.Domain.Enums
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+
+@{
+  ViewData["Title"] = "AddCommitteeMemberPersonalInfo";
+}
+
+<div class="page-container">
+  <!-- BEGIN CONTENT -->
+  <div class="page-content-wrapper">
+    <div class="page-content">
+      <div class="portlet-body form">
+        <!-- BEGIN FORM-->
+        <div class="title-on-top">@Localizer["AddCommitteeMemberPersonalInfo.Title"]</div>
+        <form asp-action="AddCommitteeMemberPersonalInfo" class="form-horizontal box-shadow-form" id="form_sample_3">
+          <div class="form-body">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="CommitteeMemberId" runat="server" />
+            <div class="row-fluid col-md-12 zero-padding-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["AddCommitteeMemberPersonalInfo.FatherName"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <input asp-for="FatherName" type="text" class="form-control" />
+                    <span asp-validation-for="FatherName" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["AddCommitteeMemberPersonalInfo.MotherName"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <input asp-for="MotherName" type="text" class="form-control" />
+                    <span asp-validation-for="MotherName" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row-fluid col-md-12 zero-padding-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["AddCommitteeMemberPersonalInfo.SpouseName"] </label>
+                  </div>
+                  <div class="col-md-8">
+                    <input asp-for="SpouseName" type="text" class="form-control" />
+                    <span asp-validation-for="SpouseName" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["AddCommitteeMemberPersonalInfo.BloodGroup"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <select asp-for="BloodGroup" class="form-control" asp-items="Html.GetEnumSelectList<BloodGroupEnum>()">
+                      <option selected="selected" value="">@Localizer["AddCommitteeMemberPersonalInfo.SelectBloodGroup"]</option>
+                    </select>
+                    <span asp-validation-for="BloodGroup" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row-fluid col-md-12 zero-padding-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["AddCommitteeMemberPersonalInfo.Gender"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <select asp-for="Gender" class="form-control" asp-items="Html.GetEnumSelectList<GenderEnum>()">
+                      <option selected="selected" value="">@Localizer["AddCommitteeMemberPersonalInfo.SelectGender"]</option>
+                    </select>
+                    <span asp-validation-for="Gender" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["AddCommitteeMemberPersonalInfo.Religion"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <select asp-for="Religion" class="form-control" asp-items="Html.GetEnumSelectList<ReligionEnum>()">
+                      <option selected="selected" value="">@Localizer["AddCommitteeMemberPersonalInfo.SelectReligion"]</option>
+                    </select>
+                    <span asp-validation-for="Religion" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <br />
+            <div class="btn-container">
+              <button type="button" class="btn custom-btn custom-cancel-btn pull-left" onclick="location.href = '/CommitteeMember/ViewManagingCommittee?committeeMemberId=@Model.CommitteeMemberId'">@Localizer["AddCommitteeMemberPersonalInfo.CancelButton"]</button>
+              <button type="submit" class="btn custom-btn custom-cancel-btn pull-right">@Localizer["AddCommitteeMemberPersonalInfo.CreateButton"]</button>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+        </form>
+        <!-- END FORM-->
+      </div>
+    </div>
+  </div>
+</div>
+
+
+@section Scripts {
+  @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

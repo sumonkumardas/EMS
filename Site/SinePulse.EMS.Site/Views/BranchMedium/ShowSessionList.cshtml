@@ -1,0 +1,69 @@
+﻿@using SinePulse.EMS.Domain.Features
+@using SinePulse.EMS.Messages.Model.Enums
+@model ShowSessionListViewModel
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+
+<table class="table table-light">
+    <thead>
+        <tr class="uppercase">
+          <th>
+            @Localizer["ShowSessionList.SessionName"]
+          </th>
+          <th>
+            @Localizer["ShowSessionList.StartDate"]
+          </th>
+          <th>
+            @Localizer["ShowSessionList.EndDate"]
+          </th>
+          <th>
+            @Localizer["ShowSessionList.IsSessionClosed"]
+          </th>
+          <th>@Localizer["ShowSessionList.Action"]</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @{
+            if (Model.Sessions.Count() > 0)
+            {
+                foreach (var session in Model.Sessions)
+                {
+                    var startDate = session.StartDate.ToString("dd MMMM, yyyy");
+                    var endDate = session.EndDate.ToString("dd MMMM, yyyy");
+                    <tr>
+                        <td>
+                            @if (Model.HasPermission(Feature.SessionEnum.ViewSession.ToString()))
+                            {
+                                <a href="/Session/ViewSession?id=@session.Id">@session.SessionName</a>
+                            }
+                            else
+                            {
+                                @session.SessionName
+                            }
+                        </td>
+                        <td>
+                            @startDate
+                        </td>
+                        <td>
+                            @endDate
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(s => session.IsSessionClosed)
+                        </td>
+                        <td>
+                            @if (Model.HasPermission(Feature.SessionEnum.EditSession.ToString()))
+                            {
+                                <a href="/Session/UpdateSession?id=@session.Id" class="action-link"><i class="fa fa-edit action-icon"></i></a>
+                            }
+                        </td>
+                    </tr>
+                }
+            }
+        }
+
+
+    </tbody>
+
+</table>

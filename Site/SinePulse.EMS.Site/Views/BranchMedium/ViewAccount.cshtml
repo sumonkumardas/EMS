@@ -1,0 +1,815 @@
+@using SinePulse.EMS.Domain.Features
+@model AccountDisplayModel
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@{
+    ViewData["Title"] = "ViewAccount";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="page-container">
+    <!-- BEGIN CONTENT -->
+    <div class="page-content-wrapper">
+        <div class="page-content">
+            <div class="profile-content">
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <!-- BEGIN PROFILE SIDEBAR -->
+                        <div class="profile-sidebar">
+                            <!-- PORTLET MAIN -->
+                            <div class="portlet light profile-sidebar-portlet">
+                                <!-- SIDEBAR USERPIC -->
+                                <div class="profile-userpic">
+                                    <img src="../../img/school.png" class="img-responsive" alt="">
+                                </div>
+                                <!-- END SIDEBAR USERPIC -->
+                                <!-- SIDEBAR USER TITLE -->
+                                <input type="hidden" id="branchMediumIdOfViewAccount" asp-for="@Model.AccountDisplayBranchMedium.BranchMediumId" runat="server" />
+                                <div class="profile-usertitle-name small-title">
+                                    Account View
+                                </div>
+                                <hr />
+                                <div class="profile-usertitle-name">
+                                    @if (Model.HasPermission(Feature.InstituteEnum.ViewInstitute.ToString()))
+                                    {
+                                        <a class="primary-link" href="/Institute/ViewInstitute?instituteId=@Model.AccountDisplayInstitute.InstituteId">
+                                            @Html.DisplayFor(model => model.AccountDisplayInstitute.InstituteName)
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        @Html.DisplayFor(model => model.AccountDisplayInstitute.InstituteName)
+                                    }
+                                </div>
+                                <div class="profile-stat-text">
+                                    @Localizer["ViewAccount.Institute"]
+                                </div>
+                                <hr />
+
+                                <div class="profile-usertitle-name">
+                                    @if (Model.HasPermission(Feature.BranchEnum.ViewBranch.ToString()))
+                                    {
+                                        <a class="primary-link" href="/Branch/ViewBranch?branchId=@Model.AccountDisplayBranch.BranchId">
+                                            @Html.DisplayFor(model => model.AccountDisplayBranch.BranchName)
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        @Html.DisplayFor(model => model.AccountDisplayBranch.BranchName)
+                                    }
+                                </div>
+                                <div class="profile-stat-text">
+                                    @Localizer["ViewAccount.Branch"]
+                                </div>
+                                <hr />
+
+                                <div class="profile-usertitle-name">
+                                    @if (Model.HasPermission(Feature.BranchMediumEnum.ViewBranchMedium.ToString()))
+                                    {
+                                        <a class="primary-link" href="/BranchMedium/ViewBranchMedium?branchMediumId=@Model.AccountDisplayBranchMedium.BranchMediumId">
+                                            @Html.DisplayFor(model => model.AccountDisplayBranchMedium.BranchMediumName)
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        @Html.DisplayFor(model => model.AccountDisplayBranchMedium.BranchMediumName)
+                                    }
+                                </div>
+                                <div class="profile-stat-text">
+                                    @Localizer["ViewAccount.Medium"]
+                                </div>
+                                <hr />
+
+                                <div class="profile-usertitle-name">
+                                    @Html.DisplayFor(model => model.AccountDisplayBranchMedium.ShiftName)
+                                </div>
+                                <div class="profile-stat-text">
+                                    @Localizer["ViewAccount.Shift"]
+                                </div>
+                                <hr />
+
+                                <!-- END SIDEBAR USER TITLE -->
+                            </div>
+                            <!-- END PORTLET MAIN -->
+
+                        </div>
+                        <!-- END BEGIN PROFILE SIDEBAR -->
+                        <!-- BEGIN PROFILE CONTENT -->
+                        <div class="profile-content">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <!-- BEGIN PORTLET -->
+                                    <div class="portlet light">
+                                        <div class="portlet-title tabbable-line">
+                                            <div class="page-toolbar custom-page-menu-bar">
+                                                <div class="btn-group">
+                                                    <ul style="padding:0px;">
+
+                                                        <li class="custom-page-menu dropdown primary-menu-item-li">
+                                                            <a href="#" class="show-dropdown-on-hover" data-toggle="custom-page-menu">
+                                                                <button type="button" class="btn btn-fit-height dark-bg dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="100" data-close-others="true">
+                                                                    <i class="fa fa-bars"></i>
+                                                                </button>
+                                                            </a>
+                                                            <ul class="dropdown-menu light-arrow-only">
+                                                                @if (Model.HasPermission(Feature.AccountingEnum.CashVoucher.ToString()))
+                                                                {
+                                                                    <li><a href="/Accounting/AddCashVoucher?branchMediumId=@Model.AccountDisplayBranchMedium.BranchMediumId">@Localizer["ViewAccount.CashVoucher"]</a></li>
+                                                                }
+                                                                @if (Model.HasPermission(Feature.AccountingEnum.BankVoucher.ToString()))
+                                                                {
+                                                                    <li><a href="/Accounting/AddBankVoucher?branchMediumId=@Model.AccountDisplayBranchMedium.BranchMediumId">@Localizer["ViewAccount.BankVoucher"]</a></li>
+                                                                }
+                                                                @if (Model.HasPermission(Feature.AccountingEnum.GeneralJournal.ToString()))
+                                                                {
+                                                                    <li><a href="/Accounting/AddGeneralJournal?branchMediumId=@Model.AccountDisplayBranchMedium.BranchMediumId">@Localizer["ViewAccount.GeneralJournal"]</a></li>
+                                                                }
+                                                                @if (Model.HasPermission(Feature.AccountingEnum.ContraJournal.ToString()))
+                                                                {
+                                                                    <li><a href="/Accounting/AddContraJournal?branchMediumId=@Model.AccountDisplayBranchMedium.BranchMediumId">@Localizer["ViewAccount.ContraJournal"]</a></li>
+                                                                }
+                                                                @if (Model.HasPermission(Feature.AccountingEnum.YearClosing.ToString()))
+                                                                {
+                                                                    <li><a href="#">@Localizer["ViewAccount.YearClosing"]</a></li>
+                                                                }
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+
+                                                </div>
+                                            </div>
+
+                                            <ul class="nav nav-tabs custom-page-tab">
+                                                <li class="active">
+                                                    <a href="#tab_1_1" data-toggle="tab">
+                                                        <h5 class="caption-subject font-blue-madison bold uppercase">@Localizer["ViewAccount.Transaction"]</h5>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#tab_1_2" data-toggle="tab" onclick="renderChartOfAccount()">
+                                                        <h5 class="caption-subject font-blue-madison bold uppercase">@Localizer["ViewAccount.ChartofAccount"]</h5>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#tab_1_3" data-toggle="tab" onclick="renderTrialBalance()">
+                                                        <h5 class="caption-subject font-blue-madison bold uppercase">@Localizer["ViewAccount.TrialBanalnce"]</h5>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#tab_1_4" data-toggle="tab" onclick="renderIncomeStatement()">
+                                                        <h5 class="caption-subject font-blue-madison bold uppercase">@Localizer["ViewAccount.IncomeStatement"]</h5>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#tab_1_5" data-toggle="tab" onclick="renderBalanceSheet()">
+                                                        <h5 class="caption-subject font-blue-madison bold uppercase">@Localizer["ViewAccount.BanalnceSheet"]</h5>
+                                                    </a>
+                                                </li>
+
+                                            </ul>
+
+
+                                        </div>
+                                        <div class="portlet-body">
+                                            <!--BEGIN TABS-->
+                                            <div class="tab-content">
+                                                <div class="tab-pane active" id="tab_1_1">
+                                                    <div style="min-height: 320px;">
+                                                        <div class="form-group">
+                                                            <div class="col-md-12">
+                                                                <form id="form_sample_3">
+                                                                    <div class="col-md-2">
+                                                                      <label> @Localizer["ViewAccount.StartDate"]</label><span class="required">*</span>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+
+                                                                        <input id="transactionStartDate" type="text" class="form-control datepicker" name="Date">
+
+                                                                        <span id="transactionStartDateError" class="text-danger"></span>
+                                                                    </div>
+                                                                    <div class="col-md-2">
+                                                                      <label>@Localizer["ViewAccount.EndDate"] </label><span class="required">*</span>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <input id="transactionEndDate" type="text" class="form-control datepicker" name="Date">
+                                                                        <span id="transactionEndDateError" class="text-danger"></span>
+                                                                    </div>
+                                                                    <div class="col-md-2">
+                                                                        <button type="button" onclick="showTransactions()" class="btn custom-btn custom-cancel-btn pull-right">@Localizer["ViewAccount.CashVoucherShow"]</button>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+
+                                                        </div>
+                                                        <br /><br /><br />
+                                                        <table id="transactionTable" class=" table order-list">
+                                                            <thead class="lite_bg">
+                                                                <tr>
+
+                                                                    <th>@Localizer["ViewAccount.TransactionNo"]</th>
+                                                                    <th>@Localizer["ViewAccount.Description"]</th>
+                                                                    <th>@Localizer["ViewAccount.TransactionDate"]</th>
+                                                                    <th></th>
+                                                                </tr>
+
+                                                            </thead>
+                                                            <tbody>
+                                                                @foreach (var transactionEntryModel in Model.Transactions)
+                                                                {
+                                                                    <tr>
+
+                                                                        <td>
+                                                                            @Html.DisplayFor(model => @transactionEntryModel.TransactionNo)
+                                                                        </td>
+                                                                        <td>
+                                                                            @Html.DisplayFor(model => @transactionEntryModel.Description)
+                                                                        </td>
+                                                                        <td>
+                                                                            @Html.DisplayFor(model => @transactionEntryModel.TransactionDate)
+                                                                        </td>
+                                                                        <td>
+                                                                            <a href="/Accounting/ShowTransaction?transactionId=@transactionEntryModel.Id&branchMediumId=@Model.AccountDisplayBranchMedium.BranchMediumId" class="action-link"><i class="fa fa-eye action-icon"></i></a>
+                                                                        </td>
+                                                                    </tr>
+                                                                }
+
+                                                            </tbody>
+
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                                <div class="tab-pane" id="tab_1_2">
+                                                    <div style="min-height: 320px;" id="displayAddAccountHeadPage">
+                                                        <div>
+                                                            <i class="fa fa-circle-o-notch fa-spin" style="font-size:48px"></i>
+                                                        </div>
+
+
+                                                    </div>
+                                                </div>
+                                                <div class="tab-pane" id="tab_1_3">
+                                                    <div style="min-height: 320px;" id="displayTrialBalancePage">
+                                                        <div>
+                                                            <i class="fa fa-circle-o-notch fa-spin" style="font-size:48px"></i>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                <div class="tab-pane" id="tab_1_4">
+                                                    <div style="min-height: 320px;" id="displayIncomeStatementPage">
+                                                        <div>
+                                                            <i class="fa fa-circle-o-notch fa-spin" style="font-size:48px"></i>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                <div class="tab-pane" id="tab_1_5">
+                                                    <div style="min-height: 320px;">
+                                                        <div style="min-height: 320px;" id="displayBalanceSheetPage">
+                                                            <div>
+                                                                <i class="fa fa-circle-o-notch fa-spin" style="font-size:48px"></i>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <!--END TABS-->
+                                        </div>
+                                    </div>
+                                    <!-- END PORTLET -->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END PROFILE CONTENT -->
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script src="~/js/moment.min.js"></script>
+
+    <script type="text/javascript">
+
+        function resetShowHideBar() {
+            $('.ui-button-text').text("Show Bar");
+            $(".myUL li").css('border-bottom', '');
+        }
+
+        function viewNode(nodeId) {
+            $.ajax({
+                type: "GET",
+                url: "/Accounting/GetAccountHead?accountHeadId=" + nodeId,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function(response) {
+                    $('#selectedNode').val(nodeId);
+                    $('#displayAccountHead').show();
+                    $('#accountCodeLabel').text(response.AccountCode);
+                    $('#accountHeadNameLabel').text(response.AccountHeadName);
+                    $('#accountHeadTypeLabel').val(response.AccountHeadType);
+                    $('#accountCategoryLabel').val(response.AccountHeadCategory);
+                    $('#accountPeriodLabel').val(response.AccountPeriod);
+                    $('#isLedgerLabel').text(response.IsLedger);
+                    if (response.IsLedger == true) {
+                        $("#addChildNode").attr("disabled", "disabled");
+                    } else
+                        $("#addChildNode").removeAttr("disabled");
+                },
+                failure: function(response) {
+                    console.log(response);
+                    alert("Failure..! Could not Fetch Data using Ajax.");
+                },
+                error: function(response) {
+                    console.log(response);
+                    alert("Error..! Could not Fetch Data using Ajax.");
+                }
+            });
+        }
+
+        function addChild() {
+            if ($('#BranchMediumId').val() == null || $('#BranchMediumId').val() == '') {
+                $('#globalError').append('Invalid branchmedium id');
+                return;
+            } else {
+                $('#globalError').text('');
+            }
+            if ($('#SessionId').val() == null || $('#SessionId').val() == '') {
+                $('#globalError').append('Invalid Session id');
+                return;
+            } else {
+                $('#globalError').text('');
+            }
+
+            if ($('#addAccountCode').val() == null || $('#addAccountCode').val() == '') {
+                $('#addAccountCodeError').text('Invalid account code');
+                return;
+            } else {
+                $('#addAccountCodeError').text('');
+            }
+
+            if ($('#addAccountHeadName').val() == null || $('#addAccountHeadName').val() == '') {
+                $('#addAccountHeadNameError').text('Invalid account name');
+                return;
+            } else {
+                $('#addAccountHeadNameError').text('');
+            }
+            if ($('#addAccountHeadType').val() == null || $('#addAccountHeadType').val() == '') {
+                $('#addAccountHeadTypeError').text('Invalid account head type');
+                return;
+            } else {
+                $('#addAccountHeadTypeError').text('');
+            }
+
+            if ($('#addAccountPeriod').val() == null || $('#addAccountPeriod').val() == '') {
+                $('#addAccountPeriodError').text('Invalid account period');
+                return;
+            } else {
+                $('#addAccountPeriodError').text('');
+            }
+
+            var model = {
+                BranchMediumId: parseInt($('#BranchMediumId').val()),
+                SessionId: parseInt($('#SessionId').val()),
+                AccountCode: $("#addAccountCode").val(),
+                AccountHeadName: $('#addAccountHeadName').val(),
+                AccountHeadType: parseInt($('#addAccountHeadType').val()),
+                //AccountHeadCategory: parseInt($('#addAccountCategory').val()),
+                AccountPeriod: parseInt($('#addAccountPeriod').val()),
+                IsLedger: document.getElementById("addIsLedger").checked,
+                ParentAccountHeadId: parseInt($('#selectedNode').val())
+            };
+            $.ajax({
+                type: "Post",
+                url: "/Accounting/AddAccountHead",
+                data: JSON.stringify(model),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function(response) {
+                    if (response.Id > 0) {
+                        $('#globalError').text('');
+                        $('#addAccountHeadChildModal').modal('hide');
+                        window.location = window.location.protocol +
+                            "//" +
+                            window.location.host +
+                            "/BranchMedium/ViewAccount?branchMediumId=" +
+                            @Model.AccountDisplayBranchMedium.BranchMediumId +
+                            "#tab_1_2";
+                        location.reload(false);
+                    } else {
+                        $('#globalError').text('');
+                        $('#globalError').text(response.ErrorMessage);
+                    }
+                },
+                failure: function(response) {
+                    console.log(response);
+                    alert("Failure..! Could not Fetch Data using Ajax.");
+                },
+                error: function(response) {
+                    console.log(response);
+                    alert("Error..! Could not Fetch Data using Ajax.");
+                }
+            });
+        }
+
+
+    </script>
+    <script>
+        function showTransactions() {
+            if ($('#transactionStartDate').val() == null || $('#transactionStartDate').val() == '') {
+                $('#transactionStartDateError').text('Choose start date');
+                return;
+            } else {
+                $('#transactionStartDateError').text('');
+            }
+
+            if ($('#transactionEndDate').val() == null || $('#transactionEndDate').val() == '') {
+                $('#transactionEndDateError').text('Choose end date');
+                return;
+            } else {
+                $('#transactionEndDateError').text('');
+            }
+            var transactionStartdate = moment(new Date($('#transactionStartDate').val())).format('MM/DD/YYYY');
+            var transactionEnddate = moment(new Date($('#transactionEndDate').val())).format('MM/DD/YYYY');
+            console.log(transactionEnddate);
+            if (transactionStartdate > transactionEnddate)
+                $('#transactionStartDateError').text('Start Date must be smaller than end date');
+            else
+                $('#transactionStartDateError').text('');
+            $.ajax({
+                type: "GET",
+                url: "/Accounting/GetTransactionWithFilteredDate?branchMediumId=" +
+                    $('#branchMediumIdOfViewAccount').val() +
+                    "&startDate=" +
+                    transactionStartdate.toString() +
+                    "&endDate=" +
+                    transactionEnddate.toString(),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                beforeSend: function() {
+
+                },
+                success: function(response) {
+                    $("#transactionTable > tbody").empty();
+                    jQuery.each(response,
+                        function(index, item) {
+                            var tableRow = "<tr><td>" +
+                                item.TransactionNo +
+                                "</td><td>" +
+                                item.Description +
+                                "</td><td>" +
+                                moment(new Date(item.TransactionDate)).format('MM/DD/YYYY') +
+                                "</a></td><td>" +
+                                '<a href="/Accounting/ShowTransaction?transactionId=' +
+                                item.Id +
+                                '&branchMediumId=@Model.AccountDisplayBranchMedium.BranchMediumId" class="action-link"><i class="fa fa-eye action-icon"></i></a>' +
+                                "</td></tr>";
+
+                            $("#transactionTable").append(tableRow);
+                        });
+                },
+                failure: function(response) {
+                    alert("Failure..! Could not Fetch Data using Ajax.");
+                },
+                error: function(response) {
+                    alert("Error..! Could not Fetch Data using Ajax.");
+                }
+            });
+        }
+    </script>
+    <script>
+        function showTrialBalance() {
+            resetShowHideBar();
+            if ($('#sessionDropDown').val() == null || $('#sessionDropDown').val() == '') {
+                $('#sessionDropDownError').text('Invalid session');
+                return;
+            } else {
+                $('#sessionDropDownError').text('');
+            }
+
+            if ($('#monthType').val() == null || $('#monthType').val() == '') {
+                $('#monthTypeError').text('Invalid month');
+                return;
+            } else {
+                $('#monthTypeError').text('');
+            }
+
+            $('#trialBalanceTransaction').show();
+            $.ajax({
+                type: "GET",
+                url: "/Accounting/ShowTrialBalance?branchMediumId=" +
+                    $('#branchMediumId').val() +
+                    "&sessionId=" +
+                    $('#sessionDropDown').val() +
+                    "&endMonth=" +
+                    $('#monthType').val(),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                beforeSend: function() {
+                    // setting a timeout
+                    $('#tbloader').show();
+                },
+                success: function(response) {
+                    console.log(response);
+                    $('#accountTypeTree').empty();
+                    $("#accountTypeTree").append(response.AccountTypeTreeUi);
+                    $('#debitTree').empty();
+                    $("#debitTree").append(response.DebitTreeUi);
+                    $('#creditEmptyTree').empty();
+                    $("#creditEmptyTree").append(response.EmptyTreeUi);
+                    $('#creditTree').empty();
+                    $("#creditTree").append(response.CreditTreeUi);
+                    $("#totalDebit").text(response.TotalDebit);
+                    $("#totalCredit").text(response.TotalCredit);
+                    $("#trialBalanceDate").text(moment(response.StartDate).format('MM/DD/YYYY') +
+                        ' -- ' +
+                        moment(response.EndDate).format('MM/DD/YYYY'));
+                    $('#tbloader').hide();
+                },
+                failure: function(response) {
+                    $('#tbloader').hide();
+                    alert("Failure..! Could not Fetch Data using Ajax.");
+                },
+                error: function(response) {
+                    $('#tbloader').hide();
+                    alert("Error..! Could not Fetch Data using Ajax.");
+                }
+            });
+        }
+    </script>
+
+    <script>
+        function showIncomeStatement() {
+            resetShowHideBar();
+            if ($('#sessionDropDown2').val() == null || $('#sessionDropDown2').val() == '') {
+                $('#sessionDropDownError2').text('Invalid session');
+                return;
+            } else {
+                $('#sessionDropDownError2').text('');
+            }
+
+            if ($('#monthType2').val() == null || $('#monthType2').val() == '') {
+                $('#monthTypeError2').text('Invalid month');
+                return;
+            } else {
+                $('#monthTypeError2').text('');
+            }
+
+            $('#incomeStatementTransaction').show();
+            $.ajax({
+                type: "GET",
+                url: "/Accounting/ShowIncomeStatement?branchMediumId=" +
+                    $('#branchMediumId2').val() +
+                    "&sessionId=" +
+                    $('#sessionDropDown2').val() +
+                    "&endMonth=" +
+                    $('#monthType2').val(),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                beforeSend: function() {
+                    // setting a timeout
+                    $('#isloader').show();
+                },
+                success: function(response) {
+                    console.log(response.AccountTypeTreeUi);
+                    $('#isaccountTypeTree').empty();
+                    $("#isaccountTypeTree").append(response.AccountTypeTreeUi);
+                    $('#isdebitTree').empty();
+                    $("#isdebitTree").append(response.DebitTreeUi);
+                    $('#iscreditEmptyTree').empty();
+                    $("#iscreditEmptyTree").append(response.EmptyTreeUi);
+                    $('#iscreditTree').empty();
+                    $("#iscreditTree").append(response.CreditTreeUi);
+                    $("#istotalExpense").text('Total Expenses=' + response.TotalExpense);
+                    $("#istotalRevenue").text('Total Revenues=' + response.TotalRevenue);
+                    $("#isNetIncome").text('Net Income =' + response.NetIncome);
+                    $("#incomeStatementDate").text(moment(response.StartDate).format('MM/DD/YYYY') +
+                        ' -- ' +
+                        moment(response.EndDate).format('MM/DD/YYYY'));
+                    $('#isloader').hide();
+                },
+                failure: function(response) {
+                    $('#isloader').hide();
+                    alert("Failure..! Could not Fetch Data using Ajax.");
+                },
+                error: function(response) {
+                    $('#isloader').hide();
+                    alert("Error..! Could not Fetch Data using Ajax.");
+                }
+            });
+        }
+    </script>
+
+    <script>
+        function showBalanceSheet() {
+            resetShowHideBar();
+            if ($('#sessionDropDown3').val() == null || $('#sessionDropDown3').val() == '') {
+                $('#sessionDropDownError3').text('Invalid session');
+                return;
+            } else {
+                $('#sessionDropDownError3').text('');
+            }
+
+            if ($('#monthType3').val() == null || $('#monthType3').val() == '') {
+                $('#monthTypeError3').text('Invalid month');
+                return;
+            } else {
+                $('#monthTypeError3').text('');
+            }
+
+            $('#balanceSheetTransaction').show();
+            $.ajax({
+                type: "GET",
+                url: "/Accounting/ShowBalanceSheet?branchMediumId=" +
+                    $('#branchMediumId3').val() +
+                    "&sessionId=" +
+                    $('#sessionDropDown3').val() +
+                    "&endMonth=" +
+                    $('#monthType3').val(),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                beforeSend: function() {
+                    // setting a timeout
+                    $('#loader').show();
+                },
+                success: function(response) {
+                    console.log(response.AccountTypeTreeUi);
+                    $('#balanceSheetAccountTree').empty();
+                    $("#balanceSheetAccountTree").append(response.AccountTypeTreeUi);
+                    $('#balanceSheetdebitTree').empty();
+                    $("#balanceSheetdebitTree").append(response.DebitTreeUi);
+                    $('#balanceSheetEmptyTree').empty();
+                    $("#balanceSheetEmptyTree").append(response.EmptyTreeUi);
+                    $('#balanceSheetcreditTree').empty();
+                    $("#balanceSheetcreditTree").append(response.CreditTreeUi);
+                    $("#balanceSheettotalAsset").text('');
+                    if (response.IsYearClosing == false) {
+                        $("#balanceSheettotalLiabilities").text((parseFloat(response.TotalLiabilities) +
+                            parseFloat(response.TotalEquity) +
+                            parseFloat(response.NetIncome)));
+                    } else {
+                        $("#balanceSheettotalLiabilities").text((parseFloat(response.TotalLiabilities) +
+                            parseFloat(response.TotalEquity)
+                        ));
+                    }
+
+                    //$("#balanceSheetNetIncome").text('Net Income =' + response.NetIncome);
+                    $("#balanceSheetDate").text(moment(response.StartDate).format('MM/DD/YYYY') +
+                        ' -- ' +
+                        moment(response.EndDate).format('MM/DD/YYYY'));
+                    $('#loader').hide();
+                },
+                failure: function(response) {
+                    alert("Failure..! Could not Fetch Data using Ajax.");
+                    $('#loader').hide();
+                },
+                error: function(response) {
+                    console.log(response);
+                    alert("Error..! Could not Fetch Data using Ajax.");
+                    $('#loader').hide();
+                }
+            });
+        }
+    </script>
+    <script>
+        function showAccountHeadFiltered() {
+            if ($('#sessionDropDown6').val() == null || $('#sessionDropDown6').val() == '') {
+                $('#sessionDropDownError6').text('Invalid session');
+                return;
+            } else {
+                $('#sessionDropDownError6').text('');
+            }
+
+            $('#displayAccountHeadTree').hide();
+            $.ajax({
+                type: "GET",
+                url: "/Accounting/ShowChartOfAccountFiltered?branchMediumId=" +
+                    $('#branchMediumId6').val() +
+                    "&sessionId=" +
+                    $('#sessionDropDown6').val(),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                beforeSend: function() {
+                    // setting a timeout
+                    $('#loader').show();
+                },
+                success: function(response) {
+                    $("#accountNodeList").empty();
+                    $("#accountNodeList").append(response.TreeUi);
+                    $('#displayAccountHead').hide();
+                    if (response.IsSessionClosed == true) {
+                        $('#addChildNode').hide();
+                        
+                    } else {
+                        $('#addChildNode').show();
+                    }
+
+                    var toggler = document.getElementsByClassName("caret2");
+                    for (i = 0; i < toggler.length; i++) {
+                        toggler[i].addEventListener("click",
+                            function() {
+                                this.parentElement.querySelector(".nested2").classList.toggle("active2");
+                                this.classList.toggle("caret-down2");
+                            });
+                    }
+
+                    $("#myUL li").click(function(e) {
+                        //Your code here
+                        e.stopPropagation();
+                    });
+                    $('#displayAccountHeadTree').show();
+                    $('#loader').hide();
+                },
+                failure: function(response) {
+                    alert("Failure..! Could not Fetch Data using Ajax.");
+                    $('#loader').hide();
+                },
+                error: function(response) {
+                    console.log(response);
+                    alert("Error..! Could not Fetch Data using Ajax.");
+                    $('#loader').hide();
+                }
+            });
+        }
+    </script>
+    <script>
+
+        function showBar(btn) {
+
+            if ($(btn).find('span').text() == 'Show Bar') {
+                $(btn).find('span').text('Hide Bar');
+                $(".myUL li").css('border-bottom', '1px solid red');
+            } else {
+                $(btn).find('span').text('Show Bar');
+                $(".myUL li").css('border-bottom', '');
+            }
+
+        }
+
+        function renderChartOfAccount() {
+
+            $("#displayAddAccountHeadPage").load(
+                "/Accounting/ShowChartOfAccount?branchMediumId=" + $('#branchMediumIdOfViewAccount').val(),
+                function() {
+                    var i;
+                    $('#displayAccountHead').hide();
+                    var toggler = document.getElementsByClassName("caret2");
+                    for (i = 0; i < toggler.length; i++) {
+                        toggler[i].addEventListener("click",
+                            function() {
+                                this.parentElement.querySelector(".nested2").classList.toggle("active2");
+                                this.classList.toggle("caret-down2");
+                            });
+                    }
+
+                    $("#myUL li").click(function(e) {
+                        //Your code here
+                        e.stopPropagation();
+                    });
+                });
+
+
+        }
+
+        function renderTrialBalance() {
+
+            $("#displayTrialBalancePage").load(
+                "/Accounting/ShowTrialBalanceDefault?branchMediumId=" + $('#branchMediumIdOfViewAccount').val(),
+                function() {
+
+                });
+
+
+        }
+
+        function renderIncomeStatement() {
+
+            $("#displayIncomeStatementPage").load(
+                "/Accounting/ShowIncomeStatementDefault?branchMediumId=" + $('#branchMediumIdOfViewAccount').val(),
+                function() {
+
+                });
+
+
+        }
+
+        function renderBalanceSheet() {
+
+            $("#displayBalanceSheetPage").load(
+                "/Accounting/ShowBalanceSheetDefault?branchMediumId=" + $('#branchMediumIdOfViewAccount').val(),
+                function() {
+
+                });
+
+
+        }
+
+    </script>
+}

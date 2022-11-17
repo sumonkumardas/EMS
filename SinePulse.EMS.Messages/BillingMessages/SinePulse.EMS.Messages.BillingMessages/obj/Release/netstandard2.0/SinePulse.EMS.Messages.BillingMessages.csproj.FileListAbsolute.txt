@@ -1,0 +1,8 @@
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\SinePulse.EMS.Messages\BillingMessages\SinePulse.EMS.Messages.BillingMessages\bin\Release\netstandard2.0\SinePulse.EMS.Messages.BillingMessages.deps.json
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\SinePulse.EMS.Messages\BillingMessages\SinePulse.EMS.Messages.BillingMessages\bin\Release\netstandard2.0\SinePulse.EMS.Messages.BillingMessages.dll
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\SinePulse.EMS.Messages\BillingMessages\SinePulse.EMS.Messages.BillingMessages\bin\Release\netstandard2.0\SinePulse.EMS.Messages.BillingMessages.pdb
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\SinePulse.EMS.Messages\BillingMessages\SinePulse.EMS.Messages.BillingMessages\obj\Release\netstandard2.0\SinePulse.EMS.Messages.BillingMessages.csproj.CoreCompileInputs.cache
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\SinePulse.EMS.Messages\BillingMessages\SinePulse.EMS.Messages.BillingMessages\obj\Release\netstandard2.0\SinePulse.EMS.Messages.BillingMessages.AssemblyInfoInputs.cache
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\SinePulse.EMS.Messages\BillingMessages\SinePulse.EMS.Messages.BillingMessages\obj\Release\netstandard2.0\SinePulse.EMS.Messages.BillingMessages.AssemblyInfo.cs
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\SinePulse.EMS.Messages\BillingMessages\SinePulse.EMS.Messages.BillingMessages\obj\Release\netstandard2.0\SinePulse.EMS.Messages.BillingMessages.dll
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\SinePulse.EMS.Messages\BillingMessages\SinePulse.EMS.Messages.BillingMessages\obj\Release\netstandard2.0\SinePulse.EMS.Messages.BillingMessages.pdb

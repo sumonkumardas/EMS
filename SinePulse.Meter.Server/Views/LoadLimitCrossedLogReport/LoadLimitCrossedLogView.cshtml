@@ -1,0 +1,93 @@
+﻿
+@model SinePulse.SmartMeter.Domain.Reports.LoadLimitCrossedLogReport
+@{
+    int count = 0;
+}
+<div style="text-align:center">
+    @if (Model.ListLoadLimitCrossedLog.Count == 0)
+    {
+
+    }
+    else
+    {
+        @Html.ActionLink("Export To Excel", "LoadLimitCrossedLogExportToExcel", "LoadLimitCrossedLog", new { startdate = Model.FromDateTime, enddate = @Model.ToDateTime, meterno = @Model.SelectedMeterId }, null)
+
+    }
+
+  
+
+    <table id="table_id">
+        <thead>
+            <tr>
+
+                <th>
+                  Id
+                </th>
+                <th>
+                    Meter No
+                </th>
+                <th>
+                    Name
+                </th>
+
+                @*<th>
+                    Actual Load
+                </th>
+                <th>
+                    Load Limit
+                </th>*@
+                <th>
+                    Meter TimeStamp
+                </th>
+                <th>
+                    Process TimeStamp
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var loadLimitCrossedData in Model.ListLoadLimitCrossedLog)
+            {
+                if (loadLimitCrossedData.Meter.Consumer != null)
+                {
+                    count = count + 1;
+                <tr>
+                    <td>@count</td>
+                    <td>@loadLimitCrossedData.Meter.MeterNo</td>
+                    <td>@loadLimitCrossedData.Meter.Consumer.Name</td>
+                    @*<td>@loadLimitCrossedData.ActualLoad</td>
+                    <td>@loadLimitCrossedData.LoadLimit</td>*@
+                    <td>@loadLimitCrossedData.MeterTimeStamp</td>
+                    <td>@loadLimitCrossedData.ProcessTimeStamp</td>
+                </tr>
+                }
+                else
+                {
+                    count = count + 1;
+                    <tr>
+                        <td>@count</td>
+                        <td>@loadLimitCrossedData.Meter.MeterNo</td>
+                        <td></td>
+                        <td>@loadLimitCrossedData.ActualLoad</td>
+                        <td>@loadLimitCrossedData.LoadLimit</td>
+                        <td>@loadLimitCrossedData.MeterTimeStamp</td>
+                        <td>@loadLimitCrossedData.ProcessTimeStamp</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+
+</div>
+
+
+
+<script>
+    $(document).ready(function () {
+        $('#table_id').DataTable(
+           
+            );
+    });
+</script>
+
+
+

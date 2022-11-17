@@ -1,0 +1,12 @@
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Messages\SinePulse.EMS.Messages.AlertProcessingMessages\bin\Debug\netstandard2.0\SinePulse.EMS.Messages.AlertProcessingMessages.deps.json
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Messages\SinePulse.EMS.Messages.AlertProcessingMessages\bin\Debug\netstandard2.0\SinePulse.EMS.Messages.AlertProcessingMessages.dll
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Messages\SinePulse.EMS.Messages.AlertProcessingMessages\bin\Debug\netstandard2.0\SinePulse.EMS.Messages.AlertProcessingMessages.pdb
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Messages\SinePulse.EMS.Messages.AlertProcessingMessages\bin\Debug\netstandard2.0\SinePulse.EMS.InterServiceMessages.dll
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Messages\SinePulse.EMS.Messages.AlertProcessingMessages\bin\Debug\netstandard2.0\SinePulse.EMS.InterServiceMessages.pdb
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Messages\SinePulse.EMS.Messages.AlertProcessingMessages\obj\Debug\netstandard2.0\SinePulse.EMS.Messages.AlertProcessingMessages.csprojAssemblyReference.cache
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Messages\SinePulse.EMS.Messages.AlertProcessingMessages\obj\Debug\netstandard2.0\SinePulse.EMS.Messages.AlertProcessingMessages.csproj.CoreCompileInputs.cache
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Messages\SinePulse.EMS.Messages.AlertProcessingMessages\obj\Debug\netstandard2.0\SinePulse.EMS.Messages.AlertProcessingMessages.AssemblyInfoInputs.cache
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Messages\SinePulse.EMS.Messages.AlertProcessingMessages\obj\Debug\netstandard2.0\SinePulse.EMS.Messages.AlertProcessingMessages.AssemblyInfo.cs
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Messages\SinePulse.EMS.Messages.AlertProcessingMessages\obj\Debug\netstandard2.0\SinePulse.EMS.Messages.AlertProcessingMessages.csproj.CopyComplete
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Messages\SinePulse.EMS.Messages.AlertProcessingMessages\obj\Debug\netstandard2.0\SinePulse.EMS.Messages.AlertProcessingMessages.dll
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Messages\SinePulse.EMS.Messages.AlertProcessingMessages\obj\Debug\netstandard2.0\SinePulse.EMS.Messages.AlertProcessingMessages.pdb

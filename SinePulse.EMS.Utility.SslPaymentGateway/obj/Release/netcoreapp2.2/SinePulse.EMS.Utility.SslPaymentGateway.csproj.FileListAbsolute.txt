@@ -1,0 +1,11 @@
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\SinePulse.EMS.Utility.SslPaymentGateway\bin\Release\netcoreapp2.2\SinePulse.EMS.Utility.SslPaymentGateway.deps.json
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\SinePulse.EMS.Utility.SslPaymentGateway\bin\Release\netcoreapp2.2\SinePulse.EMS.Utility.SslPaymentGateway.runtimeconfig.json
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\SinePulse.EMS.Utility.SslPaymentGateway\bin\Release\netcoreapp2.2\SinePulse.EMS.Utility.SslPaymentGateway.runtimeconfig.dev.json
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\SinePulse.EMS.Utility.SslPaymentGateway\bin\Release\netcoreapp2.2\SinePulse.EMS.Utility.SslPaymentGateway.dll
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\SinePulse.EMS.Utility.SslPaymentGateway\bin\Release\netcoreapp2.2\SinePulse.EMS.Utility.SslPaymentGateway.pdb
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\SinePulse.EMS.Utility.SslPaymentGateway\obj\Release\netcoreapp2.2\SinePulse.EMS.Utility.SslPaymentGateway.csprojAssemblyReference.cache
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\SinePulse.EMS.Utility.SslPaymentGateway\obj\Release\netcoreapp2.2\SinePulse.EMS.Utility.SslPaymentGateway.csproj.CoreCompileInputs.cache
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\SinePulse.EMS.Utility.SslPaymentGateway\obj\Release\netcoreapp2.2\SinePulse.EMS.Utility.SslPaymentGateway.AssemblyInfoInputs.cache
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\SinePulse.EMS.Utility.SslPaymentGateway\obj\Release\netcoreapp2.2\SinePulse.EMS.Utility.SslPaymentGateway.AssemblyInfo.cs
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\SinePulse.EMS.Utility.SslPaymentGateway\obj\Release\netcoreapp2.2\SinePulse.EMS.Utility.SslPaymentGateway.dll
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\SinePulse.EMS.Utility.SslPaymentGateway\obj\Release\netcoreapp2.2\SinePulse.EMS.Utility.SslPaymentGateway.pdb

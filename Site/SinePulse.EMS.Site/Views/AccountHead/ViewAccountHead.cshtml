@@ -1,0 +1,80 @@
+﻿@model SinePulse.EMS.Site.Models.AccountHeadViewModel
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@{
+  ViewData["Title"] = "ViewAccountHead";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-container">
+  <!-- BEGIN CONTENT -->
+  <div class="page-content-wrapper">
+    <div class="page-content">
+      <div class="portlet box form-conatiner">
+        <div class="icon-container">
+          <a href="@Url.Action("UpdateAccountHead", new {accountHeadId = Model.AccountHeadId})" class="fa fa-edit action-link"></a>
+
+          <a href="#" class="fa fa-tasks action-link"></a>
+        </div>
+
+        <div class="portlet-body form">
+
+          <div class="container-fluid">
+            <div class="row-fluid ">
+              <div class="col-md-6">
+                <div class="row custom-row">
+                  <div class="col-md-4 title"><strong>@Localizer["ViewAccountHead.AccountHeadName"]</strong></div>
+                  <div class="col-md-8 value">@Html.DisplayFor(model => model.AccountHeadName)</div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="row custom-row">
+                  <div class="col-md-4 title"><strong>@Localizer["ViewAccountHead.AccountCode"]</strong></div>
+                  <div class="col-md-8 value">@Html.DisplayFor(model => model.AccountCode)</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="container-fluid">
+            <div class="row-fluid ">
+              <div class="col-md-6">
+                <div class="row custom-row">
+                  <div class="col-md-4 title"><strong>@Localizer["ViewAccountHead.AccountHeadType"]</strong></div>
+                  <div class="col-md-8 value">@Html.DisplayFor(model => model.AccountHeadType)</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="container-fluid">
+            <div class="row-fluid ">
+              <div class="col-md-6">
+                <div class="row custom-row">
+                  <div class="col-md-4 title"><strong>@Localizer["ViewAccountHead.AccountPeriod"]</strong></div>
+                  <div class="col-md-8 value">@Html.DisplayFor(model => model.AccountPeriod)</div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="row custom-row">
+                  <div class="col-md-4 title"><strong>@Localizer["ViewAccountHead.ParentHead"]</strong></div>
+                  <div class="col-md-8 value">@Html.DisplayFor(model => model.ParentHead.AccountHeadName)</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="container-fluid">
+            <div class="row-fluid ">
+              <div class="col-md-6">
+                <div class="row custom-row">
+                  <div class="col-md-4 title"><strong>@Localizer["ViewAccountHead.Status"]</strong></div>
+                  <div class="col-md-8 value">@Html.DisplayFor(model => model.Status)</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

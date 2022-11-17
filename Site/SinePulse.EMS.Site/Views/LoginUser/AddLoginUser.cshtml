@@ -1,0 +1,115 @@
+﻿@inject IViewLocalizer Localizer
+@using Microsoft.AspNetCore.Mvc.Localization
+@model AddLoginUserViewModel
+
+@{
+    ViewData["Title"] = "AddLoginUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-container">
+    <!-- BEGIN CONTENT -->
+    <div class="page-content-wrapper">
+        <div class="page-content">
+            <div class="portlet-body form">
+                <!-- BEGIN FORM-->
+              <div class="title-on-top">@Localizer["AddLoginUser.Title"]</div>
+                <form asp-action="AddLoginUser" class="form-horizontal box-shadow-form" id="form_sample_3">
+                  <div class="form-body">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input asp-for="EmployeeId" type="hidden" class="form-control" id="employeeId" />
+                    <div class="row-fluid col-md-12 zero-padding-row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <div class="col-md-4">
+                            <label>@Localizer["AddLoginUser.UserRole"]</label><span class="required">*</span>
+                          </div>
+                          <div class="col-md-8">
+                            @Html.DropDownListFor(x => x.RoleId, new SelectList(Model.UserRoles, "RoleId", "RoleName"), "Select User Role", new {@class = "form-control", required="true", id="roleDropDown"})
+                            <span asp-validation-for="RoleId" class="text-danger"></span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6" id="instituteDiv">
+                        <div class="form-group">
+                          <div class="col-md-4">
+                            <label>Institute</label><span class="required" id="instituteRequired">*</span>
+                          </div>
+                          <div class="col-md-8">
+                            @Html.DropDownListFor(x => x.InstituteId, new SelectList(Model.Institutes, "Id", "OrganisationName"), "Select Institute", new {@class = "form-control", id="instituteDropDown"})
+                            <span asp-validation-for="InstituteId" class="text-danger"></span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <br />
+                    <div class="row-fluid col-md-12 zero-padding-row">
+                      <div class="col-md-6" id="branchDiv">
+                        <div class="form-group">
+                          <div class="col-md-4">
+                            <label>Branch</label><span class="required" id="branchRequired">*</span>
+                          </div>
+                          <div class="col-md-8">
+                            @Html.DropDownListFor(x => x.BranchId, new SelectList(Model.Branches, "Id", "BranchName"), "Select Branch", new {@class = "form-control", id="branchDropDown"})
+                            <span asp-validation-for="BranchId" class="text-danger"></span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6" id="branchMediumDiv">
+                        <div class="form-group">
+                          <div class="col-md-4">
+                            <label>Medium</label><span class="required" id="branchMediumRequired">*</span>
+                          </div>
+                          <div class="col-md-8">
+                            @Html.DropDownListFor(x => x.BranchMediumId, new SelectList(Enumerable.Empty<SelectListItem>()), "Select Medium", new {@class = "form-control", id="branchMediumDropDown"})
+                            <span asp-validation-for="BranchMediumId" class="text-danger"></span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <br />
+                    <div class="row-fluid col-md-12 zero-padding-row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <div class="col-md-4">
+                            <label>@Localizer["AddLoginUser.Password"]</label><span class="required">*</span>
+                          </div>
+                          <div class="col-md-8">
+                            <input asp-for="Password" type="password" class="form-control" />
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <div class="col-md-4">
+                            <label>@Localizer["AddLoginUser.RepeatPassword"]</label><span class="required">*</span>
+                          </div>
+                          <div class="col-md-8">
+                            <input asp-for="RepeatPassword" type="password" class="form-control" />
+                            <span asp-validation-for="RepeatPassword" class="text-danger"></span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <br />
+                    <div class="btn-container">
+                      <button type="button" class="btn custom-btn custom-cancel-btn pull-left" onclick="location.href = '@Url.Action("ViewEmployee", "Employee", new {employeeId = @Model.EmployeeId})'">@Localizer["AddLoginUser.Cancel"]</button>
+                      <button type="submit" class="btn custom-btn custom-cancel-btn pull-right">@Localizer["AddLoginUser.Create"]</button>
+                      <div class="clearfix"></div>
+                    </div>
+                  </div>
+                </form>
+                <!-- END FORM-->
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+  @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+  <script src="~/assets/global/scripts/LoginUser/addLoginUser.js" type="text/javascript"></script>
+}

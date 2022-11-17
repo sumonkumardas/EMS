@@ -1,0 +1,117 @@
+﻿
+@using Microsoft.AspNetCore.Mvc.Localization
+@using SinePulse.EMS.Domain.Enums
+@inject IViewLocalizer Localizer
+@model AddClassRoutineViewModel
+
+@{
+  ViewData["Title"] = "AddClassRoutine";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-container">
+  <!-- BEGIN CONTENT -->
+  <div class="page-content-wrapper">
+    <div class="page-content">
+      <div class="portlet-body form">
+        <!-- BEGIN FORM-->
+        <div class="title-on-top">@Localizer["AddClassRoutine.Title"]</div>
+        <form asp-action="AddClassRoutine" class="form-horizontal box-shadow-form" id="form_sample_3">
+          <div class="form-body">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input asp-for="SectionId" type="hidden" />
+            <div class="row-fluid col-md-12 zero-padding-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["AddClassRoutine.StartTime"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <input asp-for="StartTime" type="text" value="" onfocus="(this.type='time')" onblur="{this.type='text'}" class="form-control" />
+                    <span asp-validation-for="StartTime" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["AddClassRoutine.EndTime"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <input asp-for="EndTime" type="text" value="" onfocus="(this.type='time')" onblur="{this.type='text'}" class="form-control" />
+                    <span asp-validation-for="EndTime" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row-fluid col-md-12 zero-padding-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["AddClassRoutine.Room"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    @Html.DropDownListFor(x => x.RoomId, new SelectList(Model.Rooms, "Id", "RoomNo"), @Localizer["AddClassRoutine.SelectRoom"].Value, new { @class = "form-control" })
+                    <span asp-validation-for="RoomId" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["AddClassRoutine.Teacher"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    @Html.DropDownListFor(x => x.TeacherId, new SelectList(Model.Teachers, "Id", "FullName"), @Localizer["AddClassRoutine.SelectTeacher"].Value, new { @class = "form-control" })
+                    <span asp-validation-for="TeacherId" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row-fluid col-md-12 zero-padding-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["AddClassRoutine.Subject"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    @Html.DropDownListFor(x => x.SubjectId, new SelectList(Model.Subjects, "Id", "SubjectName"), @Localizer["AddClassRoutine.SelectSubject"].Value, new { @class = "form-control" })
+                    <span asp-validation-for="SubjectId" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["AddClassRoutine.WeekDay"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <select asp-for="WeekDay" class="form-control" asp-items="Html.GetEnumSelectList<DayOfWeek>()"></select>
+                    <span asp-validation-for="WeekDay" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <br />
+            <div class="btn-container">
+              <button type="button" class="btn custom-btn custom-cancel-btn pull-left" onclick="location.href = '@Url.Action("ViewSection", "Section", new {sectionId = Model.SectionId})'">@Localizer["AddClassRoutine.CancelButton"]</button>
+              <button type="submit" class="btn custom-btn custom-cancel-btn pull-right">@Localizer["AddClassRoutine.CreateButton"]</button>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+        </form>
+        <!-- END FORM-->
+      </div>
+    </div>
+  </div>
+</div>
+
+@section Scripts {
+  @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

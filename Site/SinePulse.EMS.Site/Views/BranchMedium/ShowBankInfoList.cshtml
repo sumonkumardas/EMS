@@ -1,0 +1,64 @@
+﻿@using SinePulse.EMS.Domain.Features
+@using SinePulse.EMS.Messages.Model.Enums
+@model ShowBankAccountInfoListViewModel
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+
+<table class="table table-light" id="sample_5">
+
+    <thead>
+        <tr>
+          <th>@Localizer["ShowBankInfoList.Bank"]</th>
+          <th>@Localizer["ShowBankInfoList.BranchName"]</th>
+          <th>@Localizer["ShowBankInfoList.AccountNo"]</th>
+          <th>@Localizer["ShowBankInfoList.Action"]</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @{
+            if (Model.BankAccountInfos != null && Model.BankAccountInfos.Count() > 0)
+            {
+
+                foreach (var bankAccount in Model.BankAccountInfos)
+                {
+                    <tr>
+                        <td>
+                            @if (Model.HasPermission(Feature.BankInfoEnum.ViewBankInfo.ToString()))
+                            {
+                                <a href="/BankInfo/ViewBankInfo?bankId=@bankAccount.BankId">
+                                    @Html.DisplayFor(model => bankAccount.BankName)
+                                </a>
+                            }
+                            else
+                            {
+                                @Html.DisplayFor(model => bankAccount.BankName)
+                            }
+                        </td>
+                        <td>
+                            @if (Model.HasPermission(Feature.BankInfoEnum.ViewBankBranch.ToString()))
+                            {
+                                <a href="/BankInfo/ViewBankBranch?branchId=@bankAccount.BankBranchId">
+                                    @Html.DisplayFor(model => bankAccount.BankBranchName)
+                                </a>
+                            }
+                            else
+                            {
+                                @Html.DisplayFor(model => bankAccount.BankBranchName)
+                            }
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => bankAccount.AccountNumber)
+                        </td>
+                        <td>
+                            @if (Model.HasPermission(Feature.BankInfoEnum.EditBankInfo.ToString()))
+                            {
+                                <a href="/BankInfo/UpdateBank?bankId=@bankAccount.BankId" class="action-link"><i class="fa fa-edit action-icon"></i></a>
+                            }
+                        </td>
+                    </tr>
+                }
+            }
+        }
+    </tbody>
+</table>

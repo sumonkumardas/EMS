@@ -1,0 +1,8 @@
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Domain\SinePulse.EMS.Constants\bin\Release\netstandard2.0\SinePulse.EMS.Constants.deps.json
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Domain\SinePulse.EMS.Constants\bin\Release\netstandard2.0\SinePulse.EMS.Constants.dll
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Domain\SinePulse.EMS.Constants\bin\Release\netstandard2.0\SinePulse.EMS.Constants.pdb
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Domain\SinePulse.EMS.Constants\obj\Release\netstandard2.0\SinePulse.EMS.Constants.csproj.CoreCompileInputs.cache
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Domain\SinePulse.EMS.Constants\obj\Release\netstandard2.0\SinePulse.EMS.Constants.AssemblyInfoInputs.cache
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Domain\SinePulse.EMS.Constants\obj\Release\netstandard2.0\SinePulse.EMS.Constants.AssemblyInfo.cs
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Domain\SinePulse.EMS.Constants\obj\Release\netstandard2.0\SinePulse.EMS.Constants.dll
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Domain\SinePulse.EMS.Constants\obj\Release\netstandard2.0\SinePulse.EMS.Constants.pdb

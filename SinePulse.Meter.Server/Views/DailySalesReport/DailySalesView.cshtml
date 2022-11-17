@@ -1,0 +1,157 @@
+﻿@model SinePulse.SmartMeter.Domain.Reports.DailySalesReport
+@{
+  int count = 0;
+  decimal totalVat = 0;
+  decimal totalCharges = 0;
+  decimal totalServiceCharges = 0;
+  decimal totalDemandCharges = 0;
+  decimal totalPfcCharges = 0;
+  decimal totalMeterRent = 0;
+  decimal totalAmount = 0;
+  decimal totalRechargeAmount = 0;
+}
+<div>
+    <div style="text-align: left">
+        @if (Model.ListTransactionLog.Count > 0)
+        {
+            @Html.ActionLink("Export To Excel", "DailySalesReportExportToExcel", "DailySalesReport", new { startdate = @Model.FromDateTime, enddate = @Model.ToDateTime, usercode = @Model.SelectedUserCode, paymentMethod = @Model.PaymentMethod,totalamount=totalAmount,totalcharges=totalCharges,totalvat=totalVat,totalrechargeAmount=totalRechargeAmount }, null)
+        }
+    </div>
+
+    <div style="text-align: right">
+        <a href="javascript:printDiv('salesReportDiv')"><b>Print</b></a>
+        <iframe name="print_frame" width="0" height="0" frameborder="0" src="about:blank"></iframe>
+    </div>
+</div>
+
+<div id="salesReportDiv">
+    <p id="salesReportHeader" style="text-align: center">The Sales Report Date between @Model.FromDateTime.ToString("d") and @Model.ToDateTime.ToString("d")</p>
+    <table id="table_id">
+        <thead>
+            <tr>
+
+                <th>
+                    Id
+                </th>
+                <th>
+                    Meter No
+                </th>
+                <th>
+                    Transaction No
+                </th>
+                <th>
+                    User Code
+                </th>
+                <th>
+                    Payment Date
+                </th>
+
+                <th>
+                    Recharge Amount
+                </th>
+                <th>
+                    Service Charge
+                </th>
+                <th>
+                    Demand Charge
+                </th>
+                <th>
+                    Pfc Charge
+                </th>
+                <th>
+                    Meter Rent
+                </th>
+                <th>
+                    Vat
+                </th>
+                <th>
+                    Balance
+                </th>
+                <th>
+                    Payment Method
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var dailySalesData in Model.ListTransactionLog)
+            {
+                count = count + 1;
+                <tr>
+                    <td>@count</td>
+                    <td>@dailySalesData.Meter.MeterNo</td>
+                    <td>@dailySalesData.TransactionNo</td>
+                    <td>@dailySalesData.UserCode</td>
+                    <td>@dailySalesData.PaymentDate.ToString("d")</td>
+                    @{ 
+                        totalAmount += @dailySalesData.Amount;
+                    }
+                    <td>@dailySalesData.Amount</td>
+                    @{ 
+                        totalServiceCharges += @dailySalesData.ServiceCharge;
+                    }
+                    <td>@dailySalesData.ServiceCharge</td>
+                    @{
+                      totalDemandCharges += @dailySalesData.DemandCharge;
+                    }
+                    <td>@dailySalesData.DemandCharge</td>
+                    @{
+                      totalPfcCharges += @dailySalesData.PfcCharge;
+                    }
+                    <td>@dailySalesData.PfcCharge</td>
+                    @{
+                      totalMeterRent += @dailySalesData.MeterRent;
+                    }
+                    <td>@dailySalesData.MeterRent</td>
+                    @{ 
+                        totalVat += @dailySalesData.Vat;
+                    }
+                    <td>@dailySalesData.Vat</td>
+                    @{ 
+                        totalRechargeAmount += @dailySalesData.RechargeAmount;
+                    }
+                    <td>@dailySalesData.RechargeAmount</td>
+                    <td>@dailySalesData.PaymentMethod</td>                    
+                </tr>
+              
+                        }
+            <tr></tr>
+            <tr style="font-weight:bold">
+                <td ></td>
+                <td ></td>
+                <td ></td>
+                <td ></td>
+                <td>Total : </td>
+                <td>@totalAmount</td>
+                <td>@totalServiceCharges</td>
+                <td>@totalDemandCharges</td>
+                <td>@totalPfcCharges</td>
+                <td>@totalMeterRent</td>
+                <td>@totalVat</td>
+                <td>@totalRechargeAmount</td>
+
+            </tr>
+        </tbody>
+    </table>
+    
+</div>
+
+<script type="text/javascript">
+    function printDiv(divId) {
+        window.frames["print_frame"].document.body.innerHTML = '<style media="print"> table, th, td { border: 1px solid black; border-collapse: collapse; width: 100%;}@@page {size:landscape} </style>' + document.getElementById(divId).innerHTML;
+        window.frames["print_frame"].window.focus();
+        window.frames["print_frame"].window.print();
+    }
+</script>
+
+
+
+<style type="text/css">
+    @@media screen {
+        #salesReportHeader {
+            display: none;
+        }
+    }
+</style>
+
+
+

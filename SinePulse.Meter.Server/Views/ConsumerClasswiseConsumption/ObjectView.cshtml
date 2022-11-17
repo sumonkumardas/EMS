@@ -1,0 +1,77 @@
+@using NakedObjects.Web.Mvc.Html
+@using SinePulse.SmartMeter.Domain.ViewModel
+@model ConsumerClasswiseConsumption
+
+@{
+  var years = new List<SelectListItem>();
+  for (var i = 2017; i <= 2025; i++)
+  {
+      years.Add(new SelectListItem { Text = i.ToString(), Value = i.ToString(), Selected = Model.Year == i });
+  }
+}
+
+
+<div id="body">
+    <section class="main-content">
+        @Html.TabbedHistory(Model)
+        <br />
+        <div class="col-md-offset-1">
+            @using (Ajax.BeginForm("ShowMonthlyConsumerwiseConsumption", "ConsumerClasswiseConsumption", null, new AjaxOptions
+            {
+                HttpMethod = "POST",
+                UpdateTargetId = "resultTarget",
+                OnBegin = "onBegin",
+                OnComplete = "onComplete"
+            }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div id="inputPanel">
+                    @Html.Label("Select Year :  ", new { @id = "YearLabelId" })
+                    @Html.DropDownListFor(model => model.Year, years, "- Select Year -")
+                    <span class="validation-red" id="yearvalid"></span>
+                    @Html.Label("Select Month :  ", new { @id = "MonthLabelId" })
+                    @Html.EnumDropDownListFor(m => m.Month, "- Select Month -")
+                    <span class="validation-red" id="monthvalid"></span>
+                    <input type="submit" id="showReport" value="Show" class="btn btn-default" style="margin-left:10px;margin-top:-2px" />
+                    <img id="progressbar" src="/Images/wait_progress.gif" style="display:none;" />
+                </div>
+                <br>
+                <br />
+             }
+        </div>
+        <div style="text-align:center;font-size:large;font-weight:bold">
+            @Html.Label("Monthly Consumption Report")
+        </div>
+        <div class="vis" id="resultTarget">
+
+        </div>
+        <script language="javascript" type="text/javascript">
+            function onBegin() {
+                $('#progressbar').show();
+                $('#showReport').prop('disabled', true);
+            }
+            function onComplete() {
+                $('#progressbar').hide();
+                $('#showReport').prop('disabled', false);
+            }
+        </script>
+        @Scripts.Render("~/bundles/relayStatusLogReport")
+    </section>
+</div>
+
+
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/cssjqryUi")
+    @Scripts.Render("~/bundles/relayStatusLogReport")
+
+
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="@Url.Content("~/Scripts/jquery-1.7.1.min.js" )" type="text/javascript"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+
+}
+

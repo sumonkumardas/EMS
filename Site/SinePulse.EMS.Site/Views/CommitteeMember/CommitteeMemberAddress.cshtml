@@ -1,0 +1,37 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@model AddressViewModel
+<div>
+  <div class="row-fluid">
+    <div class="col-md-6">
+      <label><i>@Localizer["CommitteeMemberAddress.Street1"] : </i></label>
+      @Html.DisplayFor(model => model.PresentStreet1) <br />
+      <label><i>@Localizer["CommitteeMemberAddress.Street2"] : </i></label>
+      @Html.DisplayFor(model => model.PresentStreet2) <br />
+      <label><i>@Localizer["CommitteeMemberAddress.PostalCode"] : </i></label>
+      @Html.DisplayFor(model => model.PresentPostalCode) <br />
+      <label><i>@Localizer["CommitteeMemberAddress.City"] : </i></label>
+      @Html.DisplayFor(model => model.PresentCity)
+
+      <div class="uppercase profile-stat-text">
+        @Localizer["CommitteeMemberAddress.PresentAddress"]
+      </div>
+    </div>
+    <div class="col-md-6">
+      <label><i>@Localizer["CommitteeMemberAddress.Street1"] : </i></label>
+      @Html.DisplayFor(model => model.PermanentStreet1)
+      <br />
+      <label><i>@Localizer["CommitteeMemberAddress.Street2"] : </i></label>
+      @Html.DisplayFor(model => model.PermanentStreet2)
+      <br />
+      <label><i>@Localizer["CommitteeMemberAddress.PostalCode"] : </i></label>
+      @Html.DisplayFor(model => model.PermanentPostalCode) <br />
+      <label><i>@Localizer["CommitteeMemberAddress.City"] : </i></label>
+      @Html.DisplayFor(model => model.PermanentCity)
+
+      <div class="uppercase profile-stat-text">
+        @Localizer["CommitteeMemberAddress.PermanentAddress"]
+      </div>
+    </div>
+  </div>
+</div>

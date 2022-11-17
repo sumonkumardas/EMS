@@ -1,0 +1,78 @@
+﻿@using NakedObjects.Web.Mvc.Html
+@model SinePulse.SmartMeter.Domain.ViewModel.OnlinePayment
+
+
+@{
+    Layout = "~/Views/Shared/_NofLayout.cshtml";
+    ViewBag.Title = "Payment Failure";
+}
+
+<link href="~/Content/sb-admin-2.css" rel="stylesheet" />
+<link href="~/Content/font-awesome/css/font-awesome.css" rel="stylesheet"/>
+<style>
+    html {
+        background-color: #F3F3F3;
+        background-image: none;
+    }
+
+    body {
+        background-color: #F3F3F3;
+        background-image: none;
+    }
+
+    .modal-dialog {
+        /* new custom width */
+        width: 350px;
+        /* must be half of the width, minus scrollbar on the left (30px) */
+    }
+
+    .fa-times {
+        color: red;
+    }
+</style>
+
+<div id="body">
+    <section class="main-content">
+        @Html.TabbedHistory(Model)
+        <div class="siteWidth">
+            <div id="wrapper">
+
+                <!-- Navigation -->
+                <div class="row">
+                    <div class="col-lg-6 col-md-3">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3 success-icon">
+                                        <i class="fa fa-times fa-5x col-xs-offset-6"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-left success-title-text">
+                                        <div class="failed">@ViewData["status"]</div>
+                                        <div class="sub-title">Online Payment Failed</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="panel panel-default">
+                            <!-- Default panel contents -->
+                            <div class="panel-heading" style="background-color: #F3F3F3"><b>Transaction Info</b></div>
+
+                            <!-- List group -->
+                            <ul class="list-group">
+                                <li class="list-group-item">Transaction No: @ViewData["transaction_id"]</li>
+                                <li class="list-group-item">Payment Date: @ViewData["tran_date"]</li>
+                                <li class="list-group-item">Amount: @ViewData["amount"] BDT</li>
+                                <li class="list-group-item">Payment Method: @ViewData["payment_method"]</li>
+                                <li class="list-group-item">Meter: @ViewData["meterNo"]</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+</div>

@@ -1,0 +1,111 @@
+﻿@using SinePulse.EMS.Domain.Enums
+@model AddAccountHeadViewModel
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@{
+  ViewData["Title"] = "AddAccountHead";
+}
+
+<div class="page-container">
+  <!-- BEGIN CONTENT -->
+  <div class="page-content-wrapper">
+    <div class="page-content">
+      <div class="portlet-body form">
+        <!-- BEGIN FORM-->
+        <div class="title-on-top">@Localizer["AddAccountHead.Title"]</div>
+        <form asp-action="AddAccountHead" class="form-horizontal box-shadow-form" id="form_sample_3">
+          <div class="form-body">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="row-fluid col-md-12 zero-padding-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["AddAccountHead.AccountHeadName"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <input asp-for="AccountHeadName" type="text" class="form-control" />
+                    <span asp-validation-for="AccountHeadName" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["AddAccountHead.AccountCode"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <input asp-for="AccountCode" type="text" class="form-control" />
+                    <span asp-validation-for="AccountCode" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row-fluid col-md-12 zero-padding-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["AddAccountHead.AccountHeadType"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <select asp-for="AccountHeadType" asp-items="Html.GetEnumSelectList<AccountHeadTypeEnum>()" class="form-control">
+                      <option selected="selected" value="">@Localizer["AddAccountHead.SelectAccountHeadType"]</option>
+                    </select>
+                    <span asp-validation-for="AccountHeadType" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["AddAccountHead.ParentHead"]</label>
+                  </div>
+                  <div class="col-md-8">
+                    @Html.DropDownListFor(x => Model.ParentHeadId, new SelectList(Model.AccountHeads, "Id", "AccountHeadName"), @Localizer["AddAccountHead.SelectParentHead"].Value, new { @class = "form-control" })
+                    <span asp-validation-for="ParentHeadId" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row-fluid col-md-12 zero-padding-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["AddAccountHead.AccountPeriod"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <select asp-for="AccountPeriod" asp-items="Html.GetEnumSelectList<AccountPeriodEnum>()" class="form-control">
+                      <option selected="selected" value="">@Localizer["AddAccountHead.SelectAccountPeriod"]</option>
+                    </select>
+                    <span asp-validation-for="AccountPeriod" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <br />
+            <div class="btn-container">
+              <button type="button" class="btn custom-btn custom-cancel-btn pull-left">@Localizer["AddAccountHead.CancelButton"]</button>
+              <button type="submit" class="btn custom-btn custom-cancel-btn pull-right">@Localizer["AddAccountHead.CreateButton"]</button>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+        </form>
+        <!-- END FORM-->
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+

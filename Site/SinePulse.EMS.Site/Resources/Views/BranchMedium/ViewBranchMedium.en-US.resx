@@ -1,0 +1,414 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ViewBranchMedium.AddSection" xml:space="preserve">
+    <value>Add Section</value>
+  </data>
+  <data name="ViewBranchMedium.AddSession" xml:space="preserve">
+    <value>Add Session</value>
+  </data>
+  <data name="ViewBranchMedium.AddShift" xml:space="preserve">
+    <value>Add Shift</value>
+  </data>
+  <data name="ViewBranchMedium.AddStaff" xml:space="preserve">
+    <value>Add Staff</value>
+  </data>
+  <data name="ViewBranchMedium.AddTeacher" xml:space="preserve">
+    <value>Add Teacher</value>
+  </data>
+  <data name="ViewBranchMedium.AddTerm" xml:space="preserve">
+    <value>Add Exam Term</value>
+  </data>
+  <data name="ViewBranchMedium.Branch" xml:space="preserve">
+    <value>Branch</value>
+  </data>
+  <data name="ViewBranchMedium.Institute" xml:space="preserve">
+    <value>Institute</value>
+  </data>
+  <data name="ViewBranchMedium.Class" xml:space="preserve">
+    <value>Class</value>
+  </data>
+  <data name="ViewBranchMedium.Classes" xml:space="preserve">
+    <value>Classes</value>
+  </data>
+  <data name="ViewBranchMedium.ClassName" xml:space="preserve">
+    <value>Class Name</value>
+  </data>
+  <data name="ViewBranchMedium.Designation" xml:space="preserve">
+    <value>Designation</value>
+  </data>
+  <data name="ViewBranchMedium.Teachers" xml:space="preserve">
+    <value>Teachers</value>
+  </data>
+  <data name="ViewBranchMedium.TeachersName" xml:space="preserve">
+    <value>Teacher's Name</value>
+  </data>
+  <data name="ViewBranchMedium.EmailAddress" xml:space="preserve">
+    <value>Email Address</value>
+  </data>
+  <data name="ViewBranchMedium.Grade" xml:space="preserve">
+    <value>Grade</value>
+  </data>
+  <data name="ViewBranchMedium.JoiningDate" xml:space="preserve">
+    <value>Joining Date</value>
+  </data>
+  <data name="ViewBranchMedium.Medium" xml:space="preserve">
+    <value>Medium</value>
+  </data>
+  <data name="ViewBranchMedium.MobileNo" xml:space="preserve">
+    <value>Mobile No</value>
+  </data>
+  <data name="ViewBranchMedium.NumberofStudents" xml:space="preserve">
+    <value>Number of Students</value>
+  </data>
+  <data name="ViewBranchMedium.ReportTo" xml:space="preserve">
+    <value>Report To</value>
+  </data>
+  <data name="ViewBranchMedium.SectionName" xml:space="preserve">
+    <value>Section Name</value>
+  </data>
+  <data name="ViewBranchMedium.Section" xml:space="preserve">
+    <value>Section</value>
+  </data>
+  <data name="ViewBranchMedium.ViewMedium" xml:space="preserve">
+    <value>View Medium</value>
+  </data>
+  <data name="ViewBranchMedium.WeeklyHolidays" xml:space="preserve">
+    <value>Weekly Holidays</value>
+  </data>
+  <data name="ViewBranchMedium.AddEmployee" xml:space="preserve">
+    <value>Add Employee</value>
+  </data>
+  <data name="ViewBranchMedium.ClassTimeCapacity" xml:space="preserve">
+    <value>Class Time Capacity</value>
+  </data>
+  <data name="ViewBranchMedium.EndDate" xml:space="preserve">
+    <value>End Date</value>
+  </data>
+  <data name="ViewBranchMedium.ExamTimeCapacity" xml:space="preserve">
+    <value>Exam Time Capacity</value>
+  </data>
+  <data name="ViewBranchMedium.IsSessionClosed" xml:space="preserve">
+    <value>Is Session Closed</value>
+  </data>
+  <data name="ViewBranchMedium.Rooms" xml:space="preserve">
+    <value>Rooms</value>
+  </data>
+  <data name="ViewBranchMedium.SessionName" xml:space="preserve">
+    <value>Session Name</value>
+  </data>
+  <data name="ViewBranchMedium.Sessions" xml:space="preserve">
+    <value>Sessions</value>
+  </data>
+  <data name="ViewBranchMedium.StartDate" xml:space="preserve">
+    <value>Start Date</value>
+  </data>
+  <data name="ViewBranchMedium.AddRoom" xml:space="preserve">
+    <value>Add Room</value>
+  </data>
+  <data name="ViewBranchMedium.AddClassBreakTime" xml:space="preserve">
+    <value>Add/Change Class Break Time</value>
+  </data>
+  <data name="ViewBranchMedium.ImportData" xml:space="preserve">
+    <value>Import Data</value>
+  </data>
+  <data name="ViewBranchMedium.SetAcademicFees" xml:space="preserve">
+    <value>Set Academic Fees</value>
+  </data>
+  <data name="ViewBranchMedium.ShowAcademicCalendar" xml:space="preserve">
+    <value>Show Academic Calendar</value>
+  </data>
+  <data name="ViewBranchMedium.AcademicCalendar" xml:space="preserve">
+    <value>Academic Calendar</value>
+  </data>
+  <data name="ViewBranchMedium.ExamTerm" xml:space="preserve">
+    <value>Exam Term</value>
+  </data>
+  <data name="ViewBranchMedium.Session" xml:space="preserve">
+    <value>Session</value>
+  </data>
+  <data name="ViewBranchMedium.Staff" xml:space="preserve">
+    <value>Staff</value>
+  </data>
+  <data name="ViewBranchMedium.StaffName" xml:space="preserve">
+    <value>Staff Name</value>
+  </data>
+  <data name="ViewBranchMedium.Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="ViewBranchMedium.Student" xml:space="preserve">
+    <value>Student</value>
+  </data>
+  <data name="ViewBranchMedium.TermName" xml:space="preserve">
+    <value>Term Name</value>
+  </data>
+  <data name="ViewBranchMedium.Academic" xml:space="preserve">
+    <value>Academic</value>
+  </data>
+  <data name="ViewBranchMedium.Accounts" xml:space="preserve">
+    <value>Accounts</value>
+  </data>
+  <data name="ViewBranchMedium.Add/ChangeSessionBufferPeriod" xml:space="preserve">
+    <value>Add/Change Session Buffer Period</value>
+  </data>
+  <data name="ViewBranchMedium.AdmitStudent" xml:space="preserve">
+    <value>Admit Student</value>
+  </data>
+  <data name="ViewBranchMedium.BalanceSheet" xml:space="preserve">
+    <value>Balance Sheet</value>
+  </data>
+  <data name="ViewBranchMedium.BankVoucher" xml:space="preserve">
+    <value>Bank Voucher</value>
+  </data>
+  <data name="ViewBranchMedium.CashVoucher" xml:space="preserve">
+    <value>Cash Voucher</value>
+  </data>
+  <data name="ViewBranchMedium.ClearData" xml:space="preserve">
+    <value>Clear Data</value>
+  </data>
+  <data name="ViewBranchMedium.COA" xml:space="preserve">
+    <value>COA</value>
+  </data>
+  <data name="ViewBranchMedium.ContraJournal" xml:space="preserve">
+    <value>Contra Journal</value>
+  </data>
+  <data name="ViewBranchMedium.DateOfBirth" xml:space="preserve">
+    <value>Date Of Birth</value>
+  </data>
+  <data name="ViewBranchMedium.Days" xml:space="preserve">
+    <value>Days</value>
+  </data>
+  <data name="ViewBranchMedium.Employee" xml:space="preserve">
+    <value>Employee</value>
+  </data>
+  <data name="ViewBranchMedium.Examination" xml:space="preserve">
+    <value>Examination</value>
+  </data>
+  <data name="ViewBranchMedium.FromMaster" xml:space="preserve">
+    <value>From Master</value>
+  </data>
+  <data name="ViewBranchMedium.FromPreviousSession" xml:space="preserve">
+    <value>From Previous Session</value>
+  </data>
+  <data name="ViewBranchMedium.FullName" xml:space="preserve">
+    <value>Full Name</value>
+  </data>
+  <data name="ViewBranchMedium.GeneralJournal" xml:space="preserve">
+    <value>General Journal</value>
+  </data>
+  <data name="ViewBranchMedium.Group" xml:space="preserve">
+    <value>Group</value>
+  </data>
+  <data name="ViewBranchMedium.ImportCOA" xml:space="preserve">
+    <value>Import COA</value>
+  </data>
+  <data name="ViewBranchMedium.IncomeStatement" xml:space="preserve">
+    <value>Income Statement</value>
+  </data>
+  <data name="ViewBranchMedium.SessionBufferPeriod" xml:space="preserve">
+    <value>Session Buffer Period</value>
+  </data>
+  <data name="ViewBranchMedium.Statements" xml:space="preserve">
+    <value>Statements</value>
+  </data>
+  <data name="ViewBranchMedium.StudentID" xml:space="preserve">
+    <value>Student ID</value>
+  </data>
+  <data name="ViewBranchMedium.TrialBalance" xml:space="preserve">
+    <value>Trial Balance</value>
+  </data>
+  <data name="ViewBranchMedium.YearClosing" xml:space="preserve">
+    <value>Year Closing</value>
+  </data>
+  <data name="ViewBranchMedium.AccountNumber" xml:space="preserve">
+    <value>Account Number</value>
+  </data>
+  <data name="ViewBranchMedium.BankInfo" xml:space="preserve">
+    <value>Bank Info</value>
+  </data>
+  <data name="ViewBranchMedium.BankName" xml:space="preserve">
+    <value>Bank Name</value>
+  </data>
+  <data name="ViewBranchMedium.BranchName" xml:space="preserve">
+    <value>Branch Name</value>
+  </data>
+  <data name="ViewBranchMedium.EmployeeName" xml:space="preserve">
+    <value>Employee Name</value>
+  </data>
+  <data name="ViewBranchMedium.EmployeeType" xml:space="preserve">
+    <value>Employee Type</value>
+  </data>
+  <data name="ViewBranchMedium.Room" xml:space="preserve">
+    <value>Room</value>
+  </data>
+  <data name="ViewBranchMedium.Action" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="ViewBranchMedium.AddBank" xml:space="preserve">
+    <value>Add Bank</value>
+  </data>
+  <data name="ViewBranchMedium.CollectAcademicFees" xml:space="preserve">
+    <value>Collect Academic Fees</value>
+  </data>
+  <data name="ViewBranchMedium.MonthlyFeeSetup" xml:space="preserve">
+    <value>Monthly Fee Setup</value>
+  </data>
+  <data name="ViewBranchMedium.YearlyFeeSetup" xml:space="preserve">
+    <value>Yearly Fee Setup</value>
+  </data>
+  <data name="ViewBranchMedium.AddResultGrade" xml:space="preserve">
+    <value>Add Result Grade</value>
+  </data>
+  <data name="ViewBranchMedium.NotificationConfiguration" xml:space="preserve">
+    <value>Notification Configuration</value>
+  </data>
+  <data name="ViewBranchMedium.ResultGrade" xml:space="preserve">
+    <value>Result Grade</value>
+  </data>
+  <data name="ViewBranchMedium.SelectSession" xml:space="preserve">
+    <value>Select Session</value>
+  </data>
+  <data name="ViewBranchMedium.Shift" xml:space="preserve">
+    <value>Shift</value>
+  </data>
+  <data name="ViewBranchMedium.AddNotificationConfiguration" xml:space="preserve">
+    <value>Add Notification Configuration</value>
+  </data>
+  <data name="ViewBranch.EmployeeCode" xml:space="preserve">
+    <value>Employee Code</value>
+  </data>
+  <data name="ViewBranchMedium.Billing" xml:space="preserve">
+    <value>Billing</value>
+  </data>
+  <data name="ViewBranchMedium.ConfigureServiceCharge" xml:space="preserve">
+    <value>Configure Service Charge</value>
+  </data>
+  <data name="ViewBranchMedium.PayBill" xml:space="preserve">
+    <value>Pay Bill</value>
+  </data>
+  <data name="ViewBranchMedium.BillingInfo" xml:space="preserve">
+    <value>Billing Info</value>
+  </data>
+  <data name="ViewBranchMedium.GenerateSalarySheet" xml:space="preserve">
+    <value>Generate Salary Sheet</value>
+  </data>
+  <data name="ViewBranchMedium.Payroll" xml:space="preserve">
+    <value>Payroll</value>
+  </data>
+</root>

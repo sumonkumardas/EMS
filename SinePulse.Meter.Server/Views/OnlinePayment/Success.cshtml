@@ -1,0 +1,182 @@
+﻿@using NakedObjects.Web.Mvc.Html
+@using System.Linq
+@model SinePulse.SmartMeter.Domain.Transactions.Transaction
+  @{ 
+    Layout = "~/Views/Shared/_NofLayout.cshtml";
+  }
+<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.js"></script>
+
+<div id="body">
+    <section class="main-content">
+        @Html.TabbedHistory(Model)
+        <div class="nof-collection-table">
+            <div class="nof-collection-formats">
+
+                <div style="text-align: left">
+                    <a href="javascript:printDiv('PaymentSlipDiv')"><b>Print</b></a>
+                    <iframe name="print_frame" width="0" height="0" frameborder="0" src="about:blank"></iframe>
+                </div>
+                <div id="PaymentSlipDiv">
+                    <p id="PaymentSlipHeader" style="text-align: left;font-size:medium;padding-left:90px;">Bangladesh Power Development Board</p>
+                    <p style="text-align:left;font-size:small;padding-left:185px;">Payment Slip</p>
+                    @*<div>
+                            <a href="javascript:printDiv('notExecutedTokenDivForPrint')"><b>Print</b></a>
+                            <iframe name="print_frame" width="0" height="0" frameborder="0" src="about:blank"></iframe>
+
+                        </div>*@
+
+                    <div style="text-align:left;font-size:small;padding-left:115px;">
+                        @Html.Label("Payment Date:")
+                        @Html.LabelForModel(Model.PaymentDate.ToString(), new { @class = "mylabelpaymentheader" })
+
+                    </div>
+                    <br />
+                    <table style="width:auto;font-size:small;border:none;">
+                        <tr>
+                            <td>@Html.Label("Name:")</td>
+                            <td>@Html.LabelForModel(Model.Meter.Consumer.Name, new { @class = "mylabelvalue" })</td>
+
+
+                        </tr>
+                        <tr>
+                            <td>@Html.Label("Address:")</td>
+                            @{
+                                if (Model.Meter.Consumer.MailingAddress != null)
+                                {
+                                    <td>@Html.LabelForModel(Model.Meter.Consumer.MailingAddress.Street1 + ", " + Model.Meter.Consumer.MailingAddress.Street2, new { @class = "mylabelvalue" })</td>
+
+                                }
+                                else if (Model.Meter.Consumer.ServiceAddress != null)
+                                {
+                                    <td>@Html.LabelForModel(Model.Meter.Consumer.ServiceAddress.Street1 + ", " + Model.Meter.Consumer.ServiceAddress.Street2, new { @class = "mylabelvalue" })</td>
+
+                                }
+                            }
+
+                        </tr>
+                        @*@if (Model.Meter.Consumer.MailingAddress.Street2 != null && Model.Meter.Consumer.MailingAddress.Street2 != string.Empty)
+                        {
+                        <tr>
+                            <td></td>
+                            <td>@Html.LabelForModel(Model.Meter.Consumer.MailingAddress.Street2, new { @class = "mylabelvalue" })</td>
+                        </tr>}*@
+                        <tr>
+                            <td>@Html.Label("Meter No:")</td>
+                            <td>@Html.LabelForModel(Model.Meter.MeterNo.ToString(), new { @class = "mylabelvalue" })</td>
+
+                        </tr>
+                        <tr>
+                            <td>@Html.Label("Token No:")</td>
+                            @{
+                                string token = " ";
+                                foreach (var o in Model.Tokens)
+                                {
+                                    token = o.TokenNo;
+                                    break;
+                                }
+                            }
+                            <td>@Html.LabelForModel(token, new { @class = "mylabelvalue" })</td>
+                        </tr>
+                    </table>
+
+                    <br />
+                    <table style="width:auto;font-size:small;border:hidden;">
+                        <tr>
+                            <td>@Html.Label("Amount:")</td>
+                            <td>@Html.LabelForModel(Model.Amount.ToString(), new { @class = "mylabelamount" })</td>
+                        </tr>
+
+                        <tr>
+                            <td>@Html.Label("Service Charge:")</td>
+                            @{
+                                decimal service_charge = Model.Charges.Sum(s=>s.ServiceCharge);
+                            }
+                            <td>@Html.LabelForModel(service_charge.ToString(), new { @class = "mylabelamount" })</td>
+                        </tr>
+                        <tr>
+                            <td>@Html.Label("Sanctioned Demand Charge:")</td>
+                            @{
+                                decimal sactioned_demand_charge = Model.Charges.Sum(s=>s.SanctionDemandCharge);
+                            }
+                            <td>@Html.LabelForModel(sactioned_demand_charge.ToString(), new { @class = "mylabelamount" })</td>
+                        </tr>
+                        <tr>
+                            <td>@Html.Label("Pfc Charge:")</td>
+                            @{
+                              decimal pfc_charge = Model.Charges.Sum(s => s.PfcCharge);
+                            }
+                            <td>@Html.LabelForModel(pfc_charge.ToString(), new { @class = "mylabelamount" })</td>
+                        </tr>
+                        <tr>
+                            <td>@Html.Label("VAT:")</td>
+                            <td>@Html.LabelForModel(Model.Vat.ToString(), new { @class = "mylabelamount" })</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>@Html.Label("Recharge Amount:")</td>
+                            <td>@Html.LabelForModel(Model.RechargeAmount.ToString() + "  BDT", new { @class = "mylabelamount" })</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <script type="text/javascript">
+    function printDiv(divId) {
+        window.frames["print_frame"].document.body.innerHTML = '<style media="print"> table, th, td { border: 1px solid black; border-collapse: collapse; width: auto;} .mylabelamount{ color: grey;padding-left:140px;}.mylabelvalue{color:grey; padding-left:40px;padding-right:40px;}.mylabelheader{color: black;text-align:left;padding-left:40px;} </style>' + document.getElementById(divId).innerHTML;
+        window.frames["print_frame"].window.focus();
+        window.frames["print_frame"].window.print();
+    }
+                </script>
+
+
+
+                <style type="text/css">
+                    .mylabelheader {
+                        color: black;
+                        text-align: left;
+                    }
+
+                    .mylabelvalue {
+                        color: grey;
+                        padding-left: 20px;
+                        padding-right: 20px;
+                    }
+
+                    .mylabelamount {
+                        color: grey;
+                        padding-left: 140px;
+                    }
+
+                    .mylabelname {
+                        color: grey;
+                        padding-left: 35px;
+                    }
+
+                    .mylabelpaymentheader {
+                        font-weight: bold;
+                    }
+                </style>
+            </div>
+        </div>
+
+    </section>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/cssjqryUi")
+}
+

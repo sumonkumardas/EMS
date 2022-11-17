@@ -1,0 +1,111 @@
+
+@using NakedObjects.Web.Mvc.Html
+@using SinePulse.SmartMeter.Domain.Reports
+@model MonthlyConsumptionReport
+@{
+  int count = 0;
+  decimal totalConsumption = 0;
+
+}
+<div>
+    <div style="text-align: left">
+        @if (Model.MonthlyConsumptionData.Count > 0)
+        {
+        @Html.ActionLink("Export To Excel", "ExportToExcel", "MonthlyConsumptionReport", new { startDate = @Model.MonthlyConsumptionParam.FromDate, endDate = @Model.MonthlyConsumptionParam.ToDate, consumerClass = @Model.MonthlyConsumptionParam.ConsumerClass, phase = @Model.MonthlyConsumptionParam.Phase, limitFrom = @Model.MonthlyConsumptionParam.LimitFrom, limitTo = @Model.MonthlyConsumptionParam.LimitTo }, null)
+        }
+    </div>
+
+    <div style="text-align: right">
+        <a href="javascript:printDiv('monthlyConsumptionReportDiv')"><b>Print</b></a>
+        <iframe name="print_frame" width="0" height="0" frameborder="0" src="about:blank"></iframe>
+    </div>
+</div>
+<div id="monthlyConsumptionReportDiv">
+    @if (Model.MonthlyConsumptionData.Count > 0)
+    {
+    <h1 id="monthlyConsumptionReportHeading" style="text-align: center">Consumption Report</h1> 
+    <p id="monthlyConsumptionReportDateTime" style="text-align: center">( @Model.MonthlyConsumptionParam.FromDate.ToString("d") - @Model.MonthlyConsumptionParam.ToDate.ToString("d"))</p>
+    }
+    <table id="table_id">
+        <thead>
+            <tr>
+                <th>
+                    Id
+                </th>
+                <th>
+                    Consumer No
+                </th>
+                <th>
+                    Consumer Name
+                </th>
+                <th>
+                    Meter No
+                </th>
+                <th>
+                    Phase
+                </th>
+                <th>
+                    Consumer Class
+                </th>
+                <th>
+                    Load Limit
+                </th>
+                <th>
+                    Consumption (KWH)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var data in Model.MonthlyConsumptionData)
+            {
+                count = count + 1;
+            <tr>
+                <td>@count</td>
+                <td>@data.ConsumerNumber </td>
+                <td>@data.ConsumerName</td>
+                <td>@data.MeterNo</td>
+                <td>@data.Phase</td>
+                <td>@data.ConsumerClass</td>
+                <td>@data.SanctionLoad</td>
+                <td>@data.Consumption</td>
+                @{
+                  totalConsumption += @data.Consumption;
+                }
+            </tr>
+
+                  }
+            <tr></tr>
+            <tr style="font-weight:bold">
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>Total : </td>
+                <td>@totalConsumption</td>
+
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
+<script type="text/javascript">
+    function printDiv(divId) {
+        window.frames["print_frame"].document.body.innerHTML = '<style media="print"> table, th, td { border: 1px solid black; border-collapse: collapse;}@@page {size:landscape} </style>' + document.getElementById(divId).innerHTML;
+        window.frames["print_frame"].window.focus();
+        window.frames["print_frame"].window.print();
+    }
+</script>
+
+<style type="text/css">
+    @@media screen {
+        #monthlyConsumptionReportHeading {
+            display: none;
+        }
+        #monthlyConsumptionReportDateTime {
+            display: none;
+        }
+    }
+</style>

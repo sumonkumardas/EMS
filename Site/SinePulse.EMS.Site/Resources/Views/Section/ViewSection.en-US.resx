@@ -1,0 +1,264 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ViewSection.AcademicFee" xml:space="preserve">
+    <value>Academic Fee</value>
+  </data>
+  <data name="ViewSection.AccountHead" xml:space="preserve">
+    <value>Account Head</value>
+  </data>
+  <data name="ViewSection.Action" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="ViewSection.AddBreakTime" xml:space="preserve">
+    <value>Add Break Time</value>
+  </data>
+  <data name="ViewSection.AddClassRoutine" xml:space="preserve">
+    <value>Add Class Routine</value>
+  </data>
+  <data name="ViewSection.AddClassTest" xml:space="preserve">
+    <value>Add Class Test</value>
+  </data>
+  <data name="ViewSection.Assign/ChangeRoom" xml:space="preserve">
+    <value>Assign/ChangeRoom</value>
+  </data>
+  <data name="ViewSection.AssignOrChange Room" xml:space="preserve">
+    <value>Assign/Change Room</value>
+  </data>
+  <data name="ViewSection.Birthday" xml:space="preserve">
+    <value>Birthday</value>
+  </data>
+  <data name="ViewSection.Branch" xml:space="preserve">
+    <value>Branch</value>
+  </data>
+  <data name="ViewSection.BranchMedium" xml:space="preserve">
+    <value>Branch Medium</value>
+  </data>
+  <data name="ViewSection.Class" xml:space="preserve">
+    <value>Class</value>
+  </data>
+  <data name="ViewSection.ClassRoutine" xml:space="preserve">
+    <value>Class Routine</value>
+  </data>
+  <data name="ViewSection.ClassTest" xml:space="preserve">
+    <value>Class Test</value>
+  </data>
+  <data name="ViewSection.ClassTestMark" xml:space="preserve">
+    <value>Class Test Mark</value>
+  </data>
+  <data name="ViewSection.ClassTests" xml:space="preserve">
+    <value>Class Tests</value>
+  </data>
+  <data name="ViewSection.Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="ViewSection.EndTime" xml:space="preserve">
+    <value>End Time</value>
+  </data>
+  <data name="ViewSection.Fee" xml:space="preserve">
+    <value>Fee</value>
+  </data>
+  <data name="ViewSection.Fullmark" xml:space="preserve">
+    <value>Fullmark</value>
+  </data>
+  <data name="ViewSection.GeneralInfo" xml:space="preserve">
+    <value>General Info</value>
+  </data>
+  <data name="ViewSection.Group" xml:space="preserve">
+    <value>Group</value>
+  </data>
+  <data name="ViewSection.Home" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="ViewSection.Institute" xml:space="preserve">
+    <value>Institute</value>
+  </data>
+  <data name="ViewSection.MaxPeriodDuration" xml:space="preserve">
+    <value>Max Period Duration</value>
+  </data>
+  <data name="ViewSection.Medium" xml:space="preserve">
+    <value>Medium</value>
+  </data>
+  <data name="ViewSection.MobileNo" xml:space="preserve">
+    <value>Mobile No</value>
+  </data>
+  <data name="ViewSection.Name" xml:space="preserve">
+    <value>Full Name</value>
+  </data>
+  <data name="ViewSection.NumberOfPeriods" xml:space="preserve">
+    <value>Number Of Periods</value>
+  </data>
+  <data name="ViewSection.NumberofStudents" xml:space="preserve">
+    <value>Number of Students</value>
+  </data>
+  <data name="ViewSection.PromoteStudent" xml:space="preserve">
+    <value>Promote Student</value>
+  </data>
+  <data name="ViewSection.RollNo" xml:space="preserve">
+    <value>Roll No</value>
+  </data>
+  <data name="ViewSection.Room" xml:space="preserve">
+    <value>Room</value>
+  </data>
+  <data name="ViewSection.RoomNo" xml:space="preserve">
+    <value>Room No</value>
+  </data>
+  <data name="ViewSection.Routines" xml:space="preserve">
+    <value>Routines</value>
+  </data>
+  <data name="ViewSection.Section" xml:space="preserve">
+    <value>Section</value>
+  </data>
+  <data name="ViewSection.SectionCode" xml:space="preserve">
+    <value>Section Code</value>
+  </data>
+  <data name="ViewSection.SectionName" xml:space="preserve">
+    <value>Section Name</value>
+  </data>
+  <data name="ViewSection.SessionName" xml:space="preserve">
+    <value>Session Name</value>
+  </data>
+  <data name="ViewSection.Shift" xml:space="preserve">
+    <value>Shift</value>
+  </data>
+  <data name="ViewSection.StartTime" xml:space="preserve">
+    <value>Start Time</value>
+  </data>
+  <data name="ViewSection.Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="ViewSection.Student" xml:space="preserve">
+    <value>Student</value>
+  </data>
+  <data name="ViewSection.StudentID" xml:space="preserve">
+    <value>Student ID</value>
+  </data>
+  <data name="ViewSection.TestName" xml:space="preserve">
+    <value>Class Test Name</value>
+  </data>
+  <data name="ViewSection.Title" xml:space="preserve">
+    <value>View Section</value>
+  </data>
+  <data name="ViewSection.ViewSection" xml:space="preserve">
+    <value>View Section</value>
+  </data>
+  <data name="ViewSection.WeekDay" xml:space="preserve">
+    <value>Week Day</value>
+  </data>
+</root>

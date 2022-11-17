@@ -1,0 +1,169 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@model AddServiceChargeViewModel
+@inject IViewLocalizer Localizer
+@{
+  ViewData["Title"] = "AddServiceCharge";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- BEGIN CONTAINER -->
+<div class="page-container">
+  <!-- BEGIN CONTENT -->
+  <div class="page-content-wrapper">
+    <div class="page-content">
+      <div class="portlet-body form">
+        <!-- BEGIN FORM-->
+        <div class="title-on-top">@Localizer["AddServiceCharge.Title"]</div>
+        <form asp-action="AddServiceCharge" class="form-horizontal box-shadow-form" id="form_sample_3">
+          <div class="form-body">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="row-fluid col-md-12 zero-padding-row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["AddServiceCharge.Institute"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    @{
+                      if (Model.Institutes != null && Model.Institutes.Any())
+                      {
+                        @Html.DropDownListFor(x => Model.InstituteId, new SelectList(Model.Institutes, "Id", "OrganisationName"), @Localizer["AddServiceCharge.SelectInstitute"].Value, new { @class = "form-control", id = "instituteDropDown" })
+                      }
+                      else
+                      {
+                        @Html.DropDownListFor(x => Model.InstituteId, Enumerable.Empty<SelectListItem>(), @Localizer["AddServiceCharge.SelectInstitute"].Value, new { @class = "form-control" })
+                      }
+                    }
+                    <span asp-validation-for="InstituteId" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["AddServiceCharge.Branch"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    @{
+                      @Html.DropDownListFor(x => Model.BranchId, Enumerable.Empty<SelectListItem>(), @Localizer["AddServiceCharge.SelectBranch"].Value, new { @class = "form-control", id = "branchDropDown" })
+                    }
+                    <span asp-validation-for="BranchId" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["AddServiceCharge.BranchMedium"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    @Html.DropDownListFor(x => Model.BranchMediumId, Enumerable.Empty<SelectListItem>(), @Localizer["AddServiceCharge.SelectBranchMedium"].Value, new { @class = "form-control", id = "mediumDropDown" })
+                    <span asp-validation-for="BranchMediumId" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row-fluid col-md-12 zero-padding-row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["AddServiceCharge.PerStudentCharge"] </label><span class="required">*</span>
+                  </div>
+                    <div class="col-md-8 .position-relative">
+                      <input asp-for="PerStudentCharge" type="number" class="form-control" value="" />
+                      <span asp-validation-for="PerStudentCharge" class="text-danger"></span>
+                    </div>
+                    <p class="floating-label">@Localizer["AddServiceCharge.Taka"]</p>
+                  </div>
+                </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["AddServiceCharge.BufferPeriod"] </label><span class="required">*</span>
+                  </div>
+                    <div class="col-md-8 .position-relative">
+                      <input asp-for="PaymentBufferPeriod" type="number" class="form-control" value="" />
+                      <span asp-validation-for="PaymentBufferPeriod" class="text-danger"></span>
+                    </div>
+                    <p class="floating-label">@Localizer["AddServiceCharge.Days"]</p>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["AddServiceCharge.EffectiveDate"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <input asp-for="EffectiveDate" type="text" value="" class="form-control datepicker">
+                    <span asp-validation-for="EffectiveDate" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br />
+            <div class="btn-container">
+              <button type="button" class="btn custom-btn custom-cancel-btn pull-left"  onclick="location.href = '@Url.Action("Index", "ServiceCharge")'">@Localizer["AddServiceCharge.CancelButton"]</button>
+              <button type="submit" class="btn custom-btn custom-cancel-btn pull-right">@Localizer["AddServiceCharge.CreateButton"]</button>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+        </form>
+        <!-- END FORM-->
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+  $(function () {
+    var branchDropDown = $("#branchDropDown");
+    $("#instituteDropDown").click(function () {
+      $.ajax({
+        type: "POST",
+        url: "/ServiceCharge/GetBranches?instituteId=" + $("#instituteDropDown").val(),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (response) {
+          branchDropDown.children('option:not(:first)').remove();
+          jQuery.each(response, function (index, item) {
+            var dropdownItem = new Option(item.BranchName, item.Id);
+            branchDropDown.append(dropdownItem);
+          });
+        },
+        failure: function (response) {
+          alert("Failure..! Could not Fetch Branch Data using Ajax.");
+        },
+        error: function (response) {
+          alert("Error..! Could not Fetch Branch Data using Ajax.");
+        }
+      });
+    });
+  });
+
+  $(function () {
+    var mediumDropDown = $("#mediumDropDown");
+    $("#branchDropDown").click(function () {
+      $.ajax({
+        type: "POST",
+        url: "/ServiceCharge/GetMediums?branchId=" + $("#branchDropDown").val(),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (response) {
+          mediumDropDown.children('option:not(:first)').remove();
+          jQuery.each(response, function (index, item) {
+            var dropdownItem = new Option(item.MediumName, item.Id);
+            mediumDropDown.append(dropdownItem);
+          });
+        },
+        failure: function (response) {
+          alert("Failure..! Could not Fetch Medium Data using Ajax.");
+        },
+        error: function (response) {
+          alert("Error..! Could not Fetch Medium Data using Ajax.");
+        }
+      });
+    });
+  });
+</script>

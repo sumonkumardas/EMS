@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B9990BCB-2A9A-4942-91CE-BA3B2E663C91}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SinePulse.EMS.NO.Domain</RootNamespace>
+    <AssemblyName>SinePulse.EMS.NO.Domain</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NakedObjects.Attributes, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NakedObjects.ProgrammingModel.7.0.3\lib\net40\NakedObjects.Attributes.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NakedObjects.Helpers, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NakedObjects.ProgrammingModel.7.0.3\lib\net40\NakedObjects.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NakedObjects.PMResources, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NakedObjects.ProgrammingModel.7.0.3\lib\net40\NakedObjects.PMResources.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NakedObjects.Types, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NakedObjects.ProgrammingModel.7.0.3\lib\net40\NakedObjects.Types.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Academic\BranchMedium.cs" />
+    <Compile Include="Academic\NOBreakTime.cs" />
+    <Compile Include="Academic\NORoom.cs" />
+    <Compile Include="Academic\NOSection.cs" />
+    <Compile Include="Academic\NOClass.cs" />
+    <Compile Include="Academic\GroupSubject.cs" />
+    <Compile Include="Academic\NOMedium.cs" />
+    <Compile Include="Academic\NOSession.cs" />
+    <Compile Include="Academic\NOShift.cs" />
+    <Compile Include="Academic\NOSubject.cs" />
+    <Compile Include="Accounts\NOAcademicFee.cs" />
+    <Compile Include="Accounts\NOAccountHead.cs" />
+    <Compile Include="Accounts\NOAccountTransactionType.cs" />
+    <Compile Include="Accounts\NOAccountType.cs" />
+    <Compile Include="Accounts\NOAutoPostingConfig.cs" />
+    <Compile Include="Accounts\NOVoucherAccountTypeRelationship.cs" />
+    <Compile Include="Attendance\NOEmployeeAttendance.cs" />
+    <Compile Include="Attendance\NOStudentAttendance.cs" />
+    <Compile Include="Banks\NOBankAccountHead.cs" />
+    <Compile Include="Banks\NOBankInfo.cs" />
+    <Compile Include="Committees\NOCommiteeMember.cs" />
+    <Compile Include="Designations\NODesignation.cs" />
+    <Compile Include="Employees\NOEducationalQualification.cs" />
+    <Compile Include="Employees\NOEmployee.cs" />
+    <Compile Include="Employees\NOEmployeePersonalInfo.cs" />
+    <Compile Include="Employees\NOGrade.cs" />
+    <Compile Include="Employees\NOJobType.cs" />
+    <Compile Include="Employees\NOStaff.cs" />
+    <Compile Include="Employees\NOTeacher.cs" />
+    <Compile Include="Employees\NOWorkingShift.cs" />
+    <Compile Include="Enums\AcademicFeePeriodEnum.cs" />
+    <Compile Include="Enums\AccountHeadCategoryEnum.cs" />
+    <Compile Include="Enums\AccountHeadTypeEnum.cs" />
+    <Compile Include="Enums\AccountPeriodEnum.cs" />
+    <Compile Include="Enums\AccountTransactionTypeEnum.cs" />
+    <Compile Include="Enums\BloodGroupEnum.cs" />
+    <Compile Include="Enums\CalendarType.cs" />
+    <Compile Include="Enums\ChartOfAccountTypeEnum.cs" />
+    <Compile Include="Enums\EducationDegrees.cs" />
+    <Compile Include="Enums\EmployeeTypeEnum.cs" />
+    <Compile Include="Enums\ExamTypeEnum.cs" />
+    <Compile Include="Enums\FinancialStatementsEnum.cs" />
+    <Compile Include="Enums\GenderEnum.cs" />
+    <Compile Include="Enums\GroupEnum.cs" />
+    <Compile Include="Enums\IncreaseDecreaseEnum.cs" />
+    <Compile Include="Enums\InstituteStatusEnum.cs" />
+    <Compile Include="Enums\LeaveStatusEnum.cs" />
+    <Compile Include="Enums\MediumEnumType.cs" />
+    <Compile Include="Enums\ObjectTypeEnum.cs" />
+    <Compile Include="Enums\RelationTypeEnum.cs" />
+    <Compile Include="Enums\ReligionEnum.cs" />
+    <Compile Include="Enums\ResultType.cs" />
+    <Compile Include="Enums\SassionwiseDataEnum.cs" />
+    <Compile Include="Enums\VoucherTypeEnum.cs" />
+    <Compile Include="Examinations\NOClassTest.cs" />
+    <Compile Include="Examinations\NOExamRoutine.cs" />
+    <Compile Include="Examinations\NOExamType.cs" />
+    <Compile Include="Examinations\NOTerm.cs" />
+    <Compile Include="Facade\EducationManagementDbContext.cs" />
+    <Compile Include="Academic\NOBranch.cs" />
+    <Compile Include="Academic\NOInstitute.cs" />
+    <Compile Include="Facade\SampleDbInitializer.cs" />
+    <Compile Include="Features\NOFeature.cs" />
+    <Compile Include="Features\NOFeatureType.cs" />
+    <Compile Include="Features\NORoleFeatures.cs" />
+    <Compile Include="Holidays\NOPublicHoliday.cs" />
+    <Compile Include="Leaves\NOEmployeeLeave.cs" />
+    <Compile Include="Leaves\NOLeaveType.cs" />
+    <Compile Include="Repositories\EmployeeRepository.cs" />
+    <Compile Include="Repositories\FinanceRepository.cs" />
+    <Compile Include="Repositories\LoggedInUserInfoRepository.cs" />
+    <Compile Include="Repositories\SetupRepository.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\InstituteManagementRepository.cs" />
+    <Compile Include="Repositories\StudentRepository.cs" />
+    <Compile Include="Repositories\UserManagementRepository.cs" />
+    <Compile Include="Routines\NOClassRoutine.cs" />
+    <Compile Include="Shared\AuditFields.cs" />
+    <Compile Include="Shared\NOBaseEntity.cs" />
+    <Compile Include="Shared\NOAddress.cs" />
+    <Compile Include="Students\NOContactInfo.cs" />
+    <Compile Include="Students\NOContactPerson.cs" />
+    <Compile Include="Students\NOStudent.cs" />
+    <Compile Include="Students\NOStudentSection.cs" />
+    <Compile Include="UserManagement\NOLoginUser.cs" />
+    <Compile Include="UserManagement\NORole.cs" />
+    <Compile Include="UserManagement\NOUserClaims.cs" />
+    <Compile Include="UserManagement\NOUserLogins.cs" />
+    <Compile Include="UserManagement\NOUserRoles.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Domain\SinePulse.EMS.Constants\SinePulse.EMS.Constants.csproj">
+      <Project>{5a0943ea-406f-42e9-a119-be6acae7508d}</Project>
+      <Name>SinePulse.EMS.Constants</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Domain\SinePulse.EMS.ProjectPrimitives\SinePulse.EMS.ProjectPrimitives.csproj">
+      <Project>{9df0add4-4bb3-429f-81ac-9897ed2a15fa}</Project>
+      <Name>SinePulse.EMS.ProjectPrimitives</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utility\SinePulse.EMS.Utility\SinePulse.EMS.Utility.csproj">
+      <Project>{08fa13e1-0bcb-4cd0-980e-e32a4cf8cbf4}</Project>
+      <Name>SinePulse.EMS.Utility</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

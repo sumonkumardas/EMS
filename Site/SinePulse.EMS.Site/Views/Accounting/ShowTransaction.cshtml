@@ -1,0 +1,110 @@
+﻿@model ShowTransactionViewModel
+@using Microsoft.AspNetCore.Mvc.Localization
+@using SinePulse.EMS.Domain.Enums
+@inject IViewLocalizer Localizer
+@{
+    ViewData["Title"] = "ShowTransaction";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-container">
+    <!-- BEGIN CONTENT -->
+    <div class="page-content-wrapper">
+        <div class="page-content">
+            <div class="portlet box form-conatiner">
+               
+                <input type="hidden" asp-for="TransactionViewModel.Id" runat="server" />
+                <div class="portlet-body form">
+                  
+                    <div class="container-fluid">
+                        <div class="row-fluid ">
+                            <div class="col-md-6">
+                                <div class="col-md-6 text-center">
+                                    @Model.TransactionViewModel.TransactionNo
+                                    <div class="uppercase profile-stat-title">
+                                        @Localizer["ShowTransaction.TransactionNo"]
+                                    </div>
+                                </div>
+                                <div class="col-md-6 text-center">
+                                    @Model.TransactionViewModel.TransactionDate.ToLongDateString()
+                                    <div class="uppercase profile-stat-title">
+                                        @Localizer["ShowTransaction.TransactionDate"]
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-md-6 text-center">
+                                @Model.TransactionViewModel.Description
+                                <div class="uppercase profile-stat-title">
+                                    @Localizer["ShowTransaction.Description"]
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="row-fluid " style="margin-top:15px !important;">
+                            <div class="form-group pull-right">
+
+                            </div>
+                            <table id="coaTable" class=" table order-list">
+                                <thead class="lite_bg">
+                                    <tr>
+
+                                        <th>@Localizer["ShowTransaction.AccountType"]</th>
+                                        <th>@Localizer["ShowTransaction.AccountHead"]</th>
+                                        <th>@Localizer["ShowTransaction.Debit"]</th>
+                                        <th>@Localizer["ShowTransaction.Credit"]</th>
+                                        <th></th>
+                                    </tr>
+
+                                </thead>
+                                <tbody>
+                                    @foreach (var transactionEntryModel in Model.TransactionViewModel.TransactionEntries)
+                                    {
+                                        <tr>
+
+                                            <td>
+                                                @Html.DisplayFor(model => @transactionEntryModel.AccountHead.AccountType.AccountTypeName)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(model => @transactionEntryModel.AccountHead.AccountHeadName)
+                                            </td>
+                                            <td>
+                                                @if (@transactionEntryModel.AccountHead.AccountType.TransactionType == AccountTransactionTypeEnum.Debit)
+                                                {
+                                                    @Html.DisplayFor(model => @transactionEntryModel.Amount)
+                                                }
+                                            </td>
+                                            <td>
+                                                @if (@transactionEntryModel.AccountHead.AccountType.TransactionType == AccountTransactionTypeEnum.Credit)
+                                                {
+                                                    @Html.DisplayFor(model => @transactionEntryModel.Amount)
+                                                }
+                                                
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                    }
+                                        <tr>
+                                            <td></td>
+                                            <td><b>@Localizer["ShowTransaction.Total"]</b></td>
+                                            <td>@Html.DisplayFor(model => model.TotalDebit)</td>
+                                            <td>@Html.DisplayFor(model => model.TotalCredit)</td>
+                                            <td></td>
+                                        </tr>
+                                </tbody>
+
+                            </table>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="row-fluid ">
+                            <div class="form-group">
+                              <button type="button" class="btn custom-btn custom-cancel-btn pull-center-btn" onclick="location.href='/BranchMedium/ViewAccount?branchMediumId=@Model.TransactionBranchMediumId'">@Localizer["ShowTransaction.Back"]</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

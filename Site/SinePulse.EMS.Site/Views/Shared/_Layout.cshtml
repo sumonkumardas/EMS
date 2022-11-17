@@ -1,0 +1,536 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Mvc.Localization
+@using SinePulse.EMS.Domain.UserManagement
+@using SinePulse.EMS.Domain.Features
+@using SinePulse.EMS.Domain.Shared
+@inject IViewLocalizer Localizer
+@inject SignInManager<LoginUser> SignInManager
+@model BaseViewModel
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
+    <link href="~/assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/global/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />
+    <!-- END GLOBAL MANDATORY STYLES -->
+    <!-- BEGIN PAGE LEVEL STYLES -->
+
+    <link rel="stylesheet" type="text/css" href="~/assets/global/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.css" />
+    <link rel="stylesheet" type="text/css" href="~/assets/global/plugins/bootstrap-markdown/css/bootstrap-markdown.min.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/global/plugins/bootstrap-datepicker/css/datepicker.css" />
+    <!-- END PAGE LEVEL SCRIPTS -->
+    <!-- BEGIN PAGE LEVEL PLUGIN STYLES -->
+    <link href="~/assets/global/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/global/plugins/fullcalendar/fullcalendar.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/global/plugins/jqvmap/jqvmap/jqvmap.css" rel="stylesheet" type="text/css" />
+    <!-- END PAGE LEVEL PLUGIN STYLES -->
+    <!-- BEGIN PAGE LEVEL STYLES -->
+    <link rel="stylesheet" type="text/css" href="~/assets/global/plugins/jstree/dist/themes/default/style.min.css" />
+    <!-- END PAGE LEVEL STYLES -->
+    <!-- BEGIN PAGE LEVEL STYLES -->
+    <link rel="stylesheet" type="text/css" href="~/assets/global/plugins/select2/select2.css" />
+    <link rel="stylesheet" type="text/css" href="~/assets/global/plugins/datatables/extensions/Scroller/css/dataTables.scroller.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/assets/global/plugins/datatables/extensions/ColReorder/css/dataTables.colReorder.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css" />
+    <!-- END PAGE LEVEL STYLES -->
+    <!-- BEGIN PAGE LEVEL STYLES -->
+    <link href="~/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/admin/pages/css/profile.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/admin/pages/css/tasks.css" rel="stylesheet" type="text/css" />
+    <!-- END PAGE LEVEL STYLES -->
+    <!-- BEGIN PAGE STYLES -->
+    <link href="~/assets/admin/pages/css/tasks.css" rel="stylesheet" type="text/css" />
+    <!-- END PAGE STYLES -->
+    <link href="~/assets/global/plugins/fancybox/source/jquery.fancybox.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/admin/pages/css/portfolio.css" rel="stylesheet" type="text/css" />
+    <!-- BEGIN THEME STYLES -->
+    <!-- DOC: To use 'rounded corners' style just load 'components-rounded.css' stylesheet instead of 'components.css' in the below style tag -->
+    <link href="~/assets/global/css/components.css" id="style_components" rel="stylesheet" type="text/css" />
+    <link href="~/assets/global/css/plugins.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/admin/layout/css/layout.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/admin/layout/css/themes/darkblue.css" rel="stylesheet" type="text/css" id="style_color" />
+    <link href="~/assets/admin/layout/css/custom.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/style.css" rel="stylesheet" type="text/css" />
+
+    <!-- END THEME STYLES -->
+    @*date-picker*@
+    <link href="~/jquery-ui/jquery-ui.css" rel="stylesheet">
+
+</head>
+<body>
+    <!-- Begin second-top-menu -->
+    <div class="top-menu2">
+        <div class="row-fluid">
+            <div class="col-md-6">
+                @{
+                    if (Model.AssociatedWith == AssociationType.Global || Model.InstituteBanner == null)
+                    {
+                        <img src="~/img/logo/logo.jpg" alt="logo" class="logo-default pull-left" />
+                    }
+                    else
+                    {
+                        <img src="data:image;base64,@Convert.ToBase64String(Model.InstituteBanner)" alt="logo" class="logo-default pull-left" />
+                    }
+                }
+            </div>
+
+            <div class="col-md-6">
+                <ul class="nav navbar-nav pull-right">
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+
+                        <li class="dropdown dropdown-user">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                                @if (Model.LoginImageUrl != null)
+                                {
+                                    <img alt="" class="img-circle profile-pic" src="/Uploads/Employee/@Url.Content(Model.LoginImageUrl)" />
+                                }
+                                else
+                                {
+                                    <img alt="" class="img-circle profile-pic" src="~/img/profilePic/generic.png" />
+                                }
+
+                                <span class="username username-hide-on-mobile">
+                                    @Html.DisplayFor(model => model.LoginName)
+                                </span>
+
+                            </a>
+
+                        </li>
+                        <li class="dropdown dropdown-quick-sidebar-toggler">
+                            <a href="/Account/Logout" class="dropdown-toggle">
+                                <i class="icon-logout"></i>
+                            </a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="dropdown dropdown-user">
+                            <a href="/Account/Register" class="dropdown-toggle">
+                                @Localizer["_Layout.Register"]
+                            </a>
+                        </li>
+                        <li class="dropdown dropdown-quick-sidebar-toggler">
+                            <a href="/Account/Login" class="dropdown-toggle">
+                                <i class="icon-login"></i>
+                            </a>
+                        </li>
+                    }
+
+                </ul>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="row-fluid">
+            <ul class="main-nav">
+                @if (Model.HasInstituteCreationPermission())
+                {
+                    <li class="dropdown institute primary-menu-item-li">
+                        <a href="#" class="primary-menu-item-a show-dropdown-on-hover" data-toggle="institute">
+                            @Localizer["_Layout.Institute"]
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu dark-arrow">
+                            @if (Model.HasPermission(Feature.InstituteSuperAdminEnum.NewInstitute.ToString()))
+                            {
+                                <li><a tabindex="1" href="/Institute/AddInstitute">@Localizer["_Layout.NewInstitute"] </a></li>
+                            }
+                            @if (Model.HasPermission(Feature.InstituteSuperAdminEnum.FindInstitute.ToString()))
+                            {
+                                <li><a tabindex="1" href="/Institute/Index">@Localizer["_Layout.AllInstitute"]</a></li>
+                            }
+                        </ul>
+                    </li>
+                }
+                @if (Model.HasSuperAdminAccess())
+                {
+                    <li class="dropdown Employee primary-menu-item-li">
+                        <a href="#" class="primary-menu-item-a show-dropdown-on-hover" data-toggle="Employee">
+                            @Localizer["_Layout.Employee"]
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu dark-arrow">
+                            @if (Model.HasPermission(Feature.EmployeeSuperAdminEnum.AddSuperAdmin.ToString()))
+                            {
+                                <li><a tabindex="-1" href="/Employee/AddEmployee">@Localizer["_Layout.NewEmployee"]</a></li>
+                            }
+                            @if (Model.HasPermission(Feature.EmployeeSuperAdminEnum.FindSuperAdmin.ToString()))
+                            {
+                                <li><a tabindex="1" href="/Employee/Index">@Localizer["_Layout.AllEmployee"]</a></li>
+                            }
+                        </ul>
+                    </li>
+                }
+                @if (Model.HasProfileManagementPermission())
+                {
+                    <li class="ProfileManagement dropdown primary-menu-item-li">
+                        <a href="#" class="primary-menu-item-a show-dropdown-on-hover" data-toggle="ProfileManagement">
+                            @Localizer["_Layout.ProfileManagement"]
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu dark-arrow">
+                            <li class="dropdown-submenu">
+                                <a class="dropdown-item" tabindex="-1" href="#">@Localizer["_Layout.Role"]</a>
+                                <ul class="dropdown-menu">
+                                    @if (Model.HasPermission(Feature.UserManagementEnum.AddRole.ToString()))
+                                    {
+                                        <li><a href="/Role/AddRole">@Localizer["_Layout.AddNewRole"]</a></li>
+                                    }
+                                    @if (Model.HasPermission(Feature.UserManagementEnum.ShowAllRoles.ToString()))
+                                    {
+                                        <li><a href="/Role/Index">@Localizer["_Layout.ViewAllRoles"]</a></li>
+                                    }
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                }
+                @if (Model.HasAnySetupPermission())
+                {
+                    <li class="setup dropdown primary-menu-item-li">
+                        <a href="#" class="primary-menu-item-a show-dropdown-on-hover" data-toggle="setup">
+                            @Localizer["_Layout.Setup"]
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu dark-arrow">
+                          @if (Model.HasAcademicPermission())
+                          {
+                            <li class="dropdown-submenu">
+                              <a class="dropdown-item" tabindex="-1" href="#">@Localizer["_Layout.Academic"]</a>
+                              <ul class="dropdown-menu">
+                                @if (Model.HasMediumSetupPermission())
+                                {
+                                  <li class="dropdown-submenu">
+                                    <a class="dropdown-item" href="#">@Localizer["_Layout.Medium"] </a>
+                                    <ul class="dropdown-menu">
+                                      @if (Model.HasPermission(Feature.AcademicSetupEnum.NewMedium.ToString()))
+                                      {
+                                        <li><a href="/Medium/AddMedium">@Localizer["_Layout.NewMedium"]</a></li>
+                                      }
+                                      @if (Model.HasPermission(Feature.AcademicSetupEnum.FindMedium.ToString()))
+                                      {
+                                        <li><a href="/Medium/Index">@Localizer["_Layout.AllMedium"]</a></li>
+                                      }
+                                    </ul>
+                                  </li>
+                                }
+                                @if (Model.HasSubjectSetupPermission())
+                                {
+                                  <li class="dropdown-submenu">
+                                    <a class="dropdown-item" href="#">@Localizer["_Layout.Subject"] </a>
+                                    <ul class="dropdown-menu">
+                                      @if (Model.HasPermission(Feature.AcademicSetupEnum.NewSubject.ToString()))
+                                      {
+                                        <li><a href="/Subject/AddSubject">@Localizer["_Layout.NewSubject"]</a></li>
+                                      }
+                                      @if (Model.HasPermission(Feature.AcademicSetupEnum.FindSubject.ToString()))
+                                      {
+                                        <li><a href="/Subject/Index">@Localizer["_Layout.AllSubject"]</a></li>
+                                      }
+                                    </ul>
+                                  </li>
+                                }
+                                @if (Model.HasClassSetupPermission())
+                                {
+                                  <li class="dropdown-submenu">
+                                    <a class="dropdown-item" href="#">@Localizer["_Layout.Class"] </a>
+                                    <ul class="dropdown-menu">
+                                      @if (Model.HasPermission(Feature.AcademicSetupEnum.NewClass.ToString()))
+                                      {
+                                        <li><a href="/Class/AddClass">@Localizer["_Layout.NewClass"]</a></li>
+                                      }
+                                      @if (Model.HasPermission(Feature.AcademicSetupEnum.FindClass.ToString()))
+                                      {
+                                        <li><a href="/Class/Index">@Localizer["_Layout.AllClass"]</a></li>
+                                      }
+                                    </ul>
+                                  </li>
+                                }
+                              </ul>
+                            </li>
+                          }
+                          @if (Model.HasEmployeeSetupPermission())
+                          {
+                            <li class="dropdown-submenu">
+                              <a class="dropdown-item" tabindex="1" href="#">@Localizer["_Layout.Employee"]</a>
+                              <ul class="dropdown-menu dark-arrow">
+                                @if (Model.HasDesignationSetupPermission())
+                                {
+                                  <li class="dropdown-submenu">
+                                    <a class="dropdown-item" href="#">@Localizer["_Layout.Designation"] </a>
+                                    <ul class="dropdown-menu">
+                                      @if (Model.HasPermission(Feature.EmployeeSetupEnum.NewDesignation.ToString()))
+                                      {
+                                        <li><a href="/Designation/AddDesignation">@Localizer["_Layout.NewDesignation"]</a></li>
+                                      }
+                                      @if (Model.HasPermission(Feature.EmployeeSetupEnum.FindDesignation.ToString()))
+                                      {
+                                        <li><a href="/Designation/Index">@Localizer["_Layout.AllDesignation"]</a></li>
+                                      }
+                                    </ul>
+                                  </li>
+                                }
+                                @if (Model.HasJobTypeSetupPermission())
+                                {
+                                  <li class="dropdown-submenu">
+                                    <a class="dropdown-item" href="#">@Localizer["_Layout.JobType"] </a>
+                                    <ul class="dropdown-menu">
+                                      @if (Model.HasPermission(Feature.EmployeeSetupEnum.NewJobType.ToString()))
+                                      {
+                                        <li><a href="/JobType/AddJobType">@Localizer["_Layout.NewJobType"]</a></li>
+                                      }
+                                      @if (Model.HasPermission(Feature.EmployeeSetupEnum.FindJobType.ToString()))
+                                      {
+                                        <li><a href="/JobType/Index">@Localizer["_Layout.AlljobType"]</a></li>
+                                      }
+                                    </ul>
+                                  </li>
+                                }
+                                @if (Model.HasGradeSetupPermission())
+                                {
+                                  <li class="dropdown-submenu">
+                                    <a class="dropdown-item" href="#">@Localizer["_Layout.Grade"] </a>
+                                    <ul class="dropdown-menu">
+                                      @if (Model.HasPermission(Feature.EmployeeSetupEnum.NewGrade.ToString()))
+                                      {
+                                        <li><a href="/EmployeeGrade/AddEmployeeGrade">@Localizer["_Layout.NewGrade"]</a></li>
+                                      }
+                                      @if (Model.HasPermission(Feature.EmployeeSetupEnum.FindGrade.ToString()))
+                                      {
+                                        <li><a href="/EmployeeGrade/Index">@Localizer["_Layout.AllGrades"]</a></li>
+                                      }
+                                    </ul>
+                                  </li>
+                                }
+                                @if (Model.HasLeaveTypeSetupPermission())
+                                {
+                                  <li class="dropdown-submenu">
+                                    <a class="dropdown-item" href="#">@Localizer["_Layout.LeaveType"] </a>
+                                    <ul class="dropdown-menu">
+                                      @if (Model.HasPermission(Feature.EmployeeSetupEnum.NewLeaveType.ToString()))
+                                      {
+                                        <li><a href="/LeaveType/AddLeaveType">@Localizer["_Layout.NewLeaveType"]</a></li>
+                                      }
+                                      @if (Model.HasPermission(Feature.EmployeeSetupEnum.FindLeaveType.ToString()))
+                                      {
+                                        <li><a href="/LeaveType/Index">@Localizer["_Layout.AllLeaveType"]</a></li>
+                                      }
+                                    </ul>
+                                  </li>
+                                }
+                              </ul>
+                            </li>
+                          }
+                          @if (Model.HasPublicHolidaySetupPermission())
+                          {
+                            <li class="dropdown-submenu">
+                              <a class="dropdown-item" tabindex="-1" href="#">@Localizer["_Layout.PublicHoliday"]</a>
+                              <ul class="dropdown-menu dark-arrow">
+                                @if (Model.HasPermission(Feature.GeneralSetupEnum.NewPublicHoliday.ToString()))
+                                {
+                                  <li><a href="/PublicHoliday/AddPublicHoliday">@Localizer["_Layout.NewPublicHoliday"]</a></li>
+                                }
+                                @if (Model.HasPermission(Feature.GeneralSetupEnum.FindPublicHoliday.ToString()))
+                                {
+                                  <li><a href="/PublicHoliday/Index">@Localizer["_Layout.AllPublicHoliday"]</a></li>
+                                }
+                              </ul>
+                            </li>
+                          }
+                          @if (Model.HasBillingSetupPermission())
+                          {
+                            <li class="dropdown-submenu">
+                              <a class="dropdown-item" tabindex="-1" href="#">@Localizer["_Layout.Billing"]</a>
+                              <ul class="dropdown-menu dark-arrow">
+                                  @if (Model.HasPermission(Feature.SuperAdminServiceChargeEnum.AddServiceCharge.ToString()))
+                                  {
+                                      <li><a href="/ServiceCharge/AddServiceCharge">@Localizer["_Layout.ConfigureServiceCharge"]</a></li>
+                                  }
+                                  @if (Model.HasPermission(Feature.SuperAdminServiceChargeEnum.ViewServiceCharge.ToString()))
+                                  {
+                                      <li><a href="/ServiceCharge/Index">@Localizer["_Layout.ShowServiceCharge"]</a></li>
+                                  }
+                                  @if (Model.HasPermission(Feature.SuperAdminServiceChargeEnum.ShowPaymentHistory.ToString()))
+                                  {
+                                      <li><a href="#">@Localizer["_Layout.ShowPaymentHistory"]</a></li>
+                                  }
+                                  @if (Model.HasPermission(Feature.SuperAdminServiceChargeEnum.ShowPendingBills.ToString()))
+                                  {
+                                      <li><a href="#">@Localizer["_Layout.ShowPendingBills"]</a></li>
+                                  }
+                                  </ul>
+                            </li>
+                          }
+                            <li class="dropdown-submenu">
+                              <a class="dropdown-item" tabindex="-1" href="#">@Localizer["_Layout.Payroll"]</a>
+                              <ul class="dropdown-menu">
+                                @if (Model.HasSalaryComponentTypeSetupPermission())
+                                {
+                                  <li class="dropdown-submenu">
+                                    <a class="dropdown-item" href="#">@Localizer["_Layout.SalaryComponentType"] </a>
+                                    <ul class="dropdown-menu">
+                                      @if (Model.HasPermission(Feature.SuperAdminPayrollEnum.AddSalaryComponentType.ToString()))
+                                      {
+                                        <li><a href="/SalaryComponentType/AddSalaryComponentType">@Localizer["_Layout.NewSalaryComponentType"]</a></li>
+                                      }
+                                      @if (Model.HasPermission(Feature.SuperAdminPayrollEnum.FindSalaryComponentType.ToString()))
+                                      {
+                                        <li><a href="/SalaryComponentType/Index">@Localizer["_Layout.AllSalaryComponentType"]</a></li>
+                                      }
+                                    </ul>
+                                  </li>
+                                }
+                                @if (Model.HasSalaryComponentSetupPermission())
+                                {
+                                  <li class="dropdown-submenu">
+                                    <a class="dropdown-item" href="#">@Localizer["_Layout.SalaryComponent"] </a>
+                                    <ul class="dropdown-menu">
+                                      @if (Model.HasPermission(Feature.SuperAdminPayrollEnum.AddSalaryComponent.ToString()))
+                                      {
+                                        <li><a href="/SalaryComponent/AddSalaryComponent">@Localizer["_Layout.NewSalaryComponent"]</a></li>
+                                      }
+                                      @if (Model.HasPermission(Feature.SuperAdminPayrollEnum.FindSalaryComponentType.ToString()))
+                                      {
+                                        <li><a href="/SalaryComponent/Index">@Localizer["_Layout.AllSalaryComponent"]</a></li>
+                                      }
+                                    </ul>
+                                  </li>
+                                }
+                              </ul>
+                            </li>
+                        </ul>
+                    </li>
+                }
+            </ul>
+        </div>
+
+    </div>
+    <!-- End second-top-menu -->
+    @RenderBody()
+    <!-- BEGIN FOOTER -->
+    <div class="page-footer text-center">
+        <div class="page-footer-inner ">
+            <a href="https://www.aplombtechbd.com/" target="_blank"><img class="footer_img" src="~/img/logo/footer-logo.png" alt="logo" /></a>
+        </div>
+        <div class="scroll-to-top">
+            <i class="icon-arrow-up"></i>
+        </div>
+    </div>
+    <!-- END FOOTER -->
+    <!--[if lt IE 9]>
+    <script src="~/assets/global/plugins/respond.min.js"></script>
+    <script src="~/assets/global/plugins/excanvas.min.js"></script>
+    <![endif]-->
+    <script src="~/assets/global/plugins/jquery.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/jquery-migrate.min.js" type="text/javascript"></script>
+    <!-- IMPORTANT! Load jquery-ui-1.10.3.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
+    <script src="~/assets/global/plugins/jquery-ui/jquery-ui-1.10.3.custom.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/jquery.cokie.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+    <!-- END CORE PLUGINS -->
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+
+    <script src="~/assets/global/plugins/flot/jquery.flot.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/flot/jquery.flot.resize.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/flot/jquery.flot.categories.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/jquery.pulsate.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/bootstrap-daterangepicker/moment.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/bootstrap-daterangepicker/daterangepicker.js" type="text/javascript"></script>
+    <!-- IMPORTANT! fullcalendar depends on jquery-ui-1.10.3.custom.min.js for drag & drop support -->
+    <script src="~/assets/global/plugins/fullcalendar/fullcalendar.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/jquery-easypiechart/jquery.easypiechart.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/jquery.sparkline.min.js" type="text/javascript"></script>
+    <!-- END PAGE LEVEL PLUGINS -->
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    <script type="text/javascript" src="~/assets/global/plugins/select2/select2.min.js"></script>
+    <script type="text/javascript" src="~/assets/global/plugins/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="~/assets/global/plugins/datatables/extensions/TableTools/js/dataTables.tableTools.min.js"></script>
+    @*<script type="text/javascript" src="~/assets/global/plugins/datatables/extensions/ColReorder/js/dataTables.colReorder.min.js"></script>*@
+    <script type="text/javascript" src="~/assets/global/plugins/datatables/extensions/Scroller/js/dataTables.scroller.min.js"></script>
+    <script type="text/javascript" src="~/assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js"></script>
+    <!-- END PAGE LEVEL PLUGINS -->
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    <script type="text/javascript" src="~/assets/global/plugins/jquery-validation/js/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="~/assets/global/plugins/jquery-validation/js/additional-methods.min.js"></script>
+
+    <script type="text/javascript" src="~/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+    <script type="text/javascript" src="~/assets/global/plugins/bootstrap-wysihtml5/wysihtml5-0.3.0.js"></script>
+    <script type="text/javascript" src="~/assets/global/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.js"></script>
+    <script type="text/javascript" src="~/assets/global/plugins/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript" src="~/assets/global/plugins/bootstrap-markdown/js/bootstrap-markdown.js"></script>
+    <script type="text/javascript" src="~/assets/global/plugins/bootstrap-markdown/lib/markdown.js"></script>
+
+    <script type="text/javascript" src="~/assets/global/plugins/jquery-mixitup/jquery.mixitup.min.js"></script>
+    <script type="text/javascript" src="~/assets/global/plugins/fancybox/source/jquery.fancybox.pack.js"></script>
+    <script src="~/assets/global/plugins/jstree/dist/jstree.min.js"></script>
+
+    <!-- END PAGE LEVEL PLUGINS -->
+    <script src="~/assets/admin/pages/scripts/ui-tree.js"></script>
+    <script src="~/assets/global/scripts/metronic.js" type="text/javascript"></script>
+    <script src="~/assets/admin/layout/scripts/layout.js" type="text/javascript"></script>
+    <script src="~/assets/admin/layout/scripts/quick-sidebar.js" type="text/javascript"></script>
+    <script src="~/assets/admin/layout/scripts/demo.js" type="text/javascript"></script>
+    <script src="~/assets/admin/pages/scripts/portfolio.js"></script>
+    <script src="~/assets/admin/pages/scripts/form-validation.js"></script>
+    <script src="~/assets/admin/pages/scripts/index.js" type="text/javascript"></script>
+    <script src="~/assets/admin/pages/scripts/tasks.js" type="text/javascript"></script>
+    <script src="~/assets/admin/pages/scripts/table-advanced.js" type="text/javascript"></script>
+    <script src="~/js/site.js" type="text/javascript"></script>
+
+    @*<script src="https://code.jquery.com/jquery-1.10.2.js"></script>*@
+    <script src="~/jquery-ui/jquery-ui.js"></script>
+    @RenderSection("scripts", required: false)
+
+    <!-- END PAGE LEVEL SCRIPTS -->
+    <script>
+        jQuery(document).ready(function () {
+            Metronic.init(); // init metronic core componets
+            Layout.init(); // init layout
+            QuickSidebar.init(); // init quick sidebar
+            Demo.init(); // init demo features
+            UITree.init();
+            FormValidation.init();
+            var table = $('table')[0];
+            if (table) {
+                TableAdvanced.init();
+            }
+            Portfolio.init();
+            Index.init();
+            Index.initDashboardDaterange();
+            Index.initJQVMAP(); // init index page's custom scripts
+            Index.initCalendar(); // init index page's custom scripts
+            Index.initCharts(); // init index page's custom scripts
+            Index.initChat();
+            Index.initMiniCharts();
+            Tasks.initDashboardWidget();
+            $(".datepicker").datepicker({
+                prevText: "click for previous months",
+                nextText: "click for next months",
+                changeMonth: true,
+                changeYear: true,
+                showOtherMonths: true,
+                yearRange: "c-100:c+10",
+                selectOtherMonths: false
+            });
+            $(document).on('focus', '.datepicker', function () {
+                $(this).attr('autocomplete', 'off');
+            });
+        });
+    </script>
+    <!-- END JAVASCRIPTS -->
+</body>
+
+</html>

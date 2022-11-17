@@ -1,0 +1,86 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@model EditServiceChargeViewModel
+@inject IViewLocalizer Localizer
+@{
+  ViewData["Title"] = "EditServiceCharge";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-container">
+  <!-- BEGIN CONTENT -->
+  <div class="page-content-wrapper">
+    <div class="page-content">
+      <div class="portlet-body form">
+        <!-- BEGIN FORM-->
+        <div class="title-on-top">@Localizer["EditServiceCharge.Title"]</div>
+        <form asp-action="EditServiceCharge" class="form-horizontal box-shadow-form" id="form_sample_3">
+          <div class="form-body">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @* hidden field *@
+            <input asp-for="ServiceChargeId" runat="server" type="hidden" />
+            <input asp-for="BranchMediumId" runat="server" type="hidden" />
+            @* hidden field *@
+            <div class="row-fluid col-md-12 zero-padding-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["EditServiceCharge.PerStudentCharge"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8 .position-relative">
+                    <input asp-for="PerStudentCharge" type="number" class="form-control" />
+                    <span asp-validation-for="PerStudentCharge" class="text-danger"></span>
+                  </div>
+                  <p class="floating-label">@Localizer["EditServiceCharge.Taka"]</p>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["EditServiceCharge.BufferPeriod"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8 .position-relative">
+                    <input asp-for="PaymentBufferPeriod" type="number" class="form-control" />
+                    <span asp-validation-for="PaymentBufferPeriod" class="text-danger"></span>
+                  </div>
+                  <p class="floating-label">@Localizer["EditServiceCharge.Days"]</p>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row-fluid col-md-12 zero-padding-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["EditServiceCharge.EffectiveDate"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <input asp-for="EffectiveDate" type="text" class="form-control datepicker">
+                    <span asp-validation-for="EffectiveDate" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["EditServiceCharge.EndDate"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <input asp-for="EndDate" type="text" class="form-control datepicker">
+                    <span asp-validation-for="EndDate" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br />
+            <div class="btn-container">
+              <button type="button" class="btn custom-btn custom-cancel-btn pull-left" onclick="location.href = '@Url.Action("Index", "ServiceCharge")'">@Localizer["EditServiceCharge.CancelButton"]</button>
+              <button type="submit" class="btn custom-btn custom-cancel-btn pull-right">@Localizer["EditServiceCharge.UpdateButton"]</button>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+        </form>
+        <!-- END FORM-->
+      </div>
+    </div>
+  </div>
+</div>

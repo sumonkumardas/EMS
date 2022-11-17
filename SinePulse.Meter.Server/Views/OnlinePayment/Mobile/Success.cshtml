@@ -1,0 +1,78 @@
+﻿@{
+    Layout = "~/Views/Shared/_MobileLayout.cshtml";
+    ViewBag.Title = "Mobile Payment";
+}
+<link href="~/Content/sb-admin-2.css" rel="stylesheet" />
+<link href="~/Content/font-awesome/css/font-awesome.css" rel="stylesheet" />
+
+<div id="">
+    <section class="">
+
+
+        <style>
+            html {
+                background-color: #F3F3F3;
+                background-image: none;
+            }
+
+            body {
+                background-color: #F3F3F3;
+                background-image: none;
+            }
+
+            .modal-dialog {
+                /* new custom width */
+                width: 350px;
+                /* must be half of the width, minus scrollbar on the left (30px) */
+            }
+
+            .fa-check {
+                color: green;
+            }
+        </style>
+
+        <div id="wrapper">
+
+            <!-- Navigation -->
+            <div class="row">
+                <div class="col-lg-4 col-md-2">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3 success-icon">
+                                    <i class="fa fa-check fa-5x col-xs-offset-6"></i>
+                                </div>
+                                <div class="col-xs-9 text-left success-title-text">
+                                    <div class="huge">@ViewData["status"]</div>
+                                    <div class="sub-title">Online Payment Successful</div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="panel panel-default">
+                        <!-- Default panel contents -->
+                        <div class="panel-heading" style="background-color: #F3F3F3"><b>Transaction Info</b></div>
+
+                        <!-- List group -->
+                        <ul class="list-group">
+                            <li class="list-group-item">Transaction No: @ViewData["transaction_id"]</li>
+                            <li class="list-group-item">Payment Date: @ViewData["tran_date"]</li>
+                            <li class="list-group-item">Amount: @ViewData["amount"] BDT</li>
+                            <li class="list-group-item">Service Charge: @ViewData["service_charge"] BDT</li>
+                            <li class="list-group-item">Payment Method: @ViewData["payment_method"]</li>
+                            <li class="list-group-item">Meter: @ViewData["meterNo"]</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+
+    </section>
+</div>

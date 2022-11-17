@@ -1,0 +1,67 @@
+@using NakedObjects.Web.Mvc.Html
+@model SinePulse.SmartMeter.Domain.ViewModel.OnlinePayment
+
+@{
+    Layout = "~/Views/Shared/_NofLayout.cshtml";
+    ViewBag.Title = Html.ObjectTitle(Model);
+}
+
+<div id="body">
+    <section class="main-content">
+        @(Html.TabbedHistory(Model))
+        <div class="@(Html.ObjectViewClass(Model))" id="@(Html.ObjectTypeAsCssId(Model))">
+            @using (Html.BeginForm("PayOnline", "OnlinePayment", FormMethod.Post, new {id = "frmRecharge"}))
+            {
+                <div class="nof-propertylist">
+                    <div class="nof-property">
+                        <div class="nof-label">Meter No:</div>
+                        <div class="nof-value" title=""><input type="text" id="meterNo" name="meterNo" readonly value=@Model.Meter.MeterNo>
+                        </div>
+                    </div>
+                    <div class="nof-property">
+                        <div class="nof-label">Amount:</div>
+                        <div class="nof-value" title="">
+                            <input type="number" id="amount" name="amount" value="" maxlength="5">
+                            <span style="color: red" id="amountError"></span>
+                        </div>
+                    </div>
+                    <div>
+                        <button class="nof-edit" name="" title="Edit" type="button" id="payOnline" value="">Pay Online</button>
+                    </div>
+                </div>
+            }
+            <!-- @* Live store id-aplombtechbd001live, Store password-aplombtechbd001live49270, url- https://securepay.sslcommerz.com/gwprocess/v3/process.php
+            Sand box store id-testbox, Store password-qwerty, url- https://sandbox.sslcommerz.com/gwprocess/v3/process.php - Test URL*@-->
+
+            <form id="payment_gw" name="payment_gw" method="POST" action="https://securepay.sslcommerz.com/gwprocess/v3/process.php">
+                <input type="hidden" name="total_amount" value="" />
+                <input type="hidden" name="store_id" value="aplombtechbd001live" />
+                <input type="hidden" name="store_passwd" value="aplombtechbd001live49270" />
+                <input type="hidden" name="currency" value="BDT" />
+                <input type="hidden" name="tran_id" value="" />
+                <input type="hidden" name="success_url" value="" />
+                <input type="hidden" name="fail_url" value="" />
+                <input type="hidden" name="cancel_url" value="" />
+                <input type="hidden" name="version" value="2.00" />
+                @*<input type="submit" name="submit" id="payNow" value="Pay Now"/>*@
+
+            </form>
+
+            <script src="~/Scripts/payment.js"></script>
+            <script>
+                paymentModule.Init();
+                //$('#frmRecharge').submit(function (ev) {
+                //    ev.preventDefault(); 
+                //    if (!parseFloat($('#amount').val())) {
+                //        $('#amountError').text('invalid amount');
+                //    } else {
+                //        $('#amountError').text('');
+                //        this.submit();
+                //    }
+                    
+                //});
+            </script>
+                </div>
+
+            </section>
+        </div>

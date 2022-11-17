@@ -1,0 +1,64 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@using SinePulse.EMS.Domain.Enums
+@model SinePulse.EMS.Site.Models.AddDesignationViewModel
+@inject IViewLocalizer Localizer
+@{
+  ViewData["Title"] = "AddDesignation";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- BEGIN CONTAINER -->
+<div class="page-container">
+  <!-- BEGIN CONTENT -->
+  <div class="page-content-wrapper">
+    <div class="page-content">
+      <div class="portlet-body form">
+        <!-- BEGIN FORM-->
+        <div class="title-on-top">@Localizer["AddDesignation.Title"]</div>
+        <form asp-action="AddDesignation" class="form-horizontal box-shadow-form" id="form_sample_3">
+          <div class="form-body">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="row-fluid">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["AddDesignation.DesignationName"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <input asp-for="DesignationName" type="text" class="form-control" />
+                    <span asp-validation-for="DesignationName" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["AddDesignation.EmployeeType"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <select asp-for="EmployeeType" class="form-control" asp-items="Html.GetEnumSelectList<EmployeeTypeEnum>()">
+                      <option selected="selected" value="">@Localizer["AddDesignation.SelectEmployeeType"]</option>
+                    </select>
+                    <span asp-validation-for="EmployeeType" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <br />
+            <div class="btn-container">
+              <button type="button" class="btn custom-btn custom-cancel-btn pull-left" onclick="location.href = '@Url.Action("Index", "Designation")'">@Localizer["AddDesignation.CancleButton"]</button>
+              <button type="submit" class="btn custom-btn custom-cancel-btn pull-right">@Localizer["AddDesignation.CreateButton"]</button>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+        </form>
+        <!-- END FORM-->
+      </div>
+    </div>
+  </div>
+</div>
+
+@section Scripts {
+  @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

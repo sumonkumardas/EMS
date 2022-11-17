@@ -1,0 +1,49 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@model BillingInfoViewModel
+@inject IViewLocalizer Localizer
+<div class="col-md-5">
+    <div class="col-md-4">
+      <label>@Localizer["BillingInfo.Year"]</label><span class="required">*</span>
+    </div>
+    <div class="col-md-8">
+        @Html.DropDownListFor(x => x.Year, new SelectList(Model.BillingData.Years), @Localizer["BillingInfo.SelectYear"].Value, new {@class = "form-control", id = "billingYearDropDown"})
+        <span asp-validation-for="Year" class="text-danger"></span>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div align="right">
+  <label style="color: darkred"><b>@Localizer["BillingInfo.PendingAmount"] : @Model.BillingData.PendingAmount </b>@Localizer["BillingInfo.Tk"]</label>
+</div>
+<table class="table">
+    <thead>
+    <tr>
+      <th>@Localizer["BillingInfo.Year"]</th>
+      <th>@Localizer["BillingInfo.Month"]</th>
+      <th>@Localizer["BillingInfo.PaymentDate"]</th>
+      <th>@Localizer["BillingInfo.PerStudentCharge"]</th>
+      <th>@Localizer["BillingInfo.TotalStudents"]</th>
+      <th>@Localizer["BillingInfo.Amount"]</th>
+      <th>@Localizer["BillingInfo.PaymentMethod"]</th>
+    </tr>
+    </thead>
+
+    <tbody id="billingInfoTable">
+    @{
+        if (Model.BillingData != null && Model.BillingData.BillingInfos.Any())
+        {
+            foreach (var data in Model.BillingData.BillingInfos)
+            {
+                <tr>
+                    <td>@data.Year</td>
+                    <td>@data.Month.ToString("G")</td>
+                    <td>@data.PaymentDate.ToString("dd-MMM-yyy")</td>
+                    <td>@data.PerStudentCharge</td>
+                    <td>@data.TotalStudents</td>
+                    <td>@data.Amount</td>
+                    <td>@data.PaymentMethod.ToString("G")</td>
+                </tr>
+            }
+        }
+    }
+    </tbody>
+</table>

@@ -1,0 +1,93 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@using SinePulse.EMS.Domain.Enums
+@inject IViewLocalizer Localizer
+@model RoomViewModel
+
+@{
+  ViewData["Title"] = "UpdateRoom";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="page-container">
+  <!-- BEGIN CONTENT -->
+  <div class="page-content-wrapper">
+    <div class="page-content">
+      <div class="portlet-body form">
+        <!-- BEGIN FORM-->
+        <div class="title-on-top">@Localizer["UpdateRoom.Title"]</div>
+        <form asp-action="UpdateRoom" class="form-horizontal box-shadow-form" id="form_sample_3">
+          <div class="form-body">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @* hidden field *@
+            <input type="hidden" asp-for="Id" runat="server">
+            <input type="hidden" asp-for="Branch.Id" runat="server">
+            @* hidden field *@
+            <div class="row-fluid col-md-12 zero-padding-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["UpdateRoom.RoomNo"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <input asp-for="RoomNo" type="text" class="form-control" />
+                    <span asp-validation-for="RoomNo" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["UpdateRoom.Status"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <select asp-for="Status" class="form-control" asp-items="Html.GetEnumSelectList<StatusEnum>()">
+                      <option>@Localizer["UpdateRoom.SelectStatus"]</option>
+                    </select>
+                    <span asp-validation-for="Status" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row-fluid col-md-12 zero-padding-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["UpdateRoom.ClassTimeCapacity"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <input asp-for="ClassTimeCapacity" type="text" class="form-control" />
+                    <span asp-validation-for="ClassTimeCapacity" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["UpdateRoom.ExamTimeCapacity"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <input asp-for="ExamTimeCapacity" type="text" class="form-control" />
+                    <span asp-validation-for="ExamTimeCapacity" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <br />
+
+            <div class="btn-container">
+              <button type="button" class="btn custom-btn custom-cancel-btn pull-left" onclick="location.href='@Url.Action("Index", "Room")'">@Localizer["UpdateRoom.CancelButton"]</button>
+              <button type="submit" class="btn custom-btn custom-cancel-btn pull-right">@Localizer["UpdateRoom.UpdateButton"]</button>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+        </form>
+        <!-- END FORM-->
+      </div>
+    </div>
+  </div>
+</div>
+
+@section Scripts {
+  @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

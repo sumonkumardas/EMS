@@ -1,0 +1,29 @@
+﻿@model ShowServiceChargeListViewModel
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+
+    @{
+      foreach (var ServiceCharge in Model.serviceCharges)
+      {
+    <tr>
+      <td>
+        @ServiceCharge.EffectiveDate.ToString("dd MMMM, yyyy")
+      </td>
+      <td>
+        @Html.DisplayFor(s => ServiceCharge.PerStudentCharge)
+      </td>
+      <td>
+        @Html.DisplayFor(s => ServiceCharge.PaymentBufferPeriod)
+      </td>
+      <td>
+        @string.Format("{0:dd MMMM, yyyy}", ServiceCharge.EndDate)
+      </td>
+      <td>
+        @if (ServiceCharge.EffectiveDate.Date >= DateTime.Today)
+        {
+          <a href="/ServiceCharge/EditServiceCharge?serviceChargeId=@ServiceCharge.Id&branchMediumId=@ServiceCharge.BranchMediumData.BranchMediumId" class="action-link"><i class="fa fa-edit action-icon"></i></a>
+        }
+      </td>
+    </tr>
+      }
+    }

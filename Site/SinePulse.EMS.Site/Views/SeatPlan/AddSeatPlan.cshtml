@@ -1,0 +1,93 @@
+﻿@model SinePulse.EMS.Site.Models.AddSeatPlanViewModel
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@{
+  ViewData["Title"] = "AddSeatPlan";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="page-container">
+  <!-- BEGIN CONTENT -->
+  <div class="page-content-wrapper">
+    <div class="page-content">
+      <div class="portlet-body form">
+        <!-- BEGIN FORM-->
+        <div class="title-on-top">@Localizer["AddSeatPlan.Title"]</div>
+        <form asp-action="AddSeatPlan" class="form-horizontal box-shadow-form" id="form_sample_3">
+            <div class="form-body">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input asp-for="TestId" type="hidden" class="form-control" />
+                <input asp-for="TermId" type="hidden" class="form-control" />
+                <input asp-for="RemainingStudent" type="hidden" class="form-control" />
+                @for (var i = 0; i < Model.Rooms.Count; i++)
+                {
+                    <input type="hidden" name="Rooms[@i].RoomId" value="@Model.Rooms[i].RoomId" />
+                    <input type="hidden" name="Rooms[@i].RoomText" value="@Model.Rooms[i].RoomText" />
+                }
+                <div class="row-fluid col-md-12 zero-padding-row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <label>@Localizer["AddSeatPlan.Room"] </label><span class="required">*</span>
+                            </div>
+                            <div class="col-md-8">
+                                @Html.DropDownListFor(x => x.RoomId, new SelectList(Model.Rooms, "RoomId", "RoomText"), @Localizer["AddSeatPlan.SelectRoom"].Value, new { @class = "form-control" })
+                                <span asp-validation-for="RoomId" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <label>@Localizer["AddSeatPlan.RemainingStudent"] </label>
+                            </div>
+                            <div class="col-md-8">
+                                <input asp-for="TotalStudent" type="text" value="@Model.RemainingStudent" class="form-control" disabled="disabled" />
+                                <span asp-validation-for="RemainingStudent" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="row-fluid col-md-12 zero-padding-row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <label>@Localizer["AddSeatPlan.TotalStudent"] </label><span class="required">*</span>
+                            </div>
+                            <div class="col-md-8">
+                                <input asp-for="TotalStudent" type="text" value="@Model.TotalStudent" class="form-control" />
+                                <span asp-validation-for="TotalStudent" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <label>@Localizer["AddSeatPlan.RollRange"] </label><span class="required">*</span>
+                            </div>
+                            <div class="col-md-8">
+                                <input asp-for="RollRange" type="text" value="@Model.RollRange" class="form-control" placeholder="e.g. Section A (10 - 25)" />
+                                <span asp-validation-for="RollRange" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <br />
+                <div class="btn-container">
+                    <button type="button" onclick="location.href='/Term/ViewTerm?termId=@Model.TermId#tab_seatPlan'" class="btn custom-btn custom-cancel-btn pull-left">@Localizer["AddSeatPlan.CancelButton"]</button>
+                    <button type="submit" class="btn custom-btn custom-cancel-btn pull-right">@Localizer["AddSeatPlan.CreateButton"]</button>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </form>
+        <!-- END FORM-->
+      </div>
+    </div>
+  </div>
+</div>
+
+
+@section Scripts {
+  @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

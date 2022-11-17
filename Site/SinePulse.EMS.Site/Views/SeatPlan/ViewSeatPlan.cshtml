@@ -1,0 +1,66 @@
+﻿@model SinePulse.EMS.Site.Models.SeatPlanViewModel
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+
+@{
+  ViewData["Title"] = "ViewSeatPlan";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="page-container">
+  <!-- BEGIN CONTENT -->
+  <div class="page-content-wrapper">
+    <div class="page-content">
+      <div class="portlet box form-conatiner">
+        <div class="icon-container">
+          <a href="/SeatPlan/EditSeatPlan?SeatPlanId=@Model.SeatPlanId" class="fa fa-edit action-link"></a>
+
+          <a href="/SeatPlan/Index" class="fa fa-tasks action-link"></a>
+        </div>
+      
+        <div class="portlet-body form">
+
+          <div class="container-fluid">
+            <div class="row-fluid ">
+              <div class="col-md-6">
+                <div class="row custom-row">
+                  <div class="col-md-4 title">
+                    <strong>@Localizer["ViewSeatPlan.RoomNo"]</strong>
+                  </div>
+                  <div class="col-md-8 value"><a href="/Room/ViewRoom?roomId=@Model.RoomData.RoomId">@Model.RoomData.RoomNo</a></div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="row custom-row">
+                  <div class="col-md-4 title">
+                    <strong>@Localizer["ViewSeatPlan.Status"]</strong>
+                  </div>
+                  <div class="col-md-8 value">@Html.DisplayFor(model => model.Status)</div>
+                </div>
+              </div>
+            </div>
+            <div class="row-fluid ">
+              <div class="col-md-6">
+                <div class="row custom-row">
+                  <div class="col-md-4 title">
+                    <strong>@Localizer["ViewSeatPlan.RollRange"]</strong>
+                  </div>
+                  <div class="col-md-8 value">@Html.DisplayFor(model => model.RollRange)</div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="row custom-row">
+                  <div class="col-md-4 title">
+                    <strong>@Localizer["ViewSeatPlan.TotalStudent"]</strong>
+                  </div>
+                  <div class="col-md-8 value">@Html.DisplayFor(model => model.TotalStudent)</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

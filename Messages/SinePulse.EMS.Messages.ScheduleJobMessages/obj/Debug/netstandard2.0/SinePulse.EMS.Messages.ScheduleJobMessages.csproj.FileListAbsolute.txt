@@ -1,0 +1,12 @@
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Messages\SinePulse.EMS.Messages.ScheduleJobMessages\bin\Debug\netstandard2.0\SinePulse.EMS.Messages.ScheduleJobMessages.deps.json
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Messages\SinePulse.EMS.Messages.ScheduleJobMessages\bin\Debug\netstandard2.0\SinePulse.EMS.Messages.ScheduleJobMessages.dll
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Messages\SinePulse.EMS.Messages.ScheduleJobMessages\bin\Debug\netstandard2.0\SinePulse.EMS.Messages.ScheduleJobMessages.pdb
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Messages\SinePulse.EMS.Messages.ScheduleJobMessages\bin\Debug\netstandard2.0\SinePulse.EMS.InterServiceMessages.dll
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Messages\SinePulse.EMS.Messages.ScheduleJobMessages\bin\Debug\netstandard2.0\SinePulse.EMS.InterServiceMessages.pdb
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Messages\SinePulse.EMS.Messages.ScheduleJobMessages\obj\Debug\netstandard2.0\SinePulse.EMS.Messages.ScheduleJobMessages.csprojAssemblyReference.cache
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Messages\SinePulse.EMS.Messages.ScheduleJobMessages\obj\Debug\netstandard2.0\SinePulse.EMS.Messages.ScheduleJobMessages.csproj.CoreCompileInputs.cache
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Messages\SinePulse.EMS.Messages.ScheduleJobMessages\obj\Debug\netstandard2.0\SinePulse.EMS.Messages.ScheduleJobMessages.AssemblyInfoInputs.cache
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Messages\SinePulse.EMS.Messages.ScheduleJobMessages\obj\Debug\netstandard2.0\SinePulse.EMS.Messages.ScheduleJobMessages.AssemblyInfo.cs
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Messages\SinePulse.EMS.Messages.ScheduleJobMessages\obj\Debug\netstandard2.0\SinePulse.EMS.Messages.ScheduleJobMessages.csproj.CopyComplete
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Messages\SinePulse.EMS.Messages.ScheduleJobMessages\obj\Debug\netstandard2.0\SinePulse.EMS.Messages.ScheduleJobMessages.dll
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Messages\SinePulse.EMS.Messages.ScheduleJobMessages\obj\Debug\netstandard2.0\SinePulse.EMS.Messages.ScheduleJobMessages.pdb

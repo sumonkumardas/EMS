@@ -1,0 +1,48 @@
+﻿@using SinePulse.EMS.Domain.Features
+@using SinePulse.EMS.Messages.Model.Enums
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@model ShowSeatPlanListViewModel
+
+
+<table class="table table-striped table-hover" id="sample_6">
+  <thead class="filterCriteria">
+    <tr class="uppercase">
+      <th>@Localizer["ShowSeatPlanList.TestDate"]</th>
+      <th>@Localizer["ShowSeatPlanList.StartTime"]</th>
+      <th>@Localizer["ShowSeatPlanList.EndTime"]</th>
+      <th>@Localizer["ShowSeatPlanList.Class"]</th>
+      <th>@Localizer["ShowSeatPlanList.Subject"]</th>
+      <th>@Localizer["ShowSeatPlanList.Type"]</th>
+      <th>@Localizer["ShowSeatPlanList.RollRange"]</th>
+      <th>@Localizer["ShowSeatPlanList.TotalStudents"]</th>
+      <th>@Localizer["ShowSeatPlanList.Room"]</th>
+      <th>@Localizer["ShowSeatPlanList.Action"]</th>
+    </tr>
+  </thead>
+  @{
+    if (Model.SeatPlans.Count > 0)
+    {
+      foreach (var seatPlan in Model.SeatPlans)
+      {
+        var testStartTime = seatPlan.TestData.TestStartDate.Hour.ToString("D2") + ":" + seatPlan.TestData.TestStartDate.Minute.ToString("D2");
+        var testEndTime = seatPlan.TestData.TestEndDate.Hour.ToString("D2") + ":" + seatPlan.TestData.TestEndDate.Minute.ToString("D2");
+        var testDate = seatPlan.TestData.TestStartDate.ToString("dd MMMM, yyyy");
+        <tr>
+          <td>@testDate</td>
+          <td>@testStartTime</td>
+          <td>@testEndTime</td>
+          <td>@Html.DisplayFor(model => seatPlan.TestData.ClassName)</td>
+          <td>@Html.DisplayFor(model => seatPlan.TestData.SubjectName)</td>
+          <td>@Html.DisplayFor(model => seatPlan.TestData.ExamType)</td>
+          <td>@Html.DisplayFor(model => seatPlan.RollRange)</td>
+          <td>@Html.DisplayFor(model => seatPlan.TotalStudent)</td>
+          <td>@Html.DisplayFor(model => seatPlan.RoomData.RoomNo)</td>
+          <td>
+            <a href="/SeatPlan/EditSeatPlan?seatPlanId=@seatPlan.SeatPlanId" class="action-link"><i class="fa fa-edit action-icon"></i></a>
+          </td>
+        </tr>
+      }
+    }
+  }
+</table>

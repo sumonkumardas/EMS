@@ -1,0 +1,90 @@
+﻿@model ShowSubjectListViewModel
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@{
+  ViewData["Title"] = "Index";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="page-container">
+  <!-- BEGIN CONTENT -->
+  <div class="page-content-wrapper">
+      <div class="page-content">
+          <div class="portlet-body form">
+              <!-- BEGIN FORM-->
+            <div class="title-on-top">
+              <div class="page-toolbar pull-left" style="margin-top: -10px;">
+                <div class="btn-group">
+                  <ul style="padding:0px;">
+                    <li class="custom-page-menu dropdown primary-menu-item-li">
+                      <a href="#" class="show-dropdown-on-hover" data-toggle="custom-page-menu">
+                        <button type="button" class="btn btn-fit-height dark-bg dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="100" data-close-others="true">
+                          <i class="fa fa-bars"></i>
+                        </button>
+                      </a>
+                      <ul class="dropdown-menu light-arrow-only">
+                        <li>
+                          <a href="/Subject/AddSubject">@Localizer["Index.AddSubject"]</a>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              @Localizer["Index.Title"]
+            </div>
+              <form class="form-horizontal box-shadow-form">
+                  <div class="form-body">
+                      <table class="table table-striped table-hover" id="sample_5">
+                          <thead class="filterCriteria">
+                              <tr>
+                                  <th>
+                                      @Localizer["Index.SubjectName"]
+                                  </th>
+                                  <th>
+                                      @Localizer["Index.SubjectCode"]
+                                  </th>
+                                  <th>
+                                      @Localizer["Index.Status"]
+                                  </th>
+                                  <th> @Localizer["Index.Action"] </th>
+                              </tr>
+                          </thead>
+
+                          <tbody>
+
+                              @{
+                                  foreach (var subject in Model.Subjects)
+                                  {
+                                      <tr>
+                                          <td>
+                                              @Html.DisplayFor(s => subject.SubjectName)
+                                          </td>
+                                          <td>
+                                              @Html.DisplayFor(s => subject.SubjectCode)
+                                          </td>
+                                          <td>
+                                              @Html.DisplayFor(s => subject.Status)
+                                          </td>
+                                          <td>
+                                              <a href="@Url.Action("UpdateSubject", new {id = subject.Id})" class="action-link"><i class="fa fa-edit action-icon"></i></a>
+                                              <a href="#" class="action-link"><i class="fa fa-minus-circle action-icon"></i></a>
+                                          </td>
+                                      </tr>
+                                  }
+                              }
+
+                          </tbody>
+                      </table>
+                      <div class="clearfix"></div>
+
+
+                  </div>
+              </form>
+              <!-- END FORM-->
+          </div>
+      </div>
+  </div>
+</div>
+
+
+

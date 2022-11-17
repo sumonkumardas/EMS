@@ -1,0 +1,61 @@
+
+@using NakedObjects.Web.Mvc.Html
+@using SinePulse.SmartMeter.Domain.Reports
+@model EmergencyCreditConsumptionLogReport
+
+<div id="body" >
+    <section class="main-content">
+      @Html.TabbedHistory(Model)
+        @using (Ajax.BeginForm("ShowEmergencyCreditConsumptionLogReport", "EmergencyCreditConsumptionLog", null, new AjaxOptions
+        {
+            HttpMethod = "POST",          
+            UpdateTargetId = "resultTarget"
+
+        }))
+
+        {
+            @Html.AntiForgeryToken()
+                <div class="dropdownlist-label">
+                    @Html.Label("Select Start Date :  ")
+                    @Html.TextBoxFor(m => m.FromDateTime, new { id = "Start_date", value = "", name = "", @class = "datefield", type = "date" })
+
+                    @Html.Label("Select End Date :  ")
+                    @Html.TextBoxFor(m => m.ToDateTime, new { id = "End_date", value = "", name = "", @class = "datefield", type = "date" })
+
+                    @Html.Label("Enter Meter No :  ")
+                    @*@Html.DropDownListFor(m => m.SelectedMeterId, new SelectList(Model.GetMeterList()), "Select Meter--")*@
+                    @Html.TextBoxFor(m => m.SelectedMeterId, new { Value = "" })
+                    <input type="submit" id="showReport" value="Show" class="btn btn-default" style="margin-left:10px;margin-top:-2px" />
+                </div>
+                <br>
+                <br />
+                <div style="text-align:center;font-size:large;font-weight:bold">
+                    @Html.Label("Emergency Credit Consumption Log Report")
+                </div>
+        }
+ 
+
+
+        <div class="vis" id="resultTarget">
+      
+        </div>
+             
+      
+
+    </section>
+</div>
+
+
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/cssjqryUi")
+    @Scripts.Render("~/bundles/relayStatusLogReport")
+    
+
+<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+<script src="@Url.Content("~/Scripts/jquery-1.7.1.min.js" )" type="text/javascript"></script>
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+}
+

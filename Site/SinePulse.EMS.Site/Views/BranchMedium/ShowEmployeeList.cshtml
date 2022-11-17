@@ -1,0 +1,58 @@
+﻿@using SinePulse.EMS.Domain.Features
+@model SinePulse.EMS.Site.Models.EmployeeListViewModel
+@using Microsoft.AspNetCore.Mvc.Localization
+@using SinePulse.EMS.Domain.Enums
+@using SinePulse.EMS.Domain.Shared
+@inject IViewLocalizer Localizer
+
+<table class="table table-striped table-hover" id="sample_4">
+    <thead class="filterCriteria">
+      <tr>
+        <th>@Localizer["ShowEmployeeList.EmployeeName"]</th>
+        <th>@Localizer["ShowEmployeeList.EmployeeCode"]</th>
+        <th>@Localizer["ShowEmployeeList.JoiningDate"]</th>
+        <th>@Localizer["ShowEmployeeList.MobileNo"]</th>
+        <th>@Localizer["ShowEmployeeList.EmailAddress"]</th>
+        <th>@Localizer["ShowEmployeeList.EmployeeType"]</th>
+        <th>@Localizer["ShowEmployeeList.Action"]</th>
+      </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var employee in Model.EmployeeList)
+        {
+            <tr>
+                <td>
+                    @if (Model.HasPermission(Feature.EmployeeEnum.ViewEmployee.ToString()))
+                    {
+                        <a href="/Employee/ViewEmployee?associationType=@ObjectTypeEnum.BranchMedium&employeeId=@employee.Id">@Html.DisplayFor(model => employee.FullName)</a>
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(model => employee.FullName)
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(model =>  employee.EmployeeCode)
+                </td>
+                @if (employee.JoiningDate != null)
+                {
+                    <td>@employee.JoiningDate.Value.ToString("dd MMMM, yyyy")</td>
+                }
+                else
+                {
+                    <td></td>
+                }
+                <td>@Html.DisplayFor(model => employee.MobileNo)</td>
+                <td>@Html.DisplayFor(model => employee.EmailAddress)</td>
+                <td>@Html.DisplayFor(model => employee.EmployeeType)</td>
+                <td>
+                    @if (Model.HasPermission(Feature.EmployeeEnum.EditEmployee.ToString()))
+                    {
+                        <a href="/Employee/UpdateEmployee?associationType=@AssociationType.BranchMedium&objectId=@Model.BranchMediumId&employeeId=@employee.Id" class="action-link"><i class="fa fa-edit action-icon"></i></a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

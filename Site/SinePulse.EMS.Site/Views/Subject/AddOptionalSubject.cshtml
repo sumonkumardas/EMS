@@ -1,0 +1,112 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@model AddOptionalSubjectViewModel
+@{
+  ViewData["Title"] = "AddOptionalSubject";
+}
+
+<div class="page-container">
+  <!-- BEGIN CONTENT -->
+  <div class="page-content-wrapper">
+    <div class="page-content">
+      <div class="portlet-body form">
+        <!-- BEGIN FORM-->
+        <div class="title-on-top">@Localizer["AddOptionalSubject.Title"]</div>
+        <form asp-action="AddOptionalSubject" class="form-horizontal box-shadow-form" id="form_sample_3">
+          <div class="form-body">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ClassId" />
+            <input type="hidden" asp-for="BranchMediumId" />
+            <input type="hidden" asp-for="Group" />
+            <input type="hidden" asp-for="StudentId" />
+            <input type="hidden" asp-for="SectionId" />
+            <input type="hidden" asp-for="ClassName" />
+            <input type="hidden" asp-for="StudentName" />
+            <input type="hidden" asp-for="SectionName" />
+            <input type="hidden" asp-for="Roll" />
+
+            <div class="row-fluid">
+              <div class="row-fluid">
+                <div class="col-md-8">
+                  <div class="form-group">
+                    <div class="col-md-4">
+                      <label>
+                        <b>@Localizer["AddOptionalSubject.Name"] :</b>
+                        <a href="/Student/AddOptionalSubject?studentId=@Model.StudentId&branchMediumId=@Model.BranchMediumId">
+                          @Html.DisplayFor(model => Model.StudentName)
+                        </a>
+                      </label>
+                    </div>
+                    <div class="col-md-3">
+                      <label>
+                        <b>@Localizer["AddOptionalSubject.Class"] :</b>
+                        <a href="/Class/ViewClass?classId=@Model.ClassId">
+                          @Html.DisplayFor(model => Model.ClassName)
+                        </a>
+                      </label>
+                    </div>
+                    <div class="col-md-3">
+                      <label>
+                        <b>@Localizer["AddOptionalSubject.Group"] :</b>
+                        @Model.Group.ToString("G")
+                      </label>
+                    </div>
+                    <div class="col-md-4">
+                      <label>
+                        <b>@Localizer["AddOptionalSubject.Section"] :</b>
+                        <a href="/Section/ViewSection?sectionId=@Model.SectionId">
+                          @Html.DisplayFor(model => Model.SectionName)
+                        </a>
+                      </label>
+                    </div>
+                    <div class="col-md-2">
+                      <label>
+                        <b>@Localizer["AddOptionalSubject.Roll"] :</b>
+                        @Html.DisplayFor(model => Model.Roll)
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <br />
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["AddOptionalSubject.Subject"]</label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    @{
+                      if (Model.OptionalSubjects != null && Model.OptionalSubjects.Any())
+                      {
+                        @Html.DropDownListFor(x => x.OptionalSubjectIds, new SelectList(Model.OptionalSubjects, "SubjectId", "SubjectName"), @Localizer["AddOptionalSubject.SelectOptionalSubject"].Value, new { @class = "form-control", multiple = "true" })
+                      }
+                      else
+                      {
+                        @Html.DropDownListFor(x => x.OptionalSubjectIds, Enumerable.Empty<SelectListItem>(), @Localizer["AddOptionalSubject.SelectSubject"].Value, new { @class = "form-control", multiple = "true" })
+                      }
+                    }
+                    <span asp-validation-for="OptionalSubjectIds" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <br />
+            <div class="btn-container">
+              <button type="button" class="btn custom-btn custom-cancel-btn pull-left" onclick="location.href = '@Url.Action("ViewStudent", "Student", new {studentId = Model.StudentId, branchMediumId = Model.BranchMediumId})'">@Localizer["AddOptionalSubject.Cancel"]</button>
+              <button type="submit" class="btn custom-btn custom-cancel-btn pull-right">@Localizer["AddOptionalSubject.Add"]</button>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+        </form>
+        <!-- END FORM-->
+      </div>
+    </div>
+  </div>
+</div>
+
+
+@section Scripts {
+  @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

@@ -1,0 +1,12 @@
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Messages\SinePulse.EMS.Messages.AcademicJobMessages\bin\Debug\netstandard2.0\SinePulse.EMS.Messages.AcademicJobMessages.deps.json
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Messages\SinePulse.EMS.Messages.AcademicJobMessages\bin\Debug\netstandard2.0\SinePulse.EMS.Messages.AcademicJobMessages.dll
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Messages\SinePulse.EMS.Messages.AcademicJobMessages\bin\Debug\netstandard2.0\SinePulse.EMS.Messages.AcademicJobMessages.pdb
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Messages\SinePulse.EMS.Messages.AcademicJobMessages\bin\Debug\netstandard2.0\SinePulse.EMS.InterServiceMessages.dll
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Messages\SinePulse.EMS.Messages.AcademicJobMessages\bin\Debug\netstandard2.0\SinePulse.EMS.InterServiceMessages.pdb
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Messages\SinePulse.EMS.Messages.AcademicJobMessages\obj\Debug\netstandard2.0\SinePulse.EMS.Messages.AcademicJobMessages.csprojAssemblyReference.cache
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Messages\SinePulse.EMS.Messages.AcademicJobMessages\obj\Debug\netstandard2.0\SinePulse.EMS.Messages.AcademicJobMessages.csproj.CoreCompileInputs.cache
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Messages\SinePulse.EMS.Messages.AcademicJobMessages\obj\Debug\netstandard2.0\SinePulse.EMS.Messages.AcademicJobMessages.AssemblyInfoInputs.cache
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Messages\SinePulse.EMS.Messages.AcademicJobMessages\obj\Debug\netstandard2.0\SinePulse.EMS.Messages.AcademicJobMessages.AssemblyInfo.cs
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Messages\SinePulse.EMS.Messages.AcademicJobMessages\obj\Debug\netstandard2.0\SinePulse.EMS.Messages.AcademicJobMessages.csproj.CopyComplete
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Messages\SinePulse.EMS.Messages.AcademicJobMessages\obj\Debug\netstandard2.0\SinePulse.EMS.Messages.AcademicJobMessages.dll
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Messages\SinePulse.EMS.Messages.AcademicJobMessages\obj\Debug\netstandard2.0\SinePulse.EMS.Messages.AcademicJobMessages.pdb

@@ -1,0 +1,52 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@model AddBankViewModel
+@inject IViewLocalizer Localizer
+@{
+  ViewData["Title"] = "AddBank";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="page-container">
+  <!-- BEGIN CONTENT -->
+  <div class="page-content-wrapper">
+    <div class="page-content">
+      <div class="portlet-body form">
+        <!-- BEGIN FORM-->
+        <div class="title-on-top">@Localizer["AddBank.Title"]</div>
+        <form asp-action="AddBank" class="form-horizontal box-shadow-form" id="form_sample_3">
+          <div class="form-body">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input asp-for="BranchMediumId" type="hidden" />
+            <div class="row-fluid">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <div class="col-md-2">
+                    <label>@Localizer["AddBank.BankName"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-10">
+                    <input asp-for="BankName" type="text" class="form-control" />
+                    <span asp-validation-for="BankName" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <br />
+            <div class="btn-container">
+              <button type="button" class="btn custom-btn custom-cancel-btn pull-left" onclick="location.href = '/BranchMedium/ViewBranchMedium?branchMediumId=@Model.BranchMediumId#tab_bank'">@Localizer["AddBank.CancleButton"]</button>
+              <button type="submit" class="btn custom-btn custom-cancel-btn pull-right">@Localizer["AddBank.CreateButton"]</button>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+        </form>
+        <!-- END FORM-->
+      </div>
+    </div>
+  </div>
+</div>
+
+@section Scripts {
+  @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

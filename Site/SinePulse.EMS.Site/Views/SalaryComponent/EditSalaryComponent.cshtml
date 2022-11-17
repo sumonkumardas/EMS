@@ -1,0 +1,62 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@model SinePulse.EMS.Site.Models.EditSalaryComponentViewModel
+
+@{
+  ViewData["Title"] = "EditSalaryComponent";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-container">
+  <!-- BEGIN CONTENT -->
+  <div class="page-content-wrapper">
+    <div class="page-content">
+      <div class="portlet-body form">
+        <!-- BEGIN FORM-->
+        <div class="title-on-top">@Localizer["EditSalaryComponent.Title"]</div>
+        <form asp-action="EditSalaryComponent" class="form-horizontal box-shadow-form" id="form_sample_3">
+          <div class="form-body">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input asp-for="SalaryComponentId" type="hidden" />
+            <div class="row-fluid">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["EditSalaryComponent.ComponentName"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <input asp-for="ComponentName" type="text" class="form-control" />
+                    <span asp-validation-for="ComponentName" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["EditSalaryComponent.ComponentType"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    @Html.DropDownListFor(x => x.SalaryComponentTypeId, new SelectList(@Model.SalaryComponentTypes, "ComponentTypeId", "ComponentTypeName"), @Localizer["EditSalaryComponent.SelectComponentType"].Value, new { @class = "form-control", required = true })
+                    <span asp-validation-for="SalaryComponentTypeId" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <br />
+            <div class="btn-container">
+              <button type="button" class="btn custom-btn custom-cancel-btn pull-left" onclick="location.href='@Url.Action("Index", "SalaryComponent")'">@Localizer["EditSalaryComponent.CancleButton"]</button>
+              <button type="submit" class="btn custom-btn custom-cancel-btn pull-right">@Localizer["EditSalaryComponent.UpdateButton"]</button>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+        </form>
+        <!-- END FORM-->
+      </div>
+    </div>
+  </div>
+</div>
+
+@section Scripts {
+  @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,411 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ViewBranchMedium.AddSection" xml:space="preserve">
+    <value>সেকশন যোগ করুন</value>
+  </data>
+  <data name="ViewBranchMedium.AddSession" xml:space="preserve">
+    <value>সেশন যোগ করুন</value>
+  </data>
+  <data name="ViewBranchMedium.AddShift" xml:space="preserve">
+    <value>শিফট যোগ করুন</value>
+  </data>
+  <data name="ViewBranchMedium.AddTerm" xml:space="preserve">
+    <value>টার্ম পরীক্ষা যোগ করুন</value>
+  </data>
+  <data name="ViewBranchMedium.Institute" xml:space="preserve">
+    <value>প্রতিষ্ঠান</value>
+  </data>
+  <data name="ViewBranchMedium.Class" xml:space="preserve">
+    <value>ক্লাস</value>
+  </data>
+  <data name="ViewBranchMedium.Classes" xml:space="preserve">
+    <value>ক্লাসসমূহ</value>
+  </data>
+  <data name="ViewBranchMedium.ClassName" xml:space="preserve">
+    <value>ক্লাসের নাম</value>
+  </data>
+  <data name="ViewBranchMedium.Designation" xml:space="preserve">
+    <value>উপাধি</value>
+  </data>
+  <data name="ViewBranchMedium.Teachers" xml:space="preserve">
+    <value>শিক্ষকবৃন্দ</value>
+  </data>
+  <data name="ViewBranchMedium.TeachersName" xml:space="preserve">
+    <value>শিক্ষকের নাম</value>
+  </data>
+  <data name="ViewBranchMedium.EmailAddress" xml:space="preserve">
+    <value>ইমেইল অ্যাড্রেস</value>
+  </data>
+  <data name="ViewBranchMedium.Grade" xml:space="preserve">
+    <value>গ্রেড</value>
+  </data>
+  <data name="ViewBranchMedium.JoiningDate" xml:space="preserve">
+    <value>যোগদানের তারিখ</value>
+  </data>
+  <data name="ViewBranchMedium.Medium" xml:space="preserve">
+    <value>মাধ্যমের নাম</value>
+  </data>
+  <data name="ViewBranchMedium.MobileNo" xml:space="preserve">
+    <value>মোবাইল নাম্বার</value>
+  </data>
+  <data name="ViewBranchMedium.NumberofStudents" xml:space="preserve">
+    <value>শিক্ষার্থীর সংখ্যা</value>
+  </data>
+  <data name="ViewBranchMedium.ReportTo" xml:space="preserve">
+    <value>যাকে রিপোর্ট করবেন</value>
+  </data>
+  <data name="ViewBranchMedium.SectionName" xml:space="preserve">
+    <value>সেকশনের নাম</value>
+  </data>
+  <data name="ViewBranchMedium.Section" xml:space="preserve">
+    <value>সেকশন</value>
+  </data>
+  <data name="ViewBranchMedium.ViewMedium" xml:space="preserve">
+    <value>মাধ্যম দেখুন</value>
+  </data>
+  <data name="ViewBranchMedium.WeeklyHolidays" xml:space="preserve">
+    <value>সাপ্তাহিক ছুটি</value>
+  </data>
+  <data name="ViewBranchMedium.AddEmployee" xml:space="preserve">
+    <value>কর্মচারী যোগ করুন</value>
+  </data>
+  <data name="ViewBranchMedium.ClassTimeCapacity" xml:space="preserve">
+    <value>ক্লাসের সময় সক্ষমতা</value>
+  </data>
+  <data name="ViewBranchMedium.EndDate" xml:space="preserve">
+    <value>শেষের তারিখ</value>
+  </data>
+  <data name="ViewBranchMedium.ExamTimeCapacity" xml:space="preserve">
+    <value>পরীক্ষার সময় সক্ষমতা</value>
+  </data>
+  <data name="ViewBranchMedium.IsSessionClosed" xml:space="preserve">
+    <value>বর্তমান সেশন কি?</value>
+  </data>
+  <data name="ViewBranchMedium.Rooms" xml:space="preserve">
+    <value>কক্ষসমুহ</value>
+  </data>
+  <data name="ViewBranchMedium.SessionName" xml:space="preserve">
+    <value>সেশনের নাম</value>
+  </data>
+  <data name="ViewBranchMedium.Sessions" xml:space="preserve">
+    <value>সেশনসমুহ</value>
+  </data>
+  <data name="ViewBranchMedium.StartDate" xml:space="preserve">
+    <value>শুরুর তারিখ</value>
+  </data>
+  <data name="ViewBranchMedium.AddRoom" xml:space="preserve">
+    <value>কক্ষ যোগ করুন</value>
+  </data>
+  <data name="ViewBranchMedium.AddClassBreakTime" xml:space="preserve">
+    <value>ক্লাস বিরতির সময় যোগ/পরিবর্তন করুন</value>
+  </data>
+  <data name="ViewBranchMedium.ImportData" xml:space="preserve">
+    <value>ডাটা ইমপোর্ট করুন</value>
+  </data>
+  <data name="ViewBranchMedium.SetAcademicFees" xml:space="preserve">
+    <value>একাডেমিক ফি নির্দিষ্ট করুন</value>
+  </data>
+  <data name="ViewBranchMedium.ShowAcademicCalendar" xml:space="preserve">
+    <value>একাডেমিক ক্যালেন্ডার দেখুন</value>
+  </data>
+  <data name="ViewBranchMedium.AcademicCalendar" xml:space="preserve">
+    <value>একাডেমীক ক্যালেন্ডার</value>
+  </data>
+  <data name="ViewBranchMedium.ExamTerm" xml:space="preserve">
+    <value>টার্ম</value>
+  </data>
+  <data name="ViewBranchMedium.Session" xml:space="preserve">
+    <value>সেশন</value>
+  </data>
+  <data name="ViewBranchMedium.Staff" xml:space="preserve">
+    <value>স্টাফ</value>
+  </data>
+  <data name="ViewBranchMedium.AddStaff" xml:space="preserve">
+    <value>স্টাফ যোগ করুন</value>
+  </data>
+  <data name="ViewBranchMedium.AddTeacher" xml:space="preserve">
+    <value>শিক্ষক যোগ করুন</value>
+  </data>
+  <data name="ViewBranchMedium.StaffName" xml:space="preserve">
+    <value>স্টাফের নাম</value>
+  </data>
+  <data name="ViewBranchMedium.Status" xml:space="preserve">
+    <value>অবস্থা</value>
+  </data>
+  <data name="ViewBranchMedium.Student" xml:space="preserve">
+    <value>শিক্ষার্থী</value>
+  </data>
+  <data name="ViewBranchMedium.TermName" xml:space="preserve">
+    <value>টার্মের নাম</value>
+  </data>
+  <data name="ViewBranchMedium.Academic" xml:space="preserve">
+    <value>একাডেমীক</value>
+  </data>
+  <data name="ViewBranchMedium.Accounts" xml:space="preserve">
+    <value>হিসাব</value>
+  </data>
+  <data name="ViewBranchMedium.Add/ChangeSessionBufferPeriod" xml:space="preserve">
+    <value>সেশন বাফার কাল যোগ/পরিবর্তন করুন</value>
+  </data>
+  <data name="ViewBranchMedium.AdmitStudent" xml:space="preserve">
+    <value>শিক্ষার্থী ভর্তি করুন</value>
+  </data>
+  <data name="ViewBranchMedium.BalanceSheet" xml:space="preserve">
+    <value>ব্যাল্যান্স শিট</value>
+  </data>
+  <data name="ViewBranchMedium.BankVoucher" xml:space="preserve">
+    <value>ব্যাংক ভাউচার</value>
+  </data>
+  <data name="ViewBranchMedium.CashVoucher" xml:space="preserve">
+    <value>ক্যাশ ভাউচার</value>
+  </data>
+  <data name="ViewBranchMedium.ClearData" xml:space="preserve">
+    <value>তথ্য মুছে ফেলুন</value>
+  </data>
+  <data name="ViewBranchMedium.COA" xml:space="preserve">
+    <value>COA</value>
+  </data>
+  <data name="ViewBranchMedium.ContraJournal" xml:space="preserve">
+    <value>কন্ত্রা জার্নাল</value>
+  </data>
+  <data name="ViewBranchMedium.DateOfBirth" xml:space="preserve">
+    <value>জন্মদিন</value>
+  </data>
+  <data name="ViewBranchMedium.Days" xml:space="preserve">
+    <value>দিন</value>
+  </data>
+  <data name="ViewBranchMedium.Employee" xml:space="preserve">
+    <value>কর্মচারী</value>
+  </data>
+  <data name="ViewBranchMedium.Examination" xml:space="preserve">
+    <value>পরীক্ষা</value>
+  </data>
+  <data name="ViewBranchMedium.FromMaster" xml:space="preserve">
+    <value>মাস্টার থেকে</value>
+  </data>
+  <data name="ViewBranchMedium.FromPreviousSession" xml:space="preserve">
+    <value>পূর্ববর্তী সেশন থেকে</value>
+  </data>
+  <data name="ViewBranchMedium.FullName" xml:space="preserve">
+    <value>সম্পূর্ণ নাম</value>
+  </data>
+  <data name="ViewBranchMedium.GeneralJournal" xml:space="preserve">
+    <value>সাধারন জার্নাল</value>
+  </data>
+  <data name="ViewBranchMedium.Group" xml:space="preserve">
+    <value>গ্রুপ</value>
+  </data>
+  <data name="ViewBranchMedium.ImportCOA" xml:space="preserve">
+    <value>COA ইমপোর্ট করুন</value>
+  </data>
+  <data name="ViewBranchMedium.IncomeStatement" xml:space="preserve">
+    <value>আয়ের বিবৃতি</value>
+  </data>
+  <data name="ViewBranchMedium.SessionBufferPeriod" xml:space="preserve">
+    <value>সেশন বাফার কাল</value>
+  </data>
+  <data name="ViewBranchMedium.Statements" xml:space="preserve">
+    <value>বিবৃতি</value>
+  </data>
+  <data name="ViewBranchMedium.StudentID" xml:space="preserve">
+    <value>শিক্ষার্থীর আইডি</value>
+  </data>
+  <data name="ViewBranchMedium.TrialBalance" xml:space="preserve">
+    <value>ট্রায়াল ব্যাল্যান্স</value>
+  </data>
+  <data name="ViewBranchMedium.YearClosing" xml:space="preserve">
+    <value>বছর বন্ধ করুন</value>
+  </data>
+  <data name="ViewBranchMedium.AccountNumber" xml:space="preserve">
+    <value>অ্যাকাউন্ট নাম্বার</value>
+  </data>
+  <data name="ViewBranchMedium.BankInfo" xml:space="preserve">
+    <value>ব্যাংকের তথ্য</value>
+  </data>
+  <data name="ViewBranchMedium.BankName" xml:space="preserve">
+    <value>ব্যাংকের নাম</value>
+  </data>
+  <data name="ViewBranchMedium.BranchName" xml:space="preserve">
+    <value>শাখার নাম</value>
+  </data>
+  <data name="ViewBranchMedium.EmployeeName" xml:space="preserve">
+    <value>কর্মচারীর নাম</value>
+  </data>
+  <data name="ViewBranchMedium.EmployeeType" xml:space="preserve">
+    <value>কর্মচারীর ধরন</value>
+  </data>
+  <data name="ViewBranchMedium.Room" xml:space="preserve">
+    <value>রুম</value>
+  </data>
+  <data name="ViewBranchMedium.Branch" xml:space="preserve">
+    <value>শাখা</value>
+  </data>
+  <data name="ViewBranchMedium.Action" xml:space="preserve">
+    <value>কর্ম</value>
+  </data>
+  <data name="ViewBranchMedium.AddBank" xml:space="preserve">
+    <value>ব্যাংক যোগ করুন</value>
+  </data>
+  <data name="ViewBranchMedium.CollectAcademicFees" xml:space="preserve">
+    <value>একাডেমিক ফী সংগ্রহ করুন</value>
+  </data>
+  <data name="ViewBranchMedium.MonthlyFeeSetup" xml:space="preserve">
+    <value>মাসিক ফী সেট করুন</value>
+  </data>
+  <data name="ViewBranchMedium.YearlyFeeSetup" xml:space="preserve">
+    <value>বাৎসরিক ফী সেট করুন</value>
+  </data>
+  <data name="ViewBranchMedium.AddResultGrade" xml:space="preserve">
+    <value>ফলাফলের গ্রেড যোগ করুন</value>
+  </data>
+  <data name="ViewBranchMedium.NotificationConfiguration" xml:space="preserve">
+    <value>নোটিফিকেশন কনফিগারেশন</value>
+  </data>
+  <data name="ViewBranchMedium.ResultGrade" xml:space="preserve">
+    <value>ফলাফলের গ্রেড</value>
+  </data>
+  <data name="ViewBranchMedium.SelectSession" xml:space="preserve">
+    <value>সেশন বাছাই করুন</value>
+  </data>
+  <data name="ViewBranchMedium.Shift" xml:space="preserve">
+    <value>শিফট</value>
+  </data>
+  <data name="ViewBranchMedium.AddNotificationConfiguration" xml:space="preserve">
+    <value>নোটিফিকেশন কনফিগারেশন যোগ করুন</value>
+  </data>
+  <data name="ViewBranchMedium.Billing" xml:space="preserve">
+    <value>বিল</value>
+  </data>
+  <data name="ViewBranchMedium.ConfigureServiceCharge" xml:space="preserve">
+    <value>সার্ভিস চার্জ কনফিগার </value>
+  </data>
+  <data name="ViewBranchMedium.PayBill" xml:space="preserve">
+    <value>বিল পরিশোধ</value>
+  </data>
+  <data name="ViewBranchMedium.BillingInfo" xml:space="preserve">
+    <value>বিলের তথ্য</value>
+  </data>
+  <data name="ViewBranchMedium.GenerateSalarySheet" xml:space="preserve">
+    <value>বেতন শিট তৈরী করুন</value>
+  </data>
+  <data name="ViewBranchMedium.Payroll" xml:space="preserve">
+    <value>পেরোল</value>
+  </data>
+</root>

@@ -1,0 +1,152 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@model RoomViewModel
+@{
+  ViewData["Title"] = "ViewRoom";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-container">
+  <div class="page-content-wrapper">
+    <div class="page-content">
+   
+      <!-- END PAGE HEADER-->
+      <!-- BEGIN PAGE CONTENT-->
+      <div class="row">
+        <div class="col-md-12">
+          <!-- BEGIN PROFILE SIDEBAR -->
+          <div class="profile-sidebar">
+            <!-- PORTLET MAIN -->
+              <div class="portlet light profile-sidebar-portlet">
+                  <!-- SIDEBAR USERPIC -->
+                  <div class="profile-userpic">
+                      <a href="#"><img src="../../img/school.png" class="img-responsive" alt=""></a>
+                  </div>
+                  <!-- END SIDEBAR USERPIC -->
+                  <!-- SIDEBAR USER TITLE -->
+                  <div class="profile-usertitle-name small-title">
+                      @Html.DisplayFor(model => model.RoomNo)
+                  </div>
+                  <div class="profile-stat-text">
+                      @Localizer["ViewRoom.RoomNo"]
+                  </div>
+                  <hr />
+                  <!-- END SIDEBAR USER TITLE -->
+                  <div class="profile-usertitle-name">
+                      @*<a href="/Institute/ViewInstitute?instituteId=@Model.Id">
+
+            </a>*@
+                      <a href="#">Dummy Institute</a>
+                  </div>
+                  <div class="profile-stat-text">
+                      @Localizer["ViewRoom.Institute"]
+                  </div>
+                  <hr />
+                  <div class="profile-usertitle-name">
+                      @*<a href="/Branch/ViewBranch?branchId=@Model.Branch.Id">
+              @Html.DisplayFor(m => m.Branch.BranchName)
+            </a>*@
+                      <a href="#">Dummy Branch</a>
+                  </div>
+                  <div class="profile-stat-text">
+                      @Localizer["ViewRoom.Branch"]
+                  </div>
+
+              </div>
+            <!-- END PORTLET MAIN -->
+          </div>
+          <!-- END BEGIN PROFILE SIDEBAR -->
+          <!-- BEGIN PROFILE CONTENT -->
+          <div class="profile-content">
+              <div class="row">
+                  
+                  <div class="col-md-12">
+                      <!-- BEGIN PORTLET -->
+                      <div class="portlet light">
+                          <div class="portlet-title tabbable-line">
+                              <div class="page-toolbar custom-page-menu-bar">
+                                  <div class="btn-group">
+                                      <ul style="padding:0px;">
+                                          <li class="custom-page-menu dropdown primary-menu-item-li">
+                                              <a href="#" class="show-dropdown-on-hover" data-toggle="custom-page-menu">
+                                                  <button type="button" class="btn btn-fit-height dark-bg dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="100" data-close-others="true">
+                                                      <i class="fa fa-bars"></i>
+                                                  </button>
+                                              </a>
+                                              <ul class="dropdown-menu light-arrow-only">
+                                                  <li>
+                                                      <a href="@Url.Action("UpdateRoom", new {roomId = Model.Id})">@Localizer["ViewRoom.UpdateRoom"]</a>
+                                                  </li>
+                                                  <li>
+                                                      <a href="/Room/Index">@Localizer["ViewRoom.RoomList"]</a>
+                                                  </li>
+                                              </ul>
+                                          </li>
+                                      </ul>
+                                  </div>
+                              </div>
+                              <ul class="nav nav-tabs custom-page-tab">
+                                  <li class="active">
+                                      <a href="#tab_genereal_info" data-toggle="tab">
+                                        <h5 class="caption-subject font-blue-madison bold uppercase">@Localizer["ViewRoom.GeneralInfo"]</h5>
+                                      </a>
+                                  </li>
+                              </ul>
+
+                          </div>
+                          <div class="portlet-body">
+                              <!--BEGIN TABS-->
+                              <div class="tab-content">
+                                  <div class="tab-pane active" id="tab_genereal_info">
+                                      <div style="min-height: 337px;">
+                                          <div class="col-md-12">
+                                              <div class="row">
+                                                  <div class="col-md-12">
+                                                      <div class="col-md-6 col-sm-6 col-xs-6">
+                                                          <div class="uppercase profile-stat-title">
+                                                              @Html.DisplayFor(m => m.ClassTimeCapacity)
+                                                          </div>
+                                                      </div>
+                                                      <div class="col-md- col-sm- col-xs-">
+                                                          <div class="uppercase profile-stat-title">
+                                                              @Html.DisplayFor(m => m.ExamTimeCapacity)
+                                                          </div>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                              <div class="clearfix"></div>
+                                              <div class="row">
+                                                  <div class="col-md-12">
+                                                      <div class="col-md-6 col-sm-6 col-xs-6">
+                                                          <div class="uppercase profile-stat-text">
+                                                              @Localizer["ViewRoom.ClassTimeCapacity"]
+                                                          </div>
+                                                      </div>
+                                                      <div class="col-md- col-sm- col-xs-">
+                                                          <div class="uppercase profile-stat-text">
+                                                              @Localizer["ViewRoom.ExamTimeCapacity"]
+                                                          </div>
+                                                      </div>
+                                                      
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+
+                              </div>
+                              <!--END TABS-->
+                          </div>
+                      </div>
+                      <!-- END PORTLET -->
+                  </div>
+                
+              </div>
+
+          </div>
+          <!-- END PROFILE CONTENT -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

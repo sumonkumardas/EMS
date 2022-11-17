@@ -1,0 +1,172 @@
+﻿@model SinePulse.EMS.Site.Models.AddStudentContactPersonViewModel
+@using Microsoft.AspNetCore.Mvc.Localization
+@using SinePulse.EMS.Messages.Model.Enums
+@inject IViewLocalizer Localizer
+@{
+    ViewData["Title"] = "AddStudentContactPerson";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-container">
+  <!-- BEGIN CONTENT -->
+  <div class="page-content-wrapper">
+    <div class="page-content">
+      <div class="portlet-body form">
+        <!-- BEGIN FORM-->
+        <div class="title-on-top">@Localizer["AddStudentContactPerson.Title"]</div>
+        <form asp-action="AddStudentContactPerson" class="form-horizontal box-shadow-form" id="form_sample_3">
+          <div class="form-body">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input asp-for="StudentId" type="hidden" runat="server" />
+            <input asp-for="BranchMediumId" type="hidden" runat="server" />
+            <div class="row-fluid col-md-12 zero-padding-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["AddStudentContactPerson.Name"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <input asp-for="Name" type="text" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["AddStudentContactPerson.EmailAddress"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <input asp-for="EmailAddress" type="text" class="form-control" />
+                    <span asp-validation-for="EmailAddress" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row-fluid col-md-12 zero-padding-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["AddStudentContactPerson.Relation"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <select asp-for="RelationType" asp-items="Html.GetEnumSelectList<RelationTypeEnum>()" class="form-control">
+                      <option selected="selected" value="">@Localizer["AddStudentContactPerson.SelectRelation"]</option>
+                    </select>
+                    <span asp-validation-for="RelationType" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["AddStudentContactPerson.NID"] </label>
+                  </div>
+                  <div class="col-md-8">
+                    <input asp-for="NID" type="text" class="form-control" />
+                    <span asp-validation-for="NID" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row-fluid col-md-12 zero-padding-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["AddStudentContactPerson.PhoneNo"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <input asp-for="PhoneNo" type="text" class="form-control" />
+                    <span asp-validation-for="PhoneNo" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["AddStudentContactPerson.Designation"] </label>
+                  </div>
+                  <div class="col-md-8">
+                    <input asp-for="Designation" type="text" class="form-control" />
+                    <span asp-validation-for="Designation" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row-fluid col-md-12 zero-padding-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["AddStudentContactPerson.Profession"] </label>
+                  </div>
+                  <div class="col-md-8">
+                    <input asp-for="Profession" type="text" class="form-control" />
+                    <span asp-validation-for="Profession" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["AddStudentContactPerson.OfficeContactNo"] </label>
+                  </div>
+                  <div class="col-md-8">
+                    <input asp-for="OfficeContactNo" type="text" class="form-control" />
+                    <span asp-validation-for="OfficeContactNo" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row-fluid col-md-12 zero-padding-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["AddStudentContactPerson.OfficeNameAddress"] </label>
+                  </div>
+                  <div class="col-md-8">
+                    <input asp-for="OfficeNameAddress" type="text" class="form-control" />
+                    <span asp-validation-for="OfficeNameAddress" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row-fluid col-md-12 zero-padding-row">
+              <div class="col-md-6">
+
+              </div>
+              <div class="col-md-6">
+
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <br />
+            <div class="btn-container">
+              <button type="button" class="btn custom-btn custom-cancel-btn pull-left" onclick="location.href = '/Student/ViewStudent?studentId=@Model.StudentId&branchMediumId=@Model.BranchMediumId'">@Localizer["AddStudentContactPerson.CancelButton"]</button>
+              <button type="submit" class="btn custom-btn custom-cancel-btn pull-right">@Localizer["AddStudentContactPerson.CreateButton"]</button>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+        </form>
+        <!-- END FORM-->
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+

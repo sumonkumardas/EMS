@@ -1,0 +1,48 @@
+﻿@using SinePulse.EMS.Domain.Features
+@using SinePulse.EMS.Messages.Model.Enums
+@model ShowTermListViewModel
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+
+<table class="table table-striped table-hover" id="sample_2">
+    <thead class="filterCriteria">
+        <tr class="uppercase">
+          <th>@Localizer["ShowTermList.TermName"]</th>
+          <th>@Localizer["ShowTermList.StartDate"]</th>
+          <th>@Localizer["ShowTermList.EndDate"]</th>
+          <th>@Localizer["ShowTermList.Session"]</th>
+          <th>@Localizer["ShowTermList.Action"]</th>
+        </tr>
+    </thead>
+    @{
+        if (Model.Terms.Count > 0)
+        {
+            foreach (var termModel in Model.Terms)
+            {
+                var termStartDate = termModel.StartDate.ToString("dd MMMM, yyyy");
+                var termEndDate = termModel.EndDate.ToString("dd MMMM, yyyy");
+                <tr>
+                    <td>
+                        @if (Model.HasPermission(Feature.ExaminationEnum.ViewExamTerm.ToString()))
+                        {
+                            <a href="/Term/ViewTerm?termId=@termModel.TermId">@termModel.TermName</a>
+                        }
+                        else
+                        {
+                            @termModel.TermName
+                        }
+                    </td>
+                    <td>@termStartDate</td>
+                    <td>@termEndDate</td>
+                    <td>@Html.DisplayFor(model => termModel.SessionData.SessionText)</td>
+                    <td>
+                        @if (Model.HasPermission(Feature.ExaminationEnum.EditExamTerm.ToString()))
+                        {
+                            <a href="/Term/UpdateTerm?id=@termModel.TermId" class="action-link"><i class="fa fa-edit action-icon"></i></a>
+                        }
+                    </td>
+                </tr>
+            }
+        }
+    }
+</table>

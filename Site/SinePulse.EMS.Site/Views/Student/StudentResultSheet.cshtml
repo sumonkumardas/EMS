@@ -1,0 +1,44 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@model StudentResultSheetViewModel
+@inject IViewLocalizer Localizer
+<div class="col-md-6">
+  <input type="hidden" asp-for="BranchMediumId" id="branchMediumId" />
+  <input type="hidden" asp-for="StudentId" id="studentId" />
+  <div class="form-group">
+    <div class="col-md-4">
+      <label>@Localizer["StudentResultSheet.Session"]</label><span class="required">*</span>
+    </div>
+    <div class="col-md-8">
+      @Html.DropDownListFor(x => x.SessionId, new SelectList(Model.Sessions, "Id", "SessionName"), @Localizer["StudentResultSheet.SelectSession"].Value, new { @class = "form-control", id = "resultSheetSessionDropDown", required = true })
+      <span asp-validation-for="SessionId" class="text-danger"></span>
+    </div>
+  </div>
+</div>
+<div class="col-md-6">
+  <div class="form-group">
+    <div class="col-md-4">
+      <label>@Localizer["StudentResultSheet.ExamTerm"]</label><span class="required">*</span>
+    </div>
+    <div class="col-md-8">
+      @Html.DropDownListFor(x => x.TermId, Enumerable.Empty<SelectListItem>(), @Localizer["StudentResultSheet.SelectTerm"].Value, new { @class = "form-control", id = "resultSheetExamTermDropDown", required = true })
+      <span asp-validation-for="TermId" class="text-danger"></span>
+    </div>
+  </div>
+</div>
+<br style="line-height:5;">
+<div>
+    <table class="table table-striped table-hover" id="sample_5">
+        <thead class="filterCriteria">
+        <tr>
+          <th>@Localizer["StudentResultSheet.Subject"]</th>
+          <th>@Localizer["StudentResultSheet.SubjectiveMark"]</th>
+          <th>@Localizer["StudentResultSheet.ObjectiveMark"]</th>
+          <th>@Localizer["StudentResultSheet.PracticalMark"]</th>
+          <th>@Localizer["StudentResultSheet.ClassTestMark"]</th>
+          <th>@Localizer["StudentResultSheet.Grade"]</th>
+          <th>@Localizer["StudentResultSheet.GradePoint"]</th>
+        </tr>
+        </thead>
+        <tbody id="gradeSheetTableBody"></tbody>
+    </table>
+</div>

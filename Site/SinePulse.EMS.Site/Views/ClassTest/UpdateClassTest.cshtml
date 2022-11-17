@@ -1,0 +1,232 @@
+@using SinePulse.EMS.Domain.Enums
+@model SinePulse.EMS.Site.Models.EditClassTestViewModel
+@inject IViewLocalizer Localizer
+@using Microsoft.AspNetCore.Mvc.Localization
+@{
+  ViewData["Title"] = "EditClassTest";
+}
+
+<div class="page-container">
+  <!-- BEGIN CONTENT -->
+  <div class="page-content-wrapper">
+    <div class="page-content">
+      <div class="portlet-body form">
+        <!-- BEGIN FORM-->
+        <div class="title-on-top">@Localizer["UpdateClassTest.Title"]</div>
+        <form asp-action="UpdateClassTest" class="form-horizontal box-shadow-form" id="form_sample_3">
+          <div class="form-body">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input asp-for="SectionId" type="hidden" class="form-control" />
+            <input asp-for="Id" type="hidden" class="form-control" />
+            <div class="row-fluid col-md-12 zero-padding-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["UpdateClassTest.TestName"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <input asp-for="TestName" type="text" class="form-control" />
+                    <span asp-validation-for="TestName" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["UpdateClassTest.Term"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    @Html.DropDownListFor(x => x.TermId, new SelectList(Model.Terms, "TermId", "TermName"), @Localizer["UpdateClassTest.SelectTerm"].Value, new { @class = "form-control", id = "term-dropdown" })
+                    <span asp-validation-for="TermId" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row-fluid col-md-12 zero-padding-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["UpdateClassTest.Class"] </label>
+                  </div>
+                  <div class="col-md-8">
+                    <input type="text" class="form-control" value="@Model.ClassText" disabled="disabled" />
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["UpdateClassTest.Group"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    @Html.DropDownListFor(x => x.GroupName, new SelectList(Model.Terms.FirstOrDefault(x => x.TermId == Model.TermId)?.Groups ?? new List<EditClassTestViewModel.Group>(), "GroupName", "GroupName"), @Localizer["UpdateClassTest.SelectGroup"].Value, new { @class = "form-control", id = "group-dropdown" })
+                    <span asp-validation-for="GroupName" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row-fluid col-md-12 zero-padding-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["UpdateClassTest.Subject"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    @Html.DropDownListFor(x => x.ExamConfigurationId, new SelectList(Model.Terms.FirstOrDefault(x => x.TermId == Model.TermId)?.Groups?.FirstOrDefault(x => x.GroupName == Model.GroupName)?.Subjects ?? new List<EditClassTestViewModel.Subject>(), "ExamConfigurationId", "SubjectName"), @Localizer["UpdateClassTest.SelectSubject"].Value, new { @class = "form-control", id = "subject-dropdown" })
+                    <span asp-validation-for="ExamConfigurationId" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["UpdateClassTest.ExamType"]</label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <select asp-for="ExamType" class="form-control" asp-items="Html.GetEnumSelectList<ExamTypeEnum>()">
+                      <option selected="selected" value="0">@Localizer["UpdateClassTest.SelectExamType"]</option>
+                    </select>
+                    <span asp-validation-for="ExamType" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row-fluid col-md-12 zero-padding-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["UpdateClassTest.FullMarks"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <input asp-for="FullMarks" type="text" class="form-control" />
+                    <span asp-validation-for="FullMarks" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["UpdateClassTest.Date"]</label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+
+                    <input type="text" asp-for="Date" class="form-control datepicker" name="Date">
+
+                    <span asp-validation-for="Date" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row-fluid col-md-12 zero-padding-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["UpdateClassTest.StartTime"]</label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <input asp-for="StartTime" type="text" onfocus="(this.type='time')" onblur="{this.type='text'}" class="form-control" />
+                    <span asp-validation-for="StartTime" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["UpdateClassTest.EndTime"]</label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <input asp-for="EndTime" type="text" onfocus="(this.type='time')" onblur="{this.type='text'}" class="form-control" />
+                    <span asp-validation-for="EndTime" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <br />
+            <div class="btn-container">
+              <button type="button" class="btn custom-btn custom-cancel-btn pull-left" onclick="location.href='/Section/ViewSection?sectionId=@Model.SectionId#tab_classTest'">@Localizer["UpdateClassTest.CancelButton"]</button>
+              <button type="submit" class="btn custom-btn custom-cancel-btn pull-right">@Localizer["UpdateClassTest.UpdateButton"]</button>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+        </form>
+        <!-- END FORM-->
+      </div>
+    </div>
+  </div>
+</div>
+
+@section Scripts {
+  @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+  <script>
+        var terms = {};
+        @foreach (var term in Model.Terms)
+        {
+            @:var groups = {};
+            foreach (var group in term.Groups)
+            {
+                @:var subjects = {};
+                foreach (var subject in group.Subjects)
+                {
+                    @:subjects[@subject.ExamConfigurationId] = { examConfigurationId: @subject.ExamConfigurationId, subjectName: '@subject.SubjectName' };
+                }
+                @:groups['@group.GroupName'] = { groupName: '@group.GroupName', subjects: subjects };
+            }
+            @:terms[@term.TermId] = { termId: @term.TermId, termName: '@term.TermName', groups: groups };
+        }
+
+        $(document).ready(function() {
+            var termFirstLoad = true;
+            var groupFirstLoad = true;
+            var termDropdown = $('#term-dropdown');
+            var groupDropdown = $('#group-dropdown');
+            var subjectDropdown = $('#subject-dropdown');
+
+            termDropdown.children('option:not(:first)').remove();
+            $.each(terms,
+                function(index, term) {
+                    termDropdown.append(new Option(term.termName, term.termId));
+                });
+            if (termFirstLoad == true) {
+                termDropdown.val(@Model.TermId);
+            }
+            termDropdown.change(function() {
+                var termId = termDropdown.val();
+                groupDropdown.children('option:not(:first)').remove();
+                subjectDropdown.children('option:not(:first)').remove();
+                $.each(terms[termId].groups,
+                    function(index, group) {
+                        groupDropdown.append(new Option(group.groupName, group.groupName));
+                    });
+                if (termFirstLoad == true && groupFirstLoad == true) {
+                    groupDropdown.val("@Model.GroupName");
+                }
+            });
+            groupDropdown.change(function() {
+                var termId = termDropdown.val();
+                var groupName = groupDropdown.val();
+                subjectDropdown.children('option:not(:first)').remove();
+                $.each(terms[termId].groups[groupName].subjects,
+                    function(index, subject) {
+                        subjectDropdown.append(new Option(subject.subjectName, subject.examConfigurationId));
+                    });
+
+                if (termFirstLoad == true && groupFirstLoad == true) {
+                    subjectDropdown.val(@Model.ExamConfigurationId);
+                    termFirstLoad = false;
+                    groupFirstLoad = false;
+                }
+            });
+            console.log("ready!");
+        });
+  </script>
+}

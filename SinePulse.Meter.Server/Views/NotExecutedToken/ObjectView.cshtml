@@ -1,0 +1,176 @@
+@using NakedObjects.Web.Mvc.Html
+@model SinePulse.SmartMeter.Domain.Meters.NotExecutedToken
+<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.js"></script>
+
+<div id="body">
+    <section class="main-content">
+        @Html.TabbedHistory(Model)
+        <div class="nof-collection-table">
+            <div class="nof-collection-formats">
+
+                <div>
+                    <a href="javascript:printDiv('notExecutedTokenDivForPrint')"><b>Print</b></a>
+                    <iframe name="print_frame" width="0" height="0" frameborder="0" src="about:blank"></iframe>
+                    @if (Model.TokenHistories.Count > 0)
+                    {
+                        @Html.ActionLink("Export", "ExportToCSV", new { meterno = @Model.MeterNo }, new { @class = "t-button", @style = "text-align:right" })
+                    }
+                </div>
+                <div id="notExecutedTokenDiv">
+                    <p id="notExecutedTokenReportHeader" style="text-align: center">Not Executed Token Report</p>
+
+                    <table id="notExecutedTokenTable" class="NotExecutedToken">
+                        <thead>
+                            <tr>
+
+                                <th>
+                                    Consumer No
+                                </th>
+                                <th>
+                                    Mobile
+                                </th>
+                                <th>
+                                    Address
+                                </th>
+                                <th>
+                                    MeterNo
+                                </th>
+                                <th>
+                                    TokenNo
+                                </th>
+
+                                <th>
+                                    TokenType
+                                </th>
+                                <th>
+                                    SerialNo
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var tokenHistory in Model.TokenHistories)
+                            {
+                                <tr>
+                                    <td>@tokenHistory.Meter.Consumer.ConsumerNo</td>
+                                    <td>@tokenHistory.Meter.Consumer.MobileNo</td>
+                                    @if (@tokenHistory.Meter.Consumer.ServiceAddress != null)
+                                    {
+                                        <td>@tokenHistory.Meter.Consumer.ServiceAddress.Street1 +","+ @tokenHistory.Meter.Consumer.ServiceAddress.Street2 </td>
+                                    }
+                                    else{
+                                    <td></td>
+                                    }
+                                    <td>@tokenHistory.Meter.MeterNo</td>
+                                    <td>@tokenHistory.TokenNo</td>
+                                    <td>@tokenHistory.TokenType</td>
+                                    <td>@tokenHistory.SerialNo</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+
+                <div id="notExecutedTokenDivForPrint">
+                    <p style="text-align: center">Not Executed Token Report</p>
+
+                    <table>
+                        <thead>
+                            <tr>
+
+                                <th>
+                                    Consumer No
+                                </th>
+                                <th>
+                                    Mobile
+                                </th>
+                                <th>
+                                    Address
+                                </th>
+                                <th>
+                                    MeterNo
+                                </th>
+                                <th>
+                                    TokenNo
+                                </th>
+
+                                <th>
+                                    TokenType
+                                </th>
+                                <th>
+                                    SequenceNo
+                                </th>
+                                <th>
+                                    SerialNo
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var tokenHistory in Model.TokenHistories)
+                            {
+                                <tr>
+                                    <td>@tokenHistory.Meter.Consumer.ConsumerNo</td>
+                                    <td>@tokenHistory.Meter.Consumer.MobileNo</td>
+                                    @if (@tokenHistory.Meter.Consumer.ServiceAddress != null)
+                                    {
+                                        <td>@tokenHistory.Meter.Consumer.ServiceAddress.Street1 +","+ @tokenHistory.Meter.Consumer.ServiceAddress.Street2 </td>
+                                    }
+                                    <td>@tokenHistory.Meter.MeterNo</td>
+                                    <td>@tokenHistory.TokenNo</td>
+                                    <td>@tokenHistory.TokenType</td>
+                                    <td>   </td>
+                                    <td>@tokenHistory.SerialNo</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+
+                <script type="text/javascript">
+                    $(document).ready(function () {
+                        $('#notExecutedTokenTable').DataTable();
+
+                    });
+                    //'<style media="print"> table, th, td { border: 1px solid black; border-collapse: collapse; width: 100%;}' +
+                    function printDiv(divId) {
+                        window.frames["print_frame"].document.body.innerHTML = '<style media="print"> table, th, td { border: 1px solid black; border-collapse: collapse; width: 100%;} @@page {size: landscape}</style>' + document.getElementById(divId).innerHTML;
+                        window.frames["print_frame"].window.focus();
+                        window.frames["print_frame"].window.print();
+                    }
+                </script>
+
+                <style type="text/css">
+                    @@media screen {
+                        #notExecutedTokenReportHeader {
+                            display: none;
+                        }
+
+                        #notExecutedTokenDivForPrint {
+                            display: none;
+                        }
+                    }
+                </style>
+
+            </div>
+        </div>
+
+    </section>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/cssjqryUi")
+}
+

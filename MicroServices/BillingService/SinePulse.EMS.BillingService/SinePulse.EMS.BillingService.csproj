@@ -1,0 +1,34 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="ScheduleBillingAlertMessageHandler.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="log4net" Version="2.0.8" />
+    <PackageReference Include="Quartz" Version="3.0.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    
+    <ProjectReference Include="..\..\..\Infrastructure\Persistence\SinePulse.EMS.Persistence\SinePulse.EMS.Persistence.csproj" />
+    
+    <ProjectReference Include="..\..\..\Messages\SinePulse.EMS.Messages.AlertProcessingMessages\SinePulse.EMS.Messages.AlertProcessingMessages.csproj" />
+    
+    <ProjectReference Include="..\..\..\Messages\SinePulse.EMS.Messages.EmailSendingMessages\SinePulse.EMS.Messages.EmailSendingMessages.csproj" />
+    
+    <ProjectReference Include="..\..\..\Messages\SinePulse.EMS.Messages.SmsSendingMessages\SinePulse.EMS.Messages.SmsSendingMessages.csproj" />
+    
+    <ProjectReference Include="..\..\..\SinePulse.EMS.Messages\SinePulse.EMS.Messages.csproj" />
+    
+    <ProjectReference Include="..\..\..\UseCases\SinePulse.EMS.UseCases\SinePulse.EMS.UseCases.csproj" />
+    
+    <ProjectReference Include="..\..\..\Utility\SinePulse.EMS.Utility.MessagingQueue\SinePulse.EMS.Utility.MessagingQueue.csproj" />
+    
+  </ItemGroup>
+
+</Project>

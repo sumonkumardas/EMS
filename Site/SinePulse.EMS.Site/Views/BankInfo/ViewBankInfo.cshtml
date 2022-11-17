@@ -1,0 +1,273 @@
+﻿@using SinePulse.EMS.Domain.Features
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+
+@{
+  ViewData["Title"] = "ViewBankInfo";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model ShowBankViewModel
+<div class="page-container">
+  <!-- BEGIN CONTENT -->
+  <div class="page-content-wrapper">
+    <div class="page-content">
+      <!-- END PAGE HEADER-->
+      <!-- BEGIN PAGE CONTENT-->
+      <div class="row">
+        <div class="col-md-12">
+          <!-- BEGIN PROFILE SIDEBAR -->
+          <div class="profile-sidebar">
+            <!-- PORTLET MAIN -->
+              <div class="portlet light profile-sidebar-portlet">
+                  <!-- SIDEBAR USERPIC -->
+                  <div class="profile-userpic">
+                      <img src="../../img/school.png" class="img-responsive" alt="">
+                  </div>
+                  <!-- END SIDEBAR USERPIC -->
+                  <!-- SIDEBAR USER TITLE -->
+                  <div class="profile-usertitle-name small-title">
+                      @Html.DisplayFor(model => model.Bank.BankName)
+                  </div>
+                  <div class="profile-stat-text">
+                      @Localizer["ViewBankInfo.Bank"]
+                  </div>
+                  <hr />
+                  <div class="profile-usertitle-name">
+                      @if (Model.HasPermission(Feature.InstituteEnum.ViewInstitute.ToString()))
+                      {
+                          <a class="primary-link" href="/Institute/ViewInstitute?instituteId=@Model.Bank.BranchMedium.Branch.Institute.Id">
+                              @Html.DisplayFor(model => model.Bank.BranchMedium.Branch.Institute.OrganisationName)
+                          </a>
+                      }
+                      else
+                      {
+                          @Html.DisplayFor(model => model.Bank.BranchMedium.Branch.Institute.OrganisationName)
+                      }
+                  </div>
+                  <div class="profile-stat-text">
+                      @Localizer["ViewBankInfo.Institute"]
+                  </div>
+                  <hr />
+                  <div class="profile-usertitle-name">
+                      @if (Model.HasPermission(Feature.BranchEnum.ViewBranch.ToString()))
+                      {
+                          <a class="primary-link" href="/Branch/ViewBranch?branchId=@Model.Bank.BranchMedium.Branch.Id">
+                              @Html.DisplayFor(model => model.Bank.BranchMedium.Branch.BranchName)
+                          </a>
+                      }
+                      else
+                      {
+                          @Html.DisplayFor(model => model.Bank.BranchMedium.Branch.BranchName)
+                      }
+                  </div>
+                  <div class="profile-stat-text">
+                      @Localizer["ViewBankInfo.Branch"]
+                  </div>
+                  <hr />
+                  <div class="profile-usertitle-name">
+                      @if (Model.HasPermission(Feature.BranchMediumEnum.ViewBranchMedium.ToString()))
+                      {
+                          <a class="primary-link" href="/BranchMedium/ViewBranchMedium?branchMediumId=@Model.Bank.BranchMedium.Medium.Id">
+                              @Html.DisplayFor(model => model.Bank.BranchMedium.Medium.MediumName)
+                          </a>
+                      }
+                      else
+                      {
+                          @Html.DisplayFor(model => model.Bank.BranchMedium.Medium.MediumName)
+                      }
+                  </div>
+                  <div class="profile-stat-text">
+                      @Localizer["ViewBankInfo.Medium"]
+                  </div>
+                  <hr />
+                  <div class="profile-usertitle-name">
+                      @Html.DisplayFor(model => model.Bank.BranchMedium.Shift.ShiftName)
+                  </div>
+                  <div class="profile-stat-text">
+                    @Localizer["ViewBankInfo.Shift"]
+                  </div>
+                  <hr />
+                  <br />
+              </div>
+
+          </div>
+          <!-- END BEGIN PROFILE SIDEBAR -->
+          <!-- BEGIN PROFILE CONTENT -->
+          <div class="profile-content">
+            <div class="row">
+
+              <div class="col-md-12">
+                <!-- BEGIN PORTLET -->
+                <div class="portlet light">
+                  <div class="portlet-title tabbable-line">
+                    <div class="page-toolbar custom-page-menu-bar">
+                      <div class="btn-group">
+                        <ul style="padding:0px;">
+
+                          <li class="custom-page-menu dropdown primary-menu-item-li">
+                            <a href="#" class="show-dropdown-on-hover" data-toggle="custom-page-menu">
+                              <button type="button" class="btn btn-fit-height dark-bg dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="100" data-close-others="true">
+                                <i class="fa fa-bars"></i>
+                              </button>
+                            </a>
+                            <ul class="dropdown-menu light-arrow-only">
+                              @if (Model.HasPermission(Feature.BankInfoEnum.AddBankBranch.ToString()))
+                              {
+                                <li>
+                                  <a href="/BankInfo/AddBankBranch?bankId=@Model.Bank.Id">
+                                     @Localizer["ViewBankInfo.AddBranch"]
+                                  </a>
+                                </li>
+                              }
+                            </ul>
+                          </li>
+
+                        </ul>
+
+                      </div>
+                    </div>
+                    <ul class="nav nav-tabs custom-page-tab">
+                      <li class="active">
+                        <a href="#tab_branch" data-toggle="tab">
+                          <h5 class="caption-subject font-blue-madison bold uppercase">@Localizer["ViewBankInfo.Branch"]</h5>
+                        </a>
+                      </li>
+
+                      @*<li>
+                            <a href="#tab_address" data-toggle="tab">
+                                <h5 class="caption-subject font-blue-madison bold uppercase">Address</h5>
+                            </a>
+                        </li>*@
+                    </ul>
+                  </div>
+
+
+                  <div class="portlet-body">
+                    <!--BEGIN TABS-->
+                    <div class="tab-content">
+                      <div class="active tab-pane" id="tab_branch">
+                        <div style="min-height: 337px;">
+                          <table class="table table-light">
+                            <thead>
+                              <tr class="uppercase">
+                                <th> @Localizer["ViewBankInfo.BranchName"]</th>
+                                <th>@Localizer["ViewBankInfo.AccountNo"]</th>
+                                <th>@Localizer["ViewBankInfo.AccountType"]</th>
+                                <th>@Localizer["ViewBankInfo.Action"]</th>
+                              </tr>
+                            </thead>
+
+                            <tbody>
+                              @{
+                                if (Model.Bank.BankBranches != null && Model.Bank.BankBranches.Any())
+                                {
+                                  foreach (var bankBranch in Model.Bank.BankBranches)
+                                  {
+                                    if (bankBranch.BankAccounts.Any())
+                                    {
+                                      foreach (var bankAccount in bankBranch.BankAccounts)
+                                      {
+                                        <tr>
+
+                                          <td>
+                                            @if (Model.HasPermission(Feature.BankInfoEnum.ViewBankBranch.ToString()))
+                                            {
+                                              <a href="/BankInfo/ViewBankBranch?branchId=@bankBranch.Id">
+                                                @Html.DisplayFor(model => bankBranch.BranchName)
+                                              </a>
+                                            }
+                                            else
+                                            {
+                                              @Html.DisplayFor(model => bankBranch.BranchName)
+                                            }
+                                          </td>
+                                          <td>
+                                            @Html.DisplayFor(model => bankAccount.AccountNumber)
+                                          </td>
+                                          <td>
+                                            @Html.DisplayFor(model => bankAccount.AccountType)
+                                          </td>
+                                          <td>
+                                            @if (Model.HasPermission(Feature.BankInfoEnum.EditBankBranch.ToString()))
+                                            {
+                                              <a href="/BankInfo/UpdateBankBranch?bankBranchId=@bankBranch.Id" class="action-link"><i class="fa fa-edit action-icon"></i></a>
+                                            }
+                                          </td>
+                                        </tr>
+                                      }
+                                    }
+                                    else
+                                    {
+                                      <tr>
+                                        <td>
+                                          @if (Model.HasPermission(Feature.BankInfoEnum.ViewBankBranch.ToString()))
+                                          {
+                                            <a href="/BankInfo/ViewBankBranch?branchId=@bankBranch.Id">
+                                              @Html.DisplayFor(model => bankBranch.BranchName)
+                                            </a>
+                                          }
+                                          else
+                                          {
+                                            @Html.DisplayFor(model => bankBranch.BranchName)
+                                          }
+                                        </td>
+                                        <td>
+                                          -
+                                        </td>
+                                        <td>
+                                          -
+                                        </td>
+                                        <td>
+                                          @if (Model.HasPermission(Feature.BankInfoEnum.EditBankBranch.ToString()))
+                                          {
+                                            <a href="/BankInfo/UpdateBankBranch?bankBranchId=@bankBranch.Id" class="action-link"><i class="fa fa-edit action-icon"></i></a>
+                                          }
+                                        </td>
+                                      </tr>
+                                    }
+                                  }
+                                }
+                              }
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                      <div class="tab-pane" id="tab_address">
+                        <div style="min-height: 337px;">
+                          <div class="row-fluid">
+                            <div class="col-md-6">
+                              Abdus Sattar bhuiyan <br />
+                              2-D, Jahangir Tower, <br />
+                              Badda, Dhaka-1212
+                              <div class="uppercase profile-stat-title">
+                                @Localizer["ViewBankInfo.PresentAddress"]
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              Abdus Sattar bhuiyan <br />
+                              2-D, Jahangir Tower, <br />
+                              Badda, Dhaka-1212
+                              <div class="uppercase profile-stat-title">
+                                @Localizer["ViewBankInfo.PermanentAddress"]
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                  <!--END TABS-->
+                </div>
+              </div>
+              <!-- END PORTLET -->
+            </div>
+          </div>
+
+        </div>
+        <!-- END PROFILE CONTENT -->
+      </div>
+    </div>
+  </div>
+</div>

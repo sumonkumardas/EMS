@@ -1,0 +1,98 @@
+﻿@model PayBillViewModel
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@{
+  ViewData["Title"] = "PayBill";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- BEGIN CONTAINER -->
+
+<div class="page-container">
+  <!-- BEGIN CONTENT -->
+  <div class="page-content-wrapper">
+    <div class="page-content">
+      <div class="portlet-body form">
+        <!-- BEGIN FORM-->
+        <div class="title-on-top">@Localizer["PayBill.Title"]</div>
+        <form asp-action="PayBill" class="form-horizontal box-shadow-form" id="form_sample_3">
+          <div class="form-body">
+            <input type="hidden" asp-for="BranchMediumId" id="branchMediumId" />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="row-fluid col-md-12 zero-padding-row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["PayBill.TotalActiveStudents"]</label>
+                  </div>
+                  <div class="col-md-8">
+                    <input asp-for="TotalActiveStudent" readonly type="text" class="form-control" />
+                    <span asp-validation-for="TotalActiveStudent" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["PayBill.PerStudentCharge"]</label>
+                  </div>
+                  <div class="col-md-8">
+                    <input asp-for="PerStudentCharge" readonly type="text" class="form-control" />
+                    <span asp-validation-for="PerStudentCharge" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["PayBill.TotalAmount"]</label>
+                  </div>
+                  <div class="col-md-8">
+                    <input asp-for="DueAmount" readonly type="text" id="dueAmount" class="form-control" />
+                    <span asp-validation-for="DueAmount" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row-fluid col-md-12 zero-padding-row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["PayBill.PendingYear"]</label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    @Html.DropDownListFor(x => x.Year, new SelectList(Model.Years), @Localizer["PayBill.SelectYear"].Value, new { @class = "form-control", id = "unpaidYearDropDown", required = true})
+                    <span asp-validation-for="Year" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["PayBill.PendingMonth"]</label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    @Html.DropDownListFor(x => x.Month, new SelectList(Enumerable.Empty<SelectListItem>(), "MonthEnum", "MonthName"), @Localizer["PayBill.SelectMonth"].Value, new { @class = "form-control", id = "unpaidMonthDropDown", required = true})
+                    <span asp-validation-for="Month" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <br />
+            <div class="btn-container">
+              <button type="button" class="btn custom-btn custom-cancel-btn pull-left" onclick="location.href = '@Url.Action("ViewBranchMedium", "BranchMedium", new {branchMediumId = Model.BranchMediumId})'">@Localizer["PayBill.Cancel"]</button>
+              <button type="submit" class="btn custom-btn custom-cancel-btn pull-right">@Localizer["PayBill.PayBill"]</button>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+        </form>
+        <!-- END FORM-->
+      </div>
+    </div>
+  </div>
+</div>
+@section Scripts
+  {
+  <script src="~/assets/global/scripts/OnlinePayment/payBill.js" type="text/javascript"></script>
+}

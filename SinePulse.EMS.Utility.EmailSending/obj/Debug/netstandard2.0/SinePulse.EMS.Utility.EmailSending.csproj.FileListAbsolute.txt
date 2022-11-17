@@ -1,0 +1,12 @@
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\SinePulse.EMS.Utility.EmailSending\bin\Debug\netstandard2.0\SinePulse.EMS.Utility.EmailSending.deps.json
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\SinePulse.EMS.Utility.EmailSending\bin\Debug\netstandard2.0\SinePulse.EMS.Utility.EmailSending.dll
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\SinePulse.EMS.Utility.EmailSending\bin\Debug\netstandard2.0\SinePulse.EMS.Utility.EmailSending.pdb
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\SinePulse.EMS.Utility.EmailSending\bin\Debug\netstandard2.0\System.DirectoryServices.Protocols.dll
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\SinePulse.EMS.Utility.EmailSending\bin\Debug\netstandard2.0\System.DirectoryServices.Protocols.xml
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\SinePulse.EMS.Utility.EmailSending\obj\Debug\netstandard2.0\SinePulse.EMS.Utility.EmailSending.csprojAssemblyReference.cache
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\SinePulse.EMS.Utility.EmailSending\obj\Debug\netstandard2.0\SinePulse.EMS.Utility.EmailSending.csproj.CoreCompileInputs.cache
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\SinePulse.EMS.Utility.EmailSending\obj\Debug\netstandard2.0\SinePulse.EMS.Utility.EmailSending.AssemblyInfoInputs.cache
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\SinePulse.EMS.Utility.EmailSending\obj\Debug\netstandard2.0\SinePulse.EMS.Utility.EmailSending.AssemblyInfo.cs
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\SinePulse.EMS.Utility.EmailSending\obj\Debug\netstandard2.0\SinePulse.EMS.Utility.EmailSending.csproj.CopyComplete
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\SinePulse.EMS.Utility.EmailSending\obj\Debug\netstandard2.0\SinePulse.EMS.Utility.EmailSending.dll
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\SinePulse.EMS.Utility.EmailSending\obj\Debug\netstandard2.0\SinePulse.EMS.Utility.EmailSending.pdb

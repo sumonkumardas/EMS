@@ -1,0 +1,108 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@model TrialBalanceViewModel
+@using SinePulse.EMS.ProjectPrimitives
+<style>
+
+    ul, .myUL {
+        list-style-type: none;
+    }
+
+    .myUL {
+        margin: 0;
+        padding: 0;
+    }
+
+    .caret3 {
+        cursor: pointer;
+        -webkit-user-select: none; /* Safari 3.1+ */
+        -moz-user-select: none; /* Firefox 2+ */
+        -ms-user-select: none; /* IE 10+ */
+        user-select: none;
+    }
+
+        .caret3::before {
+            content: "\25B6";
+            color: black;
+            display: inline-block;
+            margin-right: 6px;
+        }
+
+    .caret-down3::before {
+        -ms-transform: rotate(90deg); /* IE 9 */
+        -webkit-transform: rotate(90deg); /* Safari */
+        ' transform: rotate(90deg);
+    }
+
+    .nested3 {
+    }
+
+    #printableDiv {
+    }
+
+    .active {
+        display: block;
+    }
+</style>
+<div class="portlet-body form">
+    <!-- BEGIN FORM-->
+    <form asp-action="ShowTrialBalance" class="form-horizontal">
+        <div class="form-body">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" id="branchMediumId" asp-for="@Model.Branch.BranchMediumId" runat="server" />
+
+        </div>
+    </form>
+    <!-- END FORM-->
+</div>
+<button type="button" class="btn custom-btn custom-cancel-btn pull-left" onclick="showBar()"><span class="ui-button-text">Show Bar</span></button>
+<div id="trialBalanceTransaction">
+    <div id="printableDiv">
+        <div class="row">
+            <div class="col-xs-12" align="center">
+                <p>@Html.Raw(@Model.Branch.BranchMediumName)</p>
+                <p>@Localizer["ShowTrialBalanceWithoutFiltering.TrialBalance"]</p>
+                <p>@Model.StartDate.ToShortDateString() -- @Model.EndDate.ToShortDateString()</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-4" align="left">
+                <h4>@Localizer["ShowTrialBalanceWithoutFiltering.AccountTitle"]</h4>
+                <div>@Html.Raw(@Model.AccountTypeTreeUi)</div>
+
+            </div>
+            <div class="col-xs-3" align="left">
+                <h4>@Localizer["ShowTrialBalanceWithoutFiltering.Debit"]</h4>
+                <div>@Html.Raw(@Model.DebitTreeUi)</div>
+
+            </div>
+            <div class="col-xs-3" align="center">
+                <h4>@Localizer["ShowTrialBalanceWithoutFiltering.Credit"]</h4>
+                <div>@Html.Raw(@Model.EmptyTreeUi)</div>
+                <div>@Html.Raw(@Model.CreditTreeUi)</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-4" align="left">
+                <h3>@Localizer["ShowTrialBalanceWithoutFiltering.Total"]</h3>
+            </div>
+            <div class="col-xs-3" align="left" style="border-top: 5px black solid;">
+                <h3>@Model.TotalDebit</h3>
+
+            </div>
+            <div class="col-xs-3" align="right" style="border-top:5px black solid;">
+                <h3>@Model.TotalCredit</h3>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-4" align="left">
+        <button type="button" onclick="printDiv('printableDiv')" class="btn custom-btn custom-cancel-btn">@Localizer["ShowTrialBalanceWithoutFiltering.Print"]</button>
+
+    </div>
+</div>
+<div id="print-me"></div>
+
+

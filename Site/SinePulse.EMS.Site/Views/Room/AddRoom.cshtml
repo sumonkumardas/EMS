@@ -1,0 +1,93 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@model SinePulse.EMS.Site.Models.AddRoomViewModel
+
+@{
+  ViewData["Title"] = "AddRoom";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="page-container">
+  <!-- BEGIN CONTENT -->
+  <div class="page-content-wrapper">
+    <div class="page-content">
+      <div class="portlet-body form">
+        <!-- BEGIN FORM-->
+        <div class="title-on-top">@Localizer["AddRoom.Title"]</div>
+        <form asp-action="AddRoom" class="form-horizontal box-shadow-form" id="form_sample_3">
+          <div class="form-body">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="row-fluid col-md-12 zero-padding-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["AddRoom.RoomNo"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <input asp-for="RoomNo" type="text" class="form-control" />
+                    <span asp-validation-for="RoomNo" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["AddRoom.ExamTimeCapacity"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <input asp-for="ExamTimeCapacity" type="text" value="" class="form-control" />
+                    <span asp-validation-for="ExamTimeCapacity" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row-fluid col-md-12 zero-padding-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["AddRoom.ClassTimeCapacity"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <input asp-for="ClassTimeCapacity" type="text" value="" class="form-control" />
+                    <span asp-validation-for="ClassTimeCapacity" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <br />
+            @* hidden fields *@
+            <input asp-for="BranchId" runat="server" hidden="true" />
+            <input asp-for="ObjectType" runat="server" hidden="true" />
+            <input asp-for="ObjectId" runat="server" hidden="true" />
+            @* hidden fields *@
+
+            <div class="form-group" hidden="true">
+              <div class="col-md-12">
+                <select class="form-control" id="BranchId" name="BranchId">
+                  <option>@Localizer["AddRoom.Branch"]</option>
+                  <option value="0">Dhaka</option>
+                  <option value="1">Ctg</option>
+                </select>
+                <span asp-validation-for="BranchId" class="text-danger"></span>
+              </div>
+            </div>
+            <div class="btn-container">
+              <button type="button" class="btn custom-btn custom-cancel-btn pull-left" onclick="location.href='/Room/CancelAddRoom?objectType=@Model.ObjectType&objectId=@Model.ObjectId'">@Localizer["AddRoom.CancelButton"]</button>
+              <button type="submit" class="btn custom-btn custom-cancel-btn pull-right">@Localizer["AddRoom.CreateButton"]</button>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+        </form>
+        <!-- END FORM-->
+      </div>
+    </div>
+  </div>
+</div>
+
+@section Scripts {
+  @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

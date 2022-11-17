@@ -1,0 +1,237 @@
+﻿@model SinePulse.EMS.Site.Models.EditEmployeeViewModel
+@inject IViewLocalizer Localizer
+@using Microsoft.AspNetCore.Mvc.Localization
+@using SinePulse.EMS.Domain.Enums
+@{
+    ViewData["Title"] = "Update Employee";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-container">
+  <!-- BEGIN CONTENT -->
+  <div class="page-content-wrapper">
+    <div class="page-content">
+      <div class="portlet-body form">
+        <!-- BEGIN FORM-->
+        <div class="title-on-top">@Localizer["UpdateEmployee.Title"]</div>
+        <form asp-action="UpdateEmployee" class="form-horizontal box-shadow-form" id="form_sample_3">
+          <div class="form-body">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" runat="server" />
+            <input type="hidden" asp-for="ObjectId" runat="server" />
+            <input type="hidden" asp-for="AssociatedWith" runat="server" />
+            <div class="row-fluid col-md-12 zero-padding-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["UpdateEmployee.FullName"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <input asp-for="FullName" type="text" class="form-control" />
+                    <span asp-validation-for="FullName" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["UpdateEmployee.Grade"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    @Html.DropDownListFor(x => x.GradeId, new SelectList(@Model.Grades, "Id", "GradeTitle"), @Localizer["UpdateEmployee.SelectGrade"].Value, new { @class = "form-control" })
+                    <span asp-validation-for="GradeId" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row-fluid col-md-12 zero-padding-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["UpdateEmployee.DOB"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <input asp-for="DOB" type="text" class="form-control datepicker">
+                    <span asp-validation-for="DOB" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["UpdateEmployee.MobileNo"] </label>
+                  </div>
+                  <div class="col-md-8">
+                    <input asp-for="MobileNo" type="text" class="form-control" />
+                    <span asp-validation-for="MobileNo" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row-fluid col-md-12 zero-padding-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["UpdateEmployee.JoiningDate"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <input asp-for="JoiningDate" type="text" class="form-control datepicker">
+                    <span asp-validation-for="JoiningDate" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["UpdateEmployee.EmailAddress"] </label>
+                  </div>
+                  <div class="col-md-8">
+                    <input asp-for="EmailAddress" type="text" class="form-control" />
+                    <span asp-validation-for="EmailAddress" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row-fluid col-md-12 zero-padding-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["UpdateEmployee.EmployeeType"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <select asp-for="EmployeeType" id="employeeTypeDropDown" class="form-control" asp-items="Html.GetEnumSelectList<EmployeeTypeEnum>()">
+                      <option selected="selected">@Localizer["UpdateEmployee.SelectEmployeeType"]</option>
+                    </select>
+                    <span asp-validation-for="EmployeeType" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["UpdateEmployee.NationalId"] </label>
+                  </div>
+                  <div class="col-md-8">
+                    <input asp-for="NationalId" type="text" class="form-control" />
+                    <span asp-validation-for="NationalId" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row-fluid col-md-12 zero-padding-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["UpdateEmployee.JobType"] </label>
+                  </div>
+                  <div class="col-md-8">
+                    @Html.DropDownListFor(x => x.JobTypeId, new SelectList(@Model.JobTypes, "Id", "JobTitle"), @Localizer["UpdateEmployee.SelectJobType"].Value, new { @class = "form-control" })
+                    <span asp-validation-for="JobTypeId" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["UpdateEmployee.BankAccountNo"] </label>
+                  </div>
+                  <div class="col-md-8">
+                    <input asp-for="BankAccountNo" type="text" class="form-control" />
+                    <span asp-validation-for="BankAccountNo" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row-fluid col-md-12 zero-padding-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["UpdateEmployee.Designation"] </label>
+                  </div>
+                  <div class="col-md-8">
+                    @Html.DropDownListFor(x => x.DesignationId, Enumerable.Empty<SelectListItem>(), @Localizer["UpdateEmployee.SelectDesignation"].Value, new { @class = "form-control", id = "designationDropDown" })
+                    <span asp-validation-for="DesignationId" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["UpdateEmployee.ReportTo"] </label>
+                  </div>
+                  <div class="col-md-8">
+                    @Html.DropDownListFor(x => x.ReportToId, new SelectList(Model.Employees, "Id", "FullName"), @Localizer["UpdateEmployee.SelectReportTo"].Value, new { @class = "form-control" })
+                    <span asp-validation-for="ReportToId" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row-fluid col-md-12 zero-padding-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["UpdateEmployee.Status"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <select asp-for="Status" class="form-control" asp-items="Html.GetEnumSelectList<StatusEnum>()">
+                      <option selected="selected">@Localizer["UpdateEmployee.SelectStatus"]</option>
+                    </select>
+                    <span asp-validation-for="Status" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <br />
+            <div class="btn-container">
+              <button type="button" class="btn custom-btn custom-cancel-btn pull-left" onclick="location.href = '@Url.Action("Index", "Employee", new { associationType=Model.AssociatedWith, objectId=Model.ObjectId})'">@Localizer["UpdateEmployee.CancleButton"]</button>
+              <button type="submit" class="btn custom-btn custom-cancel-btn pull-right">@Localizer["UpdateEmployee.UpdateButton"]</button>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+        </form>
+        <!-- END FORM-->
+      </div>
+    </div>
+  </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        $(function () {
+            var designationDropDown = $("#designationDropDown");
+            $("#employeeTypeDropDown").click(function () {
+                $.ajax({
+                    type: "POST",
+                    url: "/Employee/GetDesignationsByEmployeeType?employeeType=" + $("#employeeTypeDropDown").val(),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                        designationDropDown.empty();
+                        designationDropDown.append(new Option("Select Designation*", ""));
+                        jQuery.each(response, function (index, item) {
+                            var dropdownItem = new Option(item.DesignationName, item.Id);
+                            designationDropDown.append(dropdownItem);
+                        });
+                    },
+                    failure: function (response) {
+                        alert("Failure..! Could not Fetch Designation Data using Ajax.");
+                    },
+                    error: function (response) {
+                        alert("Error..! Could not Fetch Designation Data using Ajax.");
+                    }
+                });
+            });
+        });
+    </script>
+}

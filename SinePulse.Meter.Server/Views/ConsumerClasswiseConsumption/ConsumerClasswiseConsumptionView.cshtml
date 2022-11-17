@@ -1,0 +1,90 @@
+﻿@model SinePulse.SmartMeter.Domain.ViewModel.ConsumerClasswiseConsumption
+@{
+  int count = 0;
+  decimal totalConsumtion = 0;
+}
+<div>
+    <div style="text-align: left">
+        @if (Model.Data.Count > 0)
+        {
+            @Html.ActionLink("Export To Excel", "MonthlyConsumptionReportExportToExcel", "ConsumerClasswiseConsumption", new { year = @Model.Year, month = @Model.Month }, null)
+        }
+    </div>
+
+    <div style="text-align: right">
+        @if (Model.Data.Count > 0)
+        {
+            <a href="javascript:printDiv('salesReportDiv')"><b>Print</b></a>
+            <iframe name="print_frame" width="0" height="0" frameborder="0" src="about:blank"></iframe>
+        }
+    </div>
+</div>
+
+<div id="salesReportDiv">
+    <table id="table_id">
+        <thead>
+            <tr>
+
+                <th>
+                    Id
+                </th>
+                <th>
+                    Type of Consumer
+                </th>
+                <th>
+                    Category
+                </th>
+                <th>
+                    Energy Consumed in Kwh
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var consumptionData in Model.Data)
+            {
+                count = count + 1;
+            <tr>
+                <td>@count</td>
+                <td>@consumptionData.ClassDescription</td>
+                <td>@consumptionData.ConsumerClass</td>
+                <td>@String.Format("{0:n}", @consumptionData.TotalConsumption)</td>
+                @{
+                  totalConsumtion += @consumptionData.TotalConsumption;
+                }
+
+            </tr>
+
+                  }
+            <tr></tr>
+            <tr style="font-weight:bold">
+                <td></td>
+                <td></td>
+                <td>Total : </td>
+                <td>@String.Format("{0:n}", @totalConsumtion)</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
+<script type="text/javascript">
+    function printDiv(divId) {
+        window.frames["print_frame"].document.body.innerHTML = '<style media="print"> table, th, td { border: 1px solid black; border-collapse: collapse; width: 100%;}@@page {size:landscape} </style>' + document.getElementById(divId).innerHTML;
+        window.frames["print_frame"].window.focus();
+        window.frames["print_frame"].window.print();
+    }
+</script>
+
+
+
+<style type="text/css">
+    @@media screen {
+        #salesReportHeader {
+            display: none;
+        }
+    }
+</style>
+
+
+
+

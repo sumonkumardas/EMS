@@ -1,0 +1,68 @@
+@model SinePulse.EMS.Site.Models.LoginViewModel
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+
+@{
+  ViewData["Title"] = "Login";
+  Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+<div class="content">
+  <!-- BEGIN LOGO -->
+  <!-- END LOGO -->
+  <!-- BEGIN LOGIN FORM -->
+  <form asp-action="Login" class="login-form">
+    <h3 class="form-title">@Localizer["Login.LoginToAccount"]</h3>
+    <div class="alert alert-danger display-hide">
+      <button class="close" data-close="alert"></button>
+      <span>
+        @Localizer["Login.EnterUsernamePassword"]
+      </span>
+    </div>
+    <div class="form-group">
+      <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+      <label class="control-label visible-ie8 visible-ie9">@Localizer["Login.UserName"]</label>
+      <div class="input-icon">
+        <i class="fa fa-user"></i>
+        <input asp-for="UserName" class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="@Localizer["Login.UserName"]" />
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label visible-ie8 visible-ie9">@Localizer["Login.Password"]</label>
+      <div class="input-icon">
+        <i class="fa fa-lock"></i>
+        <input asp-for="Password" class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="@Localizer["Login.Password"]" />
+
+      </div>
+    </div>
+    <div class="form-actions">
+      <label class="rememberme check">
+        <input type="checkbox" name="remember" value="1" />@Localizer["Login.Remember"]
+      </label>
+      <button type="submit" class="btn btn-success uppercase pull-right">@Localizer["Login.Login"]</button>
+      @*<p class="text-center"><a href="javascript:;" id="forget-password" class="forget-password">@Localizer["Login.ForgetPassword"]</a></p>*@
+
+    </div>
+
+  </form>
+  <!-- END LOGIN FORM -->
+  <!-- BEGIN FORGOT PASSWORD FORM -->
+  <form class="forget-form" action="index.html" method="post">
+    <h3>@Localizer["Login.ForgetPassword"]</h3>
+    <p>
+      @Localizer["Login.EnterEmailToResetPassword"]
+    </p>
+    <div class="form-group">
+      <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="@Localizer["Login.Email"]" name="email" />
+    </div>
+    <div class="form-actions">
+      <button type="button" id="back-btn" class="btn btn-default">@Localizer["Login.Back"]</button>
+      <button type="submit" class="btn btn-success uppercase pull-right">@Localizer["Login.Submit"]</button>
+    </div>
+  </form>
+  <!-- END FORGOT PASSWORD FORM -->
+
+</div>
+
+@section Scripts {
+  @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

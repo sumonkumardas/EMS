@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="System.DirectoryServices.Protocols">
+      <HintPath>..\..\..\..\..\Users\User\.nuget\packages\system.directoryservices.protocols\4.5.0\ref\netstandard2.0\System.DirectoryServices.Protocols.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

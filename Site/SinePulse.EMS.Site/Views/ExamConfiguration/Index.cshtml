@@ -1,0 +1,94 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@{
+  ViewData["Title"] = "Index";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="page-container">
+  <!-- BEGIN CONTENT -->
+  <div class="page-content-wrapper">
+    <div class="page-content">
+      <div class="row">
+        <div class="col-md-12">
+            <div class="page-bar margin-top-15">
+                <div class="page-toolbar pull-left">
+                    <div class="btn-group">
+                        <ul style="padding:0px;">
+                            <li class="custom-page-menu dropdown primary-menu-item-li">
+                                <a href="#" class="show-dropdown-on-hover" data-toggle="custom-page-menu">
+                                    <button type="button" class="btn btn-fit-height dark-bg dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="100" data-close-others="true">
+                                        <i class="fa fa-bars"></i>
+                                    </button>
+                                </a>
+                                <ul class="dropdown-menu light-arrow-only">
+                                    <li>
+                                        <a href="/ExamType/AddExamType">@Localizer["Index.AddExamType"]</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+          <table class="table table-striped table-hover" id="sample_5">
+            <thead class="filterCriteria">
+              <tr>
+                <th>
+                  @Localizer["Index.ExamTypeName"]
+                </th>
+                <th>
+                  @Localizer["Index.Description"]
+                </th>
+                <th>
+                  @Localizer["Index.Weight"]
+                </th>
+                <th>
+                  @Localizer["Index.FullMarks"]
+                </th>
+                <th>
+                  @Localizer["Index.IsSectionWiseExam"]
+                </th>
+                <th>
+                  @Localizer["Index.Status"]
+                </th>
+                <th> @Localizer["Index.Action"] </th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td>
+                  Mid Term
+                </td>
+                <td>
+                  new Mid term
+                </td>
+                <td>
+                  5
+                </td>
+                <td>
+                  20
+                </td>
+                <td>
+                  <input type="checkbox" value="true" checked>
+                </td>
+                <td>
+                  Active
+                </td>
+                <td>
+                  <a href="/ExamType/ViewExamType" class="action-link"><i class="fa fa-eye action-icon"></i></a>
+                  <a href="/ExamType/UpdateExamType" class="action-link"><i class="fa fa-edit action-icon"></i></a>
+                  <a href="#" class="action-link"><i class="fa fa-minus-circle action-icon"></i></a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

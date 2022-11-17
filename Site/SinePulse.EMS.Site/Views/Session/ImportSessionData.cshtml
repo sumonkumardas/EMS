@@ -1,0 +1,151 @@
+﻿@model SinePulse.EMS.Site.Models.ImportSessionDataViewModel
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@{
+  ViewData["Title"] = "ImportSessionData";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="page-container">
+  <!-- BEGIN CONTENT -->
+  <div class="page-content-wrapper">
+    <div class="page-content">
+      <div class="portlet-body form">
+        <!-- BEGIN FORM-->
+        <div class="title-on-top">@Localizer["ImportSessionData.Title"]</div>
+        <form asp-action="ImportSessionData" class="form-horizontal box-shadow-form" id="form_sample_3">
+          <div class="form-body">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" name="CurrentSession.SessionId" value="@Model.CurrentSession.SessionId" />
+            <input type="hidden" name="CurrentSession.SessionText" value="@Model.CurrentSession.SessionText" />
+            <input type="hidden" asp-for="BranchMediumId"/>
+            @for (var i = 0; i < Model.PreviousSessions.Count; i++)
+            {
+              <input type="hidden" name="PreviousSessions[@i].SessionId" value="@Model.PreviousSessions[i].SessionId" />
+              <input type="hidden" name="PreviousSessions[@i].SessionText" value="@Model.PreviousSessions[i].SessionText" />
+            }
+            <div class="row-fluid col-md-12 zero-padding-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["ImportSessionData.ImportFrom"] </label>
+                  </div>
+                  <div class="col-md-8">
+                    @Html.DropDownListFor(x => x.PreviousSessionId, new SelectList(Model.PreviousSessions, "SessionId", "SessionText"), @Localizer["ImportSessionData.SelectSession"].Value, new { @class = "form-control" })
+                    <span asp-validation-for="PreviousSessionId" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["ImportSessionData.ImportTo"] </label>
+                  </div>
+                  <div class="col-md-8">
+                    <input type="text" value="@Model.CurrentSession.SessionText" class="form-control" disabled="disabled" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row-fluid col-md-12 zero-padding-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["ImportSessionData.OnlySectionInfo"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <div class="radio-list">
+                      <input asp-for="OnlySectionInfo" type="checkbox">
+                      <span asp-validation-for="OnlySectionInfo" class="text-danger"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["ImportSessionData.SectionInfoWithClassRoutine"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <div class="radio-list">
+                      <input asp-for="SectionInfoWithClassRoutine" type="checkbox">
+                      <span asp-validation-for="SectionInfoWithClassRoutine" class="text-danger"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row-fluid col-md-12 zero-padding-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["ImportSessionData.OnlyExamTerm"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <div class="radio-list">
+                      <input asp-for="OnlyExamTerm" type="checkbox">
+                      <span asp-validation-for="OnlyExamTerm" class="text-danger"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["ImportSessionData.ExamTermWithExamConfiguration"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <div class="radio-list">
+                      <input asp-for="ExamTermWithExamConfiguration" type="checkbox">
+                      <span asp-validation-for="ExamTermWithExamConfiguration" class="text-danger"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="container">
+              <div class="radio-list">
+                <label class="radio-inline">
+                  <div class="radio">
+                    <input name="same-name" type="radio">
+                  </div> Only Section Info
+                </label>
+                <label class="radio-inline">
+                  <div class="radio">
+                    <input name="same-name" type="radio">
+                  </div> Section Info With Class Routine
+                </label>
+                <label class="radio-inline">
+                  <div class="radio">
+                    <input name="same-name" type="radio">
+                  </div> Only Exam Term
+                </label>
+                <label class="radio-inline">
+                  <div class="radio">
+                    <input name="same-name" type="radio">
+                  </div> Exam Term With Exam Configuration
+                </label>
+                <br />
+                @*<span asp-validation-for="same-name" class="text-danger"></span>*@
+              </div>
+            </div>
+            <br />
+            <div class="btn-container">
+              <button type="button" class="btn custom-btn custom-cancel-btn pull-left" onclick="location.href='/BranchMedium/ViewBranchMedium?branchMediumId=@Model.BranchMediumId'">@Localizer["ImportSessionData.CancelButton"]</button>
+              <button type="submit" class="btn custom-btn custom-cancel-btn pull-right">@Localizer["ImportSessionData.ImportButton"]</button>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+        </form>
+        <!-- END FORM-->
+      </div>
+    </div>
+  </div>
+</div>
+
+
+@section Scripts {
+  @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

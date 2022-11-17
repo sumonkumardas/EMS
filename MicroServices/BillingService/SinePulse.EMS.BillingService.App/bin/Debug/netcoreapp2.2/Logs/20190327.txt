@@ -1,0 +1,130 @@
+2019-03-27 13:01:21,484 [1] INFO Quartz.Impl.StdSchedulerFactory - Default Quartz.NET properties loaded from embedded resource file
+2019-03-27 13:01:21,551 [1] DEBUG Quartz.Simpl.TaskSchedulingThreadPool - TaskSchedulingThreadPool configured with max concurrency of 10 and TaskScheduler ThreadPoolTaskScheduler.
+2019-03-27 13:01:21,602 [1] INFO Quartz.Core.SchedulerSignalerImpl - Initialized Scheduler Signaller of type: Quartz.Core.SchedulerSignalerImpl
+2019-03-27 13:01:21,657 [1] INFO Quartz.Core.QuartzScheduler - Quartz Scheduler v.3.0.7.0 created.
+2019-03-27 13:01:21,658 [1] INFO Quartz.Simpl.RAMJobStore - RAMJobStore initialized.
+2019-03-27 13:01:21,662 [1] INFO Quartz.Core.QuartzScheduler - Scheduler meta-data: Quartz Scheduler (v3.0.7.0) 'DefaultQuartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'Quartz.Core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'Quartz.Simpl.DefaultThreadPool' - with 10 threads.
+  Using job-store 'Quartz.Simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2019-03-27 13:01:21,663 [1] INFO Quartz.Impl.StdSchedulerFactory - Quartz scheduler 'DefaultQuartzScheduler' initialized
+2019-03-27 13:01:21,663 [1] INFO Quartz.Impl.StdSchedulerFactory - Quartz scheduler version: 3.0.7.0
+2019-03-27 13:02:52,398 [1] INFO Quartz.Impl.StdSchedulerFactory - Default Quartz.NET properties loaded from embedded resource file
+2019-03-27 13:02:52,458 [1] DEBUG Quartz.Simpl.TaskSchedulingThreadPool - TaskSchedulingThreadPool configured with max concurrency of 10 and TaskScheduler ThreadPoolTaskScheduler.
+2019-03-27 13:02:52,493 [1] INFO Quartz.Core.SchedulerSignalerImpl - Initialized Scheduler Signaller of type: Quartz.Core.SchedulerSignalerImpl
+2019-03-27 13:02:52,527 [1] INFO Quartz.Core.QuartzScheduler - Quartz Scheduler v.3.0.7.0 created.
+2019-03-27 13:02:52,527 [1] INFO Quartz.Simpl.RAMJobStore - RAMJobStore initialized.
+2019-03-27 13:02:52,530 [1] INFO Quartz.Core.QuartzScheduler - Scheduler meta-data: Quartz Scheduler (v3.0.7.0) 'DefaultQuartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'Quartz.Core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'Quartz.Simpl.DefaultThreadPool' - with 10 threads.
+  Using job-store 'Quartz.Simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2019-03-27 13:02:52,530 [1] INFO Quartz.Impl.StdSchedulerFactory - Quartz scheduler 'DefaultQuartzScheduler' initialized
+2019-03-27 13:02:52,530 [1] INFO Quartz.Impl.StdSchedulerFactory - Quartz scheduler version: 3.0.7.0
+2019-03-27 13:03:40,346 [1] INFO Quartz.Impl.StdSchedulerFactory - Default Quartz.NET properties loaded from embedded resource file
+2019-03-27 13:03:40,401 [1] DEBUG Quartz.Simpl.TaskSchedulingThreadPool - TaskSchedulingThreadPool configured with max concurrency of 10 and TaskScheduler ThreadPoolTaskScheduler.
+2019-03-27 13:03:40,419 [1] INFO Quartz.Core.SchedulerSignalerImpl - Initialized Scheduler Signaller of type: Quartz.Core.SchedulerSignalerImpl
+2019-03-27 13:03:40,468 [1] INFO Quartz.Core.QuartzScheduler - Quartz Scheduler v.3.0.7.0 created.
+2019-03-27 13:03:40,468 [1] INFO Quartz.Simpl.RAMJobStore - RAMJobStore initialized.
+2019-03-27 13:03:40,471 [1] INFO Quartz.Core.QuartzScheduler - Scheduler meta-data: Quartz Scheduler (v3.0.7.0) 'DefaultQuartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'Quartz.Core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'Quartz.Simpl.DefaultThreadPool' - with 10 threads.
+  Using job-store 'Quartz.Simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2019-03-27 13:03:40,471 [1] INFO Quartz.Impl.StdSchedulerFactory - Quartz scheduler 'DefaultQuartzScheduler' initialized
+2019-03-27 13:03:40,471 [1] INFO Quartz.Impl.StdSchedulerFactory - Quartz scheduler version: 3.0.7.0
+2019-03-27 13:08:44,833 [1] INFO Quartz.Impl.StdSchedulerFactory - Default Quartz.NET properties loaded from embedded resource file
+2019-03-27 13:08:44,906 [1] DEBUG Quartz.Simpl.TaskSchedulingThreadPool - TaskSchedulingThreadPool configured with max concurrency of 10 and TaskScheduler ThreadPoolTaskScheduler.
+2019-03-27 13:08:44,942 [1] INFO Quartz.Core.SchedulerSignalerImpl - Initialized Scheduler Signaller of type: Quartz.Core.SchedulerSignalerImpl
+2019-03-27 13:08:44,974 [1] INFO Quartz.Core.QuartzScheduler - Quartz Scheduler v.3.0.7.0 created.
+2019-03-27 13:08:44,975 [1] INFO Quartz.Simpl.RAMJobStore - RAMJobStore initialized.
+2019-03-27 13:08:44,978 [1] INFO Quartz.Core.QuartzScheduler - Scheduler meta-data: Quartz Scheduler (v3.0.7.0) 'DefaultQuartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'Quartz.Core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'Quartz.Simpl.DefaultThreadPool' - with 10 threads.
+  Using job-store 'Quartz.Simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2019-03-27 13:08:44,978 [1] INFO Quartz.Impl.StdSchedulerFactory - Quartz scheduler 'DefaultQuartzScheduler' initialized
+2019-03-27 13:08:44,978 [1] INFO Quartz.Impl.StdSchedulerFactory - Quartz scheduler version: 3.0.7.0
+2019-03-27 13:08:48,917 [1] INFO Quartz.Core.QuartzScheduler - Scheduler DefaultQuartzScheduler_$_NON_CLUSTERED started.
+2019-03-27 13:08:51,207 [1] INFO SinePulse.EMS.BillingService.App.Program - Billing Service Scheduler started.
+2019-03-27 13:08:54,028 [4] DEBUG Quartz.Core.QuartzSchedulerThread - Batch acquisition of 0 triggers
+2019-03-27 13:09:20,375 [4] DEBUG Quartz.Core.QuartzSchedulerThread - Batch acquisition of 0 triggers
+2019-03-27 13:09:48,061 [4] DEBUG Quartz.Core.QuartzSchedulerThread - Batch acquisition of 0 triggers
+2019-03-27 13:10:14,036 [4] DEBUG Quartz.Core.QuartzSchedulerThread - Batch acquisition of 0 triggers
+2019-03-27 13:10:39,044 [4] DEBUG Quartz.Core.QuartzSchedulerThread - Batch acquisition of 0 triggers
+2019-03-27 13:11:04,409 [4] DEBUG Quartz.Core.QuartzSchedulerThread - Batch acquisition of 0 triggers
+2019-03-27 13:11:28,112 [4] DEBUG Quartz.Core.QuartzSchedulerThread - Batch acquisition of 0 triggers
+2019-03-27 13:11:51,556 [4] DEBUG Quartz.Core.QuartzSchedulerThread - Batch acquisition of 0 triggers
+2019-03-27 13:12:20,072 [4] DEBUG Quartz.Core.QuartzSchedulerThread - Batch acquisition of 0 triggers
+2019-03-27 13:14:33,339 [1] INFO Quartz.Impl.StdSchedulerFactory - Default Quartz.NET properties loaded from embedded resource file
+2019-03-27 13:14:33,419 [1] DEBUG Quartz.Simpl.TaskSchedulingThreadPool - TaskSchedulingThreadPool configured with max concurrency of 10 and TaskScheduler ThreadPoolTaskScheduler.
+2019-03-27 13:14:33,480 [1] INFO Quartz.Core.SchedulerSignalerImpl - Initialized Scheduler Signaller of type: Quartz.Core.SchedulerSignalerImpl
+2019-03-27 13:14:33,540 [1] INFO Quartz.Core.QuartzScheduler - Quartz Scheduler v.3.0.7.0 created.
+2019-03-27 13:14:33,541 [1] INFO Quartz.Simpl.RAMJobStore - RAMJobStore initialized.
+2019-03-27 13:14:33,545 [1] INFO Quartz.Core.QuartzScheduler - Scheduler meta-data: Quartz Scheduler (v3.0.7.0) 'DefaultQuartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'Quartz.Core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'Quartz.Simpl.DefaultThreadPool' - with 10 threads.
+  Using job-store 'Quartz.Simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2019-03-27 13:14:33,545 [1] INFO Quartz.Impl.StdSchedulerFactory - Quartz scheduler 'DefaultQuartzScheduler' initialized
+2019-03-27 13:14:33,545 [1] INFO Quartz.Impl.StdSchedulerFactory - Quartz scheduler version: 3.0.7.0
+2019-03-27 13:15:24,015 [1] INFO Quartz.Impl.StdSchedulerFactory - Default Quartz.NET properties loaded from embedded resource file
+2019-03-27 13:15:24,077 [1] DEBUG Quartz.Simpl.TaskSchedulingThreadPool - TaskSchedulingThreadPool configured with max concurrency of 10 and TaskScheduler ThreadPoolTaskScheduler.
+2019-03-27 13:15:24,116 [1] INFO Quartz.Core.SchedulerSignalerImpl - Initialized Scheduler Signaller of type: Quartz.Core.SchedulerSignalerImpl
+2019-03-27 13:15:24,165 [1] INFO Quartz.Core.QuartzScheduler - Quartz Scheduler v.3.0.7.0 created.
+2019-03-27 13:15:24,166 [1] INFO Quartz.Simpl.RAMJobStore - RAMJobStore initialized.
+2019-03-27 13:15:24,170 [1] INFO Quartz.Core.QuartzScheduler - Scheduler meta-data: Quartz Scheduler (v3.0.7.0) 'DefaultQuartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'Quartz.Core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'Quartz.Simpl.DefaultThreadPool' - with 10 threads.
+  Using job-store 'Quartz.Simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2019-03-27 13:15:24,170 [1] INFO Quartz.Impl.StdSchedulerFactory - Quartz scheduler 'DefaultQuartzScheduler' initialized
+2019-03-27 13:15:24,170 [1] INFO Quartz.Impl.StdSchedulerFactory - Quartz scheduler version: 3.0.7.0
+2019-03-27 13:15:25,219 [1] INFO Quartz.Core.QuartzScheduler - Scheduler DefaultQuartzScheduler_$_NON_CLUSTERED started.
+2019-03-27 13:15:25,220 [1] INFO SinePulse.EMS.BillingService.App.Program - Billing Service Scheduler started.
+2019-03-27 13:15:25,226 [4] DEBUG Quartz.Core.QuartzSchedulerThread - Batch acquisition of 0 triggers
+2019-03-27 13:15:51,408 [4] DEBUG Quartz.Core.QuartzSchedulerThread - Batch acquisition of 1 triggers
+2019-03-27 13:16:00,015 [4] DEBUG Quartz.Simpl.SimpleJobFactory - Producing instance of Job 'PendingBillServiceJobGroup.PendingBillServiceJob', class=SinePulse.EMS.BillingService.Jobs.DueBillAlertMessageJob
+2019-03-27 13:16:00,022 [4] DEBUG Quartz.Core.QuartzSchedulerThread - Batch acquisition of 0 triggers
+2019-03-27 13:16:00,044 [6] DEBUG Quartz.Core.JobRunShell - Calling Execute on job PendingBillServiceJobGroup.PendingBillServiceJob
+2019-03-27 13:39:18,411 [1] INFO Quartz.Impl.StdSchedulerFactory - Default Quartz.NET properties loaded from embedded resource file
+2019-03-27 13:39:18,469 [1] DEBUG Quartz.Simpl.TaskSchedulingThreadPool - TaskSchedulingThreadPool configured with max concurrency of 10 and TaskScheduler ThreadPoolTaskScheduler.
+2019-03-27 13:39:18,509 [1] INFO Quartz.Core.SchedulerSignalerImpl - Initialized Scheduler Signaller of type: Quartz.Core.SchedulerSignalerImpl
+2019-03-27 13:39:18,553 [1] INFO Quartz.Core.QuartzScheduler - Quartz Scheduler v.3.0.7.0 created.
+2019-03-27 13:39:18,554 [1] INFO Quartz.Simpl.RAMJobStore - RAMJobStore initialized.
+2019-03-27 13:39:18,557 [1] INFO Quartz.Core.QuartzScheduler - Scheduler meta-data: Quartz Scheduler (v3.0.7.0) 'DefaultQuartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'Quartz.Core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'Quartz.Simpl.DefaultThreadPool' - with 10 threads.
+  Using job-store 'Quartz.Simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2019-03-27 13:39:18,557 [1] INFO Quartz.Impl.StdSchedulerFactory - Quartz scheduler 'DefaultQuartzScheduler' initialized
+2019-03-27 13:39:18,557 [1] INFO Quartz.Impl.StdSchedulerFactory - Quartz scheduler version: 3.0.7.0
+2019-03-27 13:39:19,663 [1] INFO Quartz.Core.QuartzScheduler - Scheduler DefaultQuartzScheduler_$_NON_CLUSTERED started.
+2019-03-27 13:39:19,664 [1] INFO SinePulse.EMS.BillingService.App.Program - Billing Service Scheduler started.
+2019-03-27 13:39:19,671 [4] DEBUG Quartz.Core.QuartzSchedulerThread - Batch acquisition of 0 triggers
+2019-03-27 13:39:47,743 [4] DEBUG Quartz.Core.QuartzSchedulerThread - Batch acquisition of 1 triggers
+2019-03-27 13:40:00,015 [4] DEBUG Quartz.Simpl.SimpleJobFactory - Producing instance of Job 'PendingBillServiceJobGroup.PendingBillServiceJob', class=SinePulse.EMS.BillingService.Jobs.DueBillAlertMessageJob
+2019-03-27 13:40:00,020 [4] DEBUG Quartz.Core.QuartzSchedulerThread - Batch acquisition of 0 triggers
+2019-03-27 13:40:00,055 [5] DEBUG Quartz.Core.JobRunShell - Calling Execute on job PendingBillServiceJobGroup.PendingBillServiceJob

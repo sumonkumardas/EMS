@@ -1,0 +1,78 @@
+﻿
+@model SinePulse.SmartMeter.Domain.Reports.UsageReport
+@{
+    int count = 0;
+}
+<div style="text-align:center">
+  
+
+    <table id="table_id">
+        <thead>
+            <tr>
+
+                <th>
+                  Id
+                </th>
+                <th>
+                    Meter No
+                </th>
+                <th>
+                    Name
+                </th>
+
+                <th>
+                   Data
+                </th>
+                <th>
+                    Meter TimeStamp
+                </th>
+                <th>
+                    Process TimeStamp
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var lowPFData in Model.ListMonthlyUsageData)
+            {
+                if (lowPFData.ElectricMeter.Consumer != null)
+                {
+                    count = count + 1;
+                <tr>
+                    <td>@count</td>
+                    <td>@lowPFData.ElectricMeter.MeterNo</td>
+                    <td>@lowPFData.ElectricMeter.Consumer.Name</td>
+                    <td>@lowPFData.Data</td>
+                    <td>@lowPFData.InitialTimeStamp</td>
+                    <td>@lowPFData.InitialTimeStamp</td>
+                </tr>
+                }
+                else
+                {
+                    count = count + 1;
+                    <tr>
+                        <td>@count</td>
+                        <td>@lowPFData.ElectricMeter.MeterNo</td>
+                        <td></td>
+                        <td>@lowPFData.Data</td>
+                        <td>@lowPFData.InitialTimeStamp</td>
+                        <td>@lowPFData.InitialTimeStamp</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+
+</div>
+
+
+
+<script>
+    $(document).ready(function () {
+        $('#table_id').DataTable(
+           
+            );
+    });
+</script>
+
+
+

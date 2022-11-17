@@ -1,0 +1,408 @@
+﻿@using SinePulse.EMS.Domain.Enums
+@using Microsoft.AspNetCore.Mvc.Localization
+@model AddWaiverViewModel
+@inject IViewLocalizer Localizer
+@{
+  ViewData["Title"] = "AddStudentWaiver";
+}
+
+<div class="page-container">
+  <!-- BEGIN CONTENT -->
+  <div class="page-content-wrapper">
+    <div class="page-content">
+      <div class="portlet-body form">
+        <!-- BEGIN FORM-->
+        <div class="title-on-top">@Localizer["AddStudentWaiver.Title"]</div>
+        <form asp-action="AddStudentWaiver" class="form-horizontal box-shadow-form" id="form_sample_3">
+          <div class="form-body">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="StudentId" />
+            <input type="hidden" asp-for="SectionId" />
+            <input type="hidden" asp-for="ClassName" />
+            <input type="hidden" asp-for="StudentName" />
+            <input type="hidden" asp-for="SectionName" />
+            <input type="hidden" asp-for="ClassId" />
+            <input type="hidden" asp-for="BranchMediumId" />
+            <div class="row-fluid">
+              <div class="col-md-8">
+                <div class="form-group">
+                  <div class="col-md-5">
+                    <label>
+                      <b>@Localizer["AddStudentWaiver.StudentName"] :</b>
+                      <a href="/Student/ViewStudent?studentId=@Model.StudentId&branchMediumId=@Model.BranchMediumId">
+                        @Html.DisplayFor(model => Model.StudentName)
+                      </a>
+                    </label>
+                  </div>
+                  <div class="col-md-3">
+                    <label>
+                      <b>@Localizer["AddStudentWaiver.Class"] :</b>
+                      <a href="/Class/ViewClass?classId=@Model.ClassId">
+                        @Html.DisplayFor(model => Model.ClassName)
+                      </a>
+                    </label>
+                  </div>
+                  <div class="col-md-2">
+                    <label>
+                      <b>@Localizer["AddStudentWaiver.Section"] :</b>
+                      <a href="/Section/ViewSection?sectionId=@Model.SectionId">
+                        @Html.DisplayFor(model => Model.SectionName)
+                      </a>
+                    </label>
+                  </div>
+                  <div class="col-md-2">
+                    <label>
+                      <b>@Localizer["AddStudentWaiver.Roll"] :</b>
+                      @Html.DisplayFor(model => Model.Roll)
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="row-fluid col-md-12 zero-padding-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["AddStudentWaiver.Session"]</label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    @{
+                      if (Model.Sessions.Any())
+                      {
+                        @Html.DropDownListFor(x => x.SessionId, new SelectList(Model.Sessions, "Id", "SessionName"), @Localizer["AddStudentWaiver.SelectSession"].Value, new { @class = "form-control", required = true, id = "sessionDropDown" })
+                      }
+                      else
+                      {
+                        @Html.DropDownListFor(x => x.SessionId, Enumerable.Empty<SelectListItem>(), @Localizer["AddStudentWaiver.SelectSession"].Value, new { @class = "form-control", id = "sessionDropDown", required = true })
+                      }
+                    }
+                    <span asp-validation-for="SessionId" class="text-danger"></span>
+                  </div>
+                </div>
+
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["AddStudentWaiver.FeePeriod"]</label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <select asp-for="AcademicFeePeriod" name="AcademicFeePeriod" class="form-control" id="feePeriodDropDown" asp-items="Html.GetEnumSelectList<AcademicFeePeriodEnum>()">
+                      <option selected="selected" value="">@Localizer["AddStudentWaiver.SelectAcademicFeePeriod"]</option>
+                    </select>
+                    <span asp-validation-for="AcademicFeePeriod" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <br />
+            <div>
+              <table class="table table-light">
+                <thead>
+                  <tr class="uppercase">
+                    <th>@Localizer["AddStudentWaiver.AccountCode"]</th>
+                    <th>@Localizer["AddStudentWaiver.FeeType"]</th>
+                    <th>@Localizer["AddStudentWaiver.Fees"]</th>
+                    <th>@Localizer["AddStudentWaiver.Waiver"]</th>
+                    <th>@Localizer["AddStudentWaiver.InPercentage"]</th>
+                  </tr>
+                </thead>
+                <tbody id="accountHeadsTableBody"></tbody>
+              </table>
+            </div>
+            <br />
+            <div class="btn-container">
+              <button type="button" class="btn custom-btn custom-cancel-btn pull-left" onclick="location.href = '@Url.Action("ViewStudent", "Student", new {studentId = Model.StudentId, branchMediumId = Model.BranchMediumId})'">@Localizer["AddStudentWaiver.CancelButton"]</button>
+              <button id="saveButton" type="submit" class="btn custom-btn custom-cancel-btn pull-right">@Localizer["AddStudentWaiver.SaveButton"]</button>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+        </form>
+        <!-- END FORM-->
+      </div>
+    </div>
+  </div>
+</div>
+@section scripts
+  {
+  <script>
+        $(function() {
+            var accountHeadsTableBody = $("#accountHeadsTableBody");
+            $("#feePeriodDropDown").change(function() {
+                $.ajax({
+                    type: "POST",
+                    url: "/Waiver/GetAcademicFees?studentId=@Model.StudentId" +
+                        "&sectionId=@Model.SectionId" +
+                        "&classId=@Model.ClassId" +
+                        "&sessionId=" +
+                        $("#sessionDropDown").val() +
+                        "&branchMediumId=@Model.BranchMediumId" +
+                        "&feePeriod=" +
+                        $("#feePeriodDropDown").val(),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function(response) {
+                        accountHeadsTableBody.empty();
+                        var rows = "";
+                        $('#saveButton').attr('disabled',false);
+
+                        if (response.disableSaveButtonMsg != undefined) {
+                            $('#saveButton').attr('disabled', true);
+                        }
+
+                        if (response.academicFeeNotAddedMsg != undefined) {
+                            $('#saveButton').attr('disabled',true);
+                            alert(response.academicFeeNotAddedMsg);
+                        }
+
+                        if (response[0].Waiver != undefined) {
+                            jQuery.each(response,
+                                function(index, item) {
+                                    var waiver = "";
+                                    if (item.InPercentage) {
+                                        waiver = "<input name='InPercentage'  type='checkbox' value='" +
+                                            index+"' checked='checked'/>";
+                                    } else {
+                                        waiver = "<input name='InPercentage'  type='checkbox' value='" +
+                                            index +"' />";
+                                    }
+                                    rows += " <tr> " +
+                                        "<td>" +
+                                        item.AccountHead.AccountCode +
+                                        "</td>" +
+                                        "<td>" +
+                                        item.AccountHead.AccountHeadName +
+                                        "</td>" +
+                                        "<td>" +
+                                        item.Fees +
+                                        "</td>" +
+                                        "<td><input name='WaiverCollection' autocomplete='off' type='number' value=" +
+                                        item.Waiver +
+                                        " style='text-align: right'/>" +
+                                        "</td>" +
+                                        "<td>" +
+                                        waiver +
+                                        "</td>" +
+                                        "</tr>";
+                                });
+                            $("#accountHeadsTableBody").append(rows);
+                        }
+                        else{
+                            jQuery.each(response,
+                                function(index, item) {
+                                    rows += " <tr> " +
+                                        "<td>" +
+                                        item.AccountHead.AccountCode +
+                                        "</td>" +
+                                        "<td>" +
+                                        item.AccountHead.AccountHeadName +
+                                        "</td>" +
+                                        "<td>" +
+                                        item.Fees +
+                                        "</td>" +
+                                        "<td><input name='WaiverCollection' autocomplete='off' type='number' value='0' style='text-align: right'/></td>" +
+                                        "<td><input name='InPercentage' value='" +
+                                        index +
+                                        "' type='checkbox'/></td>" +
+                                        "</tr>";
+                                });
+                            $("#accountHeadsTableBody").append(rows);
+                        }
+                    },
+                    failure: function(response) {
+                        alert("Failure..! Could not Fetch Data using Ajax.");
+                    },
+                    error: function(response) {
+                        alert("Error..! Could not Fetch Data using Ajax.");
+                    }
+                });
+            });
+        });
+
+        $(function() {
+            var accountHeadsTableBody = $("#accountHeadsTableBody");
+            $("#sessionDropDown").change(function() {
+                $.ajax({
+                    type: "POST",
+                    url: "/Waiver/GetAcademicFees?studentId=@Model.StudentId" +
+                        "&sectionId=@Model.SectionId" +
+                        "&classId=@Model.ClassId" +
+                        "&sessionId=" +
+                        $("#sessionDropDown").val() +
+                        "&branchMediumId=@Model.BranchMediumId" +
+                        "&feePeriod=" +
+                        $("#feePeriodDropDown").val(),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function(response) {
+                        accountHeadsTableBody.empty();
+                        var rows = "";
+                        $('#saveButton').attr('disabled',false);
+
+                        if (response.disableSaveButtonMsg != undefined) {
+                            $('#saveButton').attr('disabled', true);
+                        }
+
+                        if (response.academicFeeNotAddedMsg != undefined) {
+                            $('#saveButton').attr('disabled',true);
+                            alert(response.academicFeeNotAddedMsg);
+                        }
+
+                        if (response[0].Waiver != undefined) {
+                            jQuery.each(response,
+                                function(index, item) {
+                                    var waiver = "";
+                                    if (item.InPercentage) {
+                                        waiver = "<input name='InPercentage'  type='checkbox' value='" +
+                                            index+"' checked='checked'/>";
+                                    } else {
+                                        waiver = "<input name='InPercentage'  type='checkbox' value='" +
+                                            index +"' />";
+                                    }
+                                    rows += " <tr> " +
+                                        "<td>" +
+                                        item.AccountHead.AccountCode +
+                                        "</td>" +
+                                        "<td>" +
+                                        item.AccountHead.AccountHeadName +
+                                        "</td>" +
+                                        "<td>" +
+                                        item.Fees +
+                                        "</td>" +
+                                        "<td><input name='WaiverCollection' autocomplete='off' type='number' value=" +
+                                        item.Waiver +
+                                        " style='text-align: right'/>" +
+                                        "</td>" +
+                                        "<td>" +
+                                        waiver +
+                                        "</td>" +
+                                        "</tr>";
+                                });
+                            $("#accountHeadsTableBody").append(rows);
+                        }
+                        else{
+                            jQuery.each(response,
+                                function(index, item) {
+                                    rows += " <tr> " +
+                                        "<td>" +
+                                        item.AccountHead.AccountCode +
+                                        "</td>" +
+                                        "<td>" +
+                                        item.AccountHead.AccountHeadName +
+                                        "</td>" +
+                                        "<td>" +
+                                        item.Fees +
+                                        "</td>" +
+                                        "<td><input name='WaiverCollection' autocomplete='off' type='number' value='0' style='text-align: right'/></td>" +
+                                        "<td><input name='InPercentage' value='" +
+                                        index +
+                                        "' type='checkbox'/></td>" +
+                                        "</tr>";
+                                });
+                            $("#accountHeadsTableBody").append(rows);
+                        }
+                    },
+                    failure: function(response) {
+                        alert("Failure..! Could not Fetch Data using Ajax.");
+                    },
+                    error: function(response) {
+                        alert("Error..! Could not Fetch Data using Ajax.");
+                    }
+                });
+            });
+        });
+
+        $( document ).ready(function() {
+            var accountHeadsTableBody = $("#accountHeadsTableBody");
+            $.ajax({
+                type: "POST",
+                url: "/Waiver/GetAcademicFees?studentId=@Model.StudentId" +
+                    "&sectionId=@Model.SectionId" +
+                    "&classId=@Model.ClassId" +
+                    "&sessionId=" +
+                    $("#sessionDropDown").val() +
+                    "&branchMediumId=@Model.BranchMediumId" +
+                    "&feePeriod=" +
+                    $("#feePeriodDropDown").val(),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function(response) {
+                    accountHeadsTableBody.empty();
+                    var rows = "";
+                    $('#saveButton').attr('disabled',false);
+
+                    if (response.disableSaveButtonMsg != undefined) {
+                        $('#saveButton').attr('disabled', true);
+                    }
+                    if (response.academicFeeNotAddedMsg != undefined) {
+                        $('#saveButton').attr('disabled', true);
+                        alert(response.academicFeeNotAddedMsg);
+                    }
+
+                    if (response[0].Waiver != undefined) {
+                            jQuery.each(response,
+                                function(index, item) {
+                                    var waiver = "";
+                                    if (item.InPercentage) {
+                                        waiver = "<input name='InPercentage'  type='checkbox' value='" +
+                                            index+"' checked='checked'/>";
+                                    } else {
+                                        waiver = "<input name='InPercentage'  type='checkbox' value='" +
+                                            index +"' />";
+                                    }
+                                    rows += " <tr> " +
+                                        "<td>" +
+                                        item.AccountHead.AccountCode +
+                                        "</td>" +
+                                        "<td>" +
+                                        item.AccountHead.AccountHeadName +
+                                        "</td>" +
+                                        "<td>" +
+                                        item.Fees +
+                                        "</td>" +
+                                        "<td><input name='WaiverCollection' autocomplete='off' type='number' value=" +
+                                        item.Waiver +
+                                        " style='text-align: right'/>" +
+                                        "</td>" +
+                                        "<td>" +
+                                        waiver +
+                                        "</td>" +
+                                        "</tr>";
+                                });
+                            $("#accountHeadsTableBody").append(rows);
+                        }
+                        else{
+                            jQuery.each(response,
+                                function(index, item) {
+                                    rows += " <tr> " +
+                                        "<td>" +
+                                        item.AccountHead.AccountCode +
+                                        "</td>" +
+                                        "<td>" +
+                                        item.AccountHead.AccountHeadName +
+                                        "</td>" +
+                                        "<td>" +
+                                        item.Fees +
+                                        "</td>" +
+                                        "<td><input name='WaiverCollection' autocomplete='off' type='number' value='0' style='text-align: right'/></td>" +
+                                        "<td><input name='InPercentage' value='" +
+                                        index +
+                                        "' type='checkbox'/></td>" +
+                                        "</tr>";
+                                });
+                            $("#accountHeadsTableBody").append(rows);
+                        }
+                    },
+                failure: function(response) {
+                    alert("Failure..! Could not Fetch Data using Ajax.");
+                },
+                error: function(response) {
+                    alert("Error..! Could not Fetch Data using Ajax.");
+                }
+            });
+        });
+  </script>
+}

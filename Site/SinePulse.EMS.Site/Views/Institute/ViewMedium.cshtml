@@ -1,0 +1,195 @@
+﻿@{
+    ViewData["Title"] = "ViewMedium";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="page-container">
+    <!-- BEGIN CONTENT -->
+    <div class="page-content-wrapper">
+        <div class="page-content">
+            <div class="menu-icon-on-view">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-fit-height dark-bg dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="100" data-close-others="true">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <ul class="dropdown-menu dark-arrow" role="menu">
+                        <li>
+                            <a href="#">Add Branch</a>
+                        </li>
+                        <li>
+                            <a href="#">Add Session</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="portlet box form-conatiner">
+                <div class="icon-container">
+                    <a href="#" class="fa fa-edit action-link"></a>
+
+                    <a href="/Institute/Index" class="fa fa-tasks action-link"></a>
+                </div>
+                @*<div class="form-title-container">
+                    <label>Branch Medium View</label>
+                </div>*@
+                <div class="portlet-body form">
+
+                    <div class="container-fluid">
+                        <div class="row-fluid ">
+                            <div class="col-md-6">
+                                <div class="row custom-row">
+                                    <div class="col-md-4 title">
+                                        <strong>Branch Name</strong>
+                                    </div>
+                                    <div class="col-md-8 value">Main Branch</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row custom-row">
+                                    <div class="col-md-4 title">
+                                        <strong>Weekly Holiday</strong>
+                                    </div>
+                                    <div class="col-md-8 value">Friday, Saturday</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container-fluid">
+                        <div class="row-fluid ">
+                            <div class="col-md-6">
+                                <div class="row custom-row">
+                                    <div class="col-md-4 title">
+                                        <strong>Shift</strong>
+                                    </div>
+                                    <div class="col-md-8 value">Morning</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row custom-row">
+                                    <div class="col-md-4 title">
+                                        <strong>Medium</strong>
+                                    </div>
+                                    <div class="col-md-8 value">Bangla</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container-fluid">
+                        <div class="row-fluid">
+                            <div class="col-md-12">
+                                <div class="row custom-row">
+                                    <div class="col-md-2 title">
+                                        <strong>Exam Term</strong>
+                                    </div>
+                                    <div class="col-md-10 custom-table">
+                                        <table>
+                                            <thead>
+                                            <th>Term Name</th>
+                                            <th>Start Date</th>
+                                            <th>End Date</th>
+                                            </thead>
+                                            <tbody>
+                                                <tr><td>First Term</td> <td> 7/8/18</td> <td> 7/8/18 <br /> 2:00:00 PM</td></tr>
+                                                <tr><td>Second Term</td> <td> 7/8/18</td> <td> 7/8/18 <br /> 2:00:00 PM</td></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container-fluid">
+                        <div class="row-fluid">
+                            <div class="col-md-12">
+                                <div class="row custom-row">
+                                    <div class="col-md-2 title">
+                                        <strong>Sessions</strong>
+                                    </div>
+                                    <div class="col-md-10 custom-table">
+                                        <table>
+                                            <thead>
+                                            <th>Session Name</th>
+                                            <th>Start Date</th>
+                                            <th>End Date</th>
+                                            <th>Is Current Session</th>
+                                            </thead>
+                                            <tbody>
+                                                <tr><td>Session <br /> 2017-2018</td> <td> 7/8/18</td> <td> 7/8/18 <br /> 2:00:00 PM</td> <td><i class="fa fa-check-circle" style="color:green;"></i></td></tr>
+                                                <tr><td>Session <br /> 2018-2019</td> <td> 7/8/18</td> <td> 7/8/18 <br /> 2:00:00 PM</td> <td><i class="fa fa-times-circle" style="color:red;"></i></td></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container-fluid">
+                        <div class="row-fluid">
+                            <div class="col-md-12">
+                                <div class="row custom-row">
+                                    <div class="col-md-2 title">
+                                        <strong>Classes</strong>
+                                    </div>
+                                    <div class="col-md-10 custom-table">
+                                        <table>
+                                            <thead>
+                                            <th>Section</th>
+                                            <th>Session</th>
+                                            <th>Group</th>
+                                            <th>Number of Students</th>
+                                            </thead>
+                                            <tbody>
+                                                <tr> <td>One->Section(A)</td> <td>Session 2017-2018</td><td>Science</td>  <td>45</td></tr>
+                                                <tr> <td>One->Section(A)</td> <td>Session 2017-2018</td><td>Science</td>  <td>45</td></tr>
+                                                <tr> <td>One->Section(A)</td> <td>Session 2017-2018</td><td>Science</td>  <td>45</td></tr>
+                                                <tr> <td>One->Section(A)</td> <td>Session 2017-2018</td><td>Science</td>  <td>45</td></tr>
+                                                <tr> <td>One->Section(A)</td> <td>Session 2017-2018</td><td>Science</td>  <td>45</td></tr>
+                                                <tr> <td>One->Section(A)</td> <td>Session 2017-2018</td><td>Science</td>  <td>45</td></tr>
+                                                <tr> <td>One->Section(A)</td> <td>Session 2017-2018</td><td>Science</td>  <td>45</td></tr>
+                                                <tr> <td>One->Section(A)</td> <td>Session 2017-2018</td><td>Science</td>  <td>45</td></tr>
+                                                <tr> <td>One->Section(A)</td> <td>Session 2017-2018</td><td>Science</td>  <td>45</td></tr>
+                                                <tr> <td>One->Section(A)</td> <td>Session 2017-2018</td><td>Science</td>  <td>45</td></tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container-fluid">
+                        <div class="row-fluid">
+                            <div class="col-md-12">
+                                <div class="row custom-row">
+                                    <div class="col-md-2 title">
+                                        <strong>Employee</strong>
+                                    </div>
+                                    <div class="col-md-10 custom-table">
+                                        <table>
+                                            <thead>
+                                            <th>Employee Name</th>
+                                            <th>Mobile No</th>
+                                            <th>Joining Date</th>
+                                            <th>Emplyee Type</th>
+                                            <th>Designation</th>
+                                            <th>Grade</th>
+                                            <th>Report To</th>
+                                            </thead>
+                                            <tbody>
+                                                <tr><td>Mr. ABC</td><td>01673050495</td><td>17-12-2017</td><td>Teacher</td><td>Lacturer</td> <td>A Grade</td><td>Mr. XYZ</td></tr>
+                                                <tr><td>Mr. ABC2</td><td>01673050495</td><td>17-12-2017</td><td>Teacher</td><td>Assistant Teacher</td> <td>A Grade</td><td>Mr. XYZ2</td></tr>
+                                                <tr><td>Mr. ABC3</td><td>01673050495</td><td>17-12-2017</td><td>Teacher</td><td>Head Sir</td> <td>A Grade</td><td>Mr. XYZ3</td></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

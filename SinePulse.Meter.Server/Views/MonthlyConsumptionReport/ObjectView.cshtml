@@ -1,0 +1,82 @@
+
+@using NakedObjects.Web.Mvc.Html
+@using SinePulse.SmartMeter.Domain.Reports
+@model MonthlyConsumptionReport
+}
+<style>
+    div#loading { display: none; }
+</style>
+<div id="body" >
+    <section class="main-content">
+      @Html.TabbedHistory(Model)
+        <div class="col-md-offset-1">
+@using (Ajax.BeginForm("ShowMonthlyConsumptionReport", "MonthlyConsumptionReport", null, new AjaxOptions
+{
+    HttpMethod = "POST",
+    UpdateTargetId = "resultTarget",
+    OnBegin = "onBegin",
+    OnComplete= "onComplete"
+}))
+{
+            @Html.AntiForgeryToken()
+
+            @Html.Label("Select Start Date :  ")
+            @Html.TextBoxFor(m => m.MonthlyConsumptionParam.FromDate, new { id = "Start_date", value = "" })
+
+            @Html.Label("Select End Date :  ")
+            @Html.TextBoxFor(m => m.MonthlyConsumptionParam.ToDate, new { id = "To_date", value = "" })
+            <div>
+                @Html.Label("Select Phase :  ")
+                @Html.EnumDropDownListFor(m => m.MonthlyConsumptionParam.Phase, new { id = "phase" })
+
+                @Html.Label("Select Consumer Class :  ")
+                @Html.DropDownListFor(m => m.MonthlyConsumptionParam.ConsumerClass, new SelectList(Model.GetConsumerClass()))
+            </div>
+            <div>
+                @Html.Label("Consumption Limit From:  ")
+                @Html.TextBoxFor(m => m.MonthlyConsumptionParam.LimitFrom, new { Value = "" })
+
+                @Html.Label("To :  ")
+                @Html.TextBoxFor(m => m.MonthlyConsumptionParam.LimitTo, new { Value = "" })
+
+                <input type="submit" id="showReport" value="Show" class="btn btn-default" style="margin-left:10px;margin-top:-2px" />
+                <img id="progressbar" src="/Images/wait_progress.gif" style="display:none;" />
+            </div>
+                <br>
+            }
+
+        </div>
+
+        <div style="text-align:center;font-size:large;font-weight:bold">
+            @Html.Label("Monthly Consumption Report")
+        </div>
+        
+        <div class="vis" id="resultTarget">
+
+            </div>
+
+        <script language="javascript" type="text/javascript">
+            function onBegin() {
+                $('#progressbar').show();
+                $('#showReport').prop('disabled', true);
+            }
+            function onComplete() {
+                $('#progressbar').hide();
+                $('#showReport').prop('disabled', false);
+            }
+        </script>
+        @Scripts.Render("~/bundles/relayStatusLogReport")
+    </section>
+</div>
+
+@section Scripts {
+
+<script type="text/javascript">
+    
+</script>
+
+
+}
+
+
+

@@ -1,0 +1,208 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@using SinePulse.EMS.Domain.Features
+@model SessionViewModel
+@{
+  ViewData["Title"] = "ViewSession";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+  var startDate = Model.StartDate.ToString("dd MMMM, yyyy");
+  var endDate = Model.EndDate.ToString("dd MMMM, yyyy");
+}
+<div class="page-container">
+  <!-- BEGIN CONTENT -->
+  <div class="page-content-wrapper">
+    <div class="page-content">
+
+      <!-- END PAGE HEADER-->
+      <!-- BEGIN PAGE CONTENT-->
+      <div class="row">
+        <div class="col-md-12">
+          <!-- BEGIN PROFILE SIDEBAR -->
+          <div class="profile-sidebar">
+            <!-- PORTLET MAIN -->
+            <div class="portlet light profile-sidebar-portlet">
+              <!-- SIDEBAR USERPIC -->
+              <div class="profile-userpic">
+                <a href="/Institute/ViewInstitute?instituteId=@Model.Institute.Id"><img src="../../img/school.png" class="img-responsive" alt=""></a>
+              </div>
+              <!-- END SIDEBAR USERPIC -->
+              <!-- SIDEBAR USER TITLE -->
+              <div class="profile-usertitle-name small-title">
+                @Html.DisplayFor(model => model.SessionName)
+              </div>
+              <div class="profile-stat-text">
+                @Localizer["ViewSession.Session"]
+              </div>
+              <hr />
+              <div class="profile-usertitle-name">
+                @if (Model.HasPermission(Feature.InstituteEnum.ViewInstitute.ToString()))
+                {
+                  <a href="/Institute/ViewInstitute?instituteId=@Model.Institute.Id">
+                    @Html.DisplayFor(model => model.Institute.OrganisationName) (@Html.DisplayFor(model => model.Institute.ShortName))
+                  </a>
+                }
+                else
+                {
+                  @Html.DisplayFor(model => model.Institute.OrganisationName) @Html.DisplayFor(model => model.Institute.ShortName)
+                }
+
+              </div>
+              <div class="profile-stat-text">
+                @Localizer["ViewSession.Institute"]
+              </div>
+              <hr />
+              <div class="profile-usertitle-name">
+                @if (Model.HasPermission(Feature.BranchEnum.ViewBranch.ToString()))
+                {
+                  <a href="#">Satic Branch</a>
+                }
+                else
+                {
+                  <a href="#">Satic Branch</a>
+                }
+              </div>
+              <div class="profile-stat-text">
+                @Localizer["ViewSession.Branch"]
+              </div>
+              <hr />
+              <div class="profile-usertitle-name">
+                @if (Model.HasPermission(Feature.BranchMediumEnum.ViewBranchMedium.ToString()))
+                {
+                  <a href="#">Static Medium</a>
+                }
+                else
+                {
+                  <a href="#">Static Medium</a>
+                }
+              </div>
+              <div class="profile-stat-text">
+                @Localizer["ViewSession.Medium"]
+              </div>
+              <hr />
+              <div class="profile-usertitle-name">
+                Static Shift
+              </div>
+              <div class="profile-stat-text">
+                @Localizer["ViewSession.Shift"]
+              </div>
+              <hr />
+              <br />
+            </div>
+            <!-- END PORTLET MAIN -->
+          </div>
+          <!-- END BEGIN PROFILE SIDEBAR -->
+          <!-- BEGIN PROFILE CONTENT -->
+          <div class="profile-content">
+            <div class="row">
+              <div class="col-md-12">
+                <!-- BEGIN PORTLET -->
+                <div class="portlet light">
+                  <div class="portlet-title tabbable-line">
+                    <div class="page-toolbar custom-page-menu-bar">
+                      <div class="btn-group">
+                        <ul style="padding:0px;">
+
+                          <li class="custom-page-menu dropdown primary-menu-item-li">
+                            <a href="#" class="show-dropdown-on-hover" data-toggle="custom-page-menu">
+                              <button type="button" class="btn btn-fit-height dark-bg dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="100" data-close-others="true">
+                                <i class="fa fa-bars"></i>
+                              </button>
+                            </a>
+                            <ul class="dropdown-menu light-arrow-only">
+                              <li><a href="@Url.Action("UpdateSession", new {id = Model.Id})">@Localizer["ViewSession.EditSession"]</a></li>
+                              <li><a href="/Session/Index?sessionType=@Model.SessionType&objectId=@Model.ObjectId">@Localizer["ViewSession.AllSessions"]</a></li>
+                            </ul>
+                          </li>
+
+                        </ul>
+
+                      </div>
+
+                    </div>
+                    <ul class="nav nav-tabs custom-page-tab">
+                      <li class="active">
+                        <a href="#tab_general_info" data-toggle="tab">
+                          <h5 class="caption-subject font-blue-madison bold uppercase">General Info</h5>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="portlet-body">
+                    <!--BEGIN TABS-->
+                    <div class="tab-content">
+
+                      <div class="tab-pane active" id="tab_general_info">
+                        <div style="min-height: 337px;">
+                          <div class="row">
+
+                            <div class="col-md-12">
+                              <div class="row list-separated profile-stat">
+                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                  <div class="uppercase profile-stat-title">
+                                    @Html.DisplayFor(model => startDate)
+                                  </div>
+                                  <div class="uppercase profile-stat-text">
+                                    @Localizer["ViewSession.StartDate"]
+                                  </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                  <div class="uppercase profile-stat-title">
+                                    @Html.DisplayFor(model => endDate)
+                                  </div>
+                                  <div class="uppercase profile-stat-text">
+                                    @Localizer["ViewSession.EndDate"]
+                                  </div>
+                                </div>
+
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-12">
+                              <div class="row list-separated profile-stat">
+                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                  <div class="uppercase profile-stat-title">
+                                    @Html.DisplayFor(model => model.SessionType)
+                                  </div>
+                                  <div class="uppercase profile-stat-text">
+                                    @Localizer["ViewSession.SessionType"]
+                                  </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                  <div class="uppercase profile-stat-title">
+                                    @{
+                                      if (Model.IsSessionClosed)
+                                      {
+                                        <i class="fa fa-check-circle" style="font-size: 1.5em;"></i>
+                                      }
+                                      else
+                                      {
+                                        <i class="fa fa-close" style="font-size: 1.5em;"></i>
+                                      }
+                                    }
+                                  </div>
+                                  <div class="uppercase profile-stat-text">
+                                    @Localizer["ViewSession.IsCurrent"]
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                    <!--END TABS-->
+                  </div>
+                </div>
+                <!-- END PORTLET -->
+              </div>
+            </div>
+
+          </div>
+          <!-- END PROFILE CONTENT -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,103 @@
+﻿@model IEnumerable<SinePulse.EMS.Domain.Academic.Institute>
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@{
+  ViewData["Title"] = "InstituteListView";
+}
+
+<h2>InstituteListView</h2>
+
+<p>
+  <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+  <thead>
+    <tr>
+      <th>
+        @Html.DisplayNameFor(model => model.OrganisationName)
+      </th>
+      <th>
+        @Html.DisplayNameFor(model => model.ShortName)
+      </th>
+      <th>
+        @Html.DisplayNameFor(model => model.Slogan)
+      </th>
+      <th>
+        @Html.DisplayNameFor(model => model.Domain)
+      </th>
+      <th>
+        @Html.DisplayNameFor(model => model.Email)
+      </th>
+      <th>
+        @Html.DisplayNameFor(model => model.Favicon)
+      </th>
+      <th>
+        @Html.DisplayNameFor(model => model.Logo)
+      </th>
+      <th>
+        @Html.DisplayNameFor(model => model.Banner)
+      </th>
+      <th>
+        @Html.DisplayNameFor(model => model.Description)
+      </th>
+      <th>
+        @Html.DisplayNameFor(model => model.WhyChooseInstitue)
+      </th>
+      <th>
+        @Html.DisplayNameFor(model => model.FacebookPageURL)
+      </th>
+      <th>
+        @Html.DisplayNameFor(model => model.Status)
+      </th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach (var item in Model)
+    {
+      <tr>
+        <td>
+          @Html.DisplayFor(modelItem => item.OrganisationName)
+        </td>
+        <td>
+          @Html.DisplayFor(modelItem => item.ShortName)
+        </td>
+        <td>
+          @Html.DisplayFor(modelItem => item.Slogan)
+        </td>
+        <td>
+          @Html.DisplayFor(modelItem => item.Domain)
+        </td>
+        <td>
+          @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+          @Html.DisplayFor(modelItem => item.Favicon)
+        </td>
+        <td>
+          @Html.DisplayFor(modelItem => item.Logo)
+        </td>
+        <td>
+          @Html.DisplayFor(modelItem => item.Banner)
+        </td>
+        <td>
+          @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+          @Html.DisplayFor(modelItem => item.WhyChooseInstitue)
+        </td>
+        <td>
+          @Html.DisplayFor(modelItem => item.FacebookPageURL)
+        </td>
+        <td>
+          @Html.DisplayFor(modelItem => item.Status)
+        </td>
+
+        <td>
+          @Html.ActionLink("Add Branch", "Edit", new { InstituteId = item.Id }) |
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>

@@ -1,0 +1,95 @@
+
+@using NakedObjects.Web.Mvc.Html
+@using SinePulse.SmartMeter.Domain.Reports
+@model LiveMeterList
+@{
+  int count = 0;
+}
+<div>
+    <div style="text-align: left">
+        @if (Model.Meters.Count > 0)
+        {
+        @Html.ActionLink("Export To Excel", "ExportToExcel", "liveMeterList", new { startDate = @Model.FromDate, endDate = @Model.ToDate}, null)
+        }
+    </div>
+
+    <div style="text-align: right">
+        <a href="javascript:printDiv('liveMeterListDiv')"><b>Print</b></a>
+        <iframe name="print_frame" width="0" height="0" frameborder="0" src="about:blank"></iframe>
+    </div>
+</div>
+<div id="liveMeterListDiv">
+    @if (Model.Meters.Count > 0)
+    {
+    <h1 id="liveMeterListHeading" style="text-align: center">Live Meter List</h1> 
+    <p id="liveMeterListDateTime" style="text-align: center">( @Model.FromDate.ToString("d") - @Model.ToDate.ToString("d"))</p>
+    }
+    <table id="table_id">
+        <thead>
+            <tr>
+                <th>
+                    Id
+                </th>
+                <th>
+                    Consumer No
+                </th>
+                <th>
+                    Consumer Name
+                </th>
+                <th>
+                    Meter No
+                </th>
+                <th>
+                    Phase
+                </th>
+                <th>
+                    Consumer Class
+                </th>
+                <th>
+                    Load Limit
+                </th>
+                <th>
+                    Registration DateTime
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var data in Model.Meters)
+            {
+                count = count + 1;
+            <tr>
+                <td>@count</td>
+                <td>@data.Consumer.ConsumerNo </td>
+                <td>@data.Consumer.Name</td>
+                <td>@data.MeterNo</td>
+                <td>@data.Phase</td>
+                <td>@data.ConsumerClass.Title()</td>
+                <td>@data.LoadLimit</td>
+                <td>@data.RegisteredDateTime</td>
+            </tr>
+
+                  }
+            <tr></tr>
+        </tbody>
+    </table>
+
+</div>
+
+<script type="text/javascript">
+    function printDiv(divId) {
+        window.frames["print_frame"].document.body.innerHTML = '<style media="print"> table, th, td { border: 1px solid black; border-collapse: collapse;}@@page {size:landscape} </style>' + document.getElementById(divId).innerHTML;
+        window.frames["print_frame"].window.focus();
+        window.frames["print_frame"].window.print();
+    }
+</script>
+
+<style type="text/css">
+    @@media screen {
+        #liveMeterListHeading {
+            display: none;
+        }
+        #liveMeterListDateTime {
+            display: none;
+        }
+    }
+</style>

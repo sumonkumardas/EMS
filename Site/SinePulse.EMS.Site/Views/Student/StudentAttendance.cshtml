@@ -1,0 +1,85 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@model ShowStudentAttendanceViewModel
+
+<div class="row-fluid col-md-12 zero-padding-row">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
+    <div class="col-md-5">
+        <div class="form-group">
+            <div class="col-md-4">
+                <label>StartDate</label><span class="required">*</span>
+            </div>
+            <div class="col-md-8">
+            
+                    <input type="text" class="form-control datepicker"  name="AttendanceStartDate" id="AttendanceStartDate">
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-5">
+        <div class="form-group">
+            <div class="col-md-4">
+                <label>EndDate</label><span class="required">*</span>
+            </div>
+            <div class="col-md-8">
+              
+                    <input type="text" class="form-control datepicker" name="AttendanceEndDate" id="AttendanceEndDate">
+              
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="form-group">
+            <div class="col-md-8">
+                <button type="button" onclick="filterAttendanceClickedClicked()" class="btn custom-btn custom-cancel-btn pull-right">Search</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    <table class="table table-striped table-hover">
+        <thead>
+        <tr>
+            <th>@Localizer["StudentAttendance.Date"]</th>
+            <th>@Localizer["StudentAttendance.InTime"]</th>
+            <th>@Localizer["StudentAttendance.OutTime"]</th>
+        </tr>
+        </thead>
+        <tbody>
+        @{
+            if (Model.StudentAttendances != null && Model.StudentAttendances.Any())
+            {
+                foreach (var attendance in Model.StudentAttendances)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(model => attendance.AttendanceDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => attendance.InTime)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => attendance.OutTime)
+                        </td>
+                    </tr>
+                }
+            }
+        }
+        </tbody>
+    </table>
+</div>
+@section scripts
+{
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+
+    <!-- Place the following the Partial View (along with the content you are loading) -->
+    <script type='text/javascript'>
+        $(function () {
+            // Wire up your DatePicker
+            $('#AttendanceStartDate').datepicker();
+        });
+    </script>
+}

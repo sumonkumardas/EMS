@@ -1,0 +1,74 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@model PromoteStudentsViewModel
+@inject IViewLocalizer Localizer
+@{
+  ViewData["Title"] = "PromoteStudents";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-container">
+  <!-- BEGIN CONTENT -->
+  <div class="page-content-wrapper">
+    <div class="page-content">
+      <div class="portlet-body form">
+        <!-- BEGIN FORM-->
+        <div class="title-on-top">@Localizer["PromoteStudents.Title"]</div>
+        <form asp-action="PromoteStudents" class="form-horizontal box-shadow-form" id="form_sample_3">
+          <div class="form-body">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+              <input asp-for="CurrentSectionId" type="hidden" class="form-control" />
+              @for (var i = 0; i < Model.NextSessionSections.Count; i++)
+              {
+                  <input type="hidden" name="NextSessionSections[@i].SectionId" value="@Model.NextSessionSections[i].SectionId" />
+                  <input type="hidden" name="NextSessionSections[@i].SectionText" value="@Model.NextSessionSections[i].SectionText" />
+              }
+              @for (var i = 0; i < Model.CurrentSectionStudents.Count; i++)
+              {
+                  <input type="hidden" name="CurrentSectionStudents[@i].StudentId" value="@Model.CurrentSectionStudents[i].StudentId" />
+                  <input type="hidden" name="CurrentSectionStudents[@i].StudentName" value="@Model.CurrentSectionStudents[i].StudentName" />
+                  <input type="hidden" name="CurrentSectionStudents[@i].StudentRoll" value="@Model.CurrentSectionStudents[i].StudentRoll" />
+                  <input type="hidden" name="CurrentSectionStudents[@i].StudentSectionId" value="@Model.CurrentSectionStudents[i].StudentSectionId" />
+              }
+              @for (var i = 0; i < Model.CurrentSectionStudents.Count; i++)
+              {
+                <div class="row-fluid col-md-12 zero-padding-row">
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <div class="col-md-8">
+                        <input asp-for="@Model.CurrentSectionStudents[i].StudentName" type="text" disabled="disabled" class="form-control"/>
+                        <span asp-validation-for="@Model.CurrentSectionStudents[i].StudentName" class="text-danger"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <div class="col-md-8">
+                        <input asp-for="@Model.CurrentSectionStudents[i].StudentRoll" type="text" disabled="disabled" class="form-control"/>
+                        <span asp-validation-for="@Model.CurrentSectionStudents[i].StudentRoll" class="text-danger"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <div class="col-md-8">
+                        @Html.DropDownListFor(x => x.CurrentSectionStudents[i].NextSectionId, new SelectList(Model.NextSessionSections, "SectionId", "SectionText"), @Localizer["PromoteStudentOption.SelectSection"].Value, new {@class = "form-control"})
+                        <span asp-validation-for="CurrentSectionStudents[@i].NextSectionId" class="text-danger"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="clearfix"></div>
+              }
+            <br />
+            <div class="btn-container">
+              <button type="button" class="btn custom-btn custom-cancel-btn pull-left" onclick="location.href = '/Section/ViewSection?sectionId=@Model.CurrentSectionId'">@Localizer["PromoteStudents.CancelButton"]</button>
+              <button type="submit" class="btn custom-btn custom-cancel-btn pull-right">@Localizer["PromoteStudents.PromoteButton"]</button>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+        </form>
+        <!-- END FORM-->
+      </div>
+    </div>
+  </div>
+</div>  

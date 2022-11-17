@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Domain\SinePulse.EMS.Constants\SinePulse.EMS.Constants.csproj" />
+    <ProjectReference Include="..\..\..\Infrastructure\Persistence\SinePulse.EMS.Persistence\SinePulse.EMS.Persistence.csproj" />
+    <ProjectReference Include="..\..\..\Messages\SinePulse.EMS.Messages.FinancialJobMessages\SinePulse.EMS.Messages.FinancialJobMessages.csproj" />
+    <ProjectReference Include="..\..\..\SinePulse.EMS.Domain\SinePulse.EMS.Domain.csproj" />
+    <ProjectReference Include="..\..\..\UseCases\SinePulse.EMS.UseCases\SinePulse.EMS.UseCases.csproj" />
+    <ProjectReference Include="..\..\..\Utility\SinePulse.EMS.Utility.MessagingQueue\SinePulse.EMS.Utility.MessagingQueue.csproj" />
+  </ItemGroup>
+
+</Project>

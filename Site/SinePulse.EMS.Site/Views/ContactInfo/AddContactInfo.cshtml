@@ -1,0 +1,68 @@
+﻿@model SinePulse.EMS.Site.Models.AddContactInfoViewModel
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@{
+  ViewData["Title"] = "AddContactInfo";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-container">
+  <!-- BEGIN CONTENT -->
+  <div class="page-content-wrapper">
+    <div class="page-content">
+      <div class="portlet-body form">
+        <!-- BEGIN FORM-->
+        <div class="title-on-top">@Localizer["AddContactInfo.Title"]</div>
+        <form asp-action="AddContactInfo" class="form-horizontal box-shadow-form" id="form_sample_3">
+          <div class="form-body">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input asp-for="StudentId" type="hidden" runat="server" />
+            <input asp-for="BranchMediumId" type="hidden" runat="server" />
+            <div class="row-fluid">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["AddContactInfo.PhoneNo"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <input asp-for="PhoneNo" type="text" class="form-control" />
+                    <span asp-validation-for="PhoneNo" class="text-danger"></span>
+                  </div>
+                </div>
+
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["AddContactInfo.EmailAddress"] </label>
+                  </div>
+                  <div class="col-md-8">
+                    <input asp-for="EmailAddress" type="email" class="form-control" />
+                    <span asp-validation-for="EmailAddress" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <br />
+            <div class="btn-container">
+              <button type="button" class="btn custom-btn custom-cancel-btn pull-left" onclick="location.href = '/Student/ViewStudent?studentId=@Model.StudentId&branchMediumId=@Model.BranchMediumId'">@Localizer["AddContactInfo.CancleButton"]</button>
+              <button type="submit" class="btn custom-btn custom-cancel-btn pull-right">@Localizer["AddContactInfo.CreateButton"]</button>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+        </form>
+        <!-- END FORM-->
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+

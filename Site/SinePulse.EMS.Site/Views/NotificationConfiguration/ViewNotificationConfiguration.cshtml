@@ -1,0 +1,105 @@
+﻿@model SinePulse.EMS.Site.Models.NotificationConfigurationViewModel
+@using SinePulse.EMS.Domain.Shared
+@inject IViewLocalizer Localizer
+@using Microsoft.AspNetCore.Mvc.Localization
+@using SinePulse.EMS.Domain.Enums
+
+<div class="page-bar margin-bottom-15">
+</div>
+<div class="row-fluid col-md-12 zero-padding-row">
+
+    <div class="col-md-4">
+        <div class="row-fluid">
+          <div class="col-md-12">
+            @Localizer["ViewNotificationConfiguration.After"] <br />
+            @Model.EntryDelayPeriod <br />
+            @Model.EntryDelayTimeIntervalType
+            @Localizer["ViewNotificationConfiguration.OfSchoolStartTime"]
+            <div class="uppercase profile-stat-text">
+              @Localizer["ViewNotificationConfiguration.StudentDelayNotification"]
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="row-fluid">
+          <div class="col-md-12">
+            @Localizer["ViewNotificationConfiguration.After"] <br />
+            @Model.AbsentPeriod <br />
+            @Model.AbsentTimeIntervalType
+            @Localizer["ViewNotificationConfiguration.OfSchoolStartTime"]
+            <div class="uppercase profile-stat-text">
+              @Localizer["ViewNotificationConfiguration.StudentAbsentNotification"]
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="row-fluid">
+          <div class="col-md-12">
+            @Localizer["ViewNotificationConfiguration.Before"] <br />
+            @Model.ExamStartPeriod <br />
+            @Model.ExamStartTimeIntervalType
+            @Localizer["ViewNotificationConfiguration.OfExamStartDate"]
+            <div class="uppercase profile-stat-text">
+              @Localizer["ViewNotificationConfiguration.ExamTermNotification"]
+            </div>
+          </div>
+        </div>
+    </div>
+</div>
+<div class="page-bar margin-bottom-15">
+</div>
+<div class="clearfix"></div>
+<div class="row-fluid col-md-12 zero-padding-row">
+
+    <div class="col-md-4">
+        <div class="row-fluid">
+          <div class="col-md-12">
+            @Localizer["ViewNotificationConfiguration.Before"] <br />
+            @Model.ClassTestStartPeriod <br />
+            @Model.ClassTestStartTimeIntervalType
+            @Localizer["ViewNotificationConfiguration.OfClassTestDate"]
+            <div class="uppercase profile-stat-text">
+              @Localizer["ViewNotificationConfiguration.ClassTestNotification"]
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="row-fluid">
+          <div class="col-md-12">
+            @Localizer["ViewNotificationConfiguration.Before"] <br />
+            @Model.TermTestStartPeriod <br />
+            @Model.TermTestStartTimeIntervalType
+            @Localizer["ViewNotificationConfiguration.OfTermTestDate"]
+            <div class="uppercase profile-stat-text">
+              @Localizer["ViewNotificationConfiguration.TermTestNotification"]
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="row-fluid">
+          <div class="col-md-12">
+            @Localizer["ViewNotificationConfiguration.After"] <br />
+            @Model.ResultGradePreparePeriod <br />
+            @Model.ResultGradePrepareTimeIntervalType 
+            @Localizer["ViewNotificationConfiguration.OfResultCalculation"]
+            <div class="uppercase profile-stat-text">
+              @Localizer["ViewNotificationConfiguration.ExamGradeNotification"]
+            </div>
+          </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+}

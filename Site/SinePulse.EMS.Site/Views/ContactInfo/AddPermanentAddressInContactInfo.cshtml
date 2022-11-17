@@ -1,0 +1,114 @@
+﻿@model SinePulse.EMS.Site.Models.AddPermanentAddressInContactInfoViewModel
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@{
+  ViewData["Title"] = "AddPermanentAddressInContactInfo";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="page-container">
+  <!-- BEGIN CONTENT -->
+  <div class="page-content-wrapper">
+    <div class="page-content">
+      <div class="portlet-body form">
+        <!-- BEGIN FORM-->
+        <div class="title-on-top">@Localizer["AddPermanentAddressInContactInfo.Title"]</div>
+        <form asp-action="AddPermanentAddressInContactInfo" class="form-horizontal box-shadow-form" id="form_sample_3">
+          <div class="form-body">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input asp-for="ContactInfoId" type="hidden" runat="server" />
+            <div class="row-fluid col-md-12 zero-padding-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["AddPermanentAddressInContactInfo.Street1"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <input asp-for="Street1" type="text" class="form-control" />
+                    <span asp-validation-for="Street1" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["AddPermanentAddressInContactInfo.Street2"] </label>
+                  </div>
+                  <div class="col-md-8">
+                    <input asp-for="Street2" type="text" class="form-control" />
+                    <span asp-validation-for="Street2" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row-fluid col-md-12 zero-padding-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["AddPermanentAddressInContactInfo.PostalCode"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <input asp-for="PostalCode" type="text" class="form-control" />
+                    <span asp-validation-for="PostalCode" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["AddPermanentAddressInContactInfo.City"]</label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <input asp-for="City" type="text" class="form-control" />
+                    <span asp-validation-for="City" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row-fluid col-md-12 zero-padding-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["AddPermanentAddressInContactInfo.SameAsPresentAddress"] </label>
+                  </div>
+                  <div class="col-md-8">
+                    <input asp-for="SameAsPresentAddress" type="checkbox">
+                    <span asp-validation-for="SameAsPresentAddress" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+
+              </div>
+            </div>
+
+            <div class="clearfix"></div>
+            <br />
+            <div class="btn-container">
+              <button type="button" class="btn custom-btn custom-cancel-btn pull-left">@Localizer["AddPermanentAddressInContactInfo.CancleButton"]</button>
+              <button type="submit" class="btn custom-btn custom-cancel-btn pull-right">@Localizer["AddPermanentAddressInContactInfo.CreateButton"]</button>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+        </form>
+        <!-- END FORM-->
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+

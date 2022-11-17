@@ -1,0 +1,60 @@
+﻿@model TransactionFailureVieModel
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@{
+  ViewData["Title"] = "TransactionFailure";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- BEGIN CONTAINER -->
+
+<div class="page-container">
+  <!-- BEGIN CONTENT -->
+  <div class="page-content-wrapper">
+    <div class="page-content">
+      <div class="portlet-body form">
+        <!-- BEGIN FORM-->
+        <div class="title-on-top">@Localizer["TransactionFailure.Title"]</div>
+        <form asp-action="TransactionFailure" class="form-horizontal box-shadow-form" id="form_sample_3">
+          <div class="form-body">
+            <input type="hidden" asp-for="BranchMediumId" id="branchMediumId" />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="row-fluid col-md-12 zero-padding-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["TransactionFailure.TransactionID"]</label>
+                  </div>
+                  <div class="col-md-8">
+                    <input asp-for="TransactionId" readonly type="text" class="form-control" />
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["TransactionFailure.TransactionAmount"]</label>
+                  </div>
+                  <div class="col-md-8">
+                    <input asp-for="TransactionAmount" readonly type="text" class="form-control" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <br />
+            <div class="btn-container">
+              <button type="button" class="btn custom-btn custom-cancel-btn pull-left" onclick="location.href = '@Url.Action("ViewBranchMedium", "BranchMedium", new {branchMediumId = Model.BranchMediumId})'">@Localizer["TransactionFailure.Cancel"]</button>
+              <button type="button" class="btn custom-btn custom-cancel-btn pull-right" onclick="location.href = '@Url.Action("PayBill", new {branchMediumId = Model.BranchMediumId})'">@Localizer["TransactionFailure.TryAgain"]</button>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+        </form>
+        <!-- END FORM-->
+      </div>
+    </div>
+  </div>
+</div>
+@section Scripts
+  {
+  <script src="~/assets/global/scripts/OnlinePayment/payBill.js" type="text/javascript"></script>
+}

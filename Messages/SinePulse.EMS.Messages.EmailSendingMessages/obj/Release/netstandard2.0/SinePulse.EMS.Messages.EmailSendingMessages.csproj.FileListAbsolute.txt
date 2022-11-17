@@ -1,0 +1,12 @@
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Messages\SinePulse.EMS.Messages.EmailSendingMessages\bin\Release\netstandard2.0\SinePulse.EMS.Messages.EmailSendingMessages.deps.json
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Messages\SinePulse.EMS.Messages.EmailSendingMessages\bin\Release\netstandard2.0\SinePulse.EMS.Messages.EmailSendingMessages.dll
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Messages\SinePulse.EMS.Messages.EmailSendingMessages\bin\Release\netstandard2.0\SinePulse.EMS.Messages.EmailSendingMessages.pdb
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Messages\SinePulse.EMS.Messages.EmailSendingMessages\bin\Release\netstandard2.0\SinePulse.EMS.InterServiceMessages.dll
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Messages\SinePulse.EMS.Messages.EmailSendingMessages\bin\Release\netstandard2.0\SinePulse.EMS.InterServiceMessages.pdb
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Messages\SinePulse.EMS.Messages.EmailSendingMessages\obj\Release\netstandard2.0\SinePulse.EMS.Messages.EmailSendingMessages.csprojAssemblyReference.cache
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Messages\SinePulse.EMS.Messages.EmailSendingMessages\obj\Release\netstandard2.0\SinePulse.EMS.Messages.EmailSendingMessages.csproj.CoreCompileInputs.cache
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Messages\SinePulse.EMS.Messages.EmailSendingMessages\obj\Release\netstandard2.0\SinePulse.EMS.Messages.EmailSendingMessages.AssemblyInfoInputs.cache
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Messages\SinePulse.EMS.Messages.EmailSendingMessages\obj\Release\netstandard2.0\SinePulse.EMS.Messages.EmailSendingMessages.AssemblyInfo.cs
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Messages\SinePulse.EMS.Messages.EmailSendingMessages\obj\Release\netstandard2.0\SinePulse.EMS.Messages.EmailSendingMessages.csproj.CopyComplete
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Messages\SinePulse.EMS.Messages.EmailSendingMessages\obj\Release\netstandard2.0\SinePulse.EMS.Messages.EmailSendingMessages.dll
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Messages\SinePulse.EMS.Messages.EmailSendingMessages\obj\Release\netstandard2.0\SinePulse.EMS.Messages.EmailSendingMessages.pdb

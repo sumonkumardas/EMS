@@ -1,0 +1,57 @@
+﻿@model SinePulse.EMS.Site.Models.EmployeeAttendanceViewModel
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@{
+    ViewData["Title"] = "ViewEmployeeAttendance";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="page-container">
+    <!-- BEGIN CONTENT -->
+    <div class="page-content-wrapper">
+        <div class="page-content">
+            <div class="portlet box form-conatiner">
+                <div class="icon-container">
+                    <a href="/Employee/UpdateEmployeeAttendance?attendanceId=@Model.Id" class="fa fa-edit action-link"></a>
+                    <a href="/EmployeeAttendance/ShowEmployeeAttendanceList" class="fa fa-tasks action-link"></a>
+                </div>
+                
+                <div class="portlet-body form">
+
+                  <div class="container-fluid">
+                    <div class="row-fluid ">
+                      <div class="col-md-6">
+                        <div class="row custom-row">
+                          <div class="col-md-4 title"><strong>@Localizer["ViewEmployeeAttendance.EmployeeName"]</strong></div>
+                          <div class="col-md-8 value">@Model.Employee.FullName</div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="row custom-row">
+                          
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="container-fluid">
+                    <div class="row-fluid ">
+                      <div class="col-md-6">
+                        <div class="row custom-row">
+                          <div class="col-md-4 title"><strong>@Localizer["ViewEmployeeAttendance.InTime"]</strong></div>
+                          <div class="col-md-8 value">@Model.InTime</div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="row custom-row">
+                          <div class="col-md-4 title"><strong>@Localizer["ViewEmployeeAttendance.OutTime"]</strong></div>
+                          <div class="col-md-8 value">@Model.OutTime</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

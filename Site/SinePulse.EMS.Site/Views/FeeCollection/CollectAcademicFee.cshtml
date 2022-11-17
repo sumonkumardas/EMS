@@ -1,0 +1,505 @@
+﻿@using SinePulse.EMS.Domain.Enums
+@using SinePulse.EMS.ProjectPrimitives
+@model FeeCollectionViewModel
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+
+@{
+  ViewData["Title"] = "CollectAcademicFee";
+}
+
+<div class="page-container">
+  <!-- BEGIN CONTENT -->
+  <div class="page-content-wrapper">
+    <div class="page-content">
+      <div class="portlet-body form">
+        <!-- BEGIN FORM-->
+        <div class="title-on-top">@Localizer["CollectAcademicFee.Title"]</div>
+        <form asp-action="CollectAcademicFee" class="form-horizontal box-shadow-form" id="form_sample_3">
+          <div class="form-body">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="StudentId" />
+            <input type="hidden" asp-for="SectionId" />
+            <input type="hidden" asp-for="ClassName" />
+            <input type="hidden" asp-for="StudentName" />
+            <input type="hidden" asp-for="SectionName" />
+            <input type="hidden" asp-for="ClassId" />
+            <input type="hidden" asp-for="BranchMediumId" />
+            <input type="hidden" asp-for="FeeType" />
+            <input type="hidden" asp-for="Roll" />
+            <div class="row-fluid">
+              <div class="col-md-8">
+                <div class="form-group">
+                  <div class="col-md-5">
+                    <label>
+                      <b>@Localizer["CollectAcademicFee.StudentName"] :</b>
+                      <a href="/Student/ViewStudent?studentId=@Model.StudentId&branchMediumId=@Model.BranchMediumId">
+                        @Html.DisplayFor(model => Model.StudentName)
+                      </a>
+                    </label>
+                  </div>
+                  <div class="col-md-3">
+                    <label>
+                      <b>@Localizer["CollectAcademicFee.Class"] :</b>
+                      <a href="/Class/ViewClass?classId=@Model.ClassId">
+                        @Html.DisplayFor(model => Model.ClassName)
+                      </a>
+                    </label>
+                  </div>
+                  <div class="col-md-2">
+                    <label>
+                      <b>@Localizer["CollectAcademicFee.Section"] :</b>
+                      <a href="/Section/ViewSection?sectionId=@Model.SectionId">
+                        @Html.DisplayFor(model => Model.SectionName)
+                      </a>
+                    </label>
+                  </div>
+                  <div class="col-md-2">
+                    <label>
+                      <b>@Localizer["CollectAcademicFee.Roll"] :</b>
+                      @Html.DisplayFor(model => Model.Roll)
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row-fluid">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["CollectAcademicFee.Session"]</label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    @{
+                      if (Model.Sessions != null && Model.Sessions.Any())
+                      {
+                        @Html.DropDownListFor(x => x.SessionId, new SelectList(Model.Sessions, "Id", "SessionName"), @Localizer["CollectAcademicFee.SelectSession"].Value, new { @class = "form-control", id = "sessionDropDown" })
+                      }
+                      else
+                      {
+                        @Html.DropDownListFor(x => x.SessionId, Enumerable.Empty<SelectListItem>(), @Localizer["CollectAcademicFee.SelectSession"].Value, new { @class = "form-control", id = "sessionDropDown" })
+                      }
+                    }
+                    <span asp-validation-for="SessionId" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["CollectAcademicFee.Month"]</label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <select asp-for="Month" required class="form-control" asp-items="Html.GetEnumSelectList<MonthType>()">
+                      <option selected="selected" value="">@Localizer["CollectAcademicFee.SelectMonth"]</option>
+                    </select>
+                    <span asp-validation-for="Month" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["CollectAcademicFee.PaymentMethod"]</label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <select asp-for="PaymentMethod" required="true" id="paymentMethodDropDown" class="form-control" asp-items="Html.GetEnumSelectList<PaymentMethod>()">
+                      <option selected="selected" value="">@Localizer["CollectAcademicFee.SelectPaymentMethod"]</option>
+                    </select>
+                    <span asp-validation-for="PaymentMethod" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6" id="bankAccountsDiv">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["CollectAcademicFee.BankAccounts"]</label><span class="required"></span>
+                  </div>
+                  <div class="col-md-8">
+                    @{
+                      if (Model.BankAccounts != null && Model.BankAccounts.Any())
+                      {
+                        @Html.DropDownListFor(x => x.BankAccountAccountHeadId, new SelectList(Model.BankAccounts, "Id", "AccountHeadName"), @Localizer["CollectAcademicFee.SelectBankAccount"].Value, new { @class = "form-control", id = "bankAccountsDropDown" })
+                      }
+                      else
+                      {
+                        @Html.DropDownListFor(x => x.BankAccountAccountHeadId, Enumerable.Empty<SelectListItem>(), @Localizer["CollectAcademicFee.SelectBankAccount"].Value, new { @class = "form-control", id = "bankAccountsDropDown" })
+                      }
+                    }
+                    <span asp-validation-for="BankAccountAccountHeadId" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br />
+            <div>
+              <table class="table table-light">
+                <thead>
+                  <tr class="uppercase">
+                    <th>@Localizer["CollectAcademicFee.AccountCode"]</th>
+                    <th>@Localizer["CollectAcademicFee.FeeType"]</th>
+                    <th>@Localizer["CollectAcademicFee.Fees"]</th>
+                    <th>@Localizer["CollectAcademicFee.Waiver"]</th>
+                    <th>@Localizer["CollectAcademicFee.Amount"]</th>
+                  </tr>
+                </thead>
+                <tbody id="accountHeadsTableBody"></tbody>
+              </table>
+            </div>
+            <br />
+            <div class="btn-container">
+              <button type="button" class="btn custom-btn custom-cancel-btn pull-left" onclick="location.href = '@Url.Action("ViewStudent", "Student", new {studentId = Model.StudentId, branchMediumId = Model.BranchMediumId})'">@Localizer["CollectAcademicFee.Cancel"]</button>
+              <button id="collectButton" type="submit" class="btn custom-btn custom-cancel-btn pull-right">@Localizer["CollectAcademicFee.Collect"]</button>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+        </form>
+        <!-- END FORM-->
+      </div>
+    </div>
+  </div>
+</div>
+
+@section scripts
+  {
+  <script>
+        $(function() {
+            var bankAccountsDropDown = $("#bankAccountsDropDown");
+            $("#paymentMethodDropDown").change(function() {
+                $.ajax({
+                    type: "POST",
+                    url: "/FeeCollection/GetBankAccountAccountHeads?branchMediumId=@Model.BranchMediumId" +
+                        "&sessionId=" +
+                        $("#sessionDropDown").val() +
+                        "&paymentMethod=" +
+                        $("#paymentMethodDropDown").val(),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function(response) {
+                        bankAccountsDropDown.empty();
+                        bankAccountsDropDown.append(new Option("Select Bank Account", ""));
+                        jQuery.each(response,
+                            function(index, item) {
+                                var dropdownItem = new Option(item.AccountHeadName, item.Id);
+                                bankAccountsDropDown.append(dropdownItem);
+                            });
+                    },
+                    failure: function(response) {
+                        alert("Failure..! Could not Fetch Data.");
+                    },
+                    error: function(response) {
+                        alert("Error..! Could not Fetch Data.");
+                    }
+                });
+            });
+        });
+
+        $(function() {
+            var bankAccountsDropDown = $("#bankAccountsDropDown");
+            $("#sessionDropDown").change(function() {
+                $.ajax({
+                    type: "POST",
+                    url: "/FeeCollection/GetBankAccountAccountHeads?branchMediumId=@Model.BranchMediumId" +
+                        "&sessionId=" +
+                        $("#sessionDropDown").val() +
+                        "&paymentMethod=" +
+                        $("#paymentMethodDropDown").val(),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function(response) {
+                        bankAccountsDropDown.empty();
+                        bankAccountsDropDown.append(new Option("Select Bank Account", ""));
+                        jQuery.each(response,
+                            function(index, item) {
+                                var dropdownItem = new Option(item.AccountHeadName, item.Id);
+                                bankAccountsDropDown.append(dropdownItem);
+                            });
+                    },
+                    failure: function(response) {
+                        alert("Failure..! Could not Fetch Data.");
+                    },
+                    error: function(response) {
+                        alert("Error..! Could not Fetch Data.");
+                    }
+                });
+            });
+        });
+
+        $(function() {
+            var accountHeadsTableBody = $("#accountHeadsTableBody");
+            $("#sessionDropDown").change(function() {
+                $.ajax({
+                    type: "POST",
+                    url: "/FeeCollection/GetStudentWaiver?studentId=@Model.StudentId" +
+                        "&sectionId=@Model.SectionId" +
+                        "&sessionId=" +
+                        $("#sessionDropDown").val() +
+                        "&feePeriod=@Model.FeeType" +
+                        "&classId=@Model.ClassId" +
+                        "&branchMediumId=@Model.BranchMediumId",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function(response) {
+                        $('#collectButton').attr('disabled', false);
+                        accountHeadsTableBody.empty();
+                        var rows = "";
+                        var totalAmount = 0;
+                        if (response.academicFeeNotAddedMsg != undefined) {
+                            $('#collectButton').attr('disabled', true);
+                            alert(response.academicFeeNotAddedMsg);
+                            return;
+                        }
+                        if (response.disableCollectButton != undefined) {
+                            $('#collectButton').attr('disabled', true);
+                            return;
+                        }
+                        if (response[0].Waiver != undefined) {
+                            jQuery.each(response,
+                                function(index, item) {
+                                    var amount;
+                                    var waiver;
+                                    if (item.InPercentage) {
+                                        waiver = ((item.Waiver * item.Fees) / 100);
+                                        amount = item.Fees - waiver;
+                                    } else {
+                                        amount = item.Fees - item.Waiver;
+                                        waiver = item.Waiver;
+                                    }
+                                    totalAmount += amount;
+                                    rows += " <tr> " +
+                                        "<td>" +
+                                        item.AccountHead.AccountCode +
+                                        "</td>" +
+                                        "<td>" +
+                                        item.AccountHead.AccountHeadName +
+                                        "</td>" +
+                                        "<td>" +
+                                        item.Fees +
+                                        "</td>" +
+                                        "<td>" +
+                                        "<input type='number' hidden name='Waivers' value='" +
+                                        waiver +
+                                        "' >" +
+                                        waiver +
+                                        "</td>" +
+                                        "<td>" +
+                                        "<input type='number' hidden name='Amounts' value='" +
+                                        amount +
+                                        "' >" +
+                                        amount +
+                                        "</td>" +
+                                        "</tr>";
+                                });
+                            rows += "<tr><td></td><td></td><td></td><td style='text-align:right'>Total :</td>" +
+                                "<td>" +
+                                totalAmount +
+                                "</label>" +
+                                "<input type='number' hidden name='TotalAmount' value='" +
+                                totalAmount +
+                                "' ></td> </tr>";
+                            $("#accountHeadsTableBody").append(rows);
+                            return;
+                        }
+                        if (response[0].Fees != undefined) {
+                            jQuery.each(response,
+                                function(index, item) {
+                                    var amount = item.Fees;
+                                    totalAmount += amount;
+                                    rows += " <tr> " +
+                                        "<td>" +
+                                        item.AccountHead.AccountCode +
+                                        "</td>" +
+                                        "<td>" +
+                                        item.AccountHead.AccountHeadName +
+                                        "</td>" +
+                                        "<td>" +
+                                        item.Fees +
+                                        "</td>" +
+                                        "<td>" +
+                                        "<input type='number' hidden name='Waivers' value='" +
+                                        0 +
+                                        "' >" +
+                                        0 +
+                                        "</td>" +
+                                        "<td>" +
+                                        "<input type='number' hidden name='Amounts' value='" +
+                                        amount +
+                                        "' >" +
+                                        amount +
+                                        "</td>" +
+                                        "</tr>";
+                                });
+                            rows += "<tr><td></td><td></td><td></td><td style='text-align:right'>Total :</td>" +
+                                "<td>" +
+                                totalAmount +
+                                "</label>" +
+                                "<input type='number' hidden name='TotalAmount' value='" +
+                                totalAmount +
+                                "' ></td> </tr>";
+                            $("#accountHeadsTableBody").append(rows);
+                        }
+                    },
+                    failure: function(response) {
+                        alert("Failure..! Could not Fetch Data.");
+                    },
+                    error: function(response) {
+                        alert("Error..! Could not Fetch Data.");
+                    }
+                });
+            });
+        });
+
+        $(document).ready(function() {
+            var bankAccountsDropDown = $("#bankAccountsDropDown");
+            $.ajax({
+                type: "POST",
+                url: "/FeeCollection/GetBankAccountAccountHeads?branchMediumId=@Model.BranchMediumId" +
+                    "&sessionId=" +
+                    $("#sessionDropDown").val() +
+                    "&paymentMethod=" +
+                    $("#paymentMethodDropDown").val(),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function(response) {
+                    bankAccountsDropDown.empty();
+                    bankAccountsDropDown.append(new Option("Select Bank Account", ""));
+                    jQuery.each(response,
+                        function(index, item) {
+                            var dropdownItem = new Option(item.AccountHeadName, item.Id);
+                            bankAccountsDropDown.append(dropdownItem);
+                        });
+                },
+                failure: function(response) {
+                    alert("Failure..! Could not Fetch Data.");
+                },
+                error: function(response) {
+                    alert("Error..! Could not Fetch Data.");
+                }
+            });
+        });
+
+        $(document).ready(function() {
+            var accountHeadsTableBody = $("#accountHeadsTableBody");
+            $.ajax({
+                type: "POST",
+                url: "/FeeCollection/GetStudentWaiver?studentId=@Model.StudentId" +
+                    "&sectionId=@Model.SectionId" +
+                    "&sessionId=" +
+                    $("#sessionDropDown").val() +
+                    "&feePeriod=@Model.FeeType" +
+                    "&classId=@Model.ClassId" +
+                    "&branchMediumId=@Model.BranchMediumId",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function(response) {
+                    $('#collectButton').attr('disabled', false);
+                    accountHeadsTableBody.empty();
+                    var rows = "";
+                    var totalAmount = 0;
+                    if (response.academicFeeNotAddedMsg != undefined) {
+                        $('#collectButton').attr('disabled', true);
+                        alert(response.academicFeeNotAddedMsg);
+                        return;
+                    }
+                    if (response.disableCollectButton != undefined) {
+                        $('#collectButton').attr('disabled', true);
+                        return;
+                    }
+                    if (response[0].Waiver != undefined) {
+                        jQuery.each(response,
+                            function(index, item) {
+                                var amount;
+                                var waiver;
+                                if (item.InPercentage) {
+                                    waiver = ((item.Waiver * item.Fees) / 100);
+                                    amount = item.Fees - waiver;
+                                } else {
+                                    amount = item.Fees - item.Waiver;
+                                    waiver = item.Waiver;
+                                }
+                                totalAmount += amount;
+                                rows += " <tr> " +
+                                    "<td>" +
+                                    item.AccountHead.AccountCode +
+                                    "</td>" +
+                                    "<td>" +
+                                    item.AccountHead.AccountHeadName +
+                                    "</td>" +
+                                    "<td>" +
+                                    item.Fees +
+                                    "</td>" +
+                                    "<td>" +
+                                    "<input type='number' hidden name='Waivers' value='" +
+                                    waiver +
+                                    "' >" +
+                                    waiver +
+                                    "</td>" +
+                                    "<td>" +
+                                    "<input type='number' hidden name='Amounts' value='" +
+                                    amount +
+                                    "' >" +
+                                    amount +
+                                    "</td>" +
+                                    "</tr>";
+                            });
+                        rows += "<tr><td></td><td></td><td></td><td style='text-align:right'>Total :</td>" +
+                            "<td>" +
+                            totalAmount +
+                            "</label>" +
+                            "<input type='number' hidden name='TotalAmount' value='" +
+                            totalAmount +
+                            "' ></td> </tr>";
+                        $("#accountHeadsTableBody").append(rows);
+                        return;
+                    }
+                    if (response[0].Fees != undefined) {
+                        jQuery.each(response,
+                            function(index, item) {
+                                var amount = item.Fees;
+                                totalAmount += amount;
+                                rows += " <tr> " +
+                                    "<td>" +
+                                    item.AccountHead.AccountCode +
+                                    "</td>" +
+                                    "<td>" +
+                                    item.AccountHead.AccountHeadName +
+                                    "</td>" +
+                                    "<td>" +
+                                    item.Fees +
+                                    "</td>" +
+                                    "<td>" +
+                                    "<input type='number' hidden name='Waivers' value='" +
+                                    0 +
+                                    "' >" +
+                                    0 +
+                                    "</td>" +
+                                    "<td>" +
+                                    "<input type='number' hidden name='Amounts' value='" +
+                                    amount +
+                                    "' >" +
+                                    amount +
+                                    "</td>" +
+                                    "</tr>";
+                            });
+                        rows += "<tr><td></td><td></td><td></td><td style='text-align:right'>Total :</td>" +
+                            "<td>" +
+                            totalAmount +
+                            "</label>" +
+                            "<input type='number' hidden name='TotalAmount' value='" +
+                            totalAmount +
+                            "' ></td> </tr>";
+                        $("#accountHeadsTableBody").append(rows);
+                    }
+                },
+                failure: function(response) {
+                    alert("Failure..! Could not Fetch Data.");
+                },
+                error: function(response) {
+                    alert("Error..! Could not Fetch Data.");
+                }
+            });
+        });
+  </script>
+}

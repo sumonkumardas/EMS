@@ -1,0 +1,195 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@using SinePulse.EMS.Domain.Shared
+@model EmployeePersonalInfoViewModel
+
+<div class="row-fluid">
+  <div class="col-md-4">
+    <div class="uppercase profile-stat-title">
+      @Model.DOB?.ToString("dd MMMM, yyyy")
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="uppercase profile-stat-title">
+      @Html.DisplayFor(model => model.NationalId)
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="uppercase profile-stat-title">
+      @Html.DisplayFor(model => model.MobileNo)
+    </div>
+  </div>
+</div>
+<div class="clearfix"></div>
+<div class="row-fluid">
+  <div class="col-md-4">
+    <div class="uppercase profile-stat-text">
+      @Localizer["EmployeePersonalInfo.DOB"]
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="uppercase profile-stat-text">
+      @Localizer["EmployeePersonalInfo.NationalId"]
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="uppercase profile-stat-text">
+      @Localizer["EmployeePersonalInfo.MobileNo"]
+    </div>
+  </div>
+</div>
+<div class="clearfix"></div>
+<hr />
+<div class="row-fluid margin-top-20">
+  <div class="col-md-4">
+    <div class="uppercase profile-stat-title">
+      @Html.DisplayFor(model => model.EmailAddress)
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="uppercase profile-stat-title">
+      @Model.JoiningDate?.ToString("dd MMMM, yyyy")
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="uppercase profile-stat-title">
+      @Html.DisplayFor(model => model.BankAccountNo)
+    </div>
+  </div>
+</div>
+<div class="clearfix"></div>
+<div class="row-fluid">
+  <div class="col-md-4">
+    <div class="uppercase profile-stat-text">
+      @Localizer["EmployeePersonalInfo.EmailAddress"]
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="uppercase profile-stat-text">
+      @Localizer["EmployeePersonalInfo.JoiningDate"]
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="uppercase profile-stat-text">
+      @Localizer["EmployeePersonalInfo.BankAccountNo"]
+    </div>
+  </div>
+</div>
+<div class="clearfix"></div>
+<hr />
+<div class="row-fluid margin-top-20">
+  <div class="col-md-4">
+    <div class="uppercase profile-stat-title">
+      @Model.EmployeeType
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="uppercase profile-stat-title">
+      @{
+        if (Model.ReportToEmployeeId > 0)
+        {
+          <a href="/Employee/ViewEmployee?associationType=@AssociationType.Global&employeeId=@Model.ReportToEmployeeId">
+            @Html.DisplayFor(model => model.ReportTo)
+          </a>
+        }
+      }
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="uppercase profile-stat-title">
+      @Html.DisplayFor(model => model.IsAccountRegistered)
+    </div>
+  </div>
+</div>
+<div class="clearfix"></div>
+<div class="row-fluid">
+  <div class="col-md-4">
+    <div class="uppercase profile-stat-text">
+      @Localizer["EmployeePersonalInfo.EmployeeType"]
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="uppercase profile-stat-text">
+      @Localizer["EmployeePersonalInfo.ReportTo"]
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="uppercase profile-stat-text">
+      @Localizer["EmployeePersonalInfo.IsAccountRegistered"]
+    </div>
+  </div>
+</div>
+<div class="clearfix"></div>
+<hr />
+<div class="row-fluid margin-top-20">
+  <div class="col-md-4">
+    <div class="uppercase profile-stat-title">
+      @Html.DisplayFor(model => model.FathersName)
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="uppercase profile-stat-title">
+      @Html.DisplayFor(model => model.MothersName)
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="uppercase profile-stat-title">
+      @Html.DisplayFor(model => model.SpouseName)
+    </div>
+  </div>
+</div>
+<div class="clearfix"></div>
+<div class="row-fluid">
+  <div class="col-md-4">
+    <div class="uppercase profile-stat-text">
+      @Localizer["EmployeePersonalInfo.FatherName"] 
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="uppercase profile-stat-text">
+      @Localizer["EmployeePersonalInfo.MotherName"] 
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="uppercase profile-stat-text">
+      @Localizer["EmployeePersonalInfo.SpouseName"]
+    </div>
+  </div>
+</div>
+<div class="clearfix"></div>
+<hr />
+<div class="row-fluid margin-top-20">
+  <div class="col-md-4">
+    <div class="uppercase profile-stat-title">
+      @Model.Gender
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="uppercase profile-stat-title">
+      @Model.Religion
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="uppercase profile-stat-title">
+      @Model.BloodGroup
+    </div>
+  </div>
+</div>
+<div class="clearfix"></div>
+<div class="row-fluid">
+  <div class="col-md-4">
+    <div class="uppercase profile-stat-text">
+      @Localizer["EmployeePersonalInfo.Gender"]
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="uppercase profile-stat-text">
+      @Localizer["EmployeePersonalInfo.Relegion"] 
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="uppercase profile-stat-text">
+      @Localizer["EmployeePersonalInfo.BloodGroup"]
+    </div>
+  </div>
+</div>

@@ -1,0 +1,77 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@using SinePulse.EMS.Domain.Shared
+@model CommitteeMemberPersonalInfoViewModel
+
+<div class="row-fluid margin-top-20">
+  <div class="col-md-4">
+    <div class="uppercase profile-stat-title">
+      @Html.DisplayFor(model => model.FathersName)
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="uppercase profile-stat-title">
+      @Html.DisplayFor(model => model.MothersName)
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="uppercase profile-stat-title">
+      @Html.DisplayFor(model => model.SpouseName)
+    </div>
+  </div>
+</div>
+<div class="clearfix"></div>
+<div class="row-fluid">
+  <div class="col-md-4">
+    <div class="uppercase profile-stat-text">
+      @Localizer["CommitteeMemberPersonalInfo.FatherName"]
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="uppercase profile-stat-text">
+      @Localizer["CommitteeMemberPersonalInfo.MotherName"]
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="uppercase profile-stat-text">
+      @Localizer["CommitteeMemberPersonalInfo.SpouseName"]
+    </div>
+  </div>
+</div>
+<div class="clearfix"></div>
+<hr />
+<div class="row-fluid margin-top-20">
+  <div class="col-md-4">
+    <div class="uppercase profile-stat-title">
+      @Model.Gender
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="uppercase profile-stat-title">
+      @Model.Religion
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="uppercase profile-stat-title">
+      @Model.BloodGroup
+    </div>
+  </div>
+</div>
+<div class="clearfix"></div>
+<div class="row-fluid">
+  <div class="col-md-4">
+    <div class="uppercase profile-stat-text">
+      @Localizer["CommitteeMemberPersonalInfo.Gender"]
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="uppercase profile-stat-text">
+      @Localizer["CommitteeMemberPersonalInfo.Relegion"]
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="uppercase profile-stat-text">
+      @Localizer["CommitteeMemberPersonalInfo.BloodGroup"]
+    </div>
+  </div>
+</div>

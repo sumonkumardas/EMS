@@ -1,0 +1,68 @@
+﻿@model SinePulse.EMS.Site.Models.ContactInfoViewModel
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+
+@{
+  ViewData["Title"] = "ViewContactInfo";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+<div class="page-container">
+  <!-- BEGIN CONTENT -->
+  <div class="page-content-wrapper">
+    <div class="page-content">
+      <div class="menu-icon-on-view">
+        <div class="btn-group">
+          <button type="button" class="btn btn-fit-height dark-bg dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="100" data-close-others="true">
+            <i class="fa fa-bars"></i>
+          </button>
+          <ul class="dropdown-menu dark-arrow" role="menu">
+            <li><a href="/ContactInfo/AddPresentAddressInContactInfo?contactInfoId=@Model.ContactInfoId">@Localizer["ViewContactInfo.AddPresentAddress"]</a></li>
+            <li><a href="/ContactInfo/AddPermanentAddressInContactInfo?contactInfoId=@Model.ContactInfoId">@Localizer["ViewContactInfo.AddPermanentAddress"]</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="portlet box form-conatiner">
+        <div class="icon-container">
+          <a href="@Url.Action("UpdateContactInfo","ContactInfo", new {id = Model.ContactInfoId})" class="fa fa-edit action-link"></a>
+
+          <a href="/ContactInfo/Index" class="fa fa-tasks action-link"></a>
+        </div>
+
+        <div class="portlet-body form">
+
+          <div class="container-fluid">
+            <div class="row-fluid ">
+              <div class="col-md-6">
+                <div class="row custom-row">
+                  <div class="col-md-4 title"><strong>@Localizer["ViewContactInfo.PhoneNo"]</strong></div>
+                  <div class="col-md-8 value">@Html.DisplayFor(model => model.PhoneNo)</div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="row custom-row">
+                  <div class="col-md-4 title"><strong>@Localizer["ViewContactInfo.EmailAddress"]</strong></div>
+                  <div class="col-md-8 value">@Html.DisplayFor(model => model.EmailAddress)</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="container-fluid">
+            <div class="row-fluid ">
+              <div class="col-md-6">
+                <div class="row custom-row">
+                  <div class="col-md-4 title"><strong>@Localizer["ViewContactInfo.Status"]</strong></div>
+                  <div class="col-md-8 value">@Html.DisplayFor(model => model.Status)</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

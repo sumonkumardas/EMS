@@ -1,0 +1,64 @@
+﻿@using SinePulse.EMS.Domain.Features
+@using SinePulse.EMS.Messages.Model.Enums
+@model ShowStudentListViewModel
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+
+
+<div class="page-container">
+    <!-- BEGIN CONTENT -->
+    <div class="page-content-wrapper">
+
+        <div class="portlet-body form">
+            <form asp-action="#" class="form-horizontal" id="form_sample_3">
+                <div class="form-body">
+                    <div align="left" asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="row-fluid col-md-12 zero-padding-row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <div class="col-md-4">
+                                  <label>@Localizer["ShowStudentList.Session"]</label><span class="required">*</span>
+                                </div>
+                                <div class="col-md-8">
+                                    @Html.DropDownListFor(x => x.SessionId, new SelectList(@Model.Sessions, "Id", "SessionName"), @Localizer["ShowStudentList.SelectSession"].Value, new { @class = "form-control", id = "sessionDropDown" })
+                                    <span id="sessionDropDownError" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <div class="col-md-4">
+                                  <label>@Localizer["ShowStudentList.Class"]</label><span class="required">*</span>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="radio-list">
+                                        @Html.DropDownListFor(x => x.ClassId, Enumerable.Empty<SelectListItem>(), @Localizer["ShowStudentList.SelectClass"].Value, new { @class = "form-control", id = "classDropDown", required = true })
+                                        <span id="classDropDownError" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <div class="col-md-4">
+                                  <label>@Localizer["ShowStudentList.Section"]</label><span class="required">*</span>
+                                </div>
+                                <div class="col-md-8">
+                                    @Html.DropDownListFor(x => x.SectionId, Enumerable.Empty<SelectListItem>(), @Localizer["ShowStudentList.SelectSection"].Value, new { @class = "form-control", id = "sectionDropDown", required = true })
+                                    <span id="sectionDropDownError" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div id="studentTable">
+                        @Html.Partial("ShowStudentListTable",@Model)
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>

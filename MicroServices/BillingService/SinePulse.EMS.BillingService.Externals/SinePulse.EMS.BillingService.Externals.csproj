@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="log4net" Version="2.0.8" />
+    <PackageReference Include="Unity" Version="5.8.13" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\UseCases\SinePulse.EMS.UseCases\SinePulse.EMS.UseCases.csproj" />
+    <ProjectReference Include="..\..\..\Utility\SinePulse.EMS.Utility.MessagingQueue.MassTransit\SinePulse.EMS.Utility.MessagingQueue.MassTransit.csproj" />
+    <ProjectReference Include="..\SinePulse.EMS.BillingService\SinePulse.EMS.BillingService.csproj" />
+  </ItemGroup>
+
+</Project>

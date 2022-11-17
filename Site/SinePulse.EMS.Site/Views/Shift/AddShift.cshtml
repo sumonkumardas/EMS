@@ -1,0 +1,83 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@model AddShiftViewModel
+
+@{
+  ViewData["Title"] = "AddShift";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="page-container">
+  <!-- BEGIN CONTENT -->
+  <div class="page-content-wrapper">
+    <div class="page-content">
+      <div class="portlet-body form">
+        <!-- BEGIN FORM-->
+        <div class="title-on-top">@Localizer["AddShift.Title"]</div>
+        <form asp-action="AddShift" class="form-horizontal box-shadow-form" id="form_sample_3">
+          <div class="form-body">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ShiftType" runat="server" />
+            <input type="hidden" asp-for="BranchId" runat="server" />
+            <div class="row-fluid col-md-12 zero-padding-row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <div class="col-md-2">
+                    <label>@Localizer["AddShift.ShiftName"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-10">
+                    <input asp-for="ShiftName" type="text" class="form-control" />
+                    <span asp-validation-for="ShiftName" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row-fluid col-md-12 zero-padding-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["AddShift.StartTime"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <input asp-for="StartTime" type="text" value="" onfocus="(this.type='time')" onblur="{this.type='text'}" class="form-control" />
+                    <span asp-validation-for="StartTime" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["AddShift.EndTime"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <input asp-for="EndTime" type="text" value="" onfocus="(this.type='time')" onblur="{this.type='text'}" class="form-control" />
+                    <span asp-validation-for="EndTime" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="form-group" hidden>
+              <div class="col-md-12">
+                <input asp-for="BranchMediumId" type="number" class="form-control" />
+                <span asp-validation-for="BranchMediumId" class="text-danger"></span>
+              </div>
+            </div>
+            <br />
+            <div class="btn-container">
+              <button type="button" class="btn custom-btn custom-cancel-btn pull-left" onclick="location.href = '/Shift/CancelAddShift?shiftType=@Model.ShiftType&branchId=@Model.BranchId'">@Localizer["AddShift.CancleButton"]</button>
+              <button type="submit" class="btn custom-btn custom-cancel-btn pull-right">@Localizer["AddShift.CreateButton"]</button>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+        </form>
+        <!-- END FORM-->
+      </div>
+    </div>
+  </div>
+</div>
+
+
+@section Scripts {
+  @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,104 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@model AddBranchMediumViewModel
+@inject IViewLocalizer Localizer
+
+@{
+    ViewData["Title"] = "Add Branch Medium";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-container">
+  <!-- BEGIN CONTENT -->
+  <div class="page-content-wrapper">
+    <div class="page-content">
+      <div class="portlet-body form">
+        <!-- BEGIN FORM-->
+        <div class="title-on-top">@Localizer["AddBranchMedium.Title"]</div>
+        <form asp-action="AddBranchMedium" class="form-horizontal box-shadow-form" id="form_sample_3">
+          <div class="form-body">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input asp-for="BranchId" type="hidden" class="form-control" />
+            <div class="row-fluid col-md-12 zero-padding-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["AddBranchMedium.Medium"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    @Html.DropDownListFor(x => x.MediumId, new SelectList(Model.Mediums, "Id", "MediumName"), Localizer["AddBranchMedium.SelectMedium"].Value, new { @class = "form-control" })
+                    <span asp-validation-for="MediumId" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["AddBranchMedium.Shift"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    @Html.DropDownListFor(x => x.ShiftId, new SelectList(Model.Shifts, "Id", "ShiftName"), Localizer["AddBranchMedium.SelectShift"].Value, new { @class = "form-control" })
+                    <span asp-validation-for="ShiftId" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row-fluid col-md-12 zero-padding-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["AddBranchMedium.SelectWeeklyHoliday"]</label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <select asp-for="WeeklyHolidaysList" multiple class="form-control">
+                      <option value="">Select Weekly Holidays</option>
+                      <option>Friday</option>
+                      <option>Saturday</option>
+                      <option>Sunday</option>
+                      <option>Monday</option>
+                      <option>Tuesday</option>
+                      <option>Wednesday</option>
+                      <option>Thursday</option>
+                    </select>
+                    <span asp-validation-for="WeeklyHolidaysList" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["AddBranchMedium.SessionBufferPeriod"]</label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <table width="100%">
+                      <tr>
+                        <td>
+                          <input asp-for="SessionBufferPeriod" type="number" required class="form-control" />
+                        </td>
+                        <td style="background: white;">
+                          <label>@Localizer["AddBranchMedium.Days"]</label>
+                        </td>
+                      </tr>
+                    </table>
+                    <span asp-validation-for="SessionBufferPeriod" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <br />
+            <div class="btn-container">
+              <button type="button" class="btn custom-btn custom-cancel-btn pull-left" onclick="location.href = '@Url.Action("ViewBranch", "Branch",new{branchId = @Model.BranchId})'">@Localizer["AddBranchMedium.CancelButton"]</button>
+              <button type="submit" class="btn custom-btn custom-cancel-btn pull-right">@Localizer["AddBranchMedium.CreateButton"]</button>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+        </form>
+        <!-- END FORM-->
+      </div>
+    </div>
+  </div>
+</div>
+

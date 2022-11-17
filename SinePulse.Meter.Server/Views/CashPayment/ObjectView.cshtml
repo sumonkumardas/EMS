@@ -1,0 +1,168 @@
+@using NakedObjects.Web.Mvc.Html
+@model SinePulse.SmartMeter.Domain.ViewModel.CashPayment
+<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.debug.js"></script>
+@{
+  Layout = "~/Views/Shared/_NofLayout.cshtml";
+}
+
+
+<div id="body">
+    <section class="main-content">
+        @*@Html.TabbedHistory(Model)*@
+
+        <div class="nof-collection-table">
+            <div class="nof-collection-formats">
+                <div id="CashPaymentDiv">
+                    <p id="CashPaymentHeader" style="text-align: left;font-size:medium;padding-left:90px;">Bangladesh Power Development Board</p>
+                    <p style="text-align:left;font-size:small;padding-left:185px;">Cash Payment</p>
+                    <div style="text-align:left;font-size:small;padding-left:115px;white-space:nowrap">
+                        @Html.Label("Payment Date:")
+                        @Html.LabelForModel(Model.PaymentDate.ToString(), new { @class = "mylabelpaymentheader" })
+                    </div>
+                    <br />
+                    <table style="width:auto;font-size:medium;border:none;">
+                        <tr>
+                            <td>@Html.Label("Name:")</td>
+                            <td>@Html.LabelForModel(Model.Name, new { @class = "mylabelvalue lblName" })</td>
+                        </tr>
+                        <tr>
+                            <td>@Html.Label("Meter No:")</td>
+                            <td>@Html.LabelForModel(Model.Meter.MeterNo.ToString(), new { @class = "mylabelvalue lblMeterNo" })</td>
+                        </tr>
+                    </table>
+
+                    <br />
+                    <table style="width:auto;font-size:medium;border:hidden;">
+                        <tr>
+                            <td>@Html.Label("Amount:")</td>
+                            <td>@Html.LabelForModel(Model.TotalAmount.ToString("0.00"), new { @class = "mylabelamount lblAmount" })</td>
+                        </tr>
+
+                        <tr>
+                            <td>@Html.Label("Service Charge:")</td>
+                            <td>@Html.LabelForModel(Model.ServiceCharges.ToString("0.00"), new { @class = "mylabelamount lblServiceCharge" })</td>
+                        </tr>
+                        <tr>
+                            <td>@Html.Label("Sanctioned Demand Charge:")</td>
+                            <td>@Html.LabelForModel(Model.SanctionedDemandCharges.ToString("0.00"), new { @class = "mylabelamount lblSanctionCharge" })</td>
+                        </tr>
+                        <tr>
+                            <td>@Html.Label("Pfc Charge:")</td>
+                            <td>@Html.LabelForModel(Model.PfcCharges.ToString("0.00"), new { @class = "mylabelamount lblPfcCharge" })</td>
+                        </tr>
+                        <tr>
+                            <td>@Html.Label("Meter Rent:")</td>
+                            <td>@Html.LabelForModel(Model.MeterRent.ToString("0.00"), new { @class = "mylabelamount lblMonthlyRentalCharge" })</td>
+                        </tr>
+                        <tr>
+                            <td>@Html.Label("VAT:")</td>
+                            <td>@Html.LabelForModel(Model.VAT.ToString("0.00"), new { @class = "mylabelamount lblVat" })</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>@Html.Label("Recharge Amount:")</td>
+                            <td>@Html.LabelForModel(Model.RechargeAmount.ToString("0.00") + "  BDT", new { @class = "mylabelamount lblRechargeAmount" })</td>
+                        </tr>
+                    </table>
+                </div>
+                <br />
+                @using (Html.BeginForm("PayOnCash", "CashPayment", FormMethod.Post))
+                {
+                    <div>
+                        <input name="meterNo" type="hidden" value="@Model.Meter.MeterNo" />
+                        <input name="amount" type="hidden" value="@Model.TotalAmount" />
+                        @*<button name="" title="Confirm Transaction" type="submit" id="payOnCash" value="">Confirm Transaction</button>*@
+                        <button onClick="javascript: DisableButton('#payOnCash')"   class="nof-edit" name="" title="Confirm Transaction" type="submit" id="payOnCash" value="">Confirm Transaction</button>
+                    </div>
+                }
+                @using (Html.BeginForm("CancelCashPayment", "CashPayment", FormMethod.Post, new { id = "cancelForm" }))
+                {
+                    <div>
+                        <input id="meterNo" name="meterNo" type="hidden" value="@Model.Meter.MeterNo" />
+                        <button onClick="javascript: DisableButton('#cancelCashPayment')"  class="nof-edit" name="" title="Cancel Transaction" type="submit" id="cancelCashPayment" value="">Cancel Transaction</button>
+                    </div>
+                }
+                
+                <style type="text/css">
+                    .mylabelheader {
+                        color: black;
+                        text-align: left;
+                    }
+
+                    .mylabelvalue {
+                        color: grey;
+                        padding-left: 20px;
+                        padding-right: 20px;
+                    }
+
+                    .mylabelamount {
+                        color: grey;
+                        padding-left: 140px;
+                    }
+
+                    .mylabelname {
+                        color: grey;
+                        padding-left: 35px;
+                    }
+
+                    .mylabelpaymentheader {
+                        font-weight: bold;
+                    }
+
+                    form {
+                        float:left;
+                    }
+
+                    form button {
+                        max-width:188px;
+                    }
+                </style>
+            </div>
+        </div>
+
+    </section>
+    
+</div>
+
+<script type="text/javascript">
+    //$('DisableProperty').click(function () {
+    //    $("#payOnCash").prop('disabled', true);
+    //    $("#payOnCash").css("color", "#666666");
+    //    $("#payOnCash").css("background", "#cccccc");
+    //})
+    $(function () {
+        $('#cancelCashPayment').click(function () {
+            $("#payOnCash").prop('disabled', true);
+            $("#payOnCash").css("color", "#666666");
+            $("#payOnCash").css("background", "#cccccc");
+            alert('s');
+            //$('#cancelForm').submit();
+            $.ajax({
+                type: "POST",
+                url: '/CashPayment/CancelCashPayment',
+                dataType: 'json',
+                contentType: 'application/json',
+                data: $("#cancelForm").serialize(), // serializes the form's elements.
+                success: function (data) {
+                    //alert(data); 
+                },
+                error: function () { }
+            });
+
+            e.preventDefault();
+        });
+    });
+    alert('called');
+</script>
+>>>>>>> 17ccfdc116f88305e3cb288303e14477b4881d80
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/cssjqryUi")
+
+}
+

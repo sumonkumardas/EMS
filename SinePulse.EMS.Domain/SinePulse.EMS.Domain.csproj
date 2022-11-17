@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="NewFolder1\**" />
+    <EmbeddedResource Remove="NewFolder1\**" />
+    <None Remove="NewFolder1\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="2.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Domain\SinePulse.EMS.Constants\SinePulse.EMS.Constants.csproj" />
+    <ProjectReference Include="..\Domain\SinePulse.EMS.ProjectPrimitives\SinePulse.EMS.ProjectPrimitives.csproj" />
+    <ProjectReference Include="..\Utility\SinePulse.EMS.Utility\SinePulse.EMS.Utility.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="PendingBillInfo\" />
+  </ItemGroup>
+
+</Project>

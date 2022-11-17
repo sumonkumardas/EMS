@@ -1,0 +1,8 @@
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Domain\SinePulse.EMS.ProjectPrimitives\bin\Release\netstandard2.0\SinePulse.EMS.ProjectPrimitives.deps.json
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Domain\SinePulse.EMS.ProjectPrimitives\bin\Release\netstandard2.0\SinePulse.EMS.ProjectPrimitives.dll
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Domain\SinePulse.EMS.ProjectPrimitives\bin\Release\netstandard2.0\SinePulse.EMS.ProjectPrimitives.pdb
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Domain\SinePulse.EMS.ProjectPrimitives\obj\Release\netstandard2.0\SinePulse.EMS.ProjectPrimitives.csproj.CoreCompileInputs.cache
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Domain\SinePulse.EMS.ProjectPrimitives\obj\Release\netstandard2.0\SinePulse.EMS.ProjectPrimitives.AssemblyInfoInputs.cache
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Domain\SinePulse.EMS.ProjectPrimitives\obj\Release\netstandard2.0\SinePulse.EMS.ProjectPrimitives.AssemblyInfo.cs
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Domain\SinePulse.EMS.ProjectPrimitives\obj\Release\netstandard2.0\SinePulse.EMS.ProjectPrimitives.dll
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Domain\SinePulse.EMS.ProjectPrimitives\obj\Release\netstandard2.0\SinePulse.EMS.ProjectPrimitives.pdb

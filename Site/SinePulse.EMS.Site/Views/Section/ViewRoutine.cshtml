@@ -1,0 +1,116 @@
+﻿@model ShowSectionViewModel
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+<table class="table table-bordered table-striped table-hover">
+
+    <thead>
+        <tr>
+            <th> </th>
+            @for (int i = 1; i <= Model.Section.TotalClasses; i++)
+            {
+                <th>  @Model.NumberToStringDictonary.FirstOrDefault(x => x.Key == i).Value  @Localizer["ViewRoutine.Class"]</th>
+
+                if (i == @Model.BreakTimePosition && @Model.BreakTimePosition > 0 && @Model.Section.TotalClasses >= 5)
+                {
+                    <th>
+                        @Localizer["ViewRoutine.BreakTime"]
+                    </th>
+                }
+
+            }
+            <p style="display:none;"></p>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @if (@Model.Section.TotalClasses >= 5)
+        {
+            for (int i = 0; i < @Model.Routines.Count; i += (@Model.Section.TotalClasses + 1))
+            {
+                <tr>
+                    <th style="background-color:#ededed;">@Model.Routines[i].WeekDayName</th>
+                    @for (int j = i; j < (@Model.Section.TotalClasses + 1 + i); j++)
+                    {
+                        if (j >= @Model.Routines.Count)
+                        {
+                            <td style="text-align: center; vertical-align: inherit !important">-</td>
+                            continue;
+                        }
+
+                        if (@Model.Routines[j].SubjectId == 0)
+                        {
+                            if (@Model.Routines[j].StartTime == "-")
+                            {
+                                <td style="text-align: center; vertical-align: inherit !important">-</td>
+                            }
+                            else
+                            {
+                                <td style="text-align: center; vertical-align: inherit !important">@Model.Routines[j].StartTime - @Model.Routines[j].EndTime</td>
+                            }
+                        }
+                        else
+                        {
+                            <td>
+                                @if (j < @Model.Routines.Count)
+                                {
+                                        <div>@Model.Routines[j].SubjectName</div>
+                                        <div>@Html.DisplayFor(x => @Model.Routines[j].TeacherName)</div>
+                                        <a href="/ClassRoutine/UpdateClassRoutine?classRoutineId=@Model.Routines[j].RoutineId">@Model.Routines[j].StartTime - @Model.Routines[j].EndTime</a>
+                                }
+
+                            </td>
+                        }
+
+                    }
+                </tr>
+            }
+
+        }
+        else
+        {
+            for (int i = 0; i < @Model.Routines.Count; i += (@Model.Section.TotalClasses))
+            {
+                <tr>
+                    <th style="background-color:#ededed;">@Model.Routines[i].WeekDayName</th>
+                    @for (int j = i; j < (@Model.Section.TotalClasses + i); j++)
+                    {
+                        if (j >= @Model.Routines.Count)
+                        {
+                            <td style="text-align: center; vertical-align: inherit !important">-</td>
+                            continue;
+                        }
+
+                        if (@Model.Routines[j].SubjectId == 0)
+                        {
+                            if (@Model.Routines[j].StartTime == "-")
+                            {
+                                <td style="text-align: center; vertical-align: inherit !important">-</td>
+                            }
+                            else
+                            {
+                                <td style="text-align: center; vertical-align: inherit !important">@Model.Routines[j].StartTime - @Model.Routines[j].EndTime</td>
+                            }
+                        }
+                        else
+                        {
+                            <td>
+                                @if (j < @Model.Routines.Count)
+                                {
+                                    <div>@Model.Routines[j].SubjectName</div>
+                                    <div>@Html.DisplayFor(x => @Model.Routines[j].TeacherName)</div>
+                                    <span>@Model.Routines[j].StartTime - @Model.Routines[j].EndTime</span>
+                                }
+
+                            </td>
+                        }
+
+                    }
+                </tr>
+            }
+        }
+
+    </tbody>
+</table>
+
+

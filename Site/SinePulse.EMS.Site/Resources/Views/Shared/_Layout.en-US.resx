@@ -1,0 +1,321 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="_Layout.Register" xml:space="preserve">
+    <value>Register</value>
+  </data>
+  <data name="&quot;_Layout.NewClass" xml:space="preserve">
+    <value>New Class</value>
+  </data>
+  <data name="_Layout.Academic" xml:space="preserve">
+    <value>Academic</value>
+  </data>
+  <data name="_Layout.AllClass" xml:space="preserve">
+    <value>All Class</value>
+  </data>
+  <data name="_Layout.AllDesignation" xml:space="preserve">
+    <value>All Designation</value>
+  </data>
+  <data name="_Layout.AllEmployee" xml:space="preserve">
+    <value>All Employee</value>
+  </data>
+  <data name="_Layout.AllExamType" xml:space="preserve">
+    <value>All Exam Type</value>
+  </data>
+  <data name="_Layout.AllGrades" xml:space="preserve">
+    <value>All Grades</value>
+  </data>
+  <data name="_Layout.AllInstitute" xml:space="preserve">
+    <value>All Institute</value>
+  </data>
+  <data name="_Layout.AlljobType" xml:space="preserve">
+    <value>All Job Type</value>
+  </data>
+  <data name="_Layout.AllLeaveType" xml:space="preserve">
+    <value>All Leave Type</value>
+  </data>
+  <data name="_Layout.AllMedium" xml:space="preserve">
+    <value>All Medium</value>
+  </data>
+  <data name="_Layout.AllPublicHoliday" xml:space="preserve">
+    <value>All Public Holiday</value>
+  </data>
+  <data name="_Layout.AllSubject" xml:space="preserve">
+    <value>All Subject</value>
+  </data>
+  <data name="_Layout.AllTerm" xml:space="preserve">
+    <value>All Term</value>
+  </data>
+  <data name="_Layout.Class" xml:space="preserve">
+    <value>Class</value>
+  </data>
+  <data name="_Layout.Dashboard" xml:space="preserve">
+    <value>Dashboard</value>
+  </data>
+  <data name="_Layout.Designation" xml:space="preserve">
+    <value>Designation</value>
+  </data>
+  <data name="_Layout.Employee" xml:space="preserve">
+    <value>Employee</value>
+  </data>
+  <data name="_Layout.Examination" xml:space="preserve">
+    <value>Examination</value>
+  </data>
+  <data name="_Layout.ExamType" xml:space="preserve">
+    <value>Exam Type</value>
+  </data>
+  <data name="_Layout.Grade" xml:space="preserve">
+    <value>Grade</value>
+  </data>
+  <data name="_Layout.Institute" xml:space="preserve">
+    <value>Institute</value>
+  </data>
+  <data name="_Layout.JobType" xml:space="preserve">
+    <value>Job Type</value>
+  </data>
+  <data name="_Layout.LeaveType" xml:space="preserve">
+    <value>Leave Type</value>
+  </data>
+  <data name="_Layout.Medium" xml:space="preserve">
+    <value>Medium</value>
+  </data>
+  <data name="_Layout.NewClass" xml:space="preserve">
+    <value>New Class</value>
+  </data>
+  <data name="_Layout.NewDesignation" xml:space="preserve">
+    <value>New Designation</value>
+  </data>
+  <data name="_Layout.NewEmployee" xml:space="preserve">
+    <value>New Employee</value>
+  </data>
+  <data name="_Layout.NewExamType" xml:space="preserve">
+    <value>New Exam Type</value>
+  </data>
+  <data name="_Layout.NewGrade" xml:space="preserve">
+    <value>New Grade</value>
+  </data>
+  <data name="_Layout.NewInstitute" xml:space="preserve">
+    <value>New Institute</value>
+  </data>
+  <data name="_Layout.NewJobType" xml:space="preserve">
+    <value>New Job Type</value>
+  </data>
+  <data name="_Layout.NewLeaveType" xml:space="preserve">
+    <value>New Leave Type</value>
+  </data>
+  <data name="_Layout.NewMedium" xml:space="preserve">
+    <value>New Medium</value>
+  </data>
+  <data name="_Layout.NewPublicHoliday" xml:space="preserve">
+    <value>New Public Holiday</value>
+  </data>
+  <data name="_Layout.NewSubject" xml:space="preserve">
+    <value>New Subject</value>
+  </data>
+  <data name="_Layout.NewTerm" xml:space="preserve">
+    <value>New Term</value>
+  </data>
+  <data name="_Layout.ProfileManagement" xml:space="preserve">
+    <value>Profile Management</value>
+  </data>
+  <data name="_Layout.Role" xml:space="preserve">
+    <value>Role</value>
+  </data>
+  <data name="_Layout.AddNewRole" xml:space="preserve">
+    <value>Add New Role</value>
+  </data>
+  <data name="_Layout.ViewAllRoles" xml:space="preserve">
+    <value>View All Roles</value>
+  </data>
+  <data name="_Layout.Feature" xml:space="preserve">
+    <value>Feature</value>
+  </data>
+  <data name="_Layout.ShowAllFeatures" xml:space="preserve">
+    <value>Show All Features</value>
+  </data>
+  <data name="_Layout.PoweredByAplombtechbd" xml:space="preserve">
+    <value>Powered By Aplombtechbd</value>
+  </data>
+  <data name="_Layout.PublicHoliday" xml:space="preserve">
+    <value>Public Holiday</value>
+  </data>
+  <data name="_Layout.Setup" xml:space="preserve">
+    <value>Setup</value>
+  </data>
+  <data name="_Layout.Subject" xml:space="preserve">
+    <value>Subject</value>
+  </data>
+  <data name="_Layout.Term" xml:space="preserve">
+    <value>Term</value>
+  </data>
+  <data name="_Layout.AllRoom" xml:space="preserve">
+    <value>All Room</value>
+  </data>
+  <data name="_Layout.NewRoom" xml:space="preserve">
+    <value>New Room</value>
+  </data>
+  <data name="_Layout.Room" xml:space="preserve">
+    <value>Room</value>
+  </data>
+  <data name="_Layout.Attendance" xml:space="preserve">
+    <value>Attendance</value>
+  </data>
+  <data name="_Layout.EmployeeAttendance" xml:space="preserve">
+    <value>Employee Attendance</value>
+  </data>
+  <data name="_Layout.StudentAttendance" xml:space="preserve">
+    <value>Student Attendance</value>
+  </data>
+  <data name="_Layout.Billing" xml:space="preserve">
+    <value>Billing</value>
+  </data>
+  <data name="_Layout.ConfigureServiceCharge" xml:space="preserve">
+    <value>Configure Service Charge</value>
+  </data>
+  <data name="_Layout.ShowPaymentHistory" xml:space="preserve">
+    <value>Show Payment History</value>
+  </data>
+  <data name="_Layout.ShowPendingBills" xml:space="preserve">
+    <value>Show Pending Bills</value>
+  </data>
+  <data name="_Layout.ShowServiceCharge" xml:space="preserve">
+    <value>Show Service Charge</value>
+  </data>
+  <data name="_Layout.NewSalaryComponent" xml:space="preserve">
+    <value>New Salary Component</value>
+  </data>
+  <data name="_Layout.NewSalaryComponentType" xml:space="preserve">
+    <value>New Salary Component Type</value>
+  </data>
+  <data name="_Layout.AllSalaryComponent" xml:space="preserve">
+    <value>All Salary Component</value>
+  </data>
+  <data name="_Layout.AllSalaryComponentType" xml:space="preserve">
+    <value>All Salary Component Type</value>
+  </data>
+  <data name="_Layout.Payroll" xml:space="preserve">
+    <value>Payroll</value>
+  </data>
+  <data name="_Layout.SalaryComponent" xml:space="preserve">
+    <value>Salary Component</value>
+  </data>
+  <data name="_Layout.SalaryComponentType" xml:space="preserve">
+    <value>Salary Component Type</value>
+  </data>
+</root>

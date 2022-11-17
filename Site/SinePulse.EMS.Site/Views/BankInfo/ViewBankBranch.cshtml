@@ -1,0 +1,238 @@
+﻿@using SinePulse.EMS.Domain.Features
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+
+@{
+  ViewData["Title"] = "ViewBankBranch";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model ShowBankBranchViewModel
+<div class="page-container">
+  <!-- BEGIN CONTENT -->
+  <div class="page-content-wrapper">
+    <div class="page-content">
+      <!-- END PAGE HEADER-->
+      <!-- BEGIN PAGE CONTENT-->
+      <div class="row">
+        <div class="col-md-12">
+          <!-- BEGIN PROFILE SIDEBAR -->
+          <div class="profile-sidebar">
+            <!-- PORTLET MAIN -->
+              <div class="portlet light profile-sidebar-portlet">
+                  <!-- SIDEBAR USERPIC -->
+                  <div class="profile-userpic">
+                      <img src="../../img/school.png" class="img-responsive" alt="">
+                  </div>
+                  <!-- END SIDEBAR USERPIC -->
+                  <!-- SIDEBAR USER TITLE -->
+                  <div class="profile-usertitle-name small-title">
+
+                      @Html.DisplayFor(model => model.BankBranch.BranchName)
+
+                  </div>
+                  <div class="profile-stat-text">
+                      @Localizer["ViewBankBranch.BankBranch"]
+                  </div>
+                  <hr />
+                  <div class="profile-usertitle-name">
+                      @if (Model.HasPermission(Feature.InstituteEnum.ViewInstitute.ToString()))
+                      {
+                          <a class="primary-link" href="/Institute/ViewInstitute?instituteId=@Model.BankBranch.Bank.BranchMedium.Branch.Institute.Id">
+                              @Html.DisplayFor(model => model.BankBranch.Bank.BranchMedium.Branch.Institute.OrganisationName)
+                          </a>
+                      }
+                      else
+                      {
+                          @Html.DisplayFor(model => model.BankBranch.Bank.BranchMedium.Branch.Institute.OrganisationName)
+                      }
+                  </div>
+                  <div class="profile-stat-text">
+                      @Localizer["ViewBankBranch.Institute"]
+                  </div>
+                  <hr />
+                  <div class="profile-usertitle-name">
+                      @if (Model.HasPermission(Feature.BranchEnum.ViewBranch.ToString()))
+                      {
+                          <a class="primary-link" href="/Branch/ViewBranch?branchId=@Model.BankBranch.Bank.BranchMedium.Branch.Id">
+                              @Html.DisplayFor(model => model.BankBranch.Bank.BranchMedium.Branch.BranchName)
+                          </a>
+                      }
+                      else
+                      {
+                          @Html.DisplayFor(model => model.BankBranch.Bank.BranchMedium.Branch.BranchName)
+                      }
+                  </div>
+                  <div class="profile-stat-text">
+                      @Localizer["ViewBankBranch.Branch"]
+                  </div>
+                  <hr />
+                  <div class="profile-usertitle-name">
+                      @if (Model.HasPermission(Feature.BranchMediumEnum.ViewBranchMedium.ToString()))
+                      {
+                          <a class="primary-link" href="/BranchMedium/ViewBranchMedium?branchMediumId=@Model.BankBranch.Bank.BranchMedium.Medium.Id">
+                              @Html.DisplayFor(model => model.BankBranch.Bank.BranchMedium.Medium.MediumName)
+                          </a>
+                      }
+                      else
+                      {
+                          @Html.DisplayFor(model => model.BankBranch.Bank.BranchMedium.Medium.MediumName)
+                      }
+                  </div>
+                  <div class="profile-stat-text">
+                      @Localizer["ViewBankBranch.Medium"]
+                  </div>
+                  <hr />
+                  <div class="profile-usertitle-name">
+                      @Html.DisplayFor(model => model.BankBranch.Bank.BranchMedium.Shift.ShiftName)
+                  </div>
+                  <div class="profile-stat-text">
+                    @Localizer["ViewBankBranch.Shift"]
+                  </div>
+                  <hr />
+                  <div class="profile-usertitle-name">
+                      <a class="primary-link" href="/BankInfo/ViewBankInfo?bankId=@Model.BankBranch.Bank.Id">
+                          @Html.DisplayFor(model => model.BankBranch.Bank.BankName)
+                      </a>
+                  </div>
+                  <div class="profile-stat-text">
+                      @Localizer["ViewBankBranch.Bank"]
+                  </div>
+                  <hr />
+                  <br />
+
+
+              </div>
+
+          </div>
+          <!-- END BEGIN PROFILE SIDEBAR -->
+          <!-- BEGIN PROFILE CONTENT -->
+          <div class="profile-content">
+            <div class="row">
+
+              <div class="col-md-12">
+                <!-- BEGIN PORTLET -->
+                <div class="portlet light">
+                  <div class="portlet-title tabbable-line">
+                    <div class="page-toolbar custom-page-menu-bar">
+                      <div class="btn-group">
+                        <ul style="padding:0px;">
+
+                          <li class="custom-page-menu dropdown primary-menu-item-li">
+                            <a href="#" class="show-dropdown-on-hover" data-toggle="custom-page-menu">
+                              <button type="button" class="btn btn-fit-height dark-bg dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="100" data-close-others="true">
+                                <i class="fa fa-bars"></i>
+                              </button>
+                            </a>
+                            <ul class="dropdown-menu light-arrow-only">
+                              @if (Model.HasPermission(Feature.BankInfoEnum.AddAccountNumber.ToString()))
+                              {
+                                <li>
+                                  <a href="/BankInfo/AddBankAccount?bankBranchId=@Model.BankBranch.Id">
+                                    @Localizer["ViewBankBranch.AddAccountNo"]
+                                  </a>
+                                </li>
+                              }
+                            </ul>
+                          </li>
+
+                        </ul>
+
+                      </div>
+                    </div>
+                    <ul class="nav nav-tabs custom-page-tab">
+                      @if (Model.HasPermission(Feature.BankInfoEnum.ViewAccountNumber.ToString()))
+                      {
+                        <li class="active">
+                          <a href="#tab_branch" data-toggle="tab">
+                            <h5 class="caption-subject font-blue-madison bold uppercase">@Localizer["ViewBankBranch.Accounts"]</h5>
+                          </a>
+                        </li>
+                      }
+                      @if (Model.HasPermission(Feature.BankInfoEnum.ViewBankBranchAddress.ToString()))
+                      {
+                        <li>
+                          <a href="#tab_address" data-toggle="tab">
+                            <h5 class="caption-subject font-blue-madison bold uppercase">@Localizer["ViewBankBranch.Address"]</h5>
+                          </a>
+                        </li>
+                      }
+                    </ul>
+                  </div>
+
+
+                  <div class="portlet-body">
+                    <!--BEGIN TABS-->
+                    <div class="tab-content">
+                      @if (Model.HasPermission(Feature.BankInfoEnum.ViewAccountNumber.ToString()))
+                      {
+                        <div class="active tab-pane" id="tab_branch">
+                          <div style="min-height: 337px;">
+                            <table class="table table-light">
+                              <thead>
+                                <tr class="uppercase">
+                                  <th>@Localizer["ViewBankBranch.AccountNo"]</th>
+                                  <th>@Localizer["ViewBankBranch.AccountType"]</th>
+                                  <th>@Localizer["ViewBankBranch.Action"]</th>
+                                </tr>
+                              </thead>
+
+                              <tbody>
+                                @{
+                                  if (Model.BankBranch.BankAccounts != null && Model.BankBranch.BankAccounts.Any())
+                                  {
+                                    foreach (var bankAccount in Model.BankBranch.BankAccounts)
+                                    {
+                                      <tr>
+                                        <td>
+                                          @Html.DisplayFor(model => bankAccount.AccountNumber)
+                                        </td>
+                                        <td>
+                                          @Html.DisplayFor(model => bankAccount.AccountType)
+                                        </td>
+                                        <td>
+                                          @if (Model.HasPermission(Feature.BankInfoEnum.EditAccountNumber.ToString()))
+                                          {
+                                            <a href="/BankInfo/UpdateBankAccount?bankAccountId=@bankAccount.Id" class="action-link"><i class="fa fa-edit action-icon"></i></a>
+                                          }
+                                        </td>
+                                      </tr>
+                                    }
+                                  }
+                                }
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      }
+                      @if (Model.HasPermission(Feature.BankInfoEnum.ViewBankBranchAddress.ToString()))
+                      {
+                        <div class="tab-pane" id="tab_address">
+                          <div style="min-height: 337px;">
+                            <div class="row-fluid">
+                              <div class="col-md-12">
+                                @Html.DisplayFor(model => model.BankBranch.Address)
+                                <div class="uppercase profile-stat-title">
+                                  @Localizer["ViewBankBranch.Address"]
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      }
+                    </div>
+
+                  </div>
+                  <!--END TABS-->
+                </div>
+              </div>
+              <!-- END PORTLET -->
+            </div>
+          </div>
+
+        </div>
+        <!-- END PROFILE CONTENT -->
+      </div>
+    </div>
+  </div>
+</div>

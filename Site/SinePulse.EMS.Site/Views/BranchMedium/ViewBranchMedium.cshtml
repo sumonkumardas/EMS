@@ -1,0 +1,761 @@
+@using Microsoft.AspNetCore.Mvc.Localization
+@using SinePulse.EMS.Domain.Enums
+@using SinePulse.EMS.Domain.Shared
+@using SinePulse.EMS.Domain.Features
+@using SinePulse.EMS.Utility
+@model ShowBranchMediumViewModel
+@inject IViewLocalizer Localizer
+@{
+    ViewData["Title"] = "ViewBranchMedium";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="page-container">
+    <!-- BEGIN CONTENT -->
+    <div class="page-content-wrapper">
+        <div class="page-content">
+            <div class="profile-content">
+                <div class="row">
+                    <div class="col-md-12">
+                    <input id="showBranchMediumViewId" type="hidden" asp-for="@Model.BranchMediumId" runat="server" />
+                        <!-- BEGIN PROFILE SIDEBAR -->
+                        <div class="profile-sidebar">
+                            <!-- PORTLET MAIN -->
+                            <div class="portlet light profile-sidebar-portlet">
+                                <!-- SIDEBAR USERPIC -->
+                                <div class="profile-userpic">
+                                    <img src="../../img/school.png" class="img-responsive" alt="">
+                                </div>
+                                <!-- END SIDEBAR USERPIC -->
+                                <!-- SIDEBAR USER TITLE -->
+
+                                <div class="profile-usertitle-name small-title">
+                                    @Html.DisplayFor(model => model.BranchMedium.Medium.MediumName)
+                                </div>
+                                <div class="profile-stat-text">
+                                    @Localizer["ViewBranchMedium.Medium"]
+                                </div>
+                                <hr />
+
+                                <div class="profile-usertitle-name">
+                                    @if (Model.HasPermission(Feature.InstituteEnum.ViewInstitute.ToString()))
+                                    {
+                                        <a href="/Institute/ViewInstitute?instituteId=@Model.Institute.Id">
+                                            @Html.DisplayFor(model => model.Institute.OrganisationName)
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        @Html.DisplayFor(model => model.Institute.OrganisationName)
+                                    }
+                                </div>
+                                <div class="profile-stat-text">
+                                    @Localizer["ViewBranchMedium.Institute"]
+                                </div>
+                                <hr />
+
+                                <div class="profile-usertitle-name">
+                                    @if (Model.HasPermission(Feature.BranchEnum.ViewBranch.ToString()))
+                                    {
+                                        <a href="/Branch/ViewBranch?branchId=@Model.BranchMedium.Branch.Id">
+                                            @Html.DisplayFor(model => model.BranchMedium.Branch.BranchName)
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        @Html.DisplayFor(model => model.BranchMedium.Branch.BranchName)
+                                    }
+                                </div>
+                                <div class="profile-stat-text">
+                                    @Localizer["ViewBranchMedium.Branch"]
+                                </div>
+                                <hr />
+
+                                <div class="profile-usertitle-name">
+                                    @Html.DisplayFor(model => model.BranchMedium.Shift.ShiftName)
+                                </div>
+                                <div class="profile-stat-text">
+                                  @Localizer["ViewBranchMedium.Shift"]
+                                </div>
+                                <hr />
+                                <div class="profile-usertitle-name">
+                                    @string.Join(", ", Model.BranchMedium.WeeklyHolidays.ConvertToDaysOfWeek())
+                                </div>
+                                <div class="profile-stat-text">
+                                    @Localizer["ViewBranchMedium.WeeklyHolidays"]
+                                </div>
+                                <hr />
+                                <!-- END SIDEBAR USER TITLE -->
+                            </div>
+                                <!-- END PORTLET MAIN -->
+
+                            </div>
+                            <!-- END BEGIN PROFILE SIDEBAR -->
+                            <!-- BEGIN PROFILE CONTENT -->
+                            <div class="profile-content">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <!-- BEGIN PORTLET -->
+                                        <div class="portlet light">
+                                          <div class="portlet-title tabbable-line">
+                                            <div class="page-toolbar custom-page-menu-bar">
+                                              <div class="btn-group">
+                                                <ul style="padding:0px;">
+
+                                                  <li class="custom-page-menu dropdown primary-menu-item-li">
+                                                    <a href="#" class="show-dropdown-on-hover" data-toggle="custom-page-menu">
+                                                      <button type="button" class="btn btn-fit-height dark-bg dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="100" data-close-others="true">
+                                                        <i class="fa fa-bars"></i>
+                                                      </button>
+                                                    </a>
+                                                    <ul class="dropdown-menu light-arrow-only">
+                                                        <li class="dropdown-submenu">
+                                                            <a class="dropdown-item" href="#">@Localizer["ViewBranchMedium.Academic"]</a>
+                                                            <ul class="dropdown-menu">
+                                                                @if (Model.HasPermission(Feature.StudentEnum.NewAdmission.ToString()))
+                                                                {
+                                                                    <li><a href="/Student/AddStudent?branchMediumId=@Model.BranchMedium.Id">@Localizer["ViewBranchMedium.AdmitStudent"]</a></li>
+                                                                }
+                                                                @if (Model.HasPermission(Feature.SectionEnum.NewSection.ToString()))
+                                                                {
+                                                                    <li><a href="/Section/AddSection?branchMediumId=@Model.BranchMedium.Id">@Localizer["ViewBranchMedium.AddSection"]</a></li>
+                                                                }
+                                                                @if (Model.HasPermission(Feature.BranchMediumEnum.AddClassBreakDown.ToString()))
+                                                                {
+                                                                    <li><a href="/BreakTime/AddBreakTime?branchMediumId=@Model.BranchMedium.Id">@Localizer["ViewBranchMedium.AddClassBreakTime"]</a></li>
+                                                                }
+                                                                <li class="dropdown-submenu">
+                                                                    <a class="dropdown-item" tabindex="-1" href="#">@Localizer["ViewBranchMedium.SetAcademicFees"]</a>
+                                                                    <ul class="dropdown-menu">
+                                                                        @if (Model.HasPermission(Feature.BranchMediumEnum.SetAcademicFees.ToString()))
+                                                                        {
+                                                                            <li><a href="/AcademicFee/AddAcademicFee?branchMediumId=@Model.BranchMedium.Id&feePeriod=@AcademicFeePeriodEnum.Monthly">@Localizer["ViewBranchMedium.MonthlyFeeSetup"]</a></li>
+                                                                            <li><a href="/AcademicFee/AddAcademicFee?branchMediumId=@Model.BranchMedium.Id&feePeriod=@AcademicFeePeriodEnum.Yearly">@Localizer["ViewBranchMedium.YearlyFeeSetup"]</a></li>
+                                                                        }
+                                                                    </ul>
+                                                                </li>
+                                                                <li><a href="/NotificationConfiguration/AddNotificationConfiguration?branchMediumId=@Model.BranchMedium.Id">@Localizer["ViewBranchMedium.AddNotificationConfiguration"]</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li class="dropdown-submenu">
+                                                            <a class="dropdown-item" href="#">@Localizer["ViewBranchMedium.Session"]</a>
+                                                            <ul class="dropdown-menu">
+                                                                @if (Model.HasPermission(Feature.SessionEnum.NewSession.ToString()))
+                                                                {
+                                                                    <li><a href="/Session/AddSession?sessionType=@ObjectTypeEnum.BranchMedium&objectId=@Model.BranchMedium.Id">@Localizer["ViewBranchMedium.AddSession"]</a></li>
+                                                                }
+                                                                @if (Model.HasPermission(Feature.BranchMediumEnum.ChangeSessionBufferPeriod.ToString()))
+                                                                {
+                                                                    <li><a href="#">@Localizer["ViewBranchMedium.Add/ChangeSessionBufferPeriod"]</a></li>
+                                                                }
+                                                                @if (Model.HasPermission(Feature.BranchMediumEnum.ImportData.ToString()))
+                                                                {
+                                                                    <li><a href="/Session/ImportSessionData?branchMediumId=@Model.BranchMedium.Id">@Localizer["ViewBranchMedium.ImportData"]</a></li>
+                                                                }
+                                                                @if (Model.HasPermission(Feature.BranchMediumEnum.ClearData.ToString()))
+                                                                {
+                                                                    <li><a href="#">@Localizer["ViewBranchMedium.ClearData"]</a></li>
+                                                                }
+                                                            </ul>
+                                                        </li>
+                                                        <li class="dropdown-submenu">
+                                                            <a class="dropdown-item" href="#">@Localizer["ViewBranchMedium.Examination"]</a>
+                                                            <ul class="dropdown-menu">
+                                                                @if (Model.HasPermission(Feature.ExaminationEnum.NewExamTerm.ToString()))
+                                                                {
+                                                                    <li><a href="/Term/AddTerm?branchMediumId=@Model.BranchMedium.Id">@Localizer["ViewBranchMedium.AddTerm"]</a></li>
+                                                                }
+                                                                @if (Model.HasPermission(Feature.ExaminationEnum.AddResultGrade.ToString()))
+                                                                {
+                                                                    <li><a href="/ResultGrade/AddResultGrade?branchMediumId=@Model.BranchMedium.Id">@Localizer["ViewBranchMedium.AddResultGrade"]</a></li>
+                                                                }
+                                                            </ul>
+                                                        </li>
+                                                        <li class="dropdown-submenu">
+                                                            <a class="dropdown-item" href="#">@Localizer["ViewBranchMedium.Employee"]</a>
+                                                            <ul class="dropdown-menu">
+                                                                @if (Model.HasPermission(Feature.EmployeeEnum.NewEmployee.ToString()))
+                                                                {
+                                                                    <li><a href="/Employee/AddTeacher?associationType=@ObjectTypeEnum.BranchMedium&objectId=@Model.BranchMedium.Id">@Localizer["ViewBranchMedium.AddTeacher"]</a></li>
+                                                                }
+                                                                @if (Model.HasPermission(Feature.EmployeeEnum.NewEmployee.ToString()))
+                                                                {
+                                                                    <li><a href="/Employee/AddStaff?associationType=@ObjectTypeEnum.BranchMedium&objectId=@Model.BranchMedium.Id">@Localizer["ViewBranchMedium.AddStaff"]</a></li>
+                                                                }
+                                                            </ul>
+                                                        </li>
+                                                        @if (Model.HasPermission(Feature.AccountingEnum.ImportCOA.ToString()))
+                                                        {
+                                                            <li><a href="#" id="importToMaster">@Localizer["ViewBranchMedium.ImportCOA"] @Localizer["ViewBranchMedium.FromMaster"]</a></li>
+                                                        }
+                                                        @if (Model.HasPermission(Feature.BankInfoEnum.AddBankInfo.ToString()))
+                                                        {
+                                                            <li><a href="/BankInfo/AddBank?branchMediumId=@Model.BranchMedium.Id">@Localizer["ViewBranchMedium.AddBank"]</a></li>
+                                                        }
+                                                        @if (Model.HasPermission(Feature.PayrollEnum.GenerateSalarySheet.ToString()))
+                                                        {
+                                                            <li class="dropdown-submenu">
+                                                                <a class="dropdown-item" href="#">@Localizer["ViewBranchMedium.Payroll"]</a>
+                                                                <ul class="dropdown-menu">
+                                                                    <li><a href="/Payroll/SaveSalarySheet?branchMediumId=@Model.BranchMedium.Id">@Localizer["ViewBranchMedium.GenerateSalarySheet"]</a></li>
+                                                                </ul>
+                                                            </li>
+                                                        }
+                                                        @if (Model.HasPermission(Feature.ServiceChargeEnum.PayOnline.ToString()))
+                                                        {
+                                                            <li class="dropdown-submenu">
+                                                                <a class="dropdown-item" href="#">@Localizer["ViewBranchMedium.Billing"]</a>
+                                                                <ul class="dropdown-menu">
+                                                                    <li><a href="/OnlinePayment/PayBill?branchMediumId=@Model.BranchMedium.Id">@Localizer["ViewBranchMedium.PayBill"]</a></li>
+                                                                </ul>
+                                                            </li>
+                                                        }
+                                                        </ul>
+                                                  </li>
+                                                </ul>
+
+                                              </div>
+                                            </div>
+                                            @{
+                                              var classesTabActive = "";
+                                              var classesPanActive = "tab-pane";
+                                              var employeeTabActive = "";
+                                              var employeePanActive = "tab-pane";
+                                              var sessionTabActive = "";
+                                              var sessionPanActive = "tab-pane";
+                                              var bankTabActive = "";
+                                              var bankPanActive = "tab-pane";
+                                              var examTermTabActive = "";
+                                              var examTermPanActive = "tab-pane";
+                                              var notificationTabActive = "";
+                                              var notificationPanActive = "tab-pane";
+                                              var resultGradeTabActive = "";
+                                              var resultGradePanActive = "tab-pane";
+                                              switch (Model.ActiveTab)
+                                              {
+                                                case TabEnum.Default:
+                                                  classesTabActive = "active";
+                                                  classesPanActive = "tab-pane active";
+                                                  break;
+                                                case TabEnum.Sessions:
+                                                  sessionTabActive = "active";
+                                                  sessionPanActive = "tab-pane active";
+                                                  break;
+                                                case TabEnum.Bank:
+                                                  bankTabActive = "active";
+                                                  bankPanActive = "tab-pane active";
+                                                  break;
+                                                case TabEnum.Employee:
+                                                  employeeTabActive = "active";
+                                                  employeePanActive = "tab-pane active";
+                                                  break;
+                                                case TabEnum.ExamTerm:
+                                                  examTermTabActive = "active";
+                                                  examTermPanActive = "tab-pane active";
+                                                  break;
+                                                case TabEnum.NotificationConfiguration:
+                                                  notificationTabActive = "active";
+                                                  notificationPanActive = "tab-pane active";
+                                                  break;
+                                                case TabEnum.ResultGrade:
+                                                  resultGradeTabActive = "active";
+                                                  resultGradePanActive = "tab-pane active";
+                                                  break;
+                                                default:
+                                                  throw new ArgumentOutOfRangeException();
+                                              }
+                                            }
+                                            <ul class="nav nav-tabs custom-page-tab">
+                                              @if (Model.HasPermission(Feature.SectionEnum.ViewSection.ToString()))
+                                              {
+                                                <li class="@classesTabActive">
+                                                  <a href="#tab_classes" data-toggle="tab">
+                                                    <h5 class="caption-subject font-blue-madison bold uppercase">@Localizer["ViewBranchMedium.Classes"]</h5>
+                                                  </a>
+                                                </li>
+                                              }
+                                              @if (Model.HasPermission(Feature.ExaminationEnum.ViewExamTerm.ToString()))
+                                              {
+                                                <li class="@examTermTabActive">
+                                                  <a href="#tab_examTerm" onclick="showExamTerm()" data-toggle="tab">
+                                                    <h5 class="caption-subject font-blue-madison bold uppercase">@Localizer["ViewBranchMedium.ExamTerm"]</h5>
+                                                  </a>
+                                                </li>
+                                              }
+                                              @if (Model.HasPermission(Feature.ExaminationEnum.ViewResultGrade.ToString()))
+                                              {
+                                                <li class="@resultGradeTabActive">
+                                                  <a href="#tab_resultGrade" onclick="showResultGrade()" data-toggle="tab">
+                                                    <h5 class="caption-subject font-blue-madison bold uppercase">@Localizer["ViewBranchMedium.ResultGrade"]</h5>
+                                                  </a>
+                                                </li>
+                                              }
+                                              @if (Model.HasPermission(Feature.StudentEnum.ViewStudent.ToString()))
+                                              {
+                                                <li>
+                                                  <a href="#tab_student" onclick="showStudent()" data-toggle="tab">
+                                                    <h5 class="caption-subject font-blue-madison bold uppercase">@Localizer["ViewBranchMedium.Student"]</h5>
+                                                  </a>
+                                                </li>
+                                              }
+                                              @if (Model.HasPermission(Feature.EmployeeEnum.ViewEmployee.ToString()))
+                                              {
+                                                <li class="@employeeTabActive">
+                                                  <a href="#tab_employee" onclick="showEmployee()" data-toggle="tab">
+                                                    <h5 class="caption-subject font-blue-madison bold uppercase">@Localizer["ViewBranchMedium.Employee"]</h5>
+                                                  </a>
+                                                </li>
+                                              }
+                                              @if (Model.HasPermission(Feature.BranchMediumEnum.AcademicCalendar.ToString()))
+                                              {
+                                                <li>
+                                                  <a href="#tab_academicCalendar" onclick="showCalender()" data-toggle="tab">
+                                                    <h5 class="caption-subject font-blue-madison bold uppercase">@Localizer["ViewBranchMedium.AcademicCalendar"]</h5>
+                                                  </a>
+                                                </li>
+                                              }
+                                              @if (Model.HasPermission(Feature.FinancialStatementEnum.TrialBalance.ToString()))
+                                              {
+                                                <li>
+                                                  <a href="#tab_account" onclick="showAccount()" data-toggle="tab">
+                                                    <h5 class="caption-subject font-blue-madison bold uppercase">@Localizer["ViewBranchMedium.Accounts"]</h5>
+                                                  </a>
+                                                </li>
+                                              }
+                                              @if (Model.HasPermission(Feature.BankInfoEnum.ViewBankInfo.ToString()))
+                                              {
+                                                <li class="@bankTabActive">
+                                                  <a href="#tab_bank" onclick="showBankInfo()" data-toggle="tab">
+                                                    <h5 class="caption-subject font-blue-madison bold uppercase">@Localizer["ViewBranchMedium.BankInfo"]</h5>
+                                                  </a>
+                                                </li>
+                                              }
+                                              @if (Model.HasPermission(Feature.BranchMediumEnum.ViewNotificationConfiguration.ToString()))
+                                              {
+                                                <li class="@notificationTabActive">
+                                                  <a href="#tab_notificationConfiguration" onclick="showNotificationConfiguration()" data-toggle="tab">
+                                                    <h5 class="caption-subject font-blue-madison bold uppercase">@Localizer["ViewBranchMedium.NotificationConfiguration"]</h5>
+                                                  </a>
+                                                </li>
+                                              }
+                                              @if (Model.HasPermission(Feature.SessionEnum.ViewSession.ToString()))
+                                              {
+                                                <li class="@sessionTabActive">
+                                                  <a href="#tab_session" onclick="showSession()" data-toggle="tab">
+                                                    <h5 class="caption-subject font-blue-madison bold uppercase">@Localizer["ViewBranchMedium.Sessions"]</h5>
+                                                  </a>
+                                                </li>
+                                              }
+                                                <li>
+                                                    <a href="#tab_billingInfo" onclick="showBillingInfo()" data-toggle="tab">
+                                                      <h5 class="caption-subject font-blue-madison bold uppercase">@Localizer["ViewBranchMedium.BillingInfo"]</h5>
+                                                    </a>
+                                                </li>
+
+
+                                            </ul>
+
+
+                                          </div>
+                                            <div class="portlet-body">
+                                                <!--BEGIN TABS-->
+                                              <div class="tab-content">
+                                                @if (Model.HasPermission(Feature.StudentEnum.FindStudent.ToString()))
+                                                {
+                                                  <div class="tab-pane" id="tab_student">
+
+                                                    <div style="min-height: 320px;" ID="showStudent">
+                                                      <div>
+                                                        <i class="fa fa-circle-o-notch fa-spin" style="font-size: 48px;color: #17a2b8!important"></i>
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                }
+                                                @if (Model.HasPermission(Feature.EmployeeEnum.FindEmployee.ToString()))
+                                                {
+                                                  <div class="@employeePanActive" id="tab_employee">
+                                                    <div style="min-height: 320px;" id="showEmployee">
+                                                      <div>
+                                                        <i class="fa fa-circle-o-notch fa-spin" style="font-size: 48px;color: #17a2b8!important"></i>
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                }
+                                                @if (Model.HasPermission(Feature.BranchMediumEnum.AcademicCalendar.ToString()))
+                                                {
+                                                  <div class="tab-pane" id="tab_academicCalendar">
+                                                    <div class="container-fluid">
+                                                      <div class="row-fluid ">
+                                                        <div class="col-md-12">
+                                                          <div id='mediumCalendar'>
+
+                                                          </div>
+                                                        </div>
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                }
+                                                @if (Model.HasPermission(Feature.SectionEnum.FindSection.ToString()))
+                                                {
+                                                  <div class="@classesPanActive" id="tab_classes">
+
+                                                      <div style="min-height: 320px;">
+                                                          <div class="row-fluid col-md-12 zero-padding-row">
+                                                              <div class="col-md-4">
+                                                                  <div class="form-group">
+                                                                      <div class="col-md-4">
+                                                                        <label>@Localizer["ViewBranchMedium.Session"]</label><span class="required">*</span>
+                                                                      </div>
+                                                                      <div class="col-md-8">
+                                                                          @Html.DropDownListFor(x => x.SectionSessionId, new SelectList(@Model.InstituteSessions, "Id", "SessionName"), @Localizer["ViewBranchMedium.SelectSession"].Value, new { @class = "form-control", id = "sectionSessionDropDown" })
+                                                                          <span id="sessionDropDownError" class="text-danger"></span>
+                                                                      </div>
+                                                                  </div>
+                                                              </div>
+                                                          </div>
+                                                          <div id="showClassList">
+                                                              @Html.Partial("ShowClassListTable", Model)
+                                                          </div>
+                                                          
+                                                      </div>
+                                                  </div>
+                                                }
+                                                @if (Model.HasPermission(Feature.ExaminationEnum.FindExamTerm.ToString()))
+                                                {
+                                                    <div class="@examTermPanActive" id="tab_examTerm">
+                                                        <div class="row-fluid col-md-12 zero-padding-row">
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <div class="col-md-4">
+                                                                      <label>@Localizer["ViewBranchMedium.Session"]</label><span class="required">*</span>
+                                                                    </div>
+                                                                    <div class="col-md-8">
+                                                                        @Html.DropDownListFor(x => x.ExamTermSessionId, new SelectList(@Model.InstituteSessions, "Id", "SessionName"), @Localizer["ViewBranchMedium.SelectSession"].Value, new { @class = "form-control", id = "termSessionDropDown" })
+                                                                        <span id="sessionDropDownError" class="text-danger"></span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div style="min-height: 320px;" id="showExamTerm">
+                                                            <div>
+                                                                <i class="fa fa-circle-o-notch fa-spin" style="font-size: 48px; color: #17a2b8 !important"></i>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                }
+                                                @if (Model.HasPermission(Feature.ExaminationEnum.ViewResultGrade.ToString()))
+                                                {
+                                                  <div class="@resultGradePanActive" id="tab_resultGrade">
+                                                    <div style="min-height: 320px;" id="showResultGrade">
+                                                      <div>
+                                                        <i class="fa fa-circle-o-notch fa-spin" style="font-size: 48px; color: #17a2b8 !important"></i>
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                }
+                                                @if (Model.HasPermission(Feature.FinancialStatementEnum.TrialBalance.ToString()))
+                                                {
+                                                  <div class="tab-pane" id="tab_account">
+                                                    @if (Model.HasPermission(Feature.AccountingEnum.AccountView.ToString()))
+                                                    {
+                                                      <div>
+                                                        <a href="/BranchMedium/ViewAccount?branchMediumId=@Model.BranchMedium.Id" class="btn btn-primary btn-circle">Show Account's View</a>
+                                                      </div>
+                                                      <div style="min-height: 320px;" id="showAccount">
+                                                        <div>
+                                                          <br />
+                                                          <i class="fa fa-circle-o-notch fa-spin" style="font-size: 48px; color: #17a2b8 !important"></i>
+                                                        </div>
+                                                      </div>
+                                                    }
+                                                  </div>
+                                                }
+                                                @if (Model.HasPermission(Feature.SessionEnum.FindSession.ToString()))
+                                                {
+                                                  <div class="@sessionPanActive" id="tab_session">
+                                                    <div align="right">
+                                                      <label>
+                                                        @Localizer["ViewBranchMedium.SessionBufferPeriod"]: @Model.BranchMedium.SessionBufferPeriods @Localizer["ViewBranchMedium.Days"]
+                                                      </label>
+                                                    </div>
+                                                    <div style="min-height: 320px;" id="showSession">
+                                                      <div>
+                                                        <i class="fa fa-circle-o-notch fa-spin" style="font-size: 48px; color: #17a2b8 !important"></i>
+                                                      </div>
+                                                      
+                                                    </div>
+                                                  </div>
+                                                }
+                                                @if (Model.HasPermission(Feature.BankInfoEnum.FindBankInfo.ToString()))
+                                                {
+                                                  <div class="@bankPanActive" id="tab_bank">
+                                                    <div style="min-height: 320px;" id="showBankInfo">
+                                                      <div>
+                                                        <i class="fa fa-circle-o-notch fa-spin" style="font-size: 48px; color: #17a2b8 !important"></i>
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                }
+                                                @if (Model.HasPermission(Feature.BranchMediumEnum.ViewNotificationConfiguration.ToString()))
+                                                {
+                                                  <div class="@notificationPanActive" id="tab_notificationConfiguration">
+                                                    <div style="min-height: 320px;" id="showNotificationConfiguration">
+                                                      <div>
+                                                        <i class="fa fa-circle-o-notch fa-spin" style="font-size: 48px; color: #17a2b8 !important"></i>
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                }
+                                                  <div class="tab-pane" id="tab_billingInfo">
+                                                      <div style="min-height: 320px;" id="billingInfo">
+                                                          <div>
+                                                              <i class="fa fa-circle-o-notch fa-spin" style="font-size: 48px; color: #17a2b8 !important"></i>
+                                                          </div>
+                                                      </div>
+                                                  </div>
+                                                <div>
+                                                    <i class="fa fa-circle-o-notch fa-spin" id="loadingSpinner" style="font-size: 56px; color: #17a2b8 !important; top: 30%; left: 40%;position: absolute; visibility: hidden"></i>
+                                                </div>
+                                                
+                                              </div>
+                                                <!--END TABS-->
+                                            </div>
+                                        </div>
+                                        <!-- END PORTLET -->
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- END PROFILE CONTENT -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <link href="~/css/fullcalendar.min.css" rel="stylesheet" />
+    <link href="~/css/fullcalendar.print.css" rel="stylesheet" media='print' />
+    @section Scripts
+    {
+        <script src="~/assets/global/scripts/BranchMedium/billingInfo.js" type="text/javascript"></script>
+        <script src="~/js/moment.min.js"></script>
+        <script src="~/js/fullcalendar.js">
+        </script>
+        <script>
+            
+            $("#sectionSessionDropDown").change(function() {
+                $("#showClassList").load(
+                    "/BranchMedium/GetFilteredSectionBySession?branchMediumId=" + @Model.BranchMediumId+'&sessionId='+
+                    $("#sectionSessionDropDown").val(),
+                    function() {
+                        configTable('#sample_1');
+                    });
+            });
+            $("#termSessionDropDown").change(function() {
+                $("#showExamTerm").load(
+                    "/BranchMedium/GetExamTermsFiltered?branchMediumId=" + @Model.BranchMediumId+'&sessionId='+
+                    $("#termSessionDropDown").val(),
+                    function() {
+                        configTable('#sample_2');
+                    });
+            });
+            function showResultGrade() {
+
+                $("#showResultGrade").load(
+                    "/ResultGrade/Index?branchMediumId=" + @Model.BranchMediumId,
+                    function() {
+
+                    });
+            }
+            function showNotificationConfiguration() {
+
+                $("#showNotificationConfiguration").load(
+                    "/NotificationConfiguration/ViewNotificationConfiguration?branchMediumId=" + @Model.BranchMediumId,
+                    function() {
+
+                    });
+            }
+            function showSession() {
+
+                $("#showSession").load(
+                    "/BranchMedium/GetSessions?branchMediumId=" + @Model.BranchMediumId,
+                    function() {
+
+                    });
+            }
+            function showBankInfo() {
+
+                $("#showBankInfo").load(
+                    "/BranchMedium/GetBankInfo?branchMediumId=" + @Model.BranchMediumId,
+                    function() {
+
+                    });
+            }
+            function showAccount() {
+
+                $("#showAccount").load(
+                    "/BranchMedium/GetTrialBalance?branchMediumId=" + @Model.BranchMediumId,
+                    function() {
+
+                    });
+            }
+            function showCalender() {
+                var date = new Date();
+                var branchMediumId = parseInt($('#showBranchMediumViewId').val());
+                var eventList = [];
+                $.ajax({
+                    type: "GET",
+                    url: "/PublicHoliday/GetAcademicYearEvents?branchMediumId=" + branchMediumId,
+                    dataType: "JSON",
+                    contentType: "application/json;charset=utf-8",
+                    success: function (data) {
+                        if (data.length > 0) {
+                            eventList = data;
+                        }
+
+                        $('#mediumCalendar').fullCalendar({
+                            defaultDate: date,
+                            editable: false,
+                            eventLimit: false, // allow "more" link when too many events
+                            events: eventList,
+                        });
+                    },
+                    error: function (a, b, c) {
+
+                    }
+                });
+            }
+
+            function showEmployee() {
+
+                $("#showEmployee").load(
+                    "/BranchMedium/GetEmployeeDatas?branchMediumId=" + @Model.BranchMediumId,
+                    function() {
+                        configTable('#sample_4');
+                    });
+            }
+
+            function showExamTerm() {
+
+                $("#showExamTerm").load(
+                    "/BranchMedium/GetExamTerms?branchMediumId=" + @Model.BranchMediumId,
+                    function() {
+                        configTable('#sample_2');
+                    });
+            }
+            function populateClassDropDown(classes) {
+                var classDropDown = $("#classDropDown");
+                classDropDown.children('option:not(:first)').remove();
+                jQuery.each(classes,
+                    function(index, item) {
+                        var dropdownItem = new Option(item.ClassName, item.Id);
+                        classDropDown.append(dropdownItem);
+                    });
+            }
+
+            function populateSectionDropDown(sections) {
+                var sectionDropDown = $("#sectionDropDown");
+                sectionDropDown.children('option:not(:first)').remove();
+                jQuery.each(sections,
+                    function (index, item) {
+                        var dropdownItem = new Option(item.SectionName, item.Id);
+                        sectionDropDown.append(dropdownItem);
+                    });
+            }
+            function showStudent() {
+
+                $("#showStudent").load(
+                    "/BranchMedium/GetStudents?branchMediumId=" + @Model.BranchMediumId,
+                    function() {
+                        
+
+                        $("#sessionDropDown").change(function() {
+                            $.ajax({
+                                type: "GET",
+                                url:
+                                    "/BranchMedium/GetClassOfBranchMedium?branchMediumId=" + @Model.BranchMediumId+'&sessionId='+
+                                        $("#sessionDropDown").val(),
+                                contentType: "application/json; charset=utf-8",
+                                dataType: "json",
+                                success: function(response) {
+                                    populateClassDropDown(response);
+                                },
+                                failure: function(response) {
+                                    alert("Failure..! Could not Fetch Data using Ajax.");
+                                },
+                                error: function(response) {
+                                    alert("Error..! Could not Fetch Data using Ajax.");
+                                }
+                            });
+                        });
+
+                        $("#classDropDown").change(function() {
+                            $.ajax({
+                                type: "GET",
+                                url:
+                                    "/BranchMedium/GetSectionOfBranchMedium?branchMediumId=" + @Model.BranchMediumId+'&sessionId='+
+                                        $("#sessionDropDown").val() +'&classId='+
+                                        $("#classDropDown").val(),
+                                contentType: "application/json; charset=utf-8",
+                                dataType: "json",
+                                success: function(response) {
+                                    populateSectionDropDown(response);
+                                },
+                                failure: function(response) {
+                                    alert("Failure..! Could not Fetch Data using Ajax.");
+                                },
+                                error: function(response) {
+                                    alert("Error..! Could not Fetch Data using Ajax.");
+                                }
+                            });
+
+                            $("#sectionDropDown").change(function() {
+                                $("#studentTable").load(
+                                    "/BranchMedium/GetStudentSectionOfBranchMedium?branchMediumId=" + @Model.BranchMediumId+'&sessionId='+
+                                    $("#sessionDropDown").val() +'&classId='+
+                                    $("#classDropDown").val() +'&sectionId='+
+                                    $("#sectionDropDown").val(),
+                                    function() {
+                                        configTable('#sample_3');
+                                    });
+                            });
+                        });
+
+                    });
+            }
+
+            function showBar() {
+                if ($('.ui-button-text').text() == 'Show Bar') {
+                    $('.ui-button-text').text("Hide Bar");
+                    $(".myUL li").css('border-bottom', '1px solid red');
+                } else {
+                    $('.ui-button-text').text("Show Bar");
+                    $(".myUL li").css('border-bottom', '');
+                }
+
+            }
+
+            $(function() {
+                $("#importToMaster").click(function() {
+                    $.ajax({
+                        type: "POST",
+                        url:
+                            "/BranchMedium/ImportCOAFromMaster?branchMediumId=@Model.BranchMedium.Id&sessionId=@Model.CurrentSessionId",
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        beforeSend: function() {
+                            $("#loadingSpinner").css("visibility", "visible");
+                        },
+                        success: function (response) {
+                            $("#loadingSpinner").css("visibility", "hidden");
+                            alert(response.msg);
+                        },
+                        failure: function(response) {
+                            alert("Failed..!");
+                        },
+                        error: function(response) {
+                            alert("Failed..!");
+                        }
+                    });
+                });
+            });
+        </script>
+    }

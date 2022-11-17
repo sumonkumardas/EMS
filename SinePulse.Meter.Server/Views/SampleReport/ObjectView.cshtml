@@ -1,0 +1,17 @@
+@using NakedObjects.Facade.Utility;
+@using NakedObjects.Web.Mvc.Html
+@using SinePulse.SmartMeter.Domain.Reports
+@model SampleReport
+
+@{
+    Layout = "~/Views/Shared/_NofLayout.cshtml";
+    ViewBag.Title = Html.ObjectTitle(Model);
+}
+
+<div id="body">
+    <section class="main-content">
+        <div>
+            <iframe id="Iframe1" name="Main" height="400" width="1200" src="http://desktop-rqcaglf/Reports/Pages/Report.aspx?ItemPath=%2fSmartMeterReports%2fDailySalesReport" frameborder="0" />
+        </div>
+    </section>
+</div>

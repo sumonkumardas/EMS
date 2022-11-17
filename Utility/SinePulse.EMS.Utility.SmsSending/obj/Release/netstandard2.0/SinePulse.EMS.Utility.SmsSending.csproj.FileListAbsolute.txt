@@ -1,0 +1,9 @@
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Utility\SinePulse.EMS.Utility.SmsSending\bin\Release\netstandard2.0\SinePulse.EMS.Utility.SmsSending.deps.json
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Utility\SinePulse.EMS.Utility.SmsSending\bin\Release\netstandard2.0\SinePulse.EMS.Utility.SmsSending.dll
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Utility\SinePulse.EMS.Utility.SmsSending\bin\Release\netstandard2.0\SinePulse.EMS.Utility.SmsSending.pdb
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Utility\SinePulse.EMS.Utility.SmsSending\obj\Release\netstandard2.0\SinePulse.EMS.Utility.SmsSending.csprojAssemblyReference.cache
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Utility\SinePulse.EMS.Utility.SmsSending\obj\Release\netstandard2.0\SinePulse.EMS.Utility.SmsSending.csproj.CoreCompileInputs.cache
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Utility\SinePulse.EMS.Utility.SmsSending\obj\Release\netstandard2.0\SinePulse.EMS.Utility.SmsSending.AssemblyInfoInputs.cache
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Utility\SinePulse.EMS.Utility.SmsSending\obj\Release\netstandard2.0\SinePulse.EMS.Utility.SmsSending.AssemblyInfo.cs
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Utility\SinePulse.EMS.Utility.SmsSending\obj\Release\netstandard2.0\SinePulse.EMS.Utility.SmsSending.dll
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Utility\SinePulse.EMS.Utility.SmsSending\obj\Release\netstandard2.0\SinePulse.EMS.Utility.SmsSending.pdb

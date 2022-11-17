@@ -1,0 +1,84 @@
+﻿@using SinePulse.EMS.Domain.Enums
+@model EducationalQualificationViewModel
+@{
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-container">
+  <!-- BEGIN CONTENT -->
+  <div class="page-content-wrapper">
+    <div class="page-content">
+      <div class="portlet-body form">
+        <!-- BEGIN FORM-->
+        <div class="title-on-top">Edit Educational Qualification</div>
+        <form asp-action="EditEducationalQualification" class="form-horizontal box-shadow-form" id="form_sample_3">
+          <input asp-for="EmployeeId" type="hidden" runat="server"/>
+          <input asp-for="EducationalQualificationId" type="hidden" runat="server"/>
+          <div class="form-body">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="row-fluid col-md-12 zero-padding-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>Institute</label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <input asp-for="InstituteName" type="text" class="form-control" />
+                    <span asp-validation-for="InstituteName" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>Degree</label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <select asp-for="DegreeName" class="form-control" asp-items="Html.GetEnumSelectList<EducationDegreeEnum>()">
+                      <option>Select Degree</option>
+                    </select>
+                    <span asp-validation-for="DegreeName" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row-fluid col-md-12 zero-padding-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>Major</label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <input asp-for="MajorSubject" type="text" class="form-control" />
+                    <span asp-validation-for="MajorSubject" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>Passing Year</label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <input asp-for="PassingYear" type="text" class="form-control" />
+                    <span asp-validation-for="PassingYear" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <br />
+
+            <div class="btn-container">
+              <button type="button" class="btn custom-btn custom-cancel-btn pull-left" onclick="location.href='/Employee/ViewEmployee?employeeId=@Model.EmployeeId#tab_educationalQualification'">Cancel</button>
+              <button type="submit" class="btn custom-btn custom-cancel-btn pull-right">Update</button>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+        </form>
+        <!-- END FORM-->
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,80 @@
+﻿@model SinePulse.SmartMeter.Domain.Reports.LoginHistoryReport
+@{
+  int count = 0;
+}
+<div>
+    <div style="text-align: left">
+        @if (Model.LoginHistories.Count > 0)
+        {
+            @Html.ActionLink("Export To Excel", "ExportToExcel", "LoginHistoryReport", new { startdate = @Model.FromDate, enddate = @Model.ToDate}, null)
+        }
+    </div>
+
+    <div style="text-align: right">
+        <a href="javascript:printDiv('LoginHistoryReportDiv')"><b>Print</b></a>
+        <iframe name="print_frame" width="0" height="0" frameborder="0" src="about:blank"></iframe>
+    </div>
+</div>
+
+<div id="LoginHistoryReportDiv">
+    <p id="LoginHistoryReportHeader" style="text-align: center">Login History Report Date between @Model.FromDate.ToString("d") and @Model.ToDate.ToString("d")</p>
+    <table id="table_id">
+        <thead>
+            <tr>
+
+                <th>
+                    Id
+                </th>
+                <th>
+                    Login Id
+                </th>
+                <th>
+                    User Name
+                </th>
+                <th>
+                    User Host Address
+                </th>
+                <th>
+                    Login DateTime
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var loginHistoryData in Model.LoginHistories)
+            {
+                count = count + 1;
+                <tr>
+                    <td>@count</td>
+                    <td>@loginHistoryData.LoginId</td>
+                    <td>@loginHistoryData.UserName</td>
+                    <td>@loginHistoryData.UserHostAddress</td>
+                    <td>@loginHistoryData.LoginDateTime</td>
+                </tr>
+             }
+            <tr></tr>
+            
+        </tbody>
+    </table>
+    
+</div>
+
+<script type="text/javascript">
+    function printDiv(divId) {
+        window.frames["print_frame"].document.body.innerHTML = '<style media="print"> table, th, td { border: 1px solid black; border-collapse: collapse;}@@page {size:landscape} </style>' + document.getElementById(divId).innerHTML;
+        window.frames["print_frame"].window.focus();
+        window.frames["print_frame"].window.print();
+    }
+</script>
+
+
+
+<style type="text/css">
+    @@media screen {
+        #LoginHistoryReportHeader {
+            display: none;
+        }
+    }
+</style>
+
+
+

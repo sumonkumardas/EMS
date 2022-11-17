@@ -1,0 +1,115 @@
+﻿@model EmployeeListViewModel
+@using SinePulse.EMS.Domain.Shared
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@{
+    ViewData["Title"] = "Show Employee List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-container">
+    <!-- BEGIN CONTENT -->
+    <div class="page-content-wrapper">
+        <div class="page-content">
+            @*#######*@
+            <div class="portlet-body form">
+                <!-- BEGIN FORM-->
+              <div class="title-on-top">
+                <div class="page-toolbar pull-left" style="margin-top: -10px;">
+                  <div class="btn-group">
+                    <ul style="padding:0px;">
+                      <li class="custom-page-menu dropdown primary-menu-item-li">
+                        <a href="#" class="show-dropdown-on-hover" data-toggle="custom-page-menu">
+                          <button type="button" class="btn btn-fit-height dark-bg dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="100" data-close-others="true">
+                            <i class="fa fa-bars"></i>
+                          </button>
+                        </a>
+                        <ul class="dropdown-menu light-arrow-only">
+                          <li>
+                            <a href="/Employee/AddEmployee?associationType=@AssociationType.Global&objectId=null">@Localizer["Index.AddEmployee"]</a>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                @Localizer["Index.Title"]
+              </div>
+                <form class="form-horizontal box-shadow-form">
+                    <div class="form-body">
+                        <table class="table table-striped table-hover" id="sample_5">
+                            <thead class="filterCriteria">
+                                <tr>
+                                    <th>
+                                        @Localizer["Index.FullName"]
+                                    </th>
+                                    <th>
+                                        @Localizer["Index.EmployeeCode"]
+                                    </th>
+                                    <th>
+                                        @Localizer["Index.Mobile"]
+                                    </th>
+                                    <th>
+                                        @Localizer["Index.EmailAddress"]
+                                    </th>
+                                    <th>
+                                        @Localizer["Index.JoiningDate"]
+                                    </th>
+
+                                    <th>
+                                        @Localizer["Index.EmployeeType"]
+                                    </th>
+                                    <th>
+                                        @Localizer["Index.Status"]
+                                    </th>
+
+                                    <th> @Localizer["Index.Action"] </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var employeeModel in Model.EmployeeList)
+                                {
+                                    <tr>
+                                        <td>
+                                            <a href="/Employee/ViewEmployee?associationType=@AssociationType.Global&employeeId=@employeeModel.Id" class="action-link"> @employeeModel.FullName</a>
+
+                                        </td>
+                                        <td>
+                                            @employeeModel.EmployeeCode
+                                        </td>
+                                        <td>
+                                            @employeeModel.MobileNo
+                                        </td>
+                                        <td>
+                                            @employeeModel.EmailAddress
+                                        </td>
+                                        <td>
+                                            @if (employeeModel.JoiningDate != null)
+                                            {
+                                                ((DateTime)employeeModel.JoiningDate).ToString("dd MMMM, yyyy");
+                                            }
+                                        </td>
+
+                                        <td>
+                                            @employeeModel.EmployeeType
+                                        </td>
+                                        <td>
+                                            @employeeModel.Status
+                                        </td>
+
+                                        <td>
+                                            <a href="/Employee/UpdateEmployee?associationType=@Model.AssociatedWith&objectId=0&employeeId=@employeeModel.Id" class="action-link"><i class="fa fa-edit action-icon"></i></a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                        <div class="clearfix"></div>
+                    </div>
+                </form>
+                <!-- END FORM-->
+            </div>
+            @*#######*@
+        </div>
+    </div>
+</div>

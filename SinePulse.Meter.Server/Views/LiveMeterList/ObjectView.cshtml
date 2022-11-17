@@ -1,0 +1,77 @@
+
+@using NakedObjects.Web.Mvc.Html
+@using SinePulse.SmartMeter.Domain.Reports
+@model LiveMeterList
+}
+<style>
+    div#loading { display: none; }
+</style>
+<div id="body" >
+    <section class="main-content">
+      @Html.TabbedHistory(Model)
+        <div class="col-md-offset-1">
+@using (Ajax.BeginForm("ShowLiveMeterList", "LiveMeterList", null, new AjaxOptions
+{
+    HttpMethod = "POST",
+    UpdateTargetId = "resultTarget",
+    OnBegin = "onBegin",
+    OnComplete= "onComplete"
+}))
+{
+            @Html.AntiForgeryToken()
+
+            @Html.Label("Select Start Date :  ")
+            @Html.TextBoxFor(m => m.FromDate, new { id = "Start_date", value = "" })
+
+            @Html.Label("Select End Date :  ")
+            @Html.TextBoxFor(m => m.ToDate, new { id = "To_date", value = "" })
+
+            <input type="submit" id="showReport" value="Show" class="btn btn-default" style="margin-left:10px;margin-top:-2px" />
+            <img id="progressbar" src="/Images/wait_progress.gif" style="display:none;" />
+            <br>
+            }
+
+        </div>
+
+        <div style="text-align:center;font-size:large;font-weight:bold">
+            @Html.Label("Live Meter List")
+        </div>
+        
+        <div class="vis" id="resultTarget">
+
+        </div>
+
+        <script language="javascript" type="text/javascript">
+            $.ajax({
+                type: "Post",
+                url: '/LiveMeterList/ShowTodaysLiveMeter',
+                traditional: true,
+                success: function (data) {
+                    //Fill div with results
+                    $("#resultTarget").html(data);
+                },
+            });
+            function onBegin() {
+                $('#progressbar').show();
+                $('#showReport').prop('disabled', true);
+            }
+            function onComplete() {
+                $('#progressbar').hide();
+                $('#showReport').prop('disabled', false);
+            }
+        </script>
+        @Scripts.Render("~/bundles/relayStatusLogReport")
+    </section>
+</div>
+
+@section Scripts {
+
+<script type="text/javascript">
+    
+</script>
+
+
+}
+
+
+

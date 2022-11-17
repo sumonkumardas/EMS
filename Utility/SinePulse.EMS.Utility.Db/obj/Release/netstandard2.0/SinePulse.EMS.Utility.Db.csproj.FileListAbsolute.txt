@@ -1,0 +1,14 @@
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Utility\SinePulse.EMS.Utility.Db\bin\Release\netstandard2.0\SinePulse.EMS.Utility.Db.deps.json
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Utility\SinePulse.EMS.Utility.Db\bin\Release\netstandard2.0\SinePulse.EMS.Utility.Db.dll
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Utility\SinePulse.EMS.Utility.Db\bin\Release\netstandard2.0\SinePulse.EMS.Utility.Db.pdb
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Utility\SinePulse.EMS.Utility.Db\bin\Release\netstandard2.0\SinePulse.EMS.ProjectPrimitives.dll
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Utility\SinePulse.EMS.Utility.Db\bin\Release\netstandard2.0\SinePulse.EMS.Utility.dll
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Utility\SinePulse.EMS.Utility.Db\bin\Release\netstandard2.0\SinePulse.EMS.Utility.pdb
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Utility\SinePulse.EMS.Utility.Db\bin\Release\netstandard2.0\SinePulse.EMS.ProjectPrimitives.pdb
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Utility\SinePulse.EMS.Utility.Db\obj\Release\netstandard2.0\SinePulse.EMS.Utility.Db.csprojAssemblyReference.cache
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Utility\SinePulse.EMS.Utility.Db\obj\Release\netstandard2.0\SinePulse.EMS.Utility.Db.csproj.CoreCompileInputs.cache
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Utility\SinePulse.EMS.Utility.Db\obj\Release\netstandard2.0\SinePulse.EMS.Utility.Db.AssemblyInfoInputs.cache
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Utility\SinePulse.EMS.Utility.Db\obj\Release\netstandard2.0\SinePulse.EMS.Utility.Db.AssemblyInfo.cs
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Utility\SinePulse.EMS.Utility.Db\obj\Release\netstandard2.0\SinePulse.EMS.Utility.Db.csproj.CopyComplete
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Utility\SinePulse.EMS.Utility.Db\obj\Release\netstandard2.0\SinePulse.EMS.Utility.Db.dll
+C:\EMS\EducationManagementSystem\src\SinePulseEMS\Utility\SinePulse.EMS.Utility.Db\obj\Release\netstandard2.0\SinePulse.EMS.Utility.Db.pdb

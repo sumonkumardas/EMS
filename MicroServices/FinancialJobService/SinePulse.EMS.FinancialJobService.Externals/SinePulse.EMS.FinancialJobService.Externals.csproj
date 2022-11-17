@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Unity" Version="5.8.13" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Utility\SinePulse.EMS.Utility.MessagingQueue.MassTransit\SinePulse.EMS.Utility.MessagingQueue.MassTransit.csproj" />
+    <ProjectReference Include="..\SinePulse.EMS.FinancialJobService\SinePulse.EMS.FinancialJobService.csproj" />
+  </ItemGroup>
+
+</Project>

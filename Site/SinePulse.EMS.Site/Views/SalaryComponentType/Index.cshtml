@@ -1,0 +1,78 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@model ShowSalaryComponentTypeListViewModel
+@{
+  ViewData["Title"] = "Index";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="page-container">
+  <!-- BEGIN CONTENT -->
+  <div class="page-content-wrapper">
+    <div class="page-content">
+      <div class="portlet-body form">
+        <div class="title-on-top">
+          <div class="page-toolbar pull-left" style="margin-top: -10px;">
+            <div class="btn-group">
+              <ul style="padding:0px;">
+                <li class="custom-page-menu dropdown primary-menu-item-li">
+                  <a href="#" class="show-dropdown-on-hover" data-toggle="custom-page-menu">
+                    <button type="button" class="btn btn-fit-height dark-bg dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="100" data-close-others="true">
+                      <i class="fa fa-bars"></i>
+                    </button>
+                  </a>
+                  <ul class="dropdown-menu light-arrow-only">
+                    <li>
+                      <a href="/SalaryComponentType/AddSalaryComponentType">@Localizer["Index.AddSalaryComponentType"]</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+          @Localizer["Index.Title"]
+        </div>
+        <form class="form-horizontal box-shadow-form">
+          <div class="form-body">
+            <table class="table table-striped table-hover" id="sample_5">
+
+              <thead class="filterCriteria">
+                <tr>
+                  <th>
+                    @Localizer["Index.ComponentType"]
+                  </th>
+                  <th>
+                    @Localizer["Index.Status"]
+                  </th>
+                  <th> @Localizer["Index.Action"] </th>
+                </tr>
+              </thead>
+
+              <tbody>
+
+                @{
+                  foreach (var componentType in Model.salaryComponentTypes)
+                  {
+                    <tr>
+                      <td>
+                        @Html.DisplayFor(s => componentType.ComponentType)
+                      </td>
+                      <td>
+                        @Html.DisplayFor(s => componentType.Status)
+                      </td>
+                      <td>
+                        <a href="/SalaryComponentType/EditSalaryComponentType?salaryComponentTypeId=@componentType.Id" class="action-link"><i class="fa fa-edit action-icon"></i></a>
+                        <a href="#" class="action-link">
+                          <i class="fa fa-minus-circle action-icon"></i>
+                        </a>
+                      </td>
+                    </tr>
+                  }
+                }
+              </tbody>
+            </table>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

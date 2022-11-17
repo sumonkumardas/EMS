@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Domain\SinePulse.EMS.Constants\SinePulse.EMS.Constants.csproj" />
+    <ProjectReference Include="..\..\..\Infrastructure\Persistence\SinePulse.EMS.Persistence\SinePulse.EMS.Persistence.csproj" />
+    <ProjectReference Include="..\..\..\Messages\SinePulse.EMS.Messages.AlertProcessingMessages\SinePulse.EMS.Messages.AlertProcessingMessages.csproj" />
+    <ProjectReference Include="..\..\..\Messages\SinePulse.EMS.Messages.EmailSendingMessages\SinePulse.EMS.Messages.EmailSendingMessages.csproj" />
+    <ProjectReference Include="..\..\..\Messages\SinePulse.EMS.Messages.ScheduleJobMessages\SinePulse.EMS.Messages.ScheduleJobMessages.csproj" />
+    <ProjectReference Include="..\..\..\Messages\SinePulse.EMS.Messages.SmsSendingMessages\SinePulse.EMS.Messages.SmsSendingMessages.csproj" />
+    <ProjectReference Include="..\..\..\SinePulse.EMS.Domain\SinePulse.EMS.Domain.csproj" />
+    <ProjectReference Include="..\..\..\Utility\SinePulse.EMS.Utility.MessagingQueue\SinePulse.EMS.Utility.MessagingQueue.csproj" />
+  </ItemGroup>
+
+</Project>

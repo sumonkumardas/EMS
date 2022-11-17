@@ -1,0 +1,70 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@model ResultGradeListViewModel
+
+
+<div class="page-container">
+  <!-- BEGIN CONTENT -->
+  <div class="page-content-wrapper">
+    <div class="page-content">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="page-bar margin-top-15">
+            
+          </div>
+
+
+          <table class="table table-striped table-hover" id="sample_5">
+
+            <thead class="filterCriteria">
+              <tr>
+
+                <th>
+                  @Localizer["Index.GradeLetter"]
+                </th>
+                <th>
+                    Grade Point
+                </th>
+                <th>
+                    @Localizer["Index.StartMark"]
+                </th>
+                <th>
+                    @Localizer["Index.EndMark"]
+                    
+                </th>
+                <th> @Localizer["Index.Action"] </th>
+              </tr>
+            </thead>
+
+            <tbody>
+              @foreach (var resultGradeModel in Model.ResultGrades)
+              {
+                <tr>
+
+                  <td>
+                    @Html.DisplayFor(model => @resultGradeModel.GradeLetter)
+                  </td>
+                  <td>
+                    @Html.DisplayFor(model => @resultGradeModel.GradePoint)
+                  </td>
+                  <td>
+                    @Html.DisplayFor(model => @resultGradeModel.StartMark)
+                  </td>
+
+                  <td>
+                    @Html.DisplayFor(model => @resultGradeModel.EndMark)
+                  </td>
+                  <td>
+                    <a href="/ResultGrade/UpdateResultGrade?resultGradeId=@resultGradeModel.Id" class="action-link"><i class="fa fa-edit action-icon"></i></a>
+                    <a href="#" class="action-link"><i class="fa fa-minus-circle action-icon"></i></a>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,118 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@using SinePulse.EMS.Domain.Enums
+@model SinePulse.EMS.Site.Models.AddTermViewModel
+@inject IViewLocalizer Localizer
+@{
+  ViewData["Title"] = "UpdateTerm";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="page-container">
+  <!-- BEGIN CONTENT -->
+  <div class="page-content-wrapper">
+    <div class="page-content">
+      <div class="portlet-body form">
+        <!-- BEGIN FORM-->
+        <div class="title-on-top">@Localizer["UpdateTerm.Title"]</div>
+        <form asp-action="UpdateTerm" class="form-horizontal box-shadow-form" id="form_sample_3">
+          <div class="form-body">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="row-fluid col-md-12 zero-padding-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["UpdateTerm.TermName"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <input asp-for="TermName" type="text" class="form-control" />
+                    <span asp-validation-for="TermName" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["UpdateTerm.Session"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    @Html.DropDownListFor(x => Model.SessionId, new SelectList(Model.Sessions, "SessionId", "SessionText"), Localizer["UpdateTerm.SelectSession"].Value, new { @class = "form-control" })
+                    <span asp-validation-for="SessionId" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row-fluid col-md-12 zero-padding-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["UpdateTerm.StartDate"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                  
+                      <input asp-for="StartDate" type="text" class="form-control datepicker" name="StartDate">
+                     
+                    <!-- /input-group -->
+
+                    <span asp-validation-for="StartDate" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["UpdateTerm.EndDate"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                 
+                      <input asp-for="EndDate" type="text" class="form-control datepicker"  name="EndDate">
+                     
+                    <!-- /input-group -->
+
+                    <span asp-validation-for="EndDate" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row-fluid col-md-12 zero-padding-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["UpdateTerm.Status"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    <select asp-for="Status" class="form-control" asp-items="Html.GetEnumSelectList<StatusEnum>()">
+                      <option>@Localizer["UpdateTerm.SelectStatus"]</option>
+                    </select>
+                    <span asp-validation-for="Status" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <br />
+            <div class="form-group" hidden>
+              <div class="col-md-12">
+                <input asp-for="BranchMediumId" type="text" class="form-control" />
+                <span asp-validation-for="BranchMediumId" class="text-danger"></span>
+              </div>
+            </div>
+            <div class="btn-container">
+              <button type="button" class="btn custom-btn custom-cancel-btn pull-left" onclick="location.href='@Url.Action("Index", "Term")'">@Localizer["UpdateTerm.CancleButton"]</button>
+              <button type="submit" class="btn custom-btn custom-cancel-btn pull-right">@Localizer["UpdateTerm.UpdateButton"]</button>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+        </form>
+        <!-- END FORM-->
+      </div>
+    </div>
+  </div>
+</div>
+
+@section Scripts {
+  @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

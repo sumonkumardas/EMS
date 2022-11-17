@@ -1,0 +1,213 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@using SinePulse.EMS.Domain.Enums
+@model SinePulse.EMS.Site.Models.AddExamConfigurationViewModel
+@inject IViewLocalizer Localizer
+@{
+    ViewData["Title"] = "AddExamConfiguration";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="page-container">
+    <!-- BEGIN CONTENT -->
+    <div class="page-content-wrapper">
+        <div class="page-content">
+          <div class="portlet-body form">
+            <!-- BEGIN FORM-->
+            <div class="title-on-top">@Localizer["AddExamConfiguration.Title"]</div>
+            <form asp-action="AddExamConfiguration" class="form-horizontal box-shadow-form" id="form_sample_3">
+              <div class="form-body">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="row-fluid col-md-12 zero-padding-row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <div class="col-md-4">
+                        <label>@Localizer["AddExamConfiguration.Class"]</label><span class="required">*</span>
+                      </div>
+                      <div class="col-md-8">
+                        @Html.DropDownListFor(x => x.ClassId, Enumerable.Empty<SelectListItem>(), @Localizer["AddExamConfiguration.SelectClass"].Value, new { @class = "form-control", id = "classDropDown", required = true })
+                        <span asp-validation-for="ClassId" class="text-danger"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <div class="col-md-4">
+                        <label>@Localizer["AddExamConfiguration.Group"] </label>
+                      </div>
+                      <div class="col-md-8">
+                        <div class="radio-list">
+                          @Html.DropDownListFor(x => x.GroupId, Enumerable.Empty<SelectListItem>(), @Localizer["AddExamConfiguration.SelectGroup"].Value, new { @class = "form-control", id = "groupDropDown", required = true })
+                          <span asp-validation-for="GroupId" class="text-danger"></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="row-fluid col-md-12 zero-padding-row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <div class="col-md-4">
+                        <label>@Localizer["AddExamConfiguration.Subject"]</label><span class="required">*</span>
+                      </div>
+                      <div class="col-md-8">
+                        @Html.DropDownListFor(x => x.SubjectId, Enumerable.Empty<SelectListItem>(), @Localizer["AddExamConfiguration.SelectSubject"].Value, new { @class = "form-control", id = "subjectDropDown", required = true })
+                        <span asp-validation-for="SubjectId" class="text-danger"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <div class="col-md-4">
+                        <label>@Localizer["AddExamConfiguration.ClassTest%"] </label>
+                      </div>
+                      <div class="col-md-8">
+                        <input asp-for="ClassTestPercentage" value="" type="number" class="form-control" />
+                        <span asp-validation-for="ClassTestPercentage" class="text-danger"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="form-group">
+                  <div class="col-md-12">
+                    <table class="table table-striped table-hover">
+                      <tr>
+                        <th>@Localizer["AddExamConfiguration.ExamType"]</th>
+                        <th>@Localizer["AddExamConfiguration.FullMarks"]</th>
+                        <th>@Localizer["AddExamConfiguration.PassMarks"]</th>
+                      </tr>
+                      <tr>
+                        <td>@Localizer["AddExamConfiguration.Subjective"]</td>
+                        <td>
+                          <input asp-for="SubjectiveFullMark" type="number" class="form-control" />
+                          <span asp-validation-for="SubjectiveFullMark" class="text-danger"></span>
+                        </td>
+                        <td>
+                          <input asp-for="SubjectivePassMark" type="number" class="form-control" />
+                          <span asp-validation-for="SubjectivePassMark" class="text-danger"></span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>@Localizer["AddExamConfiguration.Objective"]</td>
+                        <td>
+                          <input asp-for="ObjectiveFullMark" type="number" class="form-control" />
+                          <span asp-validation-for="ObjectivePassMark" class="text-danger"></span>
+                        </td>
+                        <td>
+                          <input asp-for="ObjectivePassMark" type="number" class="form-control" />
+                          <span asp-validation-for="ObjectivePassMark" class="text-danger"></span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>@Localizer["AddExamConfiguration.Practical"]</td>
+                        <td>
+                          <input asp-for="PracticalFullMark" type="number" class="form-control" />
+                          <span asp-validation-for="PracticalPassMark" class="text-danger"></span>
+                        </td>
+                        <td>
+                          <input asp-for="PracticalPassMark" type="number" class="form-control" />
+                          <span asp-validation-for="PracticalPassMark" class="text-danger"></span>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+                <br />
+                <div class="form-group" hidden>
+                  <div class="col-md-12">
+                    <input asp-for="TermId" type="text" class="form-control" />
+                    <span asp-validation-for="TermId" class="text-danger"></span>
+                  </div>
+                </div>
+                <div class="btn-container">
+                  <button type="button" class="btn custom-btn custom-cancel-btn pull-left" onclick="location.href='/Term/ViewTerm?termId=@Model.TermId#examType'">@Localizer["AddExamConfiguration.CancelButton"]</button>
+                  <button type="submit" class="btn custom-btn custom-cancel-btn pull-right">@Localizer["AddExamConfiguration.CreateButton"]</button>
+                  <div class="clearfix"></div>
+                </div>
+              </div>
+            </form>
+            <!-- END FORM-->
+          </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+        var classDropDown = $("#classDropDown");
+        var groupDropDown = $("#groupDropDown");
+        var subjectDropDown = $("#subjectDropDown");
+        classDropDown.append(new Option(0, "Please Select"));
+        groupDropDown.append(new Option(0, "Please Select"));
+        subjectDropDown.append(new Option(0, "Please Select"));
+        $(function () {
+            $.ajax({
+                type: "POST",
+                url: "/ExamConfiguration/GetClassValues",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    classDropDown.children('option:not(:first)').remove();
+                    jQuery.each(response, function (index, item) {
+                        var dropdownItem = new Option(item.ClassName, item.ClassId);
+                        classDropDown.append(dropdownItem);
+                    });
+
+
+                },
+                failure: function (response) {
+                    alert("Failure..! Could not Fetch Data using Ajax.");
+                },
+                error: function (response) {
+                    alert("Error..! Could not Fetch Data using Ajax.");
+                }
+            });
+        });
+
+        classDropDown.change(function () {
+            $.ajax({
+                type: "POST",
+                url: "/ExamConfiguration/GetGroupValues?classId=" + classDropDown.val(),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    groupDropDown.children('option:not(:first)').remove();
+                    jQuery.each(response, function (index, item) {
+                        var dropdownItem = new Option(item.GroupName, item.GroupId);
+                        groupDropDown.append(dropdownItem);
+                    });
+                },
+                failure: function (response) {
+                    alert("Failure..! Could not Fetch Group Data using Ajax.");
+                },
+                error: function (response) {
+                    alert("Error..! Could not Fetch Group Data using Ajax.");
+                }
+            });
+        });
+
+        groupDropDown.change(function () {
+            $.ajax({
+                type: "POST",
+                url: "/ExamConfiguration/GetSubjectValues?classId=" + classDropDown.val() + "&groupId=" + groupDropDown.val(),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    subjectDropDown.children('option:not(:first)').remove();
+                    jQuery.each(response, function (index, item) {
+                        var dropdownItem = new Option(item.SubjectName, item.SubjectId);
+                        subjectDropDown.append(dropdownItem);
+                    });
+                },
+                failure: function (response) {
+                    alert("Failure..! Could not Fetch Subject Data using Ajax.");
+                },
+                error: function (response) {
+                    alert("Error..! Could not Fetch Subject Data using Ajax.");
+                }
+            });
+        });
+    </script>
+}

@@ -1,0 +1,71 @@
+﻿@model SinePulse.EMS.Site.Models.PromoteStudentOptionViewModel
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@{
+  ViewData["Title"] = "PromoteStudentOption";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="page-container">
+  <!-- BEGIN CONTENT -->
+  <div class="page-content-wrapper">
+    <div class="page-content">
+      <div class="portlet-body form">
+        <!-- BEGIN FORM-->
+        <div class="title-on-top">@Localizer["PromoteStudentOption.Title"]</div>
+        <form asp-action="PromoteStudentOption" class="form-horizontal box-shadow-form" id="form_sample_3">
+          <div class="form-body">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input asp-for="SectionId" type="hidden" class="form-control" />
+            @for (var i = 0; i < Model.Sessions.Count; i++)
+            {
+              <input type="hidden" name="Sessions[@i].SessionId" value="@Model.Sessions[i].SessionId" />
+              <input type="hidden" name="Sessions[@i].SessionName" value="@Model.Sessions[i].SessionName" />
+            }
+            @for (var i = 0; i < Model.Classes.Count; i++)
+            {
+              <input type="hidden" name="Classes[@i].ClassId" value="@Model.Classes[i].ClassId" />
+              <input type="hidden" name="Classes[@i].ClassName" value="@Model.Classes[i].ClassName" />
+            }
+            <div class="row-fluid col-md-12 zero-padding-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["PromoteStudentOption.Session"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    @Html.DropDownListFor(x => x.SessionId, new SelectList(Model.Sessions, "SessionId", "SessionName"), @Localizer["PromoteStudentOption.SelectSession"].Value, new { @class = "form-control" })
+                    <span asp-validation-for="SessionId" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>@Localizer["PromoteStudentOption.Class"] </label><span class="required">*</span>
+                  </div>
+                  <div class="col-md-8">
+                    @Html.DropDownListFor(x => x.ClassId, new SelectList(Model.Classes, "ClassId", "ClassName"), @Localizer["PromoteStudentOption.SelectClass"].Value, new { @class = "form-control" })
+                    <span asp-validation-for="ClassId" class="text-danger"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <br />
+            <div class="btn-container">
+              <button type="button" class="btn custom-btn custom-cancel-btn pull-left">@Localizer["PromoteStudentOption.CancelButton"]</button>
+              <button type="submit" class="btn custom-btn custom-cancel-btn pull-right">@Localizer["PromoteStudentOption.ProceedButton"]</button>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+        </form>
+        <!-- END FORM-->
+      </div>
+    </div>
+  </div>
+</div>
+
+
+@section Scripts {
+  @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

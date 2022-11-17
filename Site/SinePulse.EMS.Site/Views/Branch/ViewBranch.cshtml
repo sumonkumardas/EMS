@@ -1,0 +1,420 @@
+﻿@using SinePulse.EMS.Domain.Enums
+@using SinePulse.EMS.Domain.Shared
+@using SinePulse.EMS.Domain.Features
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@model ShowBranchViewModel
+@{
+    ViewData["Title"] = "ViewBranch";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-container">
+    <!-- BEGIN CONTENT -->
+    <div class="page-content-wrapper">
+        <div class="page-content">
+            <!-- END PAGE HEADER-->
+            <!-- BEGIN PAGE CONTENT-->
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- BEGIN PROFILE SIDEBAR -->
+                    <div class="profile-sidebar">
+                        <!-- PORTLET MAIN -->
+                        <div class="portlet light profile-sidebar-portlet">
+                            <!-- SIDEBAR USERPIC -->
+                            <div class="profile-userpic">
+                                <img src="../../img/school.png" class="img-responsive" alt="">
+                            </div>
+                            <!-- END SIDEBAR USERPIC -->
+                            <!-- SIDEBAR USER TITLE -->
+                            <div class="profile-usertitle-name small-title">
+
+                                @Model.Branch.BranchName (@Model.Branch.BranchCode)
+
+                            </div>
+                            <div class="profile-stat-text">
+                                @Localizer["ViewBranch.Branch"]
+                            </div>
+                            <hr />
+                            <div class="profile-usertitle-name">
+                                @if (Model.HasPermission(Feature.InstituteEnum.ViewInstitute.ToString()))
+                                {
+                                    <a class="primary-link" href="/Institute/ViewInstitute?instituteId=@Model.Branch.Institute.Id">  @Model.Branch.Institute.OrganisationName </a>
+                                }
+                                else
+                                {
+                                    @Model.Branch.Institute.OrganisationName
+                                }
+                            </div>
+                            <div class="profile-stat-text">
+                                @Localizer["ViewBranch.Institute"]
+                            </div>
+                            <hr />
+                            @*<div class="profile-usertitle-job">
+            <small>@Localizer["ViewBranch.Status"]: </small>  <span> @Model.Branch.Status</span>
+          </div>
+        </div>*@
+                            <!-- END SIDEBAR USER TITLE -->
+
+
+                        </div>
+                        <!-- END PORTLET MAIN -->
+                        <!-- PORTLET MAIN -->
+                        <div class="portlet light" style="margin-top: -25px;">
+                            @if (!string.IsNullOrEmpty(@Model.Branch.Email))
+                            {
+                                <div class="profile-desc-link margin-bottom-20">
+                                    <i class="fa fa-envelope"></i>
+                                    <a href="mailto:@Model.Branch.Email">@Model.Branch.Email</a>
+                                </div>
+                            }
+                            @if (!string.IsNullOrEmpty(@Model.Branch.Fax))
+                            {
+                                <div class="margin-top-20 profile-desc-link">
+                                    <i class="fa fa-fax"></i>
+                                    <a href="fax:@Model.Branch.Fax">@Model.Branch.Fax</a>
+                                </div>
+                            }
+                            @if (!string.IsNullOrEmpty(@Model.Branch.MobileNo))
+                            {
+                                <div class="margin-top-20 profile-desc-link">
+                                    <i class="fa fa-phone"></i>
+                                    <a href="tel:@Model.Branch.MobileNo">@Model.Branch.MobileNo</a>
+                                </div>
+                            }
+                        </div>
+                        <!-- END PORTLET MAIN -->
+                    </div>
+                    <!-- END BEGIN PROFILE SIDEBAR -->
+                    <!-- BEGIN PROFILE CONTENT -->
+                    <div class="profile-content">
+                        <div class="row">
+
+                            <div class="col-md-12">
+                                <!-- BEGIN PORTLET -->
+                                <div class="portlet light">
+                                    <div class="portlet-title tabbable-line">
+                                        <div class="page-toolbar custom-page-menu-bar">
+                                            <div class="btn-group">
+                                                <ul style="padding:0px;">
+
+                                                    <li class="custom-page-menu dropdown primary-menu-item-li">
+                                                        <a href="#" class="show-dropdown-on-hover" data-toggle="custom-page-menu">
+                                                            <button type="button" class="btn btn-fit-height dark-bg dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="100" data-close-others="true">
+                                                                <i class="fa fa-bars"></i>
+                                                            </button>
+                                                        </a>
+                                                        <ul class="dropdown-menu light-arrow-only">
+                                                            @if (Model.HasPermission(Feature.BranchEnum.AddShift.ToString()))
+                                                            {
+                                                                <li>
+                                                                    <a href="/Shift/AddShift?shiftType=@ObjectTypeEnum.Branch&branchId=@Model.Branch.Id">@Localizer["ViewBranch.AddShift"]</a>
+                                                                </li>
+                                                            }
+                                                            @if (Model.HasPermission(Feature.BranchMediumEnum.AddBranchMedium.ToString()))
+                                                            {
+                                                                <li>
+                                                                    <a href="/BranchMedium/AddBranchMedium?branchId=@Model.Branch.Id">@Localizer["ViewBranch.AddMedium"]</a>
+                                                                </li>
+                                                            }
+                                                            @if (Model.HasPermission(Feature.BranchEnum.AddRoom.ToString()))
+                                                            {
+                                                                <li>
+                                                                    <a href="/Room/AddRoom?branchId=@Model.Branch.Id&objectType=@ObjectTypeEnum.Branch&objectId=@Model.Branch.Id">@Localizer["ViewBranch.AddRoom"]</a>
+                                                                </li>
+                                                            }
+                                                            @if (Model.HasPermission(Feature.EmployeeEnum.NewEmployee.ToString()))
+                                                            {
+                                                                <li>
+                                                                    <a href="/Employee/AddEmployee?associationType=@AssociationType.Branch&objectId=@Model.Branch.Id">@Localizer["ViewBranch.AddEmployee"]</a>
+                                                                </li>
+                                                            }
+                                                        </ul>
+                                                    </li>
+
+                                                </ul>
+
+                                            </div>
+                                        </div>
+                                        <ul class="nav nav-tabs custom-page-tab">
+                                            @{
+                                              string mediumTabActive = "";
+                                              string mediumPanActive = "tab-pane";
+                                              string employeeTabActive = "";
+                                              string employeePanActive = "tab-pane";
+                                              string shiftTabActive = "";
+                                              string shiftPanActive = "tab-pane";
+                                              string roomTabActive = "";
+                                              string roomPanActive = "tab-pane";
+                                              switch (Model.ActiveTab)
+                                              {
+                                                case TabEnum.Default:
+                                                  mediumTabActive = "active";
+                                                  mediumPanActive = "tab-pane active";
+                                                  break;
+                                                case TabEnum.Sessions:
+                                                  employeeTabActive = "active";
+                                                  employeePanActive = "tab-pane active";
+                                                  break;
+                                                case TabEnum.Mediums:
+                                                  mediumTabActive = "active";
+                                                  mediumPanActive = "tab-pane active";
+                                                  break;
+                                                case TabEnum.Employee:
+                                                  employeeTabActive = "active";
+                                                  employeePanActive = "tab-pane active";
+                                                  break;
+                                                case TabEnum.Shifts:
+                                                  shiftTabActive = "active";
+                                                  shiftPanActive = "tab-pane active";
+                                                  break;
+                                                case TabEnum.Rooms:
+                                                  roomTabActive = "active";
+                                                  roomPanActive = "tab-pane active";
+                                                  break;
+                                              }
+
+                                            }
+                                            @if (Model.HasPermission(Feature.BranchMediumEnum.ViewBranchMedium.ToString()))
+                                            {
+                                                <li class="@mediumTabActive">
+                                                    <a href="#tab_medium" data-toggle="tab">
+                                                        <h5 class="caption-subject font-blue-madison bold uppercase">@Localizer["ViewBranch.Medium"]</h5>
+                                                    </a>
+                                                </li>
+                                            }
+                                            @if (Model.HasPermission(Feature.BranchEnum.ViewShift.ToString()))
+                                            {
+                                                <li class="@shiftTabActive">
+                                                    <a href="#tab_shift" data-toggle="tab">
+                                                        <h5 class="caption-subject font-blue-madison bold uppercase">@Localizer["ViewBranch.Shifts"]</h5>
+                                                    </a>
+                                                </li>
+                                            }
+                                            @if (Model.HasPermission(Feature.BranchEnum.ViewRoom.ToString()))
+                                            {
+                                                <li class="@roomTabActive">
+                                                    <a href="#tab_room" data-toggle="tab">
+                                                        <h5 class="caption-subject font-blue-madison bold uppercase">@Localizer["ViewBranch.Rooms"]</h5>
+                                                    </a>
+                                                </li>
+                                            }
+                                            @if (Model.HasPermission(Feature.EmployeeEnum.ViewEmployee.ToString()))
+                                            {
+                                                <li class="@employeeTabActive">
+                                                    <a href="#tab_employee" data-toggle="tab">
+                                                        <h5 class="caption-subject font-blue-madison bold uppercase">@Localizer["ViewBranch.Employee"]</h5>
+                                                    </a>
+                                                </li>
+                                            }
+                                            </ul>
+                                    </div>
+
+
+                                    <div class="portlet-body">
+                                        <!--BEGIN TABS-->
+                                        <div class="tab-content">
+                                            @if (Model.HasPermission(Feature.BranchEnum.ViewRoom.ToString()))
+                                            {
+                                                <div class="@roomPanActive" id="tab_room">
+                                                    <div style="min-height: 337px;">
+                                                        <table class="table table-light">
+                                                            <thead>
+                                                                <tr class="uppercase">
+                                                                    <th>@Localizer["ViewBranch.RoomNo"]</th>
+                                                                    <th>@Localizer["ViewBranch.ClassTimeCapacity"]</th>
+                                                                    <th>@Localizer["ViewBranch.ExamTimeCapacity"]</th>
+                                                                    <th>@Localizer["ViewBranch.Action"]</th>
+                                                                </tr>
+                                                            </thead>
+
+                                                            <tbody>
+                                                                @foreach (var room in Model.Branch.Rooms)
+                                                                {
+                                                                    <tr>
+                                                                        <td>@Html.DisplayFor(model => room.RoomNo) </td>
+                                                                        <td>@Html.DisplayFor(model => room.ClassTimeCapacity)</td>
+                                                                        <td>@Html.DisplayFor(model => room.ExamTimeCapacity)</td>
+                                                                        <td>
+                                                                            @if (Model.HasPermission(Feature.BranchEnum.EditRoom.ToString()))
+                                                                            {
+                                                                                <a href="/Room/UpdateRoom?roomId=@room.Id" class="action-link"><i class="fa fa-edit action-icon"></i></a>
+                                                                            }
+                                                                         </td>
+                                                                    </tr>
+                                                                }
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            }
+                                            @if (Model.HasPermission(Feature.BranchEnum.ViewShift.ToString()))
+                                            {
+                                                <div class="@shiftPanActive" id="tab_shift">
+                                                    <div style="min-height: 337px;">
+
+                                                        <table class="table table-light">
+                                                            <thead>
+                                                                <tr class="uppercase">
+
+                                                                    <th>
+                                                                        @Localizer["ViewBranch.ShiftName"]
+                                                                    </th>
+                                                                    <th>
+                                                                        @Localizer["ViewBranch.StartTime"]
+                                                                    </th>
+                                                                    <th>
+                                                                        @Localizer["ViewBranch.EndTime"]
+                                                                    </th>
+                                                                    <th>@Localizer["ViewBranch.Action"]</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                @foreach (var shift in Model.Branch.Shifts)
+                                                                {
+                                                                    <tr>
+                                                                        <td>@Html.DisplayFor(model => shift.ShiftName)</td>
+                                                                        <td>@shift.StartTime.ToString(@"hh\:mm")</td>
+                                                                        <td>@shift.EndTime.ToString(@"hh\:mm")</td>
+                                                                        <td>
+                                                                            @if (Model.HasPermission(Feature.BranchEnum.EditShift.ToString()))
+                                                                            {
+                                                                                <a href="/Shift/UpdateShift?id=@shift.Id" class="action-link"><i class="fa fa-edit action-icon"></i></a>
+                                                                            }
+                                                                        </td>
+                                                                    </tr>
+                                                                }
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            }
+                                            @if (Model.HasPermission(Feature.BranchMediumEnum.ViewBranchMedium.ToString()))
+                                            {
+                                                <div class="@mediumPanActive" id="tab_medium">
+                                                    <div style="min-height: 337px;">
+                                                        <table class="table table-light">
+                                                            <thead>
+                                                                <tr class="uppercase">
+
+                                                                    <th>
+                                                                        @Localizer["ViewBranch.MediumName"]
+                                                                    </th>
+                                                                    <th>
+                                                                        @Localizer["ViewBranch.ShiftName"]
+                                                                    </th>
+                                                                    <th>
+                                                                        @Localizer["ViewBranch.WeeklyHolidays"]
+                                                                    </th>
+                                                                    <th>@Localizer["ViewBranch.Action"]</th>
+                                                                </tr>
+                                                            </thead>
+
+                                                            <tbody>
+                                                                @foreach (var branchMedium in Model.BranchMediums)
+                                                                {
+                                                                    if (branchMedium.Medium != null)
+                                                                    {
+                                                                        <tr>
+                                                                            <td>
+                                                                                @if (Model.HasPermission(Feature.BranchMediumEnum.ViewBranchMedium.ToString()))
+                                                                                {
+                                                                                    <a href="/BranchMedium/ViewBranchMedium?branchMediumId=@branchMedium.Id">@Html.DisplayFor(model => branchMedium.Medium.MediumName)</a>
+                                                                                }
+                                                                                else
+                                                                                {
+                                                                                    @Html.DisplayFor(model => branchMedium.Medium.MediumName)
+                                                                                }
+                                                                            </td>
+                                                                            <td>@Html.DisplayFor(model => branchMedium.Shift.ShiftName)</td>
+                                                                            <td>@Html.DisplayFor(model => branchMedium.WeeklyHolidays)</td>
+                                                                            <td>
+                                                                                @if (Model.HasPermission(Feature.BranchMediumEnum.EditBranchMedium.ToString()))
+                                                                                {
+                                                                                    <a href="/BranchMedium/UpdateBranchMedium?branchMediumId=@branchMedium.Id" class="action-link"><i class="fa fa-edit action-icon"></i></a>
+                                                                                }
+                                                                            </td>
+                                                                        </tr>
+                                                                    }
+                                                                }
+                                                            </tbody>
+
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            }
+                                            @if (Model.HasPermission(Feature.EmployeeEnum.ViewEmployee.ToString()))
+                                            {
+                                                <div class="@employeePanActive" id="tab_employee">
+                                                    <div style="min-height: 337px;">
+                                                        <table class="table table-striped table-hover" id="sample_5">
+
+                                                            <thead class="filterCriteria">
+                                                                <tr>
+                                                                    <th>@Localizer["ViewBranch.EmployeeName"]</th>
+                                                                    <th>@Localizer["ViewBranch.EmployeeCode"]</th>
+                                                                    <th>@Localizer["ViewBranch.joiningDate"]</th>
+                                                                    <th>@Localizer["ViewBranch.MobileNo"]</th>
+                                                                    <th>@Localizer["ViewBranch.EmailAddress"]</th>
+                                                                    <th>@Localizer["ViewBranch.EmployeeType"]</th>
+                                                                    <th>@Localizer["ViewBranch.Action"]</th>
+                                                                </tr>
+                                                            </thead>
+
+                                                            <tbody>
+                                                                @foreach (var employee in Model.Branch.Employees)
+                                                                {
+                                                                    <tr>
+                                                                        <td>
+                                                                            @if (Model.HasPermission(Feature.EmployeeEnum.ViewEmployee.ToString()))
+                                                                            {
+                                                                                <a href="/Employee/ViewEmployee?associationType=@AssociationType.Branch&employeeId=@employee.Id">@Html.DisplayFor(model => employee.FullName)</a>
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                @Html.DisplayFor(model => employee.FullName)
+                                                                            }
+                                                                        </td>
+                                                                        <td>
+                                                                            @Html.DisplayFor(model =>  employee.EmployeeCode)
+                                                                        </td>
+                                                                        @if (employee.JoiningDate != null)
+                                                                        {
+                                                                            <td>@employee.JoiningDate.Value.ToString("dd MMMM, yyyy")</td>
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <td></td>
+                                                                        }
+                                                                        <td>@Html.DisplayFor(model => employee.MobileNo)</td>
+                                                                        <td>@Html.DisplayFor(model => employee.EmailAddress)</td>
+                                                                        <td>@Html.DisplayFor(model => employee.EmployeeType)</td>
+                                                                        <td>
+                                                                            @if (Model.HasPermission(Feature.EmployeeEnum.EditEmployee.ToString()))
+                                                                            {
+                                                                                <a href="/Employee/UpdateEmployee?associationType=@AssociationType.Branch&objectId=@Model.Branch.Id&employeeId=@employee.Id" class="action-link"><i class="fa fa-edit action-icon"></i></a>
+                                                                            }
+                                                                            </td>
+                                                                    </tr>
+                                                                }
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+
+                                                </div>
+                                            }
+                                         </div>
+                                        <!--END TABS-->
+                                    </div>
+                                </div>
+                                <!-- END PORTLET -->
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- END PROFILE CONTENT -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
